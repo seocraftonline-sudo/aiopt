@@ -1,0 +1,599 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+---
+<Layout>
+<Nav/>
+<main class="mn">
+  <div class="pg-hd">
+    <div class="hd-ic">🔄</div>
+    <h1 class="tl">AI Content Repurposing</h1>
+    <p class="st">Transform your existing content into multiple formats and platforms</p>
+  </div>
+
+  <!-- Progress -->
+  <div class="pr-wr">
+    <div class="pr-st" id="progressBar">
+      <div class="pr-it cp" data-step="1"><div class="pr-nm">1</div><div class="pr-lb">Upload</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="2"><div class="pr-nm">2</div><div class="pr-lb">Analyze</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="3"><div class="pr-nm">3</div><div class="pr-lb">Select</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="4"><div class="pr-nm">4</div><div class="pr-lb">Generate</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="5"><div class="pr-nm">5</div><div class="pr-lb">Export</div></div>
+    </div>
+  </div>
+
+  <div class="st-cn">
+    <!-- Step 1: Upload Content -->
+    <div class="st-bx" id="step1">
+      <div class="st-ic">📄</div>
+      <div class="st-hd">
+        <h2>Upload Your Content</h2>
+        <p>Paste your existing content or upload a file to repurpose</p>
+      </div>
+      <div class="st-bd">
+        <div class="fm-gd">
+          <div class="fm-gr">
+            <label class="fm-lb">
+              <span class="lb-tx">Content Source<span class="rq">*</span></span>
+              <select id="contentSource" class="fm-sl">
+                <option value="text">Paste Text</option>
+                <option value="url">From URL</option>
+                <option value="file">Upload File</option>
+              </select>
+            </label>
+          </div>
+          <div class="fm-gr" id="textInput">
+            <label class="fm-lb">
+              <span class="lb-tx">Original Content<span class="rq">*</span></span>
+              <textarea id="originalContent" class="fm-tx" rows="12" placeholder="Paste your content here..."></textarea>
+            </label>
+          </div>
+          <div class="fm-gr" id="urlInput" style="display:none">
+            <label class="fm-lb">
+              <span class="lb-tx">Content URL<span class="rq">*</span></span>
+              <input id="contentUrl" class="fm-in" type="url" placeholder="https://example.com/article"/>
+            </label>
+            <button class="bt-sc" id="fetchContent">Fetch Content</button>
+          </div>
+          <div class="fm-gr" id="fileInput" style="display:none">
+            <label class="fm-lb">
+              <span class="lb-tx">Upload File<span class="rq">*</span></span>
+              <input id="contentFile" class="fm-in" type="file" accept=".txt,.md,.docx,.pdf"/>
+            </label>
+          </div>
+          <div class="fm-gr">
+            <label class="fm-lb">
+              <span class="lb-tx">Content Type</span>
+              <select id="originalType" class="fm-sl">
+                <option value="blog">Blog Post</option>
+                <option value="article">Article</option>
+                <option value="guide">Guide</option>
+                <option value="video">Video Script</option>
+                <option value="podcast">Podcast Transcript</option>
+                <option value="social">Social Media Post</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="bt-gr">
+          <button class="bt-pr" id="nextStep1"><span>Analyze Content</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Content Analysis -->
+    <div class="st-bx" id="step2" style="display:none">
+      <div class="st-ic">🧠</div>
+      <div class="st-hd">
+        <h2>Content Analysis</h2>
+        <p>AI analysis of your content structure and key points</p>
+      </div>
+      <div class="st-bd">
+        <div class="an-gd">
+          <div class="an-cd">
+            <div class="an-hd">📊 Content Stats</div>
+            <div class="an-st">
+              <div class="st-it"><span class="st-lb">Word Count:</span><span id="wordCount">0</span></div>
+              <div class="st-it"><span class="st-lb">Reading Time:</span><span id="readingTime">0 min</span></div>
+              <div class="st-it"><span class="st-lb">Paragraphs:</span><span id="paragraphCount">0</span></div>
+              <div class="st-it"><span class="st-lb">Tone:</span><span id="contentTone">Analyzing...</span></div>
+            </div>
+          </div>
+          <div class="an-cd">
+            <div class="an-hd">🎯 Key Topics</div>
+            <div id="keyTopics" class="tp-ls"></div>
+          </div>
+          <div class="an-cd">
+            <div class="an-hd">🔑 Main Points</div>
+            <div id="mainPoints" class="pt-ls"></div>
+          </div>
+        </div>
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep2"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="nextStep2"><span>Select Formats</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Format Selection -->
+    <div class="st-bx" id="step3" style="display:none">
+      <div class="st-ic">🎨</div>
+      <div class="st-hd">
+        <h2>Choose Output Formats</h2>
+        <p>Select which formats you want to repurpose your content into</p>
+      </div>
+      <div class="st-bd">
+        <div class="fm-gd">
+          <div class="fm-gr">
+            <h3>Social Media Formats</h3>
+            <div class="ch-gd">
+              <label class="ch-it"><input type="checkbox" class="format-check" value="twitter"><span class="ch-lb">🐦 Twitter Thread</span></label>
+              <label class="ch-it"><input type="checkbox" class="format-check" value="linkedin"><span class="ch-lb">💼 LinkedIn Post</span></label>
+              <label class="ch-it"><input type="checkbox" class="format-check" value="instagram"><span class="ch-lb">📸 Instagram Captions</span></label>
+              <label class="ch-it"><input type="checkbox" class="format-check" value="facebook"><span class="ch-lb">👥 Facebook Post</span></label>
+            </div>
+          </div>
+          <div class="fm-gr">
+            <h3>Content Formats</h3>
+            <div class="ch-gd">
+              <label class="ch-it"><input type="checkbox" class="format-check" value="summary"><span class="ch-lb">📝 Executive Summary</span></label>
+              <label class="ch-it"><input type="checkbox" class="format-check" value="bullets"><span class="ch-lb">• Bullet Points</span></label>
+              <label class="ch-it"><input type="checkbox" class="format-check" value="infographic"><span class="ch-lb">📊 Infographic Script</span></label>
+              <label class="ch-it"><input type="checkbox" class="format-check" value="email"><span class="ch-lb">📧 Email Newsletter</span></label>
+            </div>
+          </div>
+          <div class="fm-gr">
+            <h3>Video & Audio</h3>
+            <div class="ch-gd">
+              <label class="ch-it"><input type="checkbox" class="format-check" value="video"><span class="ch-lb">🎥 Video Script</span></label>
+              <label class="ch-it"><input type="checkbox" class="format-check" value="podcast"><span class="ch-lb">🎙️ Podcast Outline</span></label>
+              <label class="ch-it"><input type="checkbox" class="format-check" value="presentation"><span class="ch-lb">📊 Presentation Slides</span></label>
+            </div>
+          </div>
+        </div>
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep3"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="nextStep3"><span>Generate Content</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: Generate Repurposed Content -->
+    <div class="st-bx" id="step4" style="display:none">
+      <div class="st-ic">⚡</div>
+      <div class="st-hd">
+        <h2>Generated Content</h2>
+        <p>Your content has been repurposed into the selected formats</p>
+      </div>
+      <div class="st-bd">
+        <div class="gn-pr" id="generationProgress" style="display:none">
+          <div class="pr-br"><div class="pr-fl" id="genProgressBar"></div></div>
+          <div class="pr-tx" id="genProgressText">Generating content...</div>
+        </div>
+        <div id="generatedContent" class="gc-gd"></div>
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep4"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="nextStep4"><span>Export All</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5: Export Options -->
+    <div class="st-bx" id="step5" style="display:none">
+      <div class="st-ic">📤</div>
+      <div class="st-hd">
+        <h2>Export Your Content</h2>
+        <p>Download or share your repurposed content</p>
+      </div>
+      <div class="st-bd">
+        <div class="ex-gd">
+          <button class="ex-cd" id="downloadAll"><div class="ex-ic">📦</div><div class="ex-tx">Download All (ZIP)</div></button>
+          <button class="ex-cd" id="downloadJSON"><div class="ex-ic">📄</div><div class="ex-tx">Export as JSON</div></button>
+          <button class="ex-cd" id="copyToClipboard"><div class="ex-ic">📋</div><div class="ex-tx">Copy to Clipboard</div></button>
+          <button class="ex-cd" id="shareLink"><div class="ex-ic">🔗</div><div class="ex-tx">Generate Share Link</div></button>
+          <button class="ex-cd" id="schedulePost"><div class="ex-ic">⏰</div><div class="ex-tx">Schedule Posts</div></button>
+        </div>
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep5"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="startOver"><span>Start Over</span><span class="bt-ar">🔄</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<style>
+.an-gd { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin: 1rem 0; }
+.an-cd { background: #f8f9fa; border-radius: 8px; padding: 1rem; }
+.an-hd { font-weight: 600; margin-bottom: 0.5rem; color: #2563eb; }
+.an-st { display: flex; flex-direction: column; gap: 0.5rem; }
+.st-it { display: flex; justify-content: space-between; }
+.st-lb { font-weight: 500; }
+.tp-ls, .pt-ls { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tp-tg, .pt-tg { background: #e0e7ff; color: #3730a3; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.875rem; }
+.ch-gd { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem; }
+.ch-it { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 6px; cursor: pointer; transition: all 0.2s; }
+.ch-it:hover { background: #f3f4f6; }
+.ch-it input:checked + .ch-lb { color: #2563eb; font-weight: 600; }
+.ch-lb { font-size: 0.875rem; }
+.gc-gd { display: flex; flex-direction: column; gap: 1rem; }
+.gc-it { border: 1px solid #e5e7eb; border-radius: 8px; padding: 1rem; }
+.gc-hd { display: flex; justify-content: between; align-items: center; margin-bottom: 0.5rem; }
+.gc-tl { font-weight: 600; color: #1f2937; }
+.gc-ac { display: flex; gap: 0.5rem; }
+.gc-bt { padding: 0.25rem 0.5rem; border: 1px solid #d1d5db; border-radius: 4px; background: white; cursor: pointer; font-size: 0.75rem; }
+.gc-ct { background: #f9fafb; padding: 1rem; border-radius: 6px; white-space: pre-wrap; font-family: monospace; font-size: 0.875rem; }
+.ex-gd { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.ex-cd { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; padding: 1.5rem; border: 2px solid #e5e7eb; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+.ex-cd:hover { border-color: #2563eb; background: #f8faff; }
+.ex-ic { font-size: 2rem; }
+.ex-tx { font-weight: 500; text-align: center; }
+.gn-pr { margin: 1rem 0; }
+.pr-br { width: 100%; height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden; }
+.pr-fl { height: 100%; background: #2563eb; width: 0%; transition: width 0.3s; }
+.pr-tx { text-align: center; margin-top: 0.5rem; color: #6b7280; }
+</style>
+
+<script>
+let currentStep: number = 1;
+let originalContent: string = '';
+let analysisData: Record<string, unknown> = {};
+let selectedFormats: string[] = [];
+let generatedContent: Record<string, string> = {};
+
+// Step navigation
+function showStep(step: number): void {
+  const boxes = document.querySelectorAll('.st-bx') as NodeListOf<HTMLElement>;
+  boxes.forEach((box) => { box.style.display = 'none'; });
+
+  const stepEl = document.getElementById(`step${step}`) as HTMLElement | null;
+  if (stepEl) stepEl.style.display = 'block';
+  
+  // Update progress
+  const progressItems = document.querySelectorAll('.pr-it') as NodeListOf<HTMLElement>;
+  progressItems.forEach((item, index) => {
+    item.classList.toggle('cp', index + 1 === step);
+    item.classList.toggle('cm', index + 1 < step);
+  });
+  
+  currentStep = step;
+}
+
+// Content source switching
+const contentSourceEl = document.getElementById('contentSource') as HTMLSelectElement | null;
+if (contentSourceEl) {
+  contentSourceEl.addEventListener('change', (e: Event) => {
+    const select = e.currentTarget as HTMLSelectElement;
+    const value = select.value;
+    const textInput = document.getElementById('textInput') as HTMLElement | null;
+    const urlInput = document.getElementById('urlInput') as HTMLElement | null;
+    const fileInput = document.getElementById('fileInput') as HTMLElement | null;
+    if (textInput) textInput.style.display = value === 'text' ? 'block' : 'none';
+    if (urlInput) urlInput.style.display = value === 'url' ? 'block' : 'none';
+    if (fileInput) fileInput.style.display = value === 'file' ? 'block' : 'none';
+  });
+}
+
+// Step 1: Upload Content
+const nextStep1Btn = document.getElementById('nextStep1') as HTMLButtonElement | null;
+if (nextStep1Btn) {
+  nextStep1Btn.addEventListener('click', function () {
+    const sourceSel = document.getElementById('contentSource') as HTMLSelectElement | null;
+    const source = sourceSel ? sourceSel.value : '';
+    let content = '';
+    
+    if (source === 'text') {
+      const originalContentEl = document.getElementById('originalContent') as HTMLTextAreaElement | null;
+      content = originalContentEl && originalContentEl.value ? originalContentEl.value.trim() : '';
+    } else if (source === 'url') {
+      const contentUrlEl = document.getElementById('contentUrl') as HTMLInputElement | null;
+      content = contentUrlEl && contentUrlEl.value ? contentUrlEl.value.trim() : '';
+    } else if (source === 'file') {
+      const contentFileEl = document.getElementById('contentFile') as HTMLInputElement | null;
+      const file = contentFileEl && contentFileEl.files && contentFileEl.files[0] ? contentFileEl.files[0] : null;
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e: ProgressEvent<FileReader>) => {
+          const result = e.target ? e.target.result : null;
+          if (typeof result === 'string') {
+            originalContent = result;
+          } else {
+            originalContent = '';
+          }
+          analyzeContent();
+          showStep(2);
+        };
+        reader.readAsText(file);
+        return;
+      }
+    }
+    
+    if (!content) {
+      alert('Please provide content to repurpose');
+      return;
+    }
+    
+    originalContent = content;
+    analyzeContent();
+    showStep(2);
+  });
+}
+
+// Fetch content from URL
+const fetchContentBtn = document.getElementById('fetchContent') as HTMLButtonElement | null;
+if (fetchContentBtn) {
+  fetchContentBtn.addEventListener('click', function (this: HTMLButtonElement) {
+    const urlInputEl = document.getElementById('contentUrl') as HTMLInputElement | null;
+    const url = urlInputEl && urlInputEl.value ? urlInputEl.value.trim() : '';
+    if (!url) {
+      alert('Please enter a valid URL');
+      return;
+    }
+    
+    // Simulate fetching content
+    this.textContent = 'Fetching...';
+    setTimeout(() => {
+      originalContent = `Fetched content from: ${url}\n\nThis is simulated content that would be extracted from the provided URL. In a real implementation, this would use a web scraping service or API to extract the main content from the webpage.`;
+      this.textContent = 'Fetch Content';
+      alert('Content fetched successfully!');
+    }, 2000);
+  });
+}
+
+// Content analysis
+function analyzeContent(): void {
+  const words = originalContent.split(/\s+/).length;
+  const readingTime = Math.ceil(words / 200);
+  const paragraphs = originalContent.split('\n\n').length;
+  
+  const wordCountEl = document.getElementById('wordCount');
+  const readingTimeEl = document.getElementById('readingTime');
+  const paragraphCountEl = document.getElementById('paragraphCount');
+  
+  if (wordCountEl) wordCountEl.textContent = words.toLocaleString();
+  if (readingTimeEl) readingTimeEl.textContent = `${readingTime} min`;
+  if (paragraphCountEl) paragraphCountEl.textContent = String(paragraphs);
+  
+  // Simulate AI analysis
+  setTimeout(() => {
+    const contentToneEl = document.getElementById('contentTone');
+    if (contentToneEl) contentToneEl.textContent = 'Professional';
+    
+    // Generate key topics
+    const topics = ['Technology', 'Innovation', 'Best Practices', 'Industry Trends', 'Solutions'];
+    const topicsHtml = topics.map(topic => `<span class="tp-tg">${topic}</span>`).join('');
+    const keyTopicsEl = document.getElementById('keyTopics');
+    if (keyTopicsEl) keyTopicsEl.innerHTML = topicsHtml;
+    
+    // Generate main points
+    const points = [
+      'Introduction to the main concept',
+      'Key benefits and advantages',
+      'Implementation strategies',
+      'Common challenges and solutions',
+      'Future outlook and recommendations'
+    ];
+    const pointsHtml = points.map(point => `<span class="pt-tg">${point}</span>`).join('');
+    const mainPointsEl = document.getElementById('mainPoints');
+    if (mainPointsEl) mainPointsEl.innerHTML = pointsHtml;
+  }, 1500);
+}
+
+// Step 2: Analysis
+const backStep2Btn = document.getElementById('backStep2') as HTMLButtonElement | null;
+if (backStep2Btn) backStep2Btn.addEventListener('click', () => showStep(1));
+const nextStep2Btn = document.getElementById('nextStep2') as HTMLButtonElement | null;
+if (nextStep2Btn) nextStep2Btn.addEventListener('click', () => showStep(3));
+
+// Step 3: Format Selection
+const backStep3Btn = document.getElementById('backStep3') as HTMLButtonElement | null;
+if (backStep3Btn) backStep3Btn.addEventListener('click', () => showStep(2));
+const nextStep3Btn = document.getElementById('nextStep3') as HTMLButtonElement | null;
+if (nextStep3Btn) {
+  nextStep3Btn.addEventListener('click', function() {
+    const checked = Array.from(document.querySelectorAll('.format-check:checked')) as HTMLInputElement[];
+    const formats = checked.map(cb => cb.value);
+    
+    if (formats.length === 0) {
+      alert('Please select at least one format');
+      return;
+    }
+    
+    selectedFormats = formats;
+    generateContent();
+    showStep(4);
+  });
+}
+
+// Step 4: Generate Content
+function generateContent(): void {
+  const progressBar = document.getElementById('genProgressBar') as HTMLElement | null;
+  const progressText = document.getElementById('genProgressText') as HTMLElement | null;
+  const progressContainer = document.getElementById('generationProgress') as HTMLElement | null;
+  const contentContainer = document.getElementById('generatedContent') as HTMLElement | null;
+  
+  if (!progressBar || !progressText || !progressContainer || !contentContainer) return;
+  
+  progressContainer.style.display = 'block';
+  contentContainer.innerHTML = '';
+  
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += Math.random() * 20;
+    if (progress > 100) progress = 100;
+    
+    progressBar.style.width = `${progress}%`;
+    progressText.textContent = `Generating content... ${Math.round(progress)}%`;
+    
+    if (progress >= 100) {
+      clearInterval(interval);
+      progressContainer.style.display = 'none';
+      displayGeneratedContent();
+    }
+  }, 300);
+}
+
+function displayGeneratedContent(): void {
+  const container = document.getElementById('generatedContent') as HTMLElement | null;
+  if (!container) return;
+  const formatTemplates: Record<string, string> = {
+    twitter: 'Twitter Thread:\n\n🧵 Thread about [topic]\n\n1/ [Opening hook]\n\n2/ [Key point 1]\n\n3/ [Key point 2]\n\n4/ [Conclusion with CTA]',
+    linkedin: 'LinkedIn Post:\n\n[Engaging headline]\n\n[Professional insight]\n\n💡 Key takeaways:\n• Point 1\n• Point 2\n• Point 3\n\nWhat are your thoughts? 👇',
+    instagram: 'Instagram Caption:\n\n[Eye-catching opener] ✨\n\n[Story or insight]\n\n[Call to action]\n\n#hashtag1 #hashtag2 #hashtag3',
+    summary: 'Executive Summary:\n\n[Brief overview of main points]\n\nKey Benefits:\n• Benefit 1\n• Benefit 2\n• Benefit 3\n\nRecommendations:\n[Action items]',
+    video: 'Video Script:\n\nINTRO (0-15s):\n[Hook and introduction]\n\nMAIN CONTENT (15s-2m):\n[Key points with visual cues]\n\nOUTRO (2m-2:15s):\n[Summary and CTA]',
+    email: 'Email Newsletter:\n\nSubject: [Compelling subject line]\n\nHi [Name],\n\n[Personal greeting]\n\n[Main content]\n\n[Call to action]\n\nBest regards,\n[Your name]'
+  };
+  
+  selectedFormats.forEach((format: string) => {
+    const content = formatTemplates[format] || `Generated content for ${format} format`;
+    generatedContent[format] = content;
+    
+    const item = document.createElement('div');
+    item.className = 'gc-it';
+    item.innerHTML = `
+      <div class="gc-hd">
+        <div class="gc-tl">${format.charAt(0).toUpperCase() + format.slice(1)} Format</div>
+        <div class="gc-ac">
+          <button class="gc-bt" onclick="copyContent('${format}')">Copy</button>
+          <button class="gc-bt" onclick="editContent('${format}')">Edit</button>
+          <button class="gc-bt" onclick="downloadContent('${format}')">Download</button>
+        </div>
+      </div>
+      <div class="gc-ct" id="content-${format}">${content}</div>
+    `;
+    container.appendChild(item);
+  });
+}
+
+// Content actions
+async function safeCopyText(text: string): Promise<boolean> {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch (err) {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+}
+
+async function copyContent(format: string): Promise<void> {
+  const text = generatedContent && generatedContent[format] ? String(generatedContent[format]) : '';
+  const ok = await safeCopyText(text);
+  alert(ok ? 'Content copied to clipboard!' : 'Unable to copy to clipboard');
+}
+
+function editContent(format: string): void {
+  const contentEl = document.getElementById(`content-${format}`);
+  const currentContent = contentEl && contentEl.textContent ? contentEl.textContent : '';
+  const newContent = prompt('Edit content:', currentContent);
+  if (newContent !== null && contentEl) {
+    generatedContent[format] = newContent;
+    contentEl.textContent = newContent;
+  }
+}
+
+function downloadContent(format: string): void {
+  const text = generatedContent && generatedContent[format] ? String(generatedContent[format]) : '';
+  const blob = new Blob([text], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${format}-content.txt`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// Step 4 navigation
+const backStep4Btn = document.getElementById('backStep4') as HTMLButtonElement | null;
+if (backStep4Btn) backStep4Btn.addEventListener('click', () => showStep(3));
+const nextStep4Btn = document.getElementById('nextStep4') as HTMLButtonElement | null;
+if (nextStep4Btn) nextStep4Btn.addEventListener('click', () => showStep(5));
+
+// Step 5: Export
+const backStep5Btn = document.getElementById('backStep5') as HTMLButtonElement | null;
+if (backStep5Btn) backStep5Btn.addEventListener('click', () => showStep(4));
+const startOverBtn = document.getElementById('startOver') as HTMLButtonElement | null;
+if (startOverBtn) {
+  startOverBtn.addEventListener('click', () => {
+    if (confirm('Are you sure you want to start over? All progress will be lost.')) {
+      location.reload();
+    }
+  });
+}
+
+// Export functions
+const downloadAllBtn = document.getElementById('downloadAll') as HTMLButtonElement | null;
+if (downloadAllBtn) {
+  downloadAllBtn.addEventListener('click', function() {
+    // Simulate ZIP download
+    alert('Downloading all content as ZIP file...');
+  });
+}
+
+const downloadJSONBtn = document.getElementById('downloadJSON') as HTMLButtonElement | null;
+if (downloadJSONBtn) {
+  downloadJSONBtn.addEventListener('click', function() {
+    const data = {
+      originalContent,
+      analysisData,
+      selectedFormats,
+      generatedContent,
+      timestamp: new Date().toISOString()
+    };
+    
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'repurposed-content.json';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+}
+
+const copyToClipboardBtn = document.getElementById('copyToClipboard') as HTMLButtonElement | null;
+if (copyToClipboardBtn) {
+  copyToClipboardBtn.addEventListener('click', async function() {
+    const allContent = Object.entries(generatedContent)
+      .map(([format, content]) => `=== ${format.toUpperCase()} ===\n${content}`)
+      .join('\n\n');
+    const ok = await safeCopyText(allContent);
+    alert(ok ? 'All content copied to clipboard!' : 'Unable to copy to clipboard');
+  });
+}
+
+const shareLinkBtn = document.getElementById('shareLink') as HTMLButtonElement | null;
+if (shareLinkBtn) {
+  shareLinkBtn.addEventListener('click', async function() {
+    const shareId = Math.random().toString(36).substr(2, 9);
+    const shareUrl = `${window.location.origin}/share/${shareId}`;
+    const ok = await safeCopyText(shareUrl);
+    alert(ok ? `Share link copied to clipboard: ${shareUrl}` : 'Unable to copy link to clipboard');
+  });
+}
+
+const schedulePostBtn = document.getElementById('schedulePost') as HTMLButtonElement | null;
+if (schedulePostBtn) {
+  schedulePostBtn.addEventListener('click', function() {
+    alert('Social media scheduling feature coming soon!');
+  });
+}
+
+// Initialize
+showStep(1);
+</script>
+</Layout>

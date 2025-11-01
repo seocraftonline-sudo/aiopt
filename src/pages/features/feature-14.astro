@@ -1,0 +1,1755 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+---
+<Layout>
+<Nav/>
+<main class="mn">
+<header class="hd">
+<h1 class="tl">Compliance Checker</h1>
+<p class="st">Validate claims, citations, and regulatory requirements with AI-powered compliance analysis.</p>
+</header>
+
+<!-- Progress Bar -->
+<div class="progress-container">
+  <div class="progress-bar">
+    <div class="progress-step active" data-step="1">
+      <div class="step-number">1</div>
+      <div class="step-label">Setup</div>
+    </div>
+    <div class="progress-step" data-step="2">
+      <div class="step-number">2</div>
+      <div class="step-label">Content</div>
+    </div>
+    <div class="progress-step" data-step="3">
+      <div class="step-number">3</div>
+      <div class="step-label">Analysis</div>
+    </div>
+    <div class="progress-step" data-step="4">
+      <div class="step-number">4</div>
+      <div class="step-label">Review</div>
+    </div>
+    <div class="progress-step" data-step="5">
+      <div class="step-number">5</div>
+      <div class="step-label">Report</div>
+    </div>
+  </div>
+</div>
+
+<!-- Step 1: Compliance Setup -->
+<div class="step-content" id="step1">
+  <div class="step-header">
+    <h2>Step 1: Compliance Setup</h2>
+    <p>Configure compliance rules and regulatory requirements</p>
+  </div>
+  
+  <div class="setup-options">
+    <div class="industry-selection">
+      <h3>Industry & Regulations</h3>
+      <div class="industry-grid">
+        <div class="industry-card" data-industry="healthcare">
+          <div class="industry-icon">🏥</div>
+          <h4>Healthcare</h4>
+          <p>HIPAA, FDA, Medical Claims</p>
+          <div class="regulations">
+            <span class="regulation-tag">HIPAA</span>
+            <span class="regulation-tag">FDA</span>
+            <span class="regulation-tag">Medical Device</span>
+          </div>
+        </div>
+        
+        <div class="industry-card" data-industry="finance">
+          <div class="industry-icon">💰</div>
+          <h4>Financial Services</h4>
+          <p>SEC, FINRA, Investment Claims</p>
+          <div class="regulations">
+            <span class="regulation-tag">SEC</span>
+            <span class="regulation-tag">FINRA</span>
+            <span class="regulation-tag">GDPR</span>
+          </div>
+        </div>
+        
+        <div class="industry-card" data-industry="food">
+          <div class="industry-icon">🍎</div>
+          <h4>Food & Beverage</h4>
+          <p>FDA, Nutrition Claims, Organic</p>
+          <div class="regulations">
+            <span class="regulation-tag">FDA Food</span>
+            <span class="regulation-tag">USDA Organic</span>
+            <span class="regulation-tag">Nutrition</span>
+          </div>
+        </div>
+        
+        <div class="industry-card" data-industry="advertising">
+          <div class="industry-icon">📢</div>
+          <h4>Advertising</h4>
+          <p>FTC, Truth in Advertising</p>
+          <div class="regulations">
+            <span class="regulation-tag">FTC</span>
+            <span class="regulation-tag">Truth in Advertising</span>
+            <span class="regulation-tag">Endorsements</span>
+          </div>
+        </div>
+        
+        <div class="industry-card" data-industry="tech">
+          <div class="industry-icon">💻</div>
+          <h4>Technology</h4>
+          <p>GDPR, CCPA, Data Privacy</p>
+          <div class="regulations">
+            <span class="regulation-tag">GDPR</span>
+            <span class="regulation-tag">CCPA</span>
+            <span class="regulation-tag">Data Privacy</span>
+          </div>
+        </div>
+        
+        <div class="industry-card" data-industry="general">
+          <div class="industry-icon">🏢</div>
+          <h4>General Business</h4>
+          <p>Basic compliance rules</p>
+          <div class="regulations">
+            <span class="regulation-tag">General</span>
+            <span class="regulation-tag">Claims</span>
+            <span class="regulation-tag">Citations</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="custom-rules" id="customRules" style="display: none;">
+      <h3>Custom Compliance Rules</h3>
+      <div class="rules-builder">
+        <div class="rule-categories">
+          <div class="category-tabs">
+            <button class="tab-btn active" data-category="claims">Claims Validation</button>
+            <button class="tab-btn" data-category="citations">Citations</button>
+            <button class="tab-btn" data-category="disclaimers">Disclaimers</button>
+            <button class="tab-btn" data-category="privacy">Privacy</button>
+          </div>
+          
+          <div class="category-content" id="claimsContent">
+            <div class="rule-options">
+              <label class="rule-checkbox">
+                <input type="checkbox" checked> Require substantiation for performance claims
+              </label>
+              <label class="rule-checkbox">
+                <input type="checkbox" checked> Flag superlative claims (best, #1, etc.)
+              </label>
+              <label class="rule-checkbox">
+                <input type="checkbox"> Require clinical evidence for health claims
+              </label>
+              <label class="rule-checkbox">
+                <input type="checkbox"> Check for comparative claims evidence
+              </label>
+            </div>
+          </div>
+          
+          <div class="category-content" id="citationsContent" style="display: none;">
+            <div class="rule-options">
+              <label class="rule-checkbox">
+                <input type="checkbox" checked> Require citations for statistics
+              </label>
+              <label class="rule-checkbox">
+                <input type="checkbox" checked> Validate citation formats
+              </label>
+              <label class="rule-checkbox">
+                <input type="checkbox"> Check citation accessibility
+              </label>
+              <label class="rule-checkbox">
+                <input type="checkbox"> Verify publication dates
+              </label>
+            </div>
+          </div>
+          
+          <div class="category-content" id="disclaimersContent" style="display: none;">
+            <div class="rule-options">
+              <label class="rule-checkbox">
+                <input type="checkbox" checked> Require disclaimers for claims
+              </label>
+              <label class="rule-checkbox">
+                <input type="checkbox"> Check disclaimer prominence
+              </label>
+              <label class="rule-checkbox">
+                <input type="checkbox"> Validate disclaimer language
+              </label>
+            </div>
+          </div>
+          
+          <div class="category-content" id="privacyContent" style="display: none;">
+            <div class="rule-options">
+              <label class="rule-checkbox">
+                <input type="checkbox" checked> Check for privacy policy links
+              </label>
+              <label class="rule-checkbox">
+                <input type="checkbox"> Validate data collection notices
+              </label>
+              <label class="rule-checkbox">
+                <input type="checkbox"> Check cookie consent
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="step-actions">
+    <button class="btn-primary" id="nextStep1">Continue to Content →</button>
+  </div>
+</div>
+
+<!-- Step 2: Content Input -->
+<div class="step-content" id="step2" style="display: none;">
+  <div class="step-header">
+    <h2>Step 2: Content Input</h2>
+    <p>Provide the content you want to check for compliance</p>
+  </div>
+  
+  <div class="content-input-options">
+    <div class="input-tabs">
+      <button class="input-tab active" data-input="text">Text Input</button>
+      <button class="input-tab" data-input="url">Website URL</button>
+      <button class="input-tab" data-input="file">File Upload</button>
+      <button class="input-tab" data-input="bulk">Bulk Check</button>
+    </div>
+    
+    <div class="input-content" id="textInput">
+      <div class="text-input-area">
+        <label for="contentText">Content to Check</label>
+        <textarea id="contentText" rows="12" placeholder="Paste your content here for compliance checking...
+
+Example:
+Our revolutionary weight loss supplement helps you lose up to 30 pounds in 30 days! Clinical studies show 95% effectiveness. Join thousands of satisfied customers who have transformed their lives. Results guaranteed or your money back!
+
+*Individual results may vary. This product has not been evaluated by the FDA."></textarea>
+        
+        <div class="content-info">
+          <div class="content-stats">
+            <span id="charCount">0 characters</span>
+            <span id="wordCountInput">0 words</span>
+          </div>
+          <div class="content-type">
+            <label for="contentType">Content Type:</label>
+            <select id="contentType">
+              <option value="marketing">Marketing Copy</option>
+              <option value="website">Website Content</option>
+              <option value="advertisement">Advertisement</option>
+              <option value="email">Email Campaign</option>
+              <option value="social">Social Media</option>
+              <option value="press">Press Release</option>
+              <option value="product">Product Description</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="input-content" id="urlInput" style="display: none;">
+      <div class="url-input-area">
+        <label for="websiteUrl">Website URL</label>
+        <input type="url" id="websiteUrl" placeholder="https://example.com">
+        
+        <div class="url-options">
+          <label class="url-checkbox">
+            <input type="checkbox" checked> Check main content
+          </label>
+          <label class="url-checkbox">
+            <input type="checkbox"> Include navigation
+          </label>
+          <label class="url-checkbox">
+            <input type="checkbox"> Check footer content
+          </label>
+          <label class="url-checkbox">
+            <input type="checkbox"> Analyze meta tags
+          </label>
+        </div>
+        
+        <button class="btn-secondary" id="previewUrl">Preview Content</button>
+        
+        <div class="url-preview" id="urlPreview" style="display: none;">
+          <h4>Content Preview</h4>
+          <div class="preview-content">
+            <!-- URL content preview will appear here -->
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="input-content" id="fileInput" style="display: none;">
+      <div class="file-input-area">
+        <div class="file-drop-zone" id="fileDropZone">
+          <div class="drop-zone-content">
+            <div class="drop-icon">📄</div>
+            <h4>Drop files here or click to browse</h4>
+            <p>Supported formats: PDF, DOC, DOCX, TXT, HTML</p>
+            <input type="file" id="fileUpload" multiple accept=".pdf,.doc,.docx,.txt,.html">
+          </div>
+        </div>
+        
+        <div class="uploaded-files" id="uploadedFiles" style="display: none;">
+          <h4>Uploaded Files</h4>
+          <div class="file-list" id="fileList">
+            <!-- Uploaded files will appear here -->
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="input-content" id="bulkInput" style="display: none;">
+      <div class="bulk-input-area">
+        <h4>Bulk Compliance Check</h4>
+        <p>Check multiple pieces of content at once</p>
+        
+        <div class="bulk-options">
+          <div class="bulk-method">
+            <h5>CSV Upload</h5>
+            <p>Upload a CSV file with content in columns</p>
+            <input type="file" id="csvUpload" accept=".csv">
+            <button class="btn-secondary" id="downloadTemplate">Download Template</button>
+          </div>
+          
+          <div class="bulk-method">
+            <h5>URL List</h5>
+            <p>Check multiple URLs at once</p>
+            <textarea id="urlList" rows="6" placeholder="Enter URLs, one per line:
+https://example.com/page1
+https://example.com/page2
+https://example.com/page3"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="step-actions">
+    <button class="btn-secondary" id="backStep2">← Back</button>
+    <button class="btn-primary" id="nextStep2">Start Analysis →</button>
+  </div>
+</div>
+
+<!-- Step 3: Compliance Analysis -->
+<div class="step-content" id="step3" style="display: none;">
+  <div class="step-header">
+    <h2>Step 3: Compliance Analysis</h2>
+    <p>AI-powered analysis of your content for compliance issues</p>
+  </div>
+  
+  <div class="analysis-progress" id="analysisProgress">
+    <div class="analysis-status">
+      <div class="status-icon">🔍</div>
+      <h3>Analyzing Content...</h3>
+      <p id="analysisStatusText">Initializing compliance check...</p>
+    </div>
+    
+    <div class="progress-details">
+      <div class="progress-item">
+        <span class="progress-label">Claims Validation</span>
+        <div class="progress-bar-small">
+          <div class="progress-fill" id="claimsProgress"></div>
+        </div>
+        <span class="progress-status" id="claimsStatus">Pending</span>
+      </div>
+      
+      <div class="progress-item">
+        <span class="progress-label">Citation Check</span>
+        <div class="progress-bar-small">
+          <div class="progress-fill" id="citationProgress"></div>
+        </div>
+        <span class="progress-status" id="citationStatus">Pending</span>
+      </div>
+      
+      <div class="progress-item">
+        <span class="progress-label">Regulatory Review</span>
+        <div class="progress-bar-small">
+          <div class="progress-fill" id="regulatoryProgress"></div>
+        </div>
+        <span class="progress-status" id="regulatoryStatus">Pending</span>
+      </div>
+      
+      <div class="progress-item">
+        <span class="progress-label">Risk Assessment</span>
+        <div class="progress-bar-small">
+          <div class="progress-fill" id="riskProgress"></div>
+        </div>
+        <span class="progress-status" id="riskStatus">Pending</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="analysis-results" id="analysisResults" style="display: none;">
+    <div class="results-summary">
+      <div class="compliance-score">
+        <div class="score-circle">
+          <div class="score-value" id="complianceScore">85</div>
+          <div class="score-label">Compliance Score</div>
+        </div>
+      </div>
+      
+      <div class="risk-indicators">
+        <div class="risk-item high-risk">
+          <span class="risk-count" id="highRiskCount">2</span>
+          <span class="risk-label">High Risk</span>
+        </div>
+        <div class="risk-item medium-risk">
+          <span class="risk-count" id="mediumRiskCount">5</span>
+          <span class="risk-label">Medium Risk</span>
+        </div>
+        <div class="risk-item low-risk">
+          <span class="risk-count" id="lowRiskCount">3</span>
+          <span class="risk-label">Low Risk</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="quick-actions">
+      <button class="action-btn" id="viewIssues">View All Issues</button>
+      <button class="action-btn" id="generateReport">Generate Report</button>
+      <button class="action-btn" id="exportFindings">Export Findings</button>
+    </div>
+  </div>
+  
+  <div class="step-actions">
+    <button class="btn-secondary" id="backStep3">← Back</button>
+    <button class="btn-primary" id="nextStep3" style="display: none;">Review Issues →</button>
+  </div>
+</div>
+
+<!-- Step 4: Issue Review -->
+<div class="step-content" id="step4" style="display: none;">
+  <div class="step-header">
+    <h2>Step 4: Issue Review & Recommendations</h2>
+    <p>Detailed review of compliance issues with fix suggestions</p>
+  </div>
+  
+  <div class="issues-dashboard">
+    <div class="issues-filters">
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all">All Issues (10)</button>
+        <button class="filter-tab" data-filter="high">High Risk (2)</button>
+        <button class="filter-tab" data-filter="medium">Medium Risk (5)</button>
+        <button class="filter-tab" data-filter="low">Low Risk (3)</button>
+      </div>
+      
+      <div class="filter-options">
+        <select id="categoryFilter">
+          <option value="all">All Categories</option>
+          <option value="claims">Claims</option>
+          <option value="citations">Citations</option>
+          <option value="disclaimers">Disclaimers</option>
+          <option value="regulatory">Regulatory</option>
+        </select>
+        
+        <select id="sortOrder">
+          <option value="risk">Sort by Risk</option>
+          <option value="category">Sort by Category</option>
+          <option value="location">Sort by Location</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="issues-list" id="issuesList">
+      <!-- Issues will be populated here -->
+    </div>
+  </div>
+  
+  <div class="step-actions">
+    <button class="btn-secondary" id="backStep4">← Back</button>
+    <button class="btn-primary" id="nextStep4">Generate Report →</button>
+  </div>
+</div>
+
+<!-- Step 5: Compliance Report -->
+<div class="step-content" id="step5" style="display: none;">
+  <div class="step-header">
+    <h2>Step 5: Compliance Report</h2>
+    <p>Comprehensive compliance report with recommendations</p>
+  </div>
+  
+  <div class="report-options">
+    <div class="report-templates">
+      <h3>Report Templates</h3>
+      <div class="template-grid">
+        <div class="report-template" data-template="executive">
+          <h4>Executive Summary</h4>
+          <p>High-level overview for stakeholders</p>
+          <div class="template-features">
+            <span>• Risk overview</span>
+            <span>• Key recommendations</span>
+            <span>• Compliance score</span>
+          </div>
+        </div>
+        
+        <div class="report-template" data-template="detailed">
+          <h4>Detailed Analysis</h4>
+          <p>Comprehensive technical report</p>
+          <div class="template-features">
+            <span>• All findings</span>
+            <span>• Fix instructions</span>
+            <span>• Evidence citations</span>
+          </div>
+        </div>
+        
+        <div class="report-template" data-template="legal">
+          <h4>Legal Review</h4>
+          <p>Formatted for legal teams</p>
+          <div class="template-features">
+            <span>• Regulatory references</span>
+            <span>• Risk assessment</span>
+            <span>• Compliance timeline</span>
+          </div>
+        </div>
+        
+        <div class="report-template" data-template="audit">
+          <h4>Audit Trail</h4>
+          <p>Complete audit documentation</p>
+          <div class="template-features">
+            <span>• Full methodology</span>
+            <span>• Evidence trail</span>
+            <span>• Timestamps</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="export-options">
+      <h3>Export Options</h3>
+      <div class="export-formats">
+        <button class="export-btn" id="exportPDF">
+          <span class="export-icon">📄</span>
+          <span class="export-label">PDF Report</span>
+          <span class="export-desc">Professional formatted report</span>
+        </button>
+        
+        <button class="export-btn" id="exportWord">
+          <span class="export-icon">📝</span>
+          <span class="export-label">Word Document</span>
+          <span class="export-desc">Editable report document</span>
+        </button>
+        
+        <button class="export-btn" id="exportExcel">
+          <span class="export-icon">📊</span>
+          <span class="export-label">Excel Spreadsheet</span>
+          <span class="export-desc">Data analysis format</span>
+        </button>
+        
+        <button class="export-btn" id="exportJSON">
+          <span class="export-icon">🔧</span>
+          <span class="export-label">JSON Data</span>
+          <span class="export-desc">API integration format</span>
+        </button>
+      </div>
+    </div>
+    
+    <div class="sharing-options">
+      <h3>Share & Collaborate</h3>
+      <div class="share-methods">
+        <button class="share-btn" id="shareEmail">
+          <span class="share-icon">📧</span>
+          <span class="share-label">Email Report</span>
+        </button>
+        
+        <button class="share-btn" id="shareLink">
+          <span class="share-icon">🔗</span>
+          <span class="share-label">Share Link</span>
+        </button>
+        
+        <button class="share-btn" id="shareSlack">
+          <span class="share-icon">💬</span>
+          <span class="share-label">Slack</span>
+        </button>
+        
+        <button class="share-btn" id="shareTeams">
+          <span class="share-icon">👥</span>
+          <span class="share-label">Teams</span>
+        </button>
+      </div>
+    </div>
+    
+    <div class="integration-options">
+      <h3>Integrations</h3>
+      <div class="integration-methods">
+        <button class="integration-btn" id="integrateCRM">
+          <span class="integration-icon">📋</span>
+          <span class="integration-label">CRM Integration</span>
+        </button>
+        
+        <button class="integration-btn" id="integrateJira">
+          <span class="integration-icon">🎯</span>
+          <span class="integration-label">Jira Tickets</span>
+        </button>
+        
+        <button class="integration-btn" id="integrateAPI">
+          <span class="integration-icon">🔌</span>
+          <span class="integration-label">API Webhook</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="step-actions">
+    <button class="btn-secondary" id="backStep5">← Back</button>
+    <button class="btn-primary" id="startNewCheck">New Compliance Check</button>
+  </div>
+</div>
+
+</main>
+
+<style>
+  .progress-container {
+    margin: 2rem 0;
+    padding: 0 2rem;
+  }
+  
+  .progress-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #e5e7eb;
+    z-index: 1;
+  }
+  
+  .progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .progress-step.active .step-number {
+    background: #3b82f6;
+    color: white;
+  }
+  
+  .progress-step.completed .step-number {
+    background: #10b981;
+    color: white;
+  }
+  
+  .step-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+    font-weight: 500;
+  }
+  
+  .progress-step.active .step-label {
+    color: #3b82f6;
+  }
+  
+  .step-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .step-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .step-header h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+  }
+  
+  .step-header p {
+    color: #6b7280;
+    font-size: 1.125rem;
+  }
+  
+  .industry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .industry-card {
+    border: 2px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+  }
+  
+  .industry-card:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+  }
+  
+  .industry-card.selected {
+    border-color: #3b82f6;
+    background: #eff6ff;
+  }
+  
+  .industry-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .industry-card h4 {
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+  }
+  
+  .industry-card p {
+    color: #6b7280;
+    margin-bottom: 1rem;
+  }
+  
+  .regulations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  
+  .regulation-tag {
+    background: #f3f4f6;
+    color: #6b7280;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+  }
+  
+  .industry-card.selected .regulation-tag {
+    background: #dbeafe;
+    color: #3b82f6;
+  }
+  
+  .custom-rules {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+  }
+  
+  .category-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .tab-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    background: white;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  .tab-btn.active {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+  }
+  
+  .rule-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .rule-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .input-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .input-tab {
+    padding: 0.75rem 1.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    background: white;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  .input-tab.active {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+  }
+  
+  .text-input-area textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-family: inherit;
+    resize: vertical;
+  }
+  
+  .content-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .content-stats {
+    display: flex;
+    gap: 1rem;
+    color: #6b7280;
+    font-size: 0.875rem;
+  }
+  
+  .file-drop-zone {
+    border: 2px dashed #d1d5db;
+    border-radius: 0.75rem;
+    padding: 3rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .file-drop-zone:hover {
+    border-color: #3b82f6;
+    background: #f8fafc;
+  }
+  
+  .drop-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .analysis-progress {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .status-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .progress-details {
+    max-width: 600px;
+    margin: 2rem auto 0;
+  }
+  
+  .progress-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .progress-label {
+    flex: 1;
+    text-align: left;
+    font-weight: 500;
+  }
+  
+  .progress-bar-small {
+    flex: 2;
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .progress-fill {
+    height: 100%;
+    background: #3b82f6;
+    transition: width 0.3s ease;
+    width: 0%;
+  }
+  
+  .progress-status {
+    flex: 1;
+    text-align: right;
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  
+  .results-summary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .compliance-score {
+    text-align: center;
+  }
+  
+  .score-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(#10b981 0deg 306deg, #e5e7eb 306deg 360deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .score-circle::before {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: 50%;
+  }
+  
+  .score-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f2937;
+    z-index: 1;
+  }
+  
+  .score-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+    z-index: 1;
+  }
+  
+  .risk-indicators {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .risk-item {
+    text-align: center;
+  }
+  
+  .risk-count {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+  
+  .high-risk .risk-count {
+    color: #ef4444;
+  }
+  
+  .medium-risk .risk-count {
+    color: #f59e0b;
+  }
+  
+  .low-risk .risk-count {
+    color: #10b981;
+  }
+  
+  .risk-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  
+  .quick-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .action-btn {
+    padding: 0.75rem 1.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    background: white;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  .action-btn:hover {
+    background: #f3f4f6;
+  }
+  
+  .issues-filters {
+    margin-bottom: 2rem;
+  }
+  
+  .filter-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .filter-tab {
+    padding: 0.5rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    background: white;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  .filter-tab.active {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+  }
+  
+  .filter-options {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .filter-options select {
+     padding: 0.5rem;
+     border: 1px solid #d1d5db;
+     border-radius: 0.375rem;
+   }
+   
+   .issues-list {
+     display: flex;
+     flex-direction: column;
+     gap: 1.5rem;
+   }
+   
+   .issue-item {
+     border: 1px solid #e5e7eb;
+     border-radius: 0.75rem;
+     padding: 1.5rem;
+     background: white;
+   }
+   
+   .issue-item.high-risk {
+     border-left: 4px solid #ef4444;
+   }
+   
+   .issue-item.medium-risk {
+     border-left: 4px solid #f59e0b;
+   }
+   
+   .issue-item.low-risk {
+     border-left: 4px solid #10b981;
+   }
+   
+   .issue-header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin-bottom: 1rem;
+   }
+   
+   .issue-severity {
+     padding: 0.25rem 0.75rem;
+     border-radius: 0.375rem;
+     font-size: 0.75rem;
+     font-weight: 600;
+   }
+   
+   .high-risk .issue-severity {
+     background: #fee2e2;
+     color: #dc2626;
+   }
+   
+   .medium-risk .issue-severity {
+     background: #fef3c7;
+     color: #d97706;
+   }
+   
+   .low-risk .issue-severity {
+     background: #d1fae5;
+     color: #059669;
+   }
+   
+   .issue-category {
+     background: #f3f4f6;
+     color: #6b7280;
+     padding: 0.25rem 0.75rem;
+     border-radius: 0.375rem;
+     font-size: 0.75rem;
+     font-weight: 500;
+   }
+   
+   .issue-item h4 {
+     font-size: 1.125rem;
+     font-weight: 600;
+     color: #1f2937;
+     margin-bottom: 0.5rem;
+   }
+   
+   .issue-description {
+     color: #6b7280;
+     margin-bottom: 1rem;
+     line-height: 1.5;
+   }
+   
+   .issue-location {
+     font-size: 0.875rem;
+     color: #9ca3af;
+     margin-bottom: 1rem;
+     font-family: monospace;
+   }
+   
+   .issue-actions {
+     display: flex;
+     gap: 0.75rem;
+     flex-wrap: wrap;
+   }
+   
+   .fix-btn,
+   .evidence-btn,
+   .ignore-btn {
+     padding: 0.5rem 1rem;
+     border-radius: 0.375rem;
+     font-size: 0.875rem;
+     font-weight: 500;
+     cursor: pointer;
+     border: 1px solid;
+   }
+   
+   .fix-btn {
+     background: #3b82f6;
+     color: white;
+     border-color: #3b82f6;
+   }
+   
+   .fix-btn:hover {
+     background: #2563eb;
+   }
+   
+   .evidence-btn {
+     background: #f59e0b;
+     color: white;
+     border-color: #f59e0b;
+   }
+   
+   .evidence-btn:hover {
+     background: #d97706;
+   }
+   
+   .ignore-btn {
+     background: #6b7280;
+     color: white;
+     border-color: #6b7280;
+   }
+   
+   .ignore-btn:hover {
+     background: #4b5563;
+   }
+  
+  .template-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .report-template {
+    border: 2px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .report-template:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+  }
+  
+  .report-template.selected {
+    border-color: #3b82f6;
+    background: #eff6ff;
+  }
+  
+  .template-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  
+  .export-formats,
+  .share-methods,
+  .integration-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .export-btn,
+  .share-btn,
+  .integration-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.75rem;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+  }
+  
+  .export-btn:hover,
+  .share-btn:hover,
+  .integration-btn:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+  }
+  
+  .export-icon,
+  .share-icon,
+  .integration-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .export-label,
+  .share-label,
+  .integration-label {
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.25rem;
+  }
+  
+  .export-desc {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  
+  .step-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e5e7eb;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+  }
+  
+  .btn-primary {
+    background: #3b82f6;
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background: #2563eb;
+  }
+  
+  .btn-secondary {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+  }
+  
+  .btn-secondary:hover {
+    background: #e5e7eb;
+  }
+  
+  @media (max-width: 768px) {
+    .step-content {
+      padding: 1rem;
+    }
+    
+    .industry-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .results-summary {
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .risk-indicators {
+      justify-content: center;
+    }
+    
+    .template-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .export-formats,
+    .share-methods,
+    .integration-methods {
+      grid-template-columns: 1fr;
+    }
+    
+    .step-actions {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+</style>
+
+<script>
+  // Step navigation
+  let currentStep: number = 1;
+  const totalSteps: number = 5;
+  let selectedIndustry: string | null = null;
+  
+  function showStep(step: number): void {
+    // Hide all steps
+    for (let i = 1; i <= totalSteps; i++) {
+      const stepElement = document.getElementById(`step${i}`) as HTMLElement | null;
+      if (stepElement) stepElement.style.display = 'none';
+    }
+    
+    // Show current step
+    const currentStepElement = document.getElementById(`step${step}`) as HTMLElement | null;
+    if (currentStepElement) currentStepElement.style.display = 'block';
+    
+    // Update progress bar
+    updateProgressBar(step);
+    currentStep = step;
+  }
+  
+  function updateProgressBar(step: number): void {
+    const steps = document.querySelectorAll('.progress-step');
+    steps.forEach((stepEl, index) => {
+      (stepEl as HTMLElement).classList.remove('active', 'completed');
+      if (index + 1 < step) {
+        (stepEl as HTMLElement).classList.add('completed');
+      } else if (index + 1 === step) {
+        (stepEl as HTMLElement).classList.add('active');
+      }
+    });
+  }
+  
+  // Step 1: Industry Selection
+  document.addEventListener('click', (e: MouseEvent) => {
+    const target = e.target as HTMLElement | null;
+    if (!target) return;
+    const card = target.closest('.industry-card') as HTMLElement | null;
+    if (card) {
+      // Remove previous selection
+      document.querySelectorAll('.industry-card').forEach(c => {
+        (c as HTMLElement).classList.remove('selected');
+      });
+      
+      // Add selection to clicked card
+      card.classList.add('selected');
+      selectedIndustry = card.dataset.industry || null;
+      
+      // Show custom rules if needed
+      const cr = document.getElementById('customRules') as HTMLElement | null;
+      if (cr) cr.style.display = selectedIndustry === 'general' ? 'block' : 'none';
+    }
+  });
+  
+  // Category tabs
+  document.addEventListener('click', (e: MouseEvent) => {
+    const target = e.target as HTMLElement | null;
+    if (target && target.classList.contains('tab-btn')) {
+      // Update tab selection
+      document.querySelectorAll('.tab-btn').forEach(tab => {
+        (tab as HTMLElement).classList.remove('active');
+      });
+      target.classList.add('active');
+      
+      // Show corresponding content
+      const category = target.dataset.category || '';
+      document.querySelectorAll('.category-content').forEach(content => {
+        (content as HTMLElement).style.display = 'none';
+      });
+      const contentEl = document.getElementById(category + 'Content') as HTMLElement | null;
+      if (contentEl) contentEl.style.display = 'block';
+    }
+  });
+  
+  document.getElementById('nextStep1')?.addEventListener('click', () => {
+    if (!selectedIndustry) {
+      alert('Please select an industry or compliance framework');
+      return;
+    }
+    showStep(2);
+  });
+  
+  // Step 2: Content Input
+  document.addEventListener('click', (e: MouseEvent) => {
+    const target = e.target as HTMLElement | null;
+    if (target && target.classList.contains('input-tab')) {
+      // Update tab selection
+      document.querySelectorAll('.input-tab').forEach(tab => {
+        (tab as HTMLElement).classList.remove('active');
+      });
+      target.classList.add('active');
+      
+      // Show corresponding content
+      const inputType = target.dataset.input || '';
+      document.querySelectorAll('.input-content').forEach(content => {
+        (content as HTMLElement).style.display = 'none';
+      });
+      const inputEl = document.getElementById(inputType + 'Input') as HTMLElement | null;
+      if (inputEl) inputEl.style.display = 'block';
+    }
+  });
+  
+  // Content stats update
+  document.getElementById('contentText')?.addEventListener('input', (e: Event) => {
+    const target = e.target as HTMLTextAreaElement | null;
+    const text = target?.value || '';
+    const charCount = text.length;
+    const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0;
+    
+    const cc = document.getElementById('charCount') as HTMLElement | null;
+    if (cc) cc.textContent = `${charCount} characters`;
+    const wc = document.getElementById('wordCountInput') as HTMLElement | null;
+    if (wc) wc.textContent = `${wordCount} words`;
+  });
+  
+  document.getElementById('backStep2')?.addEventListener('click', () => showStep(1));
+  document.getElementById('nextStep2')?.addEventListener('click', () => {
+    const activeTabEl = document.querySelector('.input-tab.active') as HTMLElement | null;
+    const activeTab = activeTabEl?.dataset.input || '';
+    let hasContent = false;
+    
+    if (activeTab === 'text') {
+      const ct = document.getElementById('contentText') as HTMLTextAreaElement | null;
+      hasContent = ((ct?.value || '').trim().length > 0);
+    } else if (activeTab === 'url') {
+      const wu = document.getElementById('websiteUrl') as HTMLInputElement | null;
+      hasContent = ((wu?.value || '').trim().length > 0);
+    } else if (activeTab === 'file') {
+      const fu = document.getElementById('fileUpload') as HTMLInputElement | null;
+      hasContent = ((fu?.files?.length || 0) > 0);
+    } else if (activeTab === 'bulk') {
+      const ul = document.getElementById('urlList') as HTMLTextAreaElement | null;
+      const cu = document.getElementById('csvUpload') as HTMLInputElement | null;
+      hasContent = (((ul?.value || '').trim().length > 0) || ((cu?.files?.length || 0) > 0));
+    }
+    
+    if (!hasContent) {
+      alert('Please provide content to analyze');
+      return;
+    }
+    
+    showStep(3);
+    startAnalysis();
+  });
+  
+  // Step 3: Analysis
+  function startAnalysis(): void {
+    const statusText = document.getElementById('analysisStatusText') as HTMLElement | null;
+    const progressItems = [
+      { id: 'claimsProgress', status: 'claimsStatus', label: 'Claims Validation' },
+      { id: 'citationProgress', status: 'citationStatus', label: 'Citation Check' },
+      { id: 'regulatoryProgress', status: 'regulatoryStatus', label: 'Regulatory Review' },
+      { id: 'riskProgress', status: 'riskStatus', label: 'Risk Assessment' }
+    ];
+    
+    let currentProgress = 0;
+    
+    const progressInterval = setInterval(() => {
+      if (currentProgress < progressItems.length) {
+        const item = progressItems[currentProgress];
+        
+        // Update status text
+        if (statusText) statusText.textContent = `Running ${item.label}...`;
+        
+        // Update progress bar
+        const bar = document.getElementById(item.id) as HTMLElement | null;
+        if (bar) bar.style.width = '100%';
+        const st = document.getElementById(item.status) as HTMLElement | null;
+        if (st) {
+          st.textContent = 'Complete';
+          st.style.color = '#10b981';
+        }
+        
+        currentProgress++;
+      } else {
+        clearInterval(progressInterval);
+        
+        // Show results
+        setTimeout(() => {
+          const ap = document.getElementById('analysisProgress') as HTMLElement | null;
+          const ar = document.getElementById('analysisResults') as HTMLElement | null;
+          const ns = document.getElementById('nextStep3') as HTMLElement | null;
+          if (ap) ap.style.display = 'none';
+          if (ar) ar.style.display = 'block';
+          if (ns) ns.style.display = 'inline-block';
+          
+          // Populate sample results
+          populateSampleResults();
+        }, 1000);
+      }
+    }, 1500);
+  }
+  
+  function populateSampleResults(): void {
+    // Update compliance score animation
+    const scoreElement = document.getElementById('complianceScore') as HTMLElement | null;
+    let score = 0;
+    const targetScore = 85;
+    const scoreInterval = setInterval(() => {
+      if (score < targetScore) {
+        score++;
+        if (scoreElement) scoreElement.textContent = String(score);
+      } else {
+        clearInterval(scoreInterval);
+      }
+    }, 30);
+    
+    // Update risk counts
+    const hr = document.getElementById('highRiskCount') as HTMLElement | null;
+    const mr = document.getElementById('mediumRiskCount') as HTMLElement | null;
+    const lr = document.getElementById('lowRiskCount') as HTMLElement | null;
+    if (hr) hr.textContent = '2';
+    if (mr) mr.textContent = '5';
+    if (lr) lr.textContent = '3';
+  }
+  
+  document.getElementById('viewIssues')?.addEventListener('click', () => {
+    showStep(4);
+    populateIssuesList();
+  });
+  
+  document.getElementById('backStep3')?.addEventListener('click', () => showStep(2));
+  document.getElementById('nextStep3')?.addEventListener('click', () => {
+    showStep(4);
+    populateIssuesList();
+  });
+  
+  // Step 4: Issues Review
+  function populateIssuesList(): void {
+    const issuesList = document.getElementById('issuesList') as HTMLElement | null;
+    if (!issuesList) return;
+    issuesList.innerHTML = `
+      <div class="issue-item high-risk">
+        <div class="issue-header">
+          <div class="issue-severity">HIGH RISK</div>
+          <div class="issue-category">Claims</div>
+        </div>
+        <h4>Unsubstantiated Performance Claim</h4>
+        <p class="issue-description">The claim "lose up to 30 pounds in 30 days" requires clinical evidence and may violate FTC guidelines for weight loss advertising.</p>
+        <div class="issue-location">Line 3, Characters 45-78</div>
+        <div class="issue-actions">
+          <button class="fix-btn">Suggest Fix</button>
+          <button class="evidence-btn">Add Evidence</button>
+          <button class="ignore-btn">Mark as Reviewed</button>
+        </div>
+      </div>
+      
+      <div class="issue-item high-risk">
+        <div class="issue-header">
+          <div class="issue-severity">HIGH RISK</div>
+          <div class="issue-category">Claims</div>
+        </div>
+        <h4>Guarantee Statement</h4>
+        <p class="issue-description">"Results guaranteed" may constitute an illegal guarantee under consumer protection laws without proper substantiation.</p>
+        <div class="issue-location">Line 5, Characters 120-138</div>
+        <div class="issue-actions">
+          <button class="fix-btn">Suggest Fix</button>
+          <button class="evidence-btn">Add Evidence</button>
+          <button class="ignore-btn">Mark as Reviewed</button>
+        </div>
+      </div>
+      
+      <div class="issue-item medium-risk">
+        <div class="issue-header">
+          <div class="issue-severity">MEDIUM RISK</div>
+          <div class="issue-category">Citations</div>
+        </div>
+        <h4>Missing Citation for Statistics</h4>
+        <p class="issue-description">The statistic "95% effectiveness" requires a citation to the source study or data.</p>
+        <div class="issue-location">Line 4, Characters 89-105</div>
+        <div class="issue-actions">
+          <button class="fix-btn">Suggest Fix</button>
+          <button class="evidence-btn">Add Citation</button>
+          <button class="ignore-btn">Mark as Reviewed</button>
+        </div>
+      </div>
+      
+      <div class="issue-item medium-risk">
+        <div class="issue-header">
+          <div class="issue-severity">MEDIUM RISK</div>
+          <div class="issue-category">Disclaimers</div>
+        </div>
+        <h4>Disclaimer Prominence</h4>
+        <p class="issue-description">The disclaimer appears to be less prominent than the main claims, which may not meet regulatory requirements.</p>
+        <div class="issue-location">Line 7, Characters 1-45</div>
+        <div class="issue-actions">
+          <button class="fix-btn">Suggest Fix</button>
+          <button class="evidence-btn">Review Guidelines</button>
+          <button class="ignore-btn">Mark as Reviewed</button>
+        </div>
+      </div>
+      
+      <div class="issue-item low-risk">
+        <div class="issue-header">
+          <div class="issue-severity">LOW RISK</div>
+          <div class="issue-category">Regulatory</div>
+        </div>
+        <h4>FDA Disclaimer Present</h4>
+        <p class="issue-description">FDA disclaimer is present but could be more specific to the product category.</p>
+        <div class="issue-location">Line 7, Characters 46-95</div>
+        <div class="issue-actions">
+          <button class="fix-btn">Improve</button>
+          <button class="evidence-btn">View Guidelines</button>
+          <button class="ignore-btn">Mark as Reviewed</button>
+        </div>
+      </div>
+    `;
+  }
+  
+  // Issue filtering
+  document.addEventListener('click', (e: MouseEvent) => {
+    const t = e.target as HTMLElement | null;
+    if (!t) return;
+    if (t.classList && t.classList.contains('filter-tab')) {
+      document.querySelectorAll('.filter-tab').forEach((tab) => {
+        (tab as HTMLElement).classList.remove('active');
+      });
+      t.classList.add('active');
+      
+      // Filter issues based on selection
+      const filter = t.dataset.filter || 'all';
+      const issues = document.querySelectorAll('.issue-item');
+      
+      issues.forEach((issue) => {
+        const el = issue as HTMLElement;
+        if (filter === 'all') {
+          el.style.display = 'block';
+        } else {
+          const hasClass = el.classList.contains(filter + '-risk');
+          el.style.display = hasClass ? 'block' : 'none';
+        }
+      });
+    }
+  });
+  
+  document.getElementById('backStep4')?.addEventListener('click', () => showStep(3));
+  document.getElementById('nextStep4')?.addEventListener('click', () => showStep(5));
+  
+  // Step 5: Report Generation
+  document.addEventListener('click', (e: MouseEvent) => {
+    const t = e.target as HTMLElement | null;
+    if (!t) return;
+    const card = t.closest('.report-template') as HTMLElement | null;
+    if (card) {
+      document.querySelectorAll('.report-template').forEach((template) => {
+        (template as HTMLElement).classList.remove('selected');
+      });
+      card.classList.add('selected');
+    }
+  });
+  
+  // Export functions
+  document.getElementById('exportPDF')?.addEventListener('click', () => {
+    alert('Generating PDF compliance report...');
+  });
+  
+  document.getElementById('exportWord')?.addEventListener('click', () => {
+    alert('Generating Word document...');
+  });
+  
+  document.getElementById('exportExcel')?.addEventListener('click', () => {
+    alert('Generating Excel spreadsheet...');
+  });
+  
+  document.getElementById('exportJSON')?.addEventListener('click', () => {
+    alert('Generating JSON data export...');
+  });
+  
+  // Share functions
+  document.getElementById('shareEmail')?.addEventListener('click', () => {
+    const subject = encodeURIComponent('Compliance Report');
+    const body = encodeURIComponent('Please find the compliance analysis report attached.');
+    window.open(`mailto:?subject=${subject}&body=${body}`);
+  });
+  
+  document.getElementById('shareLink')?.addEventListener('click', () => {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      alert('Report link copied to clipboard!');
+    }).catch(() => {/* noop */});
+  });
+  
+  document.getElementById('backStep5')?.addEventListener('click', () => showStep(4));
+  document.getElementById('startNewCheck')?.addEventListener('click', () => {
+    if (confirm('Start a new compliance check? Current progress will be lost.')) {
+      // Reset all forms and states
+      document.querySelectorAll('input, select, textarea').forEach((el) => {
+        const tag = (el as HTMLElement).tagName;
+        if (tag === 'INPUT') {
+          const i = el as HTMLInputElement;
+          if (i.type === 'checkbox') i.checked = false;
+          else i.value = '';
+        } else if (tag === 'SELECT') {
+          const s = el as HTMLSelectElement;
+          s.selectedIndex = 0;
+        } else if (tag === 'TEXTAREA') {
+          const t = el as HTMLTextAreaElement;
+          t.value = '';
+        }
+      });
+      
+      // Reset UI states
+      document.querySelectorAll('.industry-card, .report-template').forEach((card) => {
+        (card as HTMLElement).classList.remove('selected');
+      });
+      
+      const cr = document.getElementById('customRules') as HTMLElement | null;
+      const ar2 = document.getElementById('analysisResults') as HTMLElement | null;
+      const ap2 = document.getElementById('analysisProgress') as HTMLElement | null;
+      const ns2 = document.getElementById('nextStep3') as HTMLElement | null;
+      if (cr) cr.style.display = 'none';
+      if (ar2) ar2.style.display = 'none';
+      if (ap2) ap2.style.display = 'block';
+      if (ns2) ns2.style.display = 'none';
+      
+      selectedIndustry = null;
+      showStep(1);
+    }
+  });
+  
+  // Initialize
+  showStep(1);
+</script>
+</Layout>

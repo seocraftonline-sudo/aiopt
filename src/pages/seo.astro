@@ -1,0 +1,203 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+---
+<Layout>
+<Nav/>
+<main class="mn">
+<header class="hd">
+<h1 class="tl">SEO Optimizer</h1>
+<p class="st">Optimize content for search engines</p>
+</header>
+<div class="ly">
+<div class="pn">
+<div class="cd">
+<h3 class="cd-tl">Content Analysis</h3>
+<textarea class="tx" id="seoContent" placeholder="Enter content to analyze..."></textarea>
+<label class="lb">
+<span>Target Keyword</span>
+<input type="text" class="in" id="keyword" placeholder="e.g., AI content tools">
+</label>
+<button class="bt" id="analyzeBtn">Analyze SEO</button>
+</div>
+<div class="cd">
+<h3 class="cd-tl">SEO Score</h3>
+<div class="sc-cr">
+<svg viewBox="0 0 100 100" class="sc-sv">
+<circle cx="50" cy="50" r="45" class="sc-bg"/>
+<circle cx="50" cy="50" r="45" class="sc-fg" id="scoreCircle" style="stroke-dasharray:0 282.6"/>
+</svg>
+<div class="sc-tx">
+<span class="sc-vl" id="scoreValue">-</span>
+<span class="sc-lb">Score</span>
+</div>
+</div>
+<div class="sg" id="suggestions">
+<div class="sg-it">
+<span class="sg-dc"></span>
+<span class="sg-tx">Analyze content to see suggestions</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+const analyzeBtn = document.getElementById('analyzeBtn') as HTMLButtonElement;
+const contentArea = document.getElementById('seoContent') as HTMLTextAreaElement;
+const keywordInput = document.getElementById('keyword') as HTMLInputElement;
+const scoreValue = document.getElementById('scoreValue') as HTMLSpanElement;
+const scoreCircle = document.getElementById('scoreCircle') as SVGCircleElement;
+const suggestionsDiv = document.getElementById('suggestions') as HTMLDivElement;
+
+analyzeBtn.addEventListener('click', async () => {
+  const content = contentArea.value.trim();
+  const keyword = keywordInput.value.trim();
+
+  if (!content || !keyword) {
+    suggestionsDiv.innerHTML = '<div class="sg-it"><span class="sg-dc"></span><span class="sg-tx" style="color:#ef4444">Please enter both content and keyword</span></div>';
+    return;
+  }
+
+  analyzeBtn.disabled = true;
+  analyzeBtn.textContent = 'Analyzing...';
+  suggestionsDiv.innerHTML = '<div class="sg-it"><span class="sg-dc"></span><span class="sg-tx" style="color:#10b981">Analyzing SEO...</span></div>';
+
+  await new Promise(resolve => setTimeout(resolve, 1200));
+
+  const wordCount = content.split(/\s+/).length;
+  const keywordLower = keyword.toLowerCase();
+  const contentLower = content.toLowerCase();
+
+  const keywordMatches = (contentLower.match(new RegExp(keywordLower.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length;
+  const keywordDensity = (keywordMatches / wordCount) * 100;
+
+  const hasTitle = /^#\s|<h1>/i.test(content);
+  const hasHeaders = /#{1,6}\s|<h[1-6]>/i.test(content);
+  const hasBullets = /[-*•]\s|\d+\.\s|<li>/i.test(content);
+  const hasLinks = /\[.*\]\(.*\)|<a\s+href/i.test(content);
+  const hasImages = /!\[.*\]\(.*\)|<img\s+/i.test(content);
+
+  const sentences = content.match(/[^.!?]+[.!?]+/g) || [];
+  const avgSentenceLength = sentences.length > 0 ? wordCount / sentences.length : 0;
+
+  const firstParagraph = content.split(/\n\n/)[0] || '';
+  const keywordInFirst100 = firstParagraph.toLowerCase().includes(keywordLower);
+
+  let score = 50;
+  const suggestions = [];
+
+  if (keywordMatches > 0) {
+    score += 15;
+    suggestions.push(`✓ Keyword "${keyword}" appears ${keywordMatches} time${keywordMatches > 1 ? 's' : ''} in content`);
+  } else {
+    suggestions.push(`⚠ Keyword "${keyword}" not found in content - add it naturally`);
+  }
+
+  if (keywordDensity >= 0.5 && keywordDensity <= 2.5) {
+    score += 10;
+    suggestions.push(`✓ Good keyword density (${keywordDensity.toFixed(2)}%)`);
+  } else if (keywordDensity > 2.5) {
+    suggestions.push(`⚠ Keyword density too high (${keywordDensity.toFixed(2)}%) - risk of keyword stuffing`);
+  } else if (keywordMatches > 0) {
+    suggestions.push(`💡 Increase keyword usage slightly (current: ${keywordDensity.toFixed(2)}%)`);
+  }
+
+  if (wordCount >= 300) {
+    score += 15;
+    if (wordCount >= 1000) {
+      suggestions.push(`✓ Excellent content length (${wordCount} words)`);
+    } else {
+      suggestions.push(`✓ Good content length (${wordCount} words)`);
+    }
+  } else {
+    suggestions.push(`⚠ Content too short (${wordCount} words) - aim for 300+ words minimum`);
+  }
+
+  if (hasTitle) {
+    score += 10;
+    suggestions.push('✓ Title heading (H1) detected');
+  } else {
+    suggestions.push('⚠ Add a title heading (H1) with your target keyword');
+  }
+
+  if (hasHeaders) {
+    score += 10;
+    suggestions.push('✓ Subheadings (H2-H6) found for better structure');
+  } else {
+    suggestions.push('💡 Add subheadings (H2, H3) to improve content structure');
+  }
+
+  if (keywordInFirst100) {
+    score += 10;
+    suggestions.push('✓ Keyword appears in the first paragraph');
+  } else if (keywordMatches > 0) {
+    suggestions.push('💡 Try to include keyword in the first 100 words');
+  }
+
+  if (hasBullets) {
+    score += 8;
+    suggestions.push('✓ Lists or bullet points enhance readability');
+  } else if (wordCount > 200) {
+    suggestions.push('💡 Add bullet points or numbered lists for key information');
+  }
+
+  if (hasLinks) {
+    score += 7;
+    suggestions.push('✓ Internal/external links detected');
+  } else {
+    suggestions.push('💡 Add relevant internal and external links');
+  }
+
+  if (hasImages) {
+    score += 5;
+    suggestions.push('✓ Images found - remember to use alt text with keywords');
+  } else if (wordCount > 300) {
+    suggestions.push('💡 Add images with descriptive alt text for better engagement');
+  }
+
+  if (avgSentenceLength > 0 && avgSentenceLength <= 20) {
+    score += 5;
+    suggestions.push('✓ Good sentence length for readability');
+  } else if (avgSentenceLength > 20) {
+    suggestions.push('💡 Consider shorter sentences for better readability');
+  }
+
+  if (wordCount >= 300 && wordCount < 500) {
+    suggestions.push('💡 Consider expanding to 500-1000 words for better ranking potential');
+  }
+
+  score = Math.min(100, Math.max(0, score));
+
+  scoreValue.textContent = score.toString();
+  const circumference = 2 * Math.PI * 45;
+  const progress = (score / 100) * circumference;
+  scoreCircle.style.strokeDasharray = `${progress} ${circumference}`;
+
+  const suggestionsHTML = suggestions.map((suggestion) => {
+    const isGood = suggestion.startsWith('✓');
+    const className = isGood ? 'sg-gd' : 'sg-wr';
+    return `
+      <div class="sg-it ${className}">
+        <span class="sg-dc"></span>
+        <span class="sg-tx">${suggestion}</span>
+      </div>
+    `;
+  }).join('');
+
+  suggestionsDiv.innerHTML = suggestionsHTML;
+
+  analyzeBtn.disabled = false;
+  analyzeBtn.textContent = 'Analyze SEO';
+});
+</script>
+</Layout>
+<style>.mn{margin-left:240px;padding:32px;min-height:100vh;max-width:1400px;animation:sf .4s ease}.hd{margin-bottom:24px}.tl{font-size:32px;font-weight:700;margin:0 0 6px 0;color:#1f2937}.st{font-size:15px;color:#6b7280;margin:0}.ly{display:grid;gap:24px}.pn{display:grid;grid-template-columns:1.2fr 1fr;gap:24px}.cd{background:#fff;border:2px solid #e5e7eb;border-radius:16px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.04)}.cd-tl{font-size:19px;font-weight:700;color:#1f2937;margin:0 0 20px 0}.tx{width:100%;min-height:180px;background:#fafafa;border:2px solid #e5e7eb;border-radius:12px;padding:14px;font-size:14px;color:#1f2937;font-family:inherit;line-height:1.7;resize:vertical;margin-bottom:18px;box-shadow:inset 0 2px 4px rgba(0,0,0,.04)}.tx:focus{outline:none;border-color:#10b981;background:#fff;box-shadow:0 0 0 3px rgba(16,185,129,.1),inset 0 2px 4px rgba(0,0,0,.04)}.tx::placeholder{color:#9ca3af}.lb{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}.lb span{font-size:13px;font-weight:600;color:#374151}.in{background:#fafafa;border:2px solid #e5e7eb;border-radius:10px;padding:12px 14px;font-size:14px;color:#1f2937;transition:all .2s cubic-bezier(.4,0,.2,1);font-family:inherit;box-shadow:inset 0 1px 2px rgba(0,0,0,.04)}.in:focus{outline:none;border-color:#10b981;background:#fff;box-shadow:0 0 0 3px rgba(16,185,129,.1),inset 0 1px 2px rgba(0,0,0,.04)}.bt{background:linear-gradient(135deg,#10b981,#059669);border:none;border-radius:10px;padding:13px 24px;font-size:14px;font-weight:700;color:#fff;cursor:pointer;transition:all .25s cubic-bezier(.4,0,.2,1);width:100%;box-shadow:0 2px 6px rgba(16,185,129,.3),inset 0 1px 0 rgba(255,255,255,.3)}.bt:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 4px 12px rgba(16,185,129,.4),inset 0 1px 0 rgba(255,255,255,.3)}.bt:active{transform:translateY(0)}.bt:disabled{opacity:.6;cursor:not-allowed}.sc-cr{position:relative;width:150px;height:150px;margin:0 auto 28px}.sc-sv{width:100%;height:100%;transform:rotate(-90deg);filter:drop-shadow(0 2px 8px rgba(16,185,129,.2))}.sc-bg{fill:none;stroke:#e5e7eb;stroke-width:10}.sc-fg{fill:none;stroke:url(#gr);stroke-width:10;stroke-linecap:round;transition:stroke-dasharray .8s cubic-bezier(.4,0,.6,1)}.sc-tx{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}.sc-vl{font-size:40px;font-weight:800;color:#10b981;line-height:1}.sc-lb{font-size:13px;color:#6b7280;font-weight:600;margin-top:4px}.sg{display:flex;flex-direction:column;gap:10px}.sg-it{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;background:#fafafa;border:1px solid #f3f4f6;transition:all .2s ease}.sg-it:hover{background:#fff;border-color:#e5e7eb}.sg-dc{width:8px;height:8px;border-radius:50%;flex-shrink:0;box-shadow:0 0 6px currentColor}.sg-gd .sg-dc{background:#10b981;color:#10b981}.sg-wr .sg-dc{background:#f59e0b;color:#f59e0b}.sg-tx{font-size:13px;color:#374151;font-weight:500}@media(max-width:768px){.mn{margin-left:72px;padding:20px}.pn{grid-template-columns:1fr}}@media(max-width:480px){.mn{margin-left:0;padding:16px;padding-top:80px}}</style>
+<svg style="position:absolute;width:0;height:0">
+<defs>
+<linearGradient id="gr" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" style="stop-color:#10b981;stop-opacity:1"/>
+<stop offset="100%" style="stop-color:#059669;stop-opacity:1"/>
+</linearGradient>
+</defs>
+</svg>

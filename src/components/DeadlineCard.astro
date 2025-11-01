@@ -1,0 +1,16 @@
+---
+interface Props{t:string;tm:string;c:string}
+const{t,tm,c}=Astro.props;
+---
+<div class="dc" data-color={c}>
+<div class="ct">
+<h4 class="tl">{t}</h4>
+<p class="tm">{tm}</p>
+</div>
+<div class="ic-wr">
+<svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+</svg>
+</div>
+</div>
+<style>.dc{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;border:2px solid;border-radius:4px;padding:16px 18px;transition:all .2s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04),0 2px 8px rgba(0,0,0,.02)}.dc::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;transition:opacity .2s ease}.dc:hover{transform:translateX(2px);box-shadow:0 2px 6px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.04)}.dc:hover::before{opacity:1}.dc[data-color="pk"]{border-color:#fde68a}.dc[data-color="pk"]::before{background:linear-gradient(180deg,#fbbf24,#f59e0b)}.dc[data-color="pk"] .ic-wr{color:#f59e0b}.dc[data-color="rd"]{border-color:#fca5a5}.dc[data-color="rd"]::before{background:linear-gradient(180deg,#f87171,#dc2626)}.dc[data-color="rd"] .ic-wr{color:#ef4444}.dc[data-color="gn"]{border-color:#86efac}.dc[data-color="gn"]::before{background:linear-gradient(180deg,#4ade80,#16a34a)}.dc[data-color="gn"] .ic-wr{color:#10b981}.dc[data-color="bl"]{border-color:#93c5fd}.dc[data-color="bl"]::before{background:linear-gradient(180deg,#60a5fa,#2563eb)}.dc[data-color="bl"] .ic-wr{color:#3b82f6}.ct{flex:1;min-width:0}.tl{font-size:14px;font-weight:600;color:#1f2937;margin:0 0 3px 0}.tm{font-size:12px;color:#6b7280;margin:0}.ic-wr{width:32px;height:32px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0}</style>

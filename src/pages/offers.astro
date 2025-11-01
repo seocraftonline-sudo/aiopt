@@ -1,0 +1,80 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+---
+<Layout>
+<Nav/>
+<main class="mn">
+<header class="hd">
+<h1 class="tl">Special Offers & Deals</h1>
+<p class="st">Exclusive deals and special offers to enhance your content creation journey</p>
+</header>
+<div class="gr">
+<div class="of">
+<div class="of-bg">Teams</div>
+<div class="of-ic">⏰</div>
+<h3 class="of-tl">Early Bird Special</h3>
+<p class="of-ds">Get 30% off on all premium features when you subscribe in the next 4 hours. Early adopters get lifetime access to upcoming features.</p>
+<button class="of-bt">Claim Offer →</button>
+</div>
+<div class="of fp">
+<div class="of-bg">Most Popular</div>
+<div class="of-ic">👑</div>
+<h3 class="of-tl">Premium Bundle</h3>
+<p class="of-ds">Access all premium tools and features with unlimited usage. Includes priority support and custom AI model training.</p>
+<button class="of-bt">Claim Offer →</button>
+</div>
+<div class="of">
+<div class="of-bg">Teams</div>
+<div class="of-ic">⭐</div>
+<h3 class="of-tl">Team Collaboration</h3>
+<p class="of-ds">Special pricing for teams of 5 or more. Includes team workspace, shared templates, and analytics dashboard.</p>
+<button class="of-bt">Claim Offer →</button>
+</div>
+<div class="of">
+<div class="of-bg">Featured</div>
+<div class="of-ic">⭐</div>
+<h3 class="of-tl">Content Creator Pro</h3>
+<p class="of-ds">Tailored package for content creators with advanced AI writing tools, SEO features, and content planning tools.</p>
+<button class="of-bt">Claim Offer →</button>
+</div>
+<div class="of">
+<div class="of-bg">Students</div>
+<div class="of-ic">⭐</div>
+<h3 class="of-tl">Student Discount</h3>
+<p class="of-ds">50% off for students with valid .edu email addresses. Perfect for academic writing and research assistance.</p>
+<button class="of-bt">Claim Offer →</button>
+</div>
+<div class="of">
+<div class="of-bg">Enterprise</div>
+<div class="of-ic">⭐</div>
+<h3 class="of-tl">Enterprise Solutions</h3>
+<p class="of-ds">Custom AI solutions for enterprises. Includes API access, custom training, and dedicated support team.</p>
+<button class="of-bt">Claim Offer →</button>
+</div>
+</div>
+<div class="mb">
+<div class="mb-hd">
+<div class="mb-ic">✨</div>
+<div>
+<h2 class="mb-tl">Mega Bundle Deal</h2>
+<p class="mb-ds">Get lifetime access to all premium features, tools, and future updates at an unbeatable price.</p>
+</div>
+</div>
+<div class="mb-bd">
+<ul class="mb-ft">
+<li><span class="ft-ic">⭐</span> All Premium Features</li>
+<li><span class="ft-ic">⭐</span> Lifetime Updates</li>
+<li><span class="ft-ic">⭐</span> Priority Support</li>
+</ul>
+<div class="mb-pr">
+<div class="pr-rg">Regular Price</div>
+<div class="pr-ol">$999</div>
+<div class="pr-nw">$499</div>
+<button class="pr-bt">Claim This Deal →</button>
+</div>
+</div>
+</div>
+</main>
+</Layout>
+<style>.mn{margin-left:240px;padding:32px;min-height:100vh;max-width:1400px;animation:sf .4s ease}.hd{margin-bottom:32px;text-align:center}.tl{font-size:32px;font-weight:700;margin:0 0 8px 0;color:#1f2937}.st{font-size:15px;color:#6b7280;margin:0}.gr{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:24px;margin-bottom:48px}.of{background:#fff;border:2px solid #e5e7eb;border-radius:16px;padding:28px;box-shadow:0 2px 8px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.04);transition:all .3s cubic-bezier(.4,0,.2,1);position:relative;display:flex;flex-direction:column;gap:14px}.of:hover{transform:translateY(-4px);box-shadow:0 4px 16px rgba(0,0,0,.1),0 12px 32px rgba(0,0,0,.08);border-color:#10b981}.of.fp{border-color:#10b981;background:linear-gradient(135deg,#fff 0%,#f0fdf4 100%)}.of-bg{position:absolute;top:16px;right:16px;background:#1f2937;color:#fff;padding:6px 12px;border-radius:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}.fp .of-bg{background:#10b981}.of-ic{font-size:48px;margin-bottom:8px}.of-tl{font-size:20px;font-weight:700;color:#1f2937;margin:0}.of-ds{font-size:14px;color:#6b7280;line-height:1.7;margin:0;flex-grow:1}.of-bt{background:#1f2937;border:none;border-radius:10px;padding:13px 24px;font-size:14px;font-weight:600;color:#fff;cursor:pointer;transition:all .25s ease;align-self:flex-start}.of-bt:hover{background:#111827;transform:translateX(4px)}.fp .of-bt{background:#10b981}.fp .of-bt:hover{background:#059669}.mb{background:linear-gradient(135deg,#f9fafb 0%,#fff 100%);border:2px solid #e5e7eb;border-radius:16px;padding:40px;box-shadow:0 2px 8px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.04)}.mb-hd{display:flex;align-items:center;gap:20px;margin-bottom:32px}.mb-ic{font-size:48px;background:#fff;padding:16px;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}.mb-tl{font-size:28px;font-weight:700;color:#1f2937;margin:0 0 6px 0}.mb-ds{font-size:15px;color:#6b7280;margin:0}.mb-bd{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}.mb-ft{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px}.mb-ft li{display:flex;align-items:center;gap:12px;font-size:15px;color:#374151;font-weight:500}.ft-ic{font-size:20px}.mb-pr{text-align:right}.pr-rg{font-size:13px;color:#6b7280;font-weight:600;margin-bottom:4px}.pr-ol{font-size:20px;color:#9ca3af;text-decoration:line-through;margin-bottom:4px}.pr-nw{font-size:48px;font-weight:800;color:#1f2937;margin-bottom:16px}.pr-bt{background:#1f2937;border:none;border-radius:10px;padding:16px 32px;font-size:15px;font-weight:600;color:#fff;cursor:pointer;transition:all .25s ease}.pr-bt:hover{background:#111827;transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.2)}@media(max-width:768px){.mn{margin-left:72px;padding:20px}.gr{grid-template-columns:1fr}.mb-bd{grid-template-columns:1fr;gap:24px}.mb-pr{text-align:left}}@media(max-width:480px){.mn{margin-left:0;padding:16px;padding-top:80px}.mb{padding:24px}}</style>

@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+---
+<Layout>
+<Nav/>
+<main class="mn">
+<header class="hd">
+<h1 class="tl">Content Creator</h1>
+<p class="st">Create engaging content with AI assistance</p>
+</header>
+<div class="ed">
+<div class="tb">
+<button class="tb-bt tb-ac">Write</button>
+<button class="tb-bt">Preview</button>
+</div>
+<textarea class="tx" placeholder="Start writing your content here..."></textarea>
+<div class="ft">
+<button class="bt-sc">Save Draft</button>
+<button class="bt-pr">Publish</button>
+</div>
+</div>
+</main>
+</Layout>
+<style>.mn{margin-left:240px;padding:32px;min-height:100vh;max-width:1200px;animation:sf .4s ease}.hd{margin-bottom:24px}.tl{font-size:32px;font-weight:700;margin:0 0 6px 0;color:#1f2937}.st{font-size:15px;color:#6b7280;margin:0}.ed{background:#fff;border:2px solid #e5e7eb;border-radius:16px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.04)}.tb{display:flex;gap:4px;padding:16px 16px 0;background:#fafafa;border-bottom:1px solid #e5e7eb}.tb-bt{background:transparent;border:none;border-radius:10px 10px 0 0;padding:10px 18px;font-size:14px;font-weight:600;color:#6b7280;cursor:pointer;transition:all .2s cubic-bezier(.4,0,.2,1);position:relative}.tb-bt:hover{background:rgba(16,185,129,.06);color:#059669}.tb-ac{background:#fff;color:#10b981;box-shadow:0 -2px 4px rgba(0,0,0,.04)}.tx{width:100%;min-height:500px;background:#fff;border:none;padding:28px;font-size:15px;color:#1f2937;font-family:inherit;line-height:1.8;resize:vertical}.tx:focus{outline:none}.tx::placeholder{color:#9ca3af}.ft{display:flex;justify-content:flex-end;gap:12px;padding:16px 20px;border-top:2px solid #e5e7eb;background:#fafafa}.bt-sc{background:#fff;border:2px solid #e5e7eb;border-radius:10px;padding:11px 20px;font-size:14px;font-weight:600;color:#374151;cursor:pointer;transition:all .2s cubic-bezier(.4,0,.2,1);box-shadow:0 1px 3px rgba(0,0,0,.06)}.bt-sc:hover{background:#f9fafb;transform:translateY(-1px);box-shadow:0 2px 6px rgba(0,0,0,.1)}.bt-pr{background:linear-gradient(135deg,#10b981,#059669);border:none;border-radius:10px;padding:13px 28px;font-size:14px;font-weight:700;color:#fff;cursor:pointer;transition:all .25s cubic-bezier(.4,0,.2,1);box-shadow:0 2px 6px rgba(16,185,129,.3),inset 0 1px 0 rgba(255,255,255,.3)}.bt-pr:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(16,185,129,.4),inset 0 1px 0 rgba(255,255,255,.3)}.bt-pr:active{transform:translateY(0)}@media(max-width:768px){.mn{margin-left:72px;padding:20px}.tx{min-height:400px;padding:20px}.ft{flex-direction:column;gap:10px}.bt-sc,.bt-pr{width:100%}}@media(max-width:480px){.mn{margin-left:0;padding:16px;padding-top:80px}}</style>

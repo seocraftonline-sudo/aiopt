@@ -1,0 +1,244 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+---
+<Layout>
+  <Nav/>
+  <main class="mn">
+    <div class="pg-hd">
+      <span class="material-symbols-outlined hd-ic">article</span>
+      <h1 class="tl">Bulk Generator Results</h1>
+    </div>
+    
+    <h2 class="pg-st">Featured Articles</h2>
+    <p class="pg-ds">Top AI-generated articles presented in a clean, readable grid.</p>
+    
+    <div id="resultsContainer" class="rs-gd"></div>
+    <div class="bt-gr">
+      <a href="/bulk-generator/" class="bt-sc"><span class="bt-ar">←</span><span>Back to Input</span></a>
+    </div>
+  </main>
+
+  <script>
+    interface BulkItem { keyword: string; title: string }
+
+    const fallbackItems: BulkItem[] = [
+      { keyword: 'wireless headphones', title: 'The Ultimate Guide to Wireless Headphones in 2025' },
+      { keyword: 'ai content tools', title: 'Top AI Content Tools Every Marketer Should Know' },
+      { keyword: 'seo basics', title: 'SEO Basics: A Beginners Roadmap to Ranking' },
+      { keyword: 'content calendar', title: 'Building a Content Calendar that Actually Works' },
+      { keyword: 'email marketing', title: 'Email Marketing Strategies to Boost Engagement' },
+      { keyword: 'voice search', title: 'Optimizing for Voice Search: Practical Tips' },
+      { keyword: 'topic clusters', title: 'How Topic Clusters Improve Your SEO Strategy' },
+      { keyword: 'schema markup', title: 'Schema Markup Explained for Non-Developers' },
+      { keyword: 'internal linking', title: 'Internal Linking Strategies for Growth' },
+      { keyword: 'core web vitals', title: 'Core Web Vitals: Your Actionable Checklist' }
+    ];
+
+    function readItemsFromUrl(): BulkItem[] {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const dataParam = params.get('data');
+        if (dataParam) {
+          const json = atob(decodeURIComponent(dataParam));
+          const arr = JSON.parse(json) as BulkItem[];
+          if (Array.isArray(arr) && arr.length > 0) {
+            return arr.slice(0, 10);
+          }
+        }
+      } catch (_) {}
+      try {
+        const stored = localStorage.getItem('bulkData');
+        if (stored) {
+          const arr = JSON.parse(stored) as BulkItem[];
+          if (Array.isArray(arr) && arr.length > 0) {
+            return arr.slice(0, 10);
+          }
+        }
+      } catch (_) {}
+      return fallbackItems;
+    }
+
+    function generateContentForItem(item: BulkItem): string {
+      const intro = `In this article, we explore ${item.keyword} and share practical strategies to help you make informed decisions. ${item.title} covers essentials, best practices, and tips to implement right away.`;
+      const outline = [
+        'Introduction and Context',
+        'Key Benefits and Use Cases',
+        'Implementation Steps and Best Practices',
+        'Common Pitfalls and How to Avoid Them',
+        'Conclusion and Next Steps'
+      ];
+      const body = [
+        `Understanding ${item.keyword} is crucial for modern marketers and product teams. Start by defining clear objectives and identifying metrics that reflect real outcomes.`,
+        `When applying ${item.keyword}, focus on audience needs and measurable impact. Align tactics with a clear content strategy to avoid ad‑hoc execution.`,
+        `For implementation, establish a simple checklist and iterate weekly. Small improvements in ${item.keyword} often compound into sustainable gains.`,
+        `Avoid common mistakes like over‑optimizing for vanity metrics. Instead, prioritize clarity, utility, and user satisfaction.`,
+      ];
+      const conclusion = `By approaching ${item.keyword} with a structured plan, you can turn insights into outcomes. Use the outline above as a repeatable framework.`;
+
+      return [
+        `# ${item.title}`,
+        `\n**Primary Keyword:** ${item.keyword}`,
+        `\n${intro}`,
+        `\n## Outline`,
+        ...outline.map(o => `- ${o}`),
+        `\n## Body`,
+        ...body.map(p => `\n${p}`),
+        `\n## Conclusion`,
+        conclusion
+      ].join('\n');
+    }
+
+    function renderResults(items: BulkItem[]): void {
+      const container = document.getElementById('resultsContainer') as HTMLElement | null;
+      if (!container) return;
+      container.innerHTML = '';
+      items.forEach((it, index) => {
+        const card = document.createElement('div');
+        card.className = 'bc-it';
+        const content = generateContentForItem(it);
+        
+        // Format content to better match the reference image
+        const formattedContent = content
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/\n## ([^\n]+)/g, '<h2>$1</h2>')
+          .replace(/\n# ([^\n]+)/g, '<h1>$1</h1>')
+          .replace(/\n\*\*([^\*]+)\*\*/g, '<p><strong>$1</strong></p>')
+          .replace(/\n- ([^\n]+)/g, '<li>$1</li>')
+          .replace(/(<li>.*<\/li>)+/g, '<ul>$&</ul>')
+          .replace(/\n([^\n<]+)/g, '<p>$1</p>');
+        
+        card.innerHTML = `
+          <div class="bc-hd">
+            <div class="bc-tl">${it.title}</div>
+            <div class="bc-kw">Topic: <span>${it.keyword}</span></div>
+          </div>
+          <div class="bc-ct">${formattedContent}</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    const items = readItemsFromUrl();
+    renderResults(items);
+  </script>
+
+  <style>
+    .mn{margin-left:240px;padding:24px;min-height:100vh;background:#f8fafc}
+    .pg-hd{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+    .hd-ic{font-size:24px}
+    .tl{font-size:26px;font-weight:800;color:#111827;margin:0}
+    .st{color:#6b7280;margin:0}
+    .pg-st{font-size:24px;font-weight:600;margin-bottom:8px}
+    .pg-ds{color:#6b7280;margin-bottom:24px}
+    
+    /* Grid layout styling */
+    .rs-gd{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 30px;
+    }
+    
+    .bc-it{
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .bc-it:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    .bc-hd{
+      padding: 16px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .bc-tl{
+      font-weight: 600;
+      color: #111827;
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+    
+    .bc-kw{
+      color: #6b7280;
+      font-size: 14px;
+    }
+    
+    .bc-kw span{
+      color: #059669;
+      font-weight: 500;
+    }
+    
+    .bc-ct{
+      padding: 16px;
+      font-size: 15px;
+      color: #374151;
+      line-height: 1.6;
+      flex: 1;
+    }
+    
+    .bc-ct h1, .bc-ct h2, .bc-ct h3{
+      margin-top: 16px;
+      margin-bottom: 10px;
+      color: #111827;
+      font-weight: 600;
+    }
+    
+    .bc-ct ul{
+      padding-left: 20px;
+      margin: 12px 0;
+    }
+    
+    .bc-ct p{
+      margin-bottom: 12px;
+    }
+    
+    .bt-gr{
+      margin-top: 30px;
+    }
+    
+    .bt-sc{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 16px;
+      font-weight: 500;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    
+    .bt-ar{
+      font-weight: 700;
+    }
+    
+    @media (max-width: 1024px) {
+      .rs-gd{
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .rs-gd{
+        grid-template-columns: 1fr;
+      }
+      .mn{
+        margin-left: 0;
+      }
+    }
+  </style>
+</Layout>

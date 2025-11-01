@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+---
+<Layout>
+<Nav/>
+<main class="mn">
+<header class="hd">
+<h1 class="tl">Monthly Packages</h1>
+<p class="st">Choose the perfect plan for your needs — from basic to premium features.</p>
+</header>
+<div class="tb-sw">
+<button class="tb-bt ac" data-tab="monthly">Monthly</button>
+<button class="tb-bt" data-tab="yearly">Yearly</button>
+</div>
+<div class="gr">
+<div class="pk">
+<div class="pk-ic">⭐</div>
+<h3 class="pk-nm">Starter</h3>
+<div class="pk-pr"><span class="pr-am">$14</span><span class="pr-pr">/month</span></div>
+<p class="pk-ds">Its a basic plan</p>
+<ul class="pk-ft">
+<li>✓ 25000 words/Month</li>
+<li>✓ Access to all the tools</li>
+<li>✓ Support via Ticket/FB Page</li>
+</ul>
+<button class="pk-bt">Get Started</button>
+</div>
+<div class="pk">
+<div class="pk-ic">⭐</div>
+<h3 class="pk-nm">Growing</h3>
+<div class="pk-pr"><span class="pr-am">$24</span><span class="pr-pr">/month</span></div>
+<ul class="pk-ft">
+<li>✓ 60000 words/Month</li>
+<li>✓ Access to all the tools</li>
+<li>✓ Support via Ticket/FB Page</li>
+</ul>
+<button class="pk-bt">Get Started</button>
+</div>
+<div class="pk">
+<div class="pk-ic">⭐</div>
+<h3 class="pk-nm">Pro</h3>
+<div class="pk-pr"><span class="pr-am">$36</span><span class="pr-pr">/month</span></div>
+<ul class="pk-ft">
+<li>✓ 800,000 words/Yearly</li>
+<li>✓ Access to all the tools</li>
+<li>✓ Support via Ticket/FB Page</li>
+</ul>
+<button class="pk-bt">Get Started</button>
+</div>
+<div class="pk">
+<div class="pk-ic">⭐</div>
+<h3 class="pk-nm">Mini Agency</h3>
+<div class="pk-pr"><span class="pr-am">$48</span><span class="pr-pr">/month</span></div>
+<ul class="pk-ft">
+<li>✓ 150000 words/Month</li>
+<li>✓ Access to all the tools</li>
+<li>✓ Support via Ticket/FB Page</li>
+</ul>
+<button class="pk-bt">Get Started</button>
+</div>
+<div class="pk">
+<div class="pk-ic">⭐</div>
+<h3 class="pk-nm">Scale</h3>
+<div class="pk-pr"><span class="pr-am">$60</span><span class="pr-pr">/month</span></div>
+<ul class="pk-ft">
+<li>✓ 210000 words/Month</li>
+<li>✓ Access to all the tools</li>
+<li>✓ Support via Ticket/FB Page</li>
+</ul>
+<button class="pk-bt">Get Started</button>
+</div>
+<div class="pk">
+<div class="pk-ic">⭐</div>
+<h3 class="pk-nm">Elite</h3>
+<div class="pk-pr"><span class="pr-am">$72</span><span class="pr-pr">/month</span></div>
+<ul class="pk-ft">
+<li>✓ Unlimited words/Month</li>
+<li>✓ Access to all the tools</li>
+<li>✓ Support via Ticket/FB Page</li>
+</ul>
+<button class="pk-bt">Get Started</button>
+</div>
+</div>
+<div class="ft-gr">
+<div class="ft-cd">
+<div class="ft-ic">👑</div>
+<h3 class="ft-tl">Lifetime Access</h3>
+<p class="ft-ds">One-time payment for permanent access to all features</p>
+</div>
+<div class="ft-cd">
+<div class="ft-ic">✨</div>
+<h3 class="ft-tl">Regular Updates</h3>
+<p class="ft-ds">Get access to new features and improvements</p>
+</div>
+<div class="ft-cd">
+<div class="ft-ic">⭐</div>
+<h3 class="ft-tl">Premium Support</h3>
+<p class="ft-ds">Priority support from our expert team</p>
+</div>
+</div>
+</main>
+</Layout>
+<style>.mn{margin-left:240px;padding:32px;min-height:100vh;max-width:1400px;animation:sf .4s ease}.hd{margin-bottom:28px;text-align:center}.tl{font-size:32px;font-weight:700;margin:0 0 8px 0;color:#1f2937}.st{font-size:15px;color:#6b7280;margin:0}.tb-sw{display:flex;justify-content:center;gap:8px;margin-bottom:40px}.tb-bt{background:#fff;border:2px solid #e5e7eb;border-radius:10px;padding:10px 28px;font-size:14px;font-weight:600;color:#6b7280;cursor:pointer;transition:all .2s ease}.tb-bt.ac{background:#1f2937;color:#fff;border-color:#1f2937}.tb-bt:hover:not(.ac){background:#f9fafb;border-color:#d1d5db}.gr{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;margin-bottom:48px}.pk{background:#fff;border:2px solid #e5e7eb;border-radius:16px;padding:28px;box-shadow:0 2px 8px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.04);transition:all .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}.pk:hover{transform:translateY(-4px);box-shadow:0 4px 16px rgba(0,0,0,.1),0 12px 32px rgba(0,0,0,.08);border-color:#10b981}.pk-ic{font-size:32px;margin-bottom:12px}.pk-nm{font-size:20px;font-weight:700;color:#1f2937;margin:0 0 16px 0}.pk-pr{margin-bottom:12px}.pr-am{font-size:36px;font-weight:800;color:#1f2937}.pr-pr{font-size:15px;color:#6b7280;font-weight:500}.pk-ds{font-size:14px;color:#6b7280;margin:0 0 20px 0}.pk-ft{list-style:none;padding:0;margin:0 0 24px 0;flex-grow:1}.pk-ft li{font-size:14px;color:#374151;padding:10px 0;border-bottom:1px solid #f3f4f6}.pk-ft li:last-child{border-bottom:none}.pk-bt{background:#1f2937;border:none;border-radius:10px;padding:13px 24px;font-size:14px;font-weight:600;color:#fff;cursor:pointer;transition:all .25s ease}.pk-bt:hover{background:#111827;transform:translateY(-1px)}.ft-gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:48px}.ft-cd{background:#fafafa;border:1px solid #f3f4f6;border-radius:12px;padding:24px;text-align:center;transition:all .2s ease}.ft-cd:hover{background:#fff;border-color:#e5e7eb}.ft-ic{font-size:36px;margin-bottom:12px}.ft-tl{font-size:18px;font-weight:700;color:#1f2937;margin:0 0 8px 0}.ft-ds{font-size:14px;color:#6b7280;margin:0}@media(max-width:768px){.mn{margin-left:72px;padding:20px}.gr{grid-template-columns:1fr}}@media(max-width:480px){.mn{margin-left:0;padding:16px;padding-top:80px}}</style>

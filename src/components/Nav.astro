@@ -1,0 +1,129 @@
+---
+const nr=[
+{i:'hm',l:'Dashboard',p:'/'},
+{i:'ed',l:'Editor',p:'/editor'},
+{i:'gn',l:'Keywords',p:'/gen'},
+{i:'op',l:'Optimizer',p:'/opt'},
+{i:'se',l:'SEO',p:'/seo'},
+{i:'au',l:'Automator',p:'/automator'},
+{i:'au',l:'Bulk Content Generator',p:'/bulk-generator'},
+{i:'ab',l:'Auto Builder',p:'/auto-builder'}
+];
+// Features dropdown items
+const fe=[
+{l:'Feature 1: AI Content Repurposing',p:'/features/feature-01'},
+{l:'Feature 2: Performance Analytics',p:'/features/feature-02'},
+{l:'Feature 3: Team Workspace',p:'/features/feature-03'},
+{l:'Feature 4: Content Calendar',p:'/features/feature-04'},
+{l:'Feature 5: Multilingual Optimization',p:'/features/feature-05'},
+{l:'Feature 6: Voice Search Optimization',p:'/features/feature-06'},
+{l:'Feature 7: Personalization Engine',p:'/features/feature-07'},
+{l:'Feature 8: AI Image Generator',p:'/features/feature-08'},
+{l:'Feature 9: Readability Analyzer',p:'/features/feature-09'},
+{l:'Feature 10: Interactive Content Builder',p:'/features/feature-10'},
+{l:'Feature 11: E-commerce Optimization',p:'/features/feature-11'},
+{l:'Feature 12: Local SEO Module',p:'/features/feature-12'},
+{l:'Feature 13: Video Script Optimizer',p:'/features/feature-13'},
+{l:'Feature 14: Compliance Checker',p:'/features/feature-14'},
+{l:'Feature 15: Semantic Linking',p:'/features/feature-15'},
+{l:'Feature 16: Content Updating',p:'/features/feature-16'},
+{l:'Feature 17: Social Caption Generator',p:'/features/feature-17'},
+{l:'Feature 18: Brief Builder',p:'/features/feature-18'},
+{l:'Feature 19: Schema Generator',p:'/features/feature-19'},
+{l:'Feature 20: Mobile Optimization',p:'/features/feature-20'}
+];
+const um=[
+{l:'Tutorials',p:'/tutorials'},
+{l:'Upgrade Packages',p:'/packages'},
+{l:'Redeem Codes',p:'/redeem'},
+{l:'Gift and Offers',p:'/offers'},
+{l:'Support',p:'/support'},
+{l:'Contact',p:'/contact'}
+];
+const cp=Astro.url.pathname;
+const isFeatures=fe.some(m=>cp===m.p);
+const isUserMgmt=um.some(m=>cp===m.p);
+---
+<nav class="nv">
+<div class="lg">
+<div class="lg-ic">
+<svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+<defs>
+<linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" style="stop-color:#10b981"/>
+<stop offset="100%" style="stop-color:#059669"/>
+</linearGradient>
+</defs>
+<rect width="28" height="28" rx="8" fill="url(#g1)"/>
+<path d="M14 8 L18 14 L14 13 L14 20 L10 14 L14 15 Z" fill="white"/>
+</svg>
+</div>
+<span class="lg-tx">ContentFlow</span>
+</div>
+{nr.map(n=>(
+<a href={n.p} class:list={['ni',{ac:cp===n.p}]} aria-current={cp===n.p?'page':undefined}>
+<span class="ic" data-icon={n.i}></span>
+<span class="lb">{n.l}</span>
+</a>
+))}
+<div class="dr" id="features">
+<button class:list={['ni','dr-bt',{ac:isFeatures}]} id="featuresBtn">
+<span class="ic" data-icon="se"></span>
+<span class="lb">Features</span>
+<span class="ar">›</span>
+</button>
+<div class="dr-mn" id="featuresMenu">
+{fe.map(m=>(
+<a href={m.p} class:list={['dr-it',{ac:cp===m.p}]}> {m.l} </a>
+))}
+</div>
+</div>
+<div class="dr" id="userMgmt">
+<button class:list={['ni','dr-bt',{ac:isUserMgmt}]} id="userMgmtBtn">
+<span class="ic" data-icon="us"></span>
+<span class="lb">User Management</span>
+<span class="ar">›</span>
+</button>
+<div class="dr-mn" id="userMgmtMenu">
+{um.map(m=>(
+<a href={m.p} class:list={['dr-it',{ac:cp===m.p}]}>
+{m.l}
+</a>
+))}
+</div>
+</div>
+<script>
+const userMgmtBtn = document.getElementById('userMgmtBtn');
+const userMgmtMenu = document.getElementById('userMgmtMenu');
+const dropdown = document.getElementById('userMgmt');
+const featuresBtn = document.getElementById('featuresBtn');
+const featuresMenu = document.getElementById('featuresMenu');
+const featuresDropdown = document.getElementById('features');
+
+let isOpen = false;
+let isFeaturesOpen = false;
+
+userMgmtBtn?.addEventListener('click', (e) => {
+  e.preventDefault();
+  isOpen = !isOpen;
+  dropdown?.classList.toggle('op', isOpen);
+});
+featuresBtn?.addEventListener('click', (e) => {
+  e.preventDefault();
+  isFeaturesOpen = !isFeaturesOpen;
+  featuresDropdown?.classList.toggle('op', isFeaturesOpen);
+});
+
+document.addEventListener('click', (e) => {
+  if (!dropdown?.contains(e.target as Node)) {
+    isOpen = false;
+    dropdown?.classList.remove('op');
+  }
+  if (!featuresDropdown?.contains(e.target as Node)) {
+    isFeaturesOpen = false;
+    featuresDropdown?.classList.remove('op');
+  }
+});
+</script>
+</nav>
+<style>.nv{position:fixed;left:0;top:0;width:240px;height:100vh;background:#fff;border-right:1px solid #e5e7eb;display:flex;flex-direction:column;padding:20px 12px;z-index:100;overflow-y:auto}.lg{display:flex;align-items:center;gap:10px;margin-bottom:32px;padding:8px 12px}.lg-ic{width:28px;height:28px;flex-shrink:0;filter:drop-shadow(0 2px 4px rgba(16,185,129,.3))}.lg-tx{font-size:18px;font-weight:700;color:#1f2937}.ni{display:flex;align-items:center;gap:12px;padding:12px 14px;margin:3px 0;border-radius:12px;transition:all .2s;cursor:pointer;position:relative;color:#6b7280;font-size:15px;font-weight:500;text-decoration:none;border:none;background:0 0;width:100%;text-align:left}.ni:hover{background:#f9fafb;color:#374151;transform:translateX(2px)}.ni.ac{background:linear-gradient(135deg,#d1fae5,#a7f3d0);color:#059669;box-shadow:0 1px 3px rgba(16,185,129,.2)}.ni.ac::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:4px;height:24px;background:linear-gradient(180deg,#10b981,#059669);border-radius:0 4px 4px 0}.ic{width:22px;height:22px;display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0}.ic::before{content:'';position:absolute;width:20px;height:20px;background:currentColor;mask-size:contain;mask-repeat:no-repeat;mask-position:center}.ic[data-icon="hm"]::before{mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z'/%3E%3C/svg%3E")}.ic[data-icon="gn"]::before{mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M9 2a1 1 0 000 2h2a1 1 0 100-2H9z'/%3E%3Cpath d='M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z'/%3E%3C/svg%3E")}.ic[data-icon="ed"]::before{mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z'/%3E%3Cpath d='M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z'/%3E%3C/svg%3E")}.ic[data-icon="op"]::before{mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z'/%3E%3C/svg%3E")}.ic[data-icon="se"]::before{mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z'/%3E%3C/svg%3E")}.ic[data-icon="au"]::before{mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z'/%3E%3Cpath d='M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z'/%3E%3C/svg%3E")}.ic[data-icon="us"]::before{mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z'/%3E%3C/svg%3E")}.lb{font-size:15px;font-weight:500;white-space:nowrap}.dr{position:relative}.dr-bt{justify-content:space-between}.ar{font-size:20px;font-weight:700;transition:transform .2s;line-height:1}.dr.op .ar{transform:rotate(90deg)}.dr-mn{display:none;flex-direction:column;gap:2px;padding-left:34px;margin-top:4px}.dr.op .dr-mn{display:flex}.dr-it{display:block;padding:10px 14px;border-radius:8px;font-size:14px;color:#6b7280;font-weight:500;text-decoration:none;transition:all .2s}.dr-it:hover{background:#f9fafb;color:#374151;transform:translateX(2px)}.dr-it.ac{background:#f0fdf4;color:#059669;font-weight:600}@media(max-width:1024px){.nv{width:72px;padding:16px 8px}.lg-tx,.lb,.ar{display:none}.ni{justify-content:center;padding:14px}.lg{justify-content:center;padding:8px}.dr-mn{display:none!important}}@media(max-width:640px){.nv{width:100%;height:60px;bottom:0;top:auto;flex-direction:row;justify-content:space-around;padding:8px;border-right:none;border-top:1px solid #e5e7eb}.lg{display:none}.ni{margin:0;padding:10px;flex-direction:column;font-size:11px;gap:4px}.ic{width:20px;height:20px}.ic::before{width:18px;height:18px}.dr{display:none}}</style>

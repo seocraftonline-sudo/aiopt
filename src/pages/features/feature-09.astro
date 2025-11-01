@@ -1,0 +1,852 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Readability Analyzer - AI Content Tools">
+  <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">Readability Analyzer</h1>
+        <p class="text-xl text-gray-600">Analyze and improve your content's readability with AI-powered insights</p>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="mb-8">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-sm font-medium text-gray-700">Progress</span>
+          <span class="text-sm font-medium text-gray-700" id="progress-text">Step 1 of 4</span>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2">
+          <div class="bg-blue-600 h-2 rounded-full transition-all duration-300" id="progress-bar" style="width: 25%"></div>
+        </div>
+      </div>
+
+      <!-- Step Navigation -->
+      <div class="flex justify-center mb-8">
+        <div class="flex space-x-4">
+          <div class="flex items-center">
+            <div class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-medium step-indicator active" data-step="1">1</div>
+            <span class="ml-2 text-sm font-medium text-gray-900">Input</span>
+          </div>
+          <div class="flex items-center">
+            <div class="w-8 h-8 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-sm font-medium step-indicator" data-step="2">2</div>
+            <span class="ml-2 text-sm font-medium text-gray-500">Analyze</span>
+          </div>
+          <div class="flex items-center">
+            <div class="w-8 h-8 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-sm font-medium step-indicator" data-step="3">3</div>
+            <span class="ml-2 text-sm font-medium text-gray-500">Improve</span>
+          </div>
+          <div class="flex items-center">
+            <div class="w-8 h-8 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-sm font-medium step-indicator" data-step="4">4</div>
+            <span class="ml-2 text-sm font-medium text-gray-500">Export</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 1: Content Input -->
+      <div class="step-content" id="step-1">
+        <div class="bg-white rounded-lg shadow-lg p-6">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Content Input</h2>
+          
+          <div class="space-y-6">
+            <!-- Input Method Selection -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-3">Input Method</label>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <button class="input-method-btn active" data-method="text">
+                  <div class="p-4 border-2 border-blue-500 bg-blue-50 rounded-lg text-center">
+                    <div class="text-2xl mb-2">📝</div>
+                    <div class="font-medium">Text Input</div>
+                  </div>
+                </button>
+                <button class="input-method-btn" data-method="url">
+                  <div class="p-4 border-2 border-gray-300 rounded-lg text-center hover:border-blue-500 hover:bg-blue-50">
+                    <div class="text-2xl mb-2">🔗</div>
+                    <div class="font-medium">URL Import</div>
+                  </div>
+                </button>
+                <button class="input-method-btn" data-method="file">
+                  <div class="p-4 border-2 border-gray-300 rounded-lg text-center hover:border-blue-500 hover:bg-blue-50">
+                    <div class="text-2xl mb-2">📄</div>
+                    <div class="font-medium">File Upload</div>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <!-- Text Input -->
+            <div class="input-section" id="text-input">
+              <label for="content-text" class="block text-sm font-medium text-gray-700 mb-2">Content Text</label>
+              <textarea 
+                id="content-text" 
+                rows="12" 
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Paste your content here for readability analysis..."
+              ></textarea>
+              <div class="mt-2 text-sm text-gray-500">
+                <span id="char-count">0</span> characters, <span id="word-count">0</span> words
+              </div>
+            </div>
+
+            <!-- URL Input -->
+            <div class="input-section hidden" id="url-input">
+              <label for="content-url" class="block text-sm font-medium text-gray-700 mb-2">Website URL</label>
+              <input 
+                type="url" 
+                id="content-url" 
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="https://example.com/article"
+              >
+              <button class="mt-3 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                Extract Content
+              </button>
+            </div>
+
+            <!-- File Upload -->
+            <div class="input-section hidden" id="file-input">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Upload Document</label>
+              <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                <input type="file" id="file-upload" class="hidden" accept=".txt,.doc,.docx,.pdf">
+                <div class="text-gray-500">
+                  <div class="text-2xl mb-2">📁</div>
+                  <p>Drag and drop your file here, or <button class="text-blue-600 hover:underline" onclick="document.getElementById('file-upload').click()">browse</button></p>
+                  <p class="text-sm mt-1">Supports: TXT, DOC, DOCX, PDF</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Analysis Settings -->
+            <div class="border-t pt-6">
+              <h3 class="text-lg font-medium text-gray-900 mb-4">Analysis Settings</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label for="target-audience" class="block text-sm font-medium text-gray-700 mb-2">Target Audience</label>
+                  <select id="target-audience" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="general">General Public</option>
+                    <option value="academic">Academic</option>
+                    <option value="professional">Professional</option>
+                    <option value="children">Children (8-12)</option>
+                    <option value="teens">Teenagers (13-17)</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="content-type" class="block text-sm font-medium text-gray-700 mb-2">Content Type</label>
+                  <select id="content-type" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="blog">Blog Post</option>
+                    <option value="article">News Article</option>
+                    <option value="marketing">Marketing Copy</option>
+                    <option value="technical">Technical Documentation</option>
+                    <option value="creative">Creative Writing</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-end mt-8">
+            <button id="analyze-btn" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
+              Analyze Readability
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Analysis Results -->
+      <div class="step-content hidden" id="step-2">
+        <div class="bg-white rounded-lg shadow-lg p-6">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Readability Analysis</h2>
+          
+          <!-- Overall Score -->
+          <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 mb-6">
+            <div class="text-center">
+              <div class="text-4xl font-bold text-blue-600 mb-2" id="overall-score">85</div>
+              <div class="text-lg font-medium text-gray-900">Overall Readability Score</div>
+              <div class="text-sm text-gray-600 mt-1" id="score-description">Good - Easy to read for most audiences</div>
+            </div>
+          </div>
+
+          <!-- Readability Metrics -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <div class="bg-gray-50 rounded-lg p-4">
+              <div class="text-2xl font-bold text-gray-900" id="flesch-score">72.5</div>
+              <div class="text-sm font-medium text-gray-600">Flesch Reading Ease</div>
+              <div class="text-xs text-gray-500 mt-1">Standard readability</div>
+            </div>
+            <div class="bg-gray-50 rounded-lg p-4">
+              <div class="text-2xl font-bold text-gray-900" id="grade-level">8.2</div>
+              <div class="text-sm font-medium text-gray-600">Grade Level</div>
+              <div class="text-xs text-gray-500 mt-1">8th grade reading level</div>
+            </div>
+            <div class="bg-gray-50 rounded-lg p-4">
+              <div class="text-2xl font-bold text-gray-900" id="avg-sentence">16.4</div>
+              <div class="text-sm font-medium text-gray-600">Avg. Sentence Length</div>
+              <div class="text-xs text-gray-500 mt-1">Words per sentence</div>
+            </div>
+            <div class="bg-gray-50 rounded-lg p-4">
+              <div class="text-2xl font-bold text-gray-900" id="complex-words">12%</div>
+              <div class="text-sm font-medium text-gray-600">Complex Words</div>
+              <div class="text-xs text-gray-500 mt-1">3+ syllables</div>
+            </div>
+          </div>
+
+          <!-- Detailed Analysis -->
+          <div class="space-y-6">
+            <!-- Sentence Analysis -->
+            <div class="border rounded-lg p-4">
+              <h3 class="text-lg font-medium text-gray-900 mb-3">Sentence Analysis</h3>
+              <div class="space-y-3">
+                <div class="flex items-center justify-between">
+                  <span class="text-sm text-gray-600">Short sentences (1-10 words)</span>
+                  <div class="flex items-center">
+                    <div class="w-32 bg-gray-200 rounded-full h-2 mr-3">
+                      <div class="bg-green-500 h-2 rounded-full" style="width: 25%"></div>
+                    </div>
+                    <span class="text-sm font-medium">25%</span>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-sm text-gray-600">Medium sentences (11-20 words)</span>
+                  <div class="flex items-center">
+                    <div class="w-32 bg-gray-200 rounded-full h-2 mr-3">
+                      <div class="bg-yellow-500 h-2 rounded-full" style="width: 60%"></div>
+                    </div>
+                    <span class="text-sm font-medium">60%</span>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-sm text-gray-600">Long sentences (21+ words)</span>
+                  <div class="flex items-center">
+                    <div class="w-32 bg-gray-200 rounded-full h-2 mr-3">
+                      <div class="bg-red-500 h-2 rounded-full" style="width: 15%"></div>
+                    </div>
+                    <span class="text-sm font-medium">15%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Word Analysis -->
+            <div class="border rounded-lg p-4">
+              <h3 class="text-lg font-medium text-gray-900 mb-3">Word Analysis</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <h4 class="text-sm font-medium text-gray-700 mb-2">Most Common Words</h4>
+                  <div class="space-y-1">
+                    <div class="flex justify-between text-sm">
+                      <span>content</span>
+                      <span class="text-gray-500">24 times</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                      <span>analysis</span>
+                      <span class="text-gray-500">18 times</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                      <span>readability</span>
+                      <span class="text-gray-500">15 times</span>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="text-sm font-medium text-gray-700 mb-2">Complex Words</h4>
+                  <div class="space-y-1">
+                    <div class="flex justify-between text-sm">
+                      <span>optimization</span>
+                      <span class="text-gray-500">5 syllables</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                      <span>implementation</span>
+                      <span class="text-gray-500">5 syllables</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                      <span>accessibility</span>
+                      <span class="text-gray-500">6 syllables</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Issues Found -->
+            <div class="border rounded-lg p-4">
+              <h3 class="text-lg font-medium text-gray-900 mb-3">Issues Found</h3>
+              <div class="space-y-3">
+                <div class="flex items-start">
+                  <div class="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3"></div>
+                  <div>
+                    <div class="text-sm font-medium text-gray-900">Long sentences detected</div>
+                    <div class="text-sm text-gray-600">3 sentences exceed 25 words. Consider breaking them down.</div>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="w-2 h-2 bg-yellow-500 rounded-full mt-2 mr-3"></div>
+                  <div>
+                    <div class="text-sm font-medium text-gray-900">Passive voice usage</div>
+                    <div class="text-sm text-gray-600">12% of sentences use passive voice. Consider active voice.</div>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3"></div>
+                  <div>
+                    <div class="text-sm font-medium text-gray-900">Complex vocabulary</div>
+                    <div class="text-sm text-gray-600">Some technical terms may need simplification.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-between mt-8">
+            <button id="back-to-input" class="px-6 py-3 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 font-medium">
+              Back to Input
+            </button>
+            <button id="improve-btn" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
+              Get Improvements
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Improvement Suggestions -->
+      <div class="step-content hidden" id="step-3">
+        <div class="bg-white rounded-lg shadow-lg p-6">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Improvement Suggestions</h2>
+          
+          <!-- Improvement Tools -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <!-- Original Content -->
+            <div>
+              <h3 class="text-lg font-medium text-gray-900 mb-3">Original Content</h3>
+              <div class="border rounded-lg p-4 bg-gray-50 h-64 overflow-y-auto">
+                <div class="text-sm text-gray-700" id="original-content">
+                  Your original content will appear here for comparison with the improved version.
+                </div>
+              </div>
+            </div>
+
+            <!-- Improved Content -->
+            <div>
+              <h3 class="text-lg font-medium text-gray-900 mb-3">AI-Improved Content</h3>
+              <div class="border rounded-lg p-4 bg-blue-50 h-64 overflow-y-auto">
+                <div class="text-sm text-gray-700" id="improved-content">
+                  The AI-improved version with better readability will appear here.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Improvement Actions -->
+          <div class="space-y-4 mb-6">
+            <h3 class="text-lg font-medium text-gray-900">Quick Improvements</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <button class="improvement-action p-4 border-2 border-gray-300 rounded-lg text-left hover:border-blue-500 hover:bg-blue-50">
+                <div class="font-medium text-gray-900">Simplify Vocabulary</div>
+                <div class="text-sm text-gray-600 mt-1">Replace complex words with simpler alternatives</div>
+              </button>
+              
+              <button class="improvement-action p-4 border-2 border-gray-300 rounded-lg text-left hover:border-blue-500 hover:bg-blue-50">
+                <div class="font-medium text-gray-900">Shorten Sentences</div>
+                <div class="text-sm text-gray-600 mt-1">Break long sentences into shorter, clearer ones</div>
+              </button>
+              
+              <button class="improvement-action p-4 border-2 border-gray-300 rounded-lg text-left hover:border-blue-500 hover:bg-blue-50">
+                <div class="font-medium text-gray-900">Active Voice</div>
+                <div class="text-sm text-gray-600 mt-1">Convert passive voice to active voice</div>
+              </button>
+              
+              <button class="improvement-action p-4 border-2 border-gray-300 rounded-lg text-left hover:border-blue-500 hover:bg-blue-50">
+                <div class="font-medium text-gray-900">Add Transitions</div>
+                <div class="text-sm text-gray-600 mt-1">Improve flow with better transitions</div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Specific Suggestions -->
+          <div class="border rounded-lg p-4 mb-6">
+            <h3 class="text-lg font-medium text-gray-900 mb-3">Specific Suggestions</h3>
+            <div class="space-y-4" id="suggestions-list">
+              <div class="suggestion-item p-3 bg-yellow-50 border border-yellow-200 rounded">
+                <div class="flex items-start justify-between">
+                  <div class="flex-1">
+                    <div class="text-sm font-medium text-gray-900">Sentence too long (line 3)</div>
+                    <div class="text-sm text-gray-600 mt-1">
+                      <strong>Original:</strong> "The implementation of advanced readability analysis techniques..."
+                    </div>
+                    <div class="text-sm text-gray-600 mt-1">
+                      <strong>Suggested:</strong> "Advanced readability analysis techniques help improve content. They make text easier to understand."
+                    </div>
+                  </div>
+                  <button class="ml-3 px-3 py-1 bg-blue-600 text-white text-xs rounded hover:bg-blue-700">
+                    Apply
+                  </button>
+                </div>
+              </div>
+              
+              <div class="suggestion-item p-3 bg-orange-50 border border-orange-200 rounded">
+                <div class="flex items-start justify-between">
+                  <div class="flex-1">
+                    <div class="text-sm font-medium text-gray-900">Complex word (line 7)</div>
+                    <div class="text-sm text-gray-600 mt-1">
+                      <strong>Replace:</strong> "optimization" → "improvement"
+                    </div>
+                  </div>
+                  <button class="ml-3 px-3 py-1 bg-blue-600 text-white text-xs rounded hover:bg-blue-700">
+                    Apply
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-between">
+            <button id="back-to-analysis" class="px-6 py-3 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 font-medium">
+              Back to Analysis
+            </button>
+            <button id="export-btn" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
+              Export Results
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4: Export Results -->
+      <div class="step-content hidden" id="step-4">
+        <div class="bg-white rounded-lg shadow-lg p-6">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Export Results</h2>
+          
+          <!-- Export Summary -->
+          <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-6 mb-6">
+            <div class="text-center">
+              <div class="text-3xl mb-2">✅</div>
+              <div class="text-lg font-medium text-gray-900">Analysis Complete!</div>
+              <div class="text-sm text-gray-600 mt-1">Your content readability has been analyzed and improved</div>
+            </div>
+          </div>
+
+          <!-- Export Options -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <!-- Content Export -->
+            <div class="border rounded-lg p-4">
+              <h3 class="text-lg font-medium text-gray-900 mb-3">Export Content</h3>
+              <div class="space-y-3">
+                <button class="export-option w-full p-3 border border-gray-300 rounded-lg text-left hover:border-blue-500 hover:bg-blue-50">
+                  <div class="flex items-center">
+                    <div class="text-2xl mr-3">📄</div>
+                    <div>
+                      <div class="font-medium">Download Improved Text</div>
+                      <div class="text-sm text-gray-600">Get the improved version as TXT file</div>
+                    </div>
+                  </div>
+                </button>
+                
+                <button class="export-option w-full p-3 border border-gray-300 rounded-lg text-left hover:border-blue-500 hover:bg-blue-50">
+                  <div class="flex items-center">
+                    <div class="text-2xl mr-3">📋</div>
+                    <div>
+                      <div class="font-medium">Copy to Clipboard</div>
+                      <div class="text-sm text-gray-600">Copy improved content to clipboard</div>
+                    </div>
+                  </div>
+                </button>
+                
+                <button class="export-option w-full p-3 border border-gray-300 rounded-lg text-left hover:border-blue-500 hover:bg-blue-50">
+                  <div class="flex items-center">
+                    <div class="text-2xl mr-3">📧</div>
+                    <div>
+                      <div class="font-medium">Email Results</div>
+                      <div class="text-sm text-gray-600">Send analysis and improved content via email</div>
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <!-- Report Export -->
+            <div class="border rounded-lg p-4">
+              <h3 class="text-lg font-medium text-gray-900 mb-3">Export Report</h3>
+              <div class="space-y-3">
+                <button class="export-option w-full p-3 border border-gray-300 rounded-lg text-left hover:border-blue-500 hover:bg-blue-50">
+                  <div class="flex items-center">
+                    <div class="text-2xl mr-3">📊</div>
+                    <div>
+                      <div class="font-medium">PDF Report</div>
+                      <div class="text-sm text-gray-600">Complete analysis report with charts</div>
+                    </div>
+                  </div>
+                </button>
+                
+                <button class="export-option w-full p-3 border border-gray-300 rounded-lg text-left hover:border-blue-500 hover:bg-blue-50">
+                  <div class="flex items-center">
+                    <div class="text-2xl mr-3">📈</div>
+                    <div>
+                      <div class="font-medium">Excel Data</div>
+                      <div class="text-sm text-gray-600">Detailed metrics and statistics</div>
+                    </div>
+                  </div>
+                </button>
+                
+                <button class="export-option w-full p-3 border border-gray-300 rounded-lg text-left hover:border-blue-500 hover:bg-blue-50">
+                  <div class="flex items-center">
+                    <div class="text-2xl mr-3">🔗</div>
+                    <div>
+                      <div class="font-medium">Share Link</div>
+                      <div class="text-sm text-gray-600">Generate shareable analysis link</div>
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Integration Options -->
+          <div class="border rounded-lg p-4 mb-6">
+            <h3 class="text-lg font-medium text-gray-900 mb-3">Integration Options</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <button class="integration-btn p-4 border border-gray-300 rounded-lg text-center hover:border-blue-500 hover:bg-blue-50">
+                <div class="text-2xl mb-2">📝</div>
+                <div class="font-medium">Google Docs</div>
+                <div class="text-sm text-gray-600 mt-1">Export to Google Docs</div>
+              </button>
+              
+              <button class="integration-btn p-4 border border-gray-300 rounded-lg text-center hover:border-blue-500 hover:bg-blue-50">
+                <div class="text-2xl mb-2">📄</div>
+                <div class="font-medium">Microsoft Word</div>
+                <div class="text-sm text-gray-600 mt-1">Open in Word Online</div>
+              </button>
+              
+              <button class="integration-btn p-4 border border-gray-300 rounded-lg text-center hover:border-blue-500 hover:bg-blue-50">
+                <div class="text-2xl mb-2">🌐</div>
+                <div class="font-medium">WordPress</div>
+                <div class="text-sm text-gray-600 mt-1">Publish to WordPress</div>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex justify-between">
+            <button id="back-to-improve" class="px-6 py-3 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 font-medium">
+              Back to Improvements
+            </button>
+            <button id="new-analysis" class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium">
+              Start New Analysis
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // State management
+    let currentStep = 1;
+    let analysisData = {};
+    let originalContent = '';
+    let improvedContent = '';
+
+    // DOM elements
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    const stepIndicators = document.querySelectorAll('.step-indicator');
+    const stepContents = document.querySelectorAll('.step-content');
+
+    // Input method buttons
+    const inputMethodBtns = document.querySelectorAll('.input-method-btn');
+    const inputSections = document.querySelectorAll('.input-section');
+
+    // Content input elements
+    const contentText = document.getElementById('content-text');
+    const contentUrl = document.getElementById('content-url');
+    const fileUpload = document.getElementById('file-upload');
+    const charCount = document.getElementById('char-count');
+    const wordCount = document.getElementById('word-count');
+
+    // Navigation buttons
+    const analyzeBtn = document.getElementById('analyze-btn');
+    const backToInputBtn = document.getElementById('back-to-input');
+    const improveBtn = document.getElementById('improve-btn');
+    const backToAnalysisBtn = document.getElementById('back-to-analysis');
+    const exportBtn = document.getElementById('export-btn');
+    const backToImproveBtn = document.getElementById('back-to-improve');
+    const newAnalysisBtn = document.getElementById('new-analysis');
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      updateProgress();
+      setupEventListeners();
+      updateWordCount();
+    });
+
+    function setupEventListeners() {
+      // Input method selection
+      inputMethodBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const method = this.dataset.method;
+          selectInputMethod(method);
+        });
+      });
+
+      // Content text input
+      contentText.addEventListener('input', updateWordCount);
+
+      // File upload
+      fileUpload.addEventListener('change', handleFileUpload);
+
+      // Navigation buttons
+      analyzeBtn.addEventListener('click', startAnalysis);
+      backToInputBtn.addEventListener('click', () => goToStep(1));
+      improveBtn.addEventListener('click', () => goToStep(3));
+      backToAnalysisBtn.addEventListener('click', () => goToStep(2));
+      exportBtn.addEventListener('click', () => goToStep(4));
+      backToImproveBtn.addEventListener('click', () => goToStep(3));
+      newAnalysisBtn.addEventListener('click', resetAnalysis);
+
+      // Improvement actions
+      document.querySelectorAll('.improvement-action').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const action = this.querySelector('.font-medium').textContent;
+          applyImprovement(action);
+        });
+      });
+
+      // Export options
+      document.querySelectorAll('.export-option').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const option = this.querySelector('.font-medium').textContent;
+          handleExport(option);
+        });
+      });
+
+      // Integration buttons
+      document.querySelectorAll('.integration-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const integration = this.querySelector('.font-medium').textContent;
+          handleIntegration(integration);
+        });
+      });
+    }
+
+    function selectInputMethod(method) {
+      // Update button states
+      inputMethodBtns.forEach(btn => {
+        btn.classList.remove('active');
+        const div = btn.querySelector('div');
+        div.classList.remove('border-blue-500', 'bg-blue-50');
+        div.classList.add('border-gray-300');
+      });
+
+      const activeBtn = document.querySelector(`[data-method="${method}"]`);
+      activeBtn.classList.add('active');
+      const activeDiv = activeBtn.querySelector('div');
+      activeDiv.classList.add('border-blue-500', 'bg-blue-50');
+      activeDiv.classList.remove('border-gray-300');
+
+      // Show/hide input sections
+      inputSections.forEach(section => {
+        section.classList.add('hidden');
+      });
+
+      document.getElementById(`${method}-input`).classList.remove('hidden');
+    }
+
+    function updateWordCount() {
+      const text = contentText.value;
+      const chars = text.length;
+      const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+      
+      charCount.textContent = chars;
+      wordCount.textContent = words;
+    }
+
+    function handleFileUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          contentText.value = e.target.result;
+          updateWordCount();
+          selectInputMethod('text');
+        };
+        reader.readAsText(file);
+      }
+    }
+
+    function startAnalysis() {
+      const content = contentText.value.trim();
+      if (!content) {
+        alert('Please enter some content to analyze.');
+        return;
+      }
+
+      originalContent = content;
+      
+      // Simulate analysis
+      setTimeout(() => {
+        generateAnalysisResults();
+        goToStep(2);
+      }, 1500);
+
+      // Show loading state
+      analyzeBtn.textContent = 'Analyzing...';
+      analyzeBtn.disabled = true;
+    }
+
+    function generateAnalysisResults() {
+      // Simulate readability analysis results
+      const words = originalContent.trim().split(/\s+/).length;
+      const sentences = originalContent.split(/[.!?]+/).filter(s => s.trim()).length;
+      const avgSentenceLength = Math.round((words / sentences) * 10) / 10;
+      
+      analysisData = {
+        overallScore: Math.floor(Math.random() * 30) + 70,
+        fleschScore: Math.floor(Math.random() * 40) + 60,
+        gradeLevel: Math.floor(Math.random() * 5) + 6,
+        avgSentenceLength: avgSentenceLength,
+        complexWords: Math.floor(Math.random() * 15) + 5
+      };
+
+      // Update UI with results
+      document.getElementById('overall-score').textContent = analysisData.overallScore;
+      document.getElementById('flesch-score').textContent = analysisData.fleschScore;
+      document.getElementById('grade-level').textContent = analysisData.gradeLevel;
+      document.getElementById('avg-sentence').textContent = analysisData.avgSentenceLength;
+      document.getElementById('complex-words').textContent = analysisData.complexWords + '%';
+
+      // Update score description
+      const scoreDesc = document.getElementById('score-description');
+      if (analysisData.overallScore >= 90) {
+        scoreDesc.textContent = 'Excellent - Very easy to read';
+      } else if (analysisData.overallScore >= 80) {
+        scoreDesc.textContent = 'Good - Easy to read for most audiences';
+      } else if (analysisData.overallScore >= 70) {
+        scoreDesc.textContent = 'Fair - Moderately easy to read';
+      } else {
+        scoreDesc.textContent = 'Difficult - May need improvement';
+      }
+
+      // Reset analyze button
+      analyzeBtn.textContent = 'Analyze Readability';
+      analyzeBtn.disabled = false;
+    }
+
+    function applyImprovement(action) {
+      // Simulate applying improvement
+      console.log('Applying improvement:', action);
+      
+      // Generate improved content (simplified simulation)
+      improvedContent = originalContent
+        .replace(/\b(optimization|implementation|accessibility)\b/g, 'improvement')
+        .replace(/\b(utilize|facilitate|demonstrate)\b/g, match => {
+          const replacements = {
+            'utilize': 'use',
+            'facilitate': 'help',
+            'demonstrate': 'show'
+          };
+          return replacements[match] || match;
+        });
+
+      // Update content displays
+      document.getElementById('original-content').textContent = originalContent;
+      document.getElementById('improved-content').textContent = improvedContent;
+    }
+
+    function handleExport(option) {
+      console.log('Exporting:', option);
+      
+      switch(option) {
+        case 'Download Improved Text':
+          downloadText(improvedContent || originalContent, 'improved-content.txt');
+          break;
+        case 'Copy to Clipboard':
+          copyToClipboard(improvedContent || originalContent);
+          break;
+        case 'PDF Report':
+          generatePDFReport();
+          break;
+        default:
+          alert(`${option} feature coming soon!`);
+      }
+    }
+
+    function handleIntegration(integration) {
+      console.log('Integration:', integration);
+      alert(`${integration} integration coming soon!`);
+    }
+
+    function downloadText(content, filename) {
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Content copied to clipboard!');
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+    function generatePDFReport() {
+      // Simulate PDF generation
+      alert('PDF report generated! (Feature coming soon)');
+    }
+
+    function goToStep(step) {
+      currentStep = step;
+      updateProgress();
+      updateStepDisplay();
+    }
+
+    function updateProgress() {
+      const progress = (currentStep / 4) * 100;
+      progressBar.style.width = progress + '%';
+      progressText.textContent = `Step ${currentStep} of 4`;
+
+      // Update step indicators
+      stepIndicators.forEach((indicator, index) => {
+        const stepNum = index + 1;
+        if (stepNum <= currentStep) {
+          indicator.classList.add('active');
+          indicator.classList.remove('bg-gray-300', 'text-gray-600');
+          indicator.classList.add('bg-blue-600', 'text-white');
+          indicator.nextElementSibling.classList.remove('text-gray-500');
+          indicator.nextElementSibling.classList.add('text-gray-900');
+        } else {
+          indicator.classList.remove('active');
+          indicator.classList.add('bg-gray-300', 'text-gray-600');
+          indicator.classList.remove('bg-blue-600', 'text-white');
+          indicator.nextElementSibling.classList.add('text-gray-500');
+          indicator.nextElementSibling.classList.remove('text-gray-900');
+        }
+      });
+    }
+
+    function updateStepDisplay() {
+      stepContents.forEach((content, index) => {
+        if (index + 1 === currentStep) {
+          content.classList.remove('hidden');
+        } else {
+          content.classList.add('hidden');
+        }
+      });
+    }
+
+    function resetAnalysis() {
+      currentStep = 1;
+      analysisData = {};
+      originalContent = '';
+      improvedContent = '';
+      contentText.value = '';
+      updateWordCount();
+      updateProgress();
+      updateStepDisplay();
+      selectInputMethod('text');
+    }
+  </script>
+</Layout>

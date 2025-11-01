@@ -1,0 +1,1016 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+---
+<Layout>
+<Nav/>
+<main class="mn">
+  <div class="pg-hd">
+    <div class="hd-ic">📍</div>
+    <h1 class="tl">Local SEO Toolkit</h1>
+    <p class="st">Optimize for local packs, citations, and geo keywords</p>
+  </div>
+
+  <!-- Progress -->
+  <div class="pr-wr">
+    <div class="pr-st" id="progressBar">
+      <div class="pr-it cp" data-step="1"><div class="pr-nm">1</div><div class="pr-lb">Business</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="2"><div class="pr-nm">2</div><div class="pr-lb">Audit</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="3"><div class="pr-nm">3</div><div class="pr-lb">Optimize</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="4"><div class="pr-nm">4</div><div class="pr-lb">Schema</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="5"><div class="pr-nm">5</div><div class="pr-lb">Export</div></div>
+    </div>
+  </div>
+
+  <div class="st-cn">
+    <!-- Step 1: Business Info -->
+    <div class="st-bx" id="step1">
+      <div class="st-ic">🏢</div>
+      <div class="st-hd">
+        <h2>Business Information</h2>
+        <p>Enter your business details for local SEO optimization</p>
+      </div>
+      <div class="st-bd">
+        <div class="fm-gd">
+          <div class="fm-gr">
+            <label class="fm-lb">
+              <span class="lb-tx">Business Name<span class="rq">*</span></span>
+              <input id="businessName" class="fm-in" type="text" placeholder="e.g., Joe's Pizza"/>
+            </label>
+          </div>
+          <div class="fm-gr">
+            <label class="fm-lb">
+              <span class="lb-tx">Business Category<span class="rq">*</span></span>
+              <select id="businessCategory" class="fm-sl">
+                <option value="">Select category</option>
+                <option value="restaurant">Restaurant</option>
+                <option value="retail">Retail Store</option>
+                <option value="service">Service Business</option>
+                <option value="healthcare">Healthcare</option>
+                <option value="automotive">Automotive</option>
+                <option value="beauty">Beauty & Spa</option>
+                <option value="fitness">Fitness & Gym</option>
+                <option value="professional">Professional Services</option>
+                <option value="home">Home Services</option>
+                <option value="other">Other</option>
+              </select>
+            </label>
+          </div>
+          <div class="fm-gr">
+            <label class="fm-lb">
+              <span class="lb-tx">Street Address<span class="rq">*</span></span>
+              <input id="streetAddress" class="fm-in" type="text" placeholder="123 Main Street"/>
+            </label>
+          </div>
+          <div class="fm-gd-2">
+            <label class="fm-lb">
+              <span class="lb-tx">City<span class="rq">*</span></span>
+              <input id="city" class="fm-in" type="text" placeholder="New York"/>
+            </label>
+            <label class="fm-lb">
+              <span class="lb-tx">State<span class="rq">*</span></span>
+              <input id="state" class="fm-in" type="text" placeholder="NY"/>
+            </label>
+          </div>
+          <div class="fm-gd-2">
+            <label class="fm-lb">
+              <span class="lb-tx">ZIP Code<span class="rq">*</span></span>
+              <input id="zipCode" class="fm-in" type="text" placeholder="10001"/>
+            </label>
+            <label class="fm-lb">
+              <span class="lb-tx">Phone Number<span class="rq">*</span></span>
+              <input id="phoneNumber" class="fm-in" type="tel" placeholder="(555) 123-4567"/>
+            </label>
+          </div>
+          <div class="fm-gr">
+            <label class="fm-lb">
+              <span class="lb-tx">Website URL</span>
+              <input id="websiteUrl" class="fm-in" type="url" placeholder="https://www.example.com"/>
+            </label>
+          </div>
+          <div class="fm-gr">
+            <label class="fm-lb">
+              <span class="lb-tx">Primary Keywords (comma-separated)</span>
+              <input id="primaryKeywords" class="fm-in" type="text" placeholder="pizza delivery, italian restaurant, best pizza"/>
+            </label>
+          </div>
+        </div>
+        <div class="bt-gr">
+          <button class="bt-pr" id="nextStep1"><span>Start Audit</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Local SEO Audit -->
+    <div class="st-bx" id="step2" style="display:none">
+      <div class="st-ic">🔍</div>
+      <div class="st-hd">
+        <h2>Local SEO Audit</h2>
+        <p>Analyzing your local SEO performance</p>
+      </div>
+      <div class="st-bd">
+        <div class="au-pr" id="auditProgress" style="display:none">
+          <div class="pr-br">
+            <div class="pr-fl" id="progressFill"></div>
+          </div>
+          <div class="pr-tx" id="progressText">Starting audit...</div>
+        </div>
+        
+        <div class="au-rs" id="auditResults" style="display:none">
+          <div class="rs-gd">
+            <div class="rs-cd">
+              <div class="rs-sc" id="gmbScore">85</div>
+              <h4>Google My Business</h4>
+              <div class="rs-ls">
+                <div class="rs-it">✓ Profile claimed</div>
+                <div class="rs-it">✓ Photos uploaded</div>
+                <div class="rs-it">⚠️ Missing hours</div>
+                <div class="rs-it">✗ No recent posts</div>
+              </div>
+            </div>
+            <div class="rs-cd">
+              <div class="rs-sc" id="napScore">72</div>
+              <h4>NAP Consistency</h4>
+              <div class="rs-ls">
+                <div class="rs-it">✓ Name consistent</div>
+                <div class="rs-it">⚠️ Address variations</div>
+                <div class="rs-it">✗ Phone inconsistent</div>
+                <div class="rs-it">✓ Website matches</div>
+              </div>
+            </div>
+            <div class="rs-cd">
+              <div class="rs-sc" id="citationScore">68</div>
+              <h4>Citations</h4>
+              <div class="rs-ls">
+                <div class="rs-it">✓ 15 found citations</div>
+                <div class="rs-it">⚠️ 3 incomplete</div>
+                <div class="rs-it">✗ 2 incorrect</div>
+                <div class="rs-it">⚠️ Missing key directories</div>
+              </div>
+            </div>
+            <div class="rs-cd">
+              <div class="rs-sc" id="reviewScore">91</div>
+              <h4>Reviews</h4>
+              <div class="rs-ls">
+                <div class="rs-it">✓ 4.5 star average</div>
+                <div class="rs-it">✓ Recent reviews</div>
+                <div class="rs-it">✓ Owner responses</div>
+                <div class="rs-it">⚠️ Low review volume</div>
+              </div>
+            </div>
+          </div>
+          <div class="is-ls" id="issuesList">
+            <h4>Priority Issues</h4>
+            <div class="is-it hi">
+              <div class="is-ic">🔴</div>
+              <div class="is-tx">
+                <strong>Inconsistent Phone Number</strong>
+                <p>Phone number varies across 3 citations</p>
+              </div>
+            </div>
+            <div class="is-it md">
+              <div class="is-ic">🟡</div>
+              <div class="is-tx">
+                <strong>Missing Business Hours</strong>
+                <p>Google My Business hours not set</p>
+              </div>
+            </div>
+            <div class="is-it lw">
+              <div class="is-ic">🟢</div>
+              <div class="is-tx">
+                <strong>Optimize for "pizza near me"</strong>
+                <p>Opportunity to rank for high-volume local keyword</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep2"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="nextStep2" style="display:none"><span>Fix Issues</span><span class="bt-ar">→</span></button>
+          <button class="bt-pr" id="startAudit"><span>Run Audit</span><span class="bt-ar">🔍</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Optimization -->
+    <div class="st-bx" id="step3" style="display:none">
+      <div class="st-ic">⚡</div>
+      <div class="st-hd">
+        <h2>Local SEO Optimization</h2>
+        <p>Fix issues and optimize your local presence</p>
+      </div>
+      <div class="st-bd">
+        <div class="op-tb">
+          <div class="tb-hd">
+            <button class="tb-bt cp" data-tab="gmb">Google My Business</button>
+            <button class="tb-bt" data-tab="nap">NAP Consistency</button>
+            <button class="tb-bt" data-tab="citations">Citations</button>
+            <button class="tb-bt" data-tab="keywords">Local Keywords</button>
+          </div>
+          
+          <!-- GMB Tab -->
+          <div class="tb-cn" id="gmbTab">
+            <div class="op-cd">
+              <h4>Google My Business Optimization</h4>
+              <div class="op-ls">
+                <div class="op-it">
+                  <div class="op-tx">
+                    <strong>Business Description</strong>
+                    <p>AI-generated description optimized for local keywords</p>
+                  </div>
+                  <button class="bt-sm" onclick="generateDescription()">Generate</button>
+                </div>
+                <div class="op-it">
+                  <div class="op-tx">
+                    <strong>Business Hours</strong>
+                    <p>Set complete operating hours</p>
+                  </div>
+                  <button class="bt-sm" onclick="setHours()">Set Hours</button>
+                </div>
+                <div class="op-it">
+                  <div class="op-tx">
+                    <strong>Google Posts</strong>
+                    <p>Create engaging posts for better visibility</p>
+                  </div>
+                  <button class="bt-sm" onclick="createPosts()">Create Posts</button>
+                </div>
+                <div class="op-it">
+                  <div class="op-tx">
+                    <strong>Photo Optimization</strong>
+                    <p>Upload and optimize business photos</p>
+                  </div>
+                  <button class="bt-sm" onclick="optimizePhotos()">Optimize</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- NAP Tab -->
+          <div class="tb-cn" id="napTab" style="display:none">
+            <div class="op-cd">
+              <h4>NAP Consistency Fixes</h4>
+              <div class="np-gd">
+                <div class="np-cd">
+                  <h5>Standardized Format</h5>
+                  <div class="np-in">
+                    <div class="np-lb">Name:</div>
+                    <div class="np-vl" id="standardName">Joe's Pizza</div>
+                  </div>
+                  <div class="np-in">
+                    <div class="np-lb">Address:</div>
+                    <div class="np-vl" id="standardAddress">123 Main Street, New York, NY 10001</div>
+                  </div>
+                  <div class="np-in">
+                    <div class="np-lb">Phone:</div>
+                    <div class="np-vl" id="standardPhone">(555) 123-4567</div>
+                  </div>
+                </div>
+                <div class="np-cd">
+                  <h5>Inconsistent Citations</h5>
+                  <div class="ic-ls" id="inconsistentCitations">
+                    <div class="ic-it">
+                      <span class="ic-sr">Yelp</span>
+                      <span class="ic-is">Phone: (555) 1234567</span>
+                      <button class="bt-fx">Fix</button>
+                    </div>
+                    <div class="ic-it">
+                      <span class="ic-sr">Yellow Pages</span>
+                      <span class="ic-is">Address: 123 Main St</span>
+                      <button class="bt-fx">Fix</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Citations Tab -->
+          <div class="tb-cn" id="citationsTab" style="display:none">
+            <div class="op-cd">
+              <h4>Citation Building</h4>
+              <div class="ct-gd">
+                <div class="ct-cd">
+                  <h5>Missing Citations</h5>
+                  <div class="ct-ls">
+                    <div class="ct-it">
+                      <div class="ct-in">
+                        <div class="ct-nm">Foursquare</div>
+                        <div class="ct-st">Not Listed</div>
+                      </div>
+                      <button class="bt-sm">Create</button>
+                    </div>
+                    <div class="ct-it">
+                      <div class="ct-in">
+                        <div class="ct-nm">Bing Places</div>
+                        <div class="ct-st">Not Listed</div>
+                      </div>
+                      <button class="bt-sm">Create</button>
+                    </div>
+                    <div class="ct-it">
+                      <div class="ct-in">
+                        <div class="ct-nm">Apple Maps</div>
+                        <div class="ct-st">Not Listed</div>
+                      </div>
+                      <button class="bt-sm">Create</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="ct-cd">
+                  <h5>Industry-Specific</h5>
+                  <div class="ct-ls">
+                    <div class="ct-it">
+                      <div class="ct-in">
+                        <div class="ct-nm">Zomato</div>
+                        <div class="ct-st">Recommended</div>
+                      </div>
+                      <button class="bt-sm">Create</button>
+                    </div>
+                    <div class="ct-it">
+                      <div class="ct-in">
+                        <div class="ct-nm">OpenTable</div>
+                        <div class="ct-st">Recommended</div>
+                      </div>
+                      <button class="bt-sm">Create</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Keywords Tab -->
+          <div class="tb-cn" id="keywordsTab" style="display:none">
+            <div class="op-cd">
+              <h4>Local Keyword Optimization</h4>
+              <div class="kw-gd">
+                <div class="kw-cd">
+                  <h5>Target Keywords</h5>
+                  <div class="kw-ls" id="targetKeywords">
+                    <div class="kw-it">
+                      <span class="kw-tx">pizza near me</span>
+                      <span class="kw-vl">8,100/mo</span>
+                      <span class="kw-df">Medium</span>
+                    </div>
+                    <div class="kw-it">
+                      <span class="kw-tx">best pizza New York</span>
+                      <span class="kw-vl">2,400/mo</span>
+                      <span class="kw-df">High</span>
+                    </div>
+                    <div class="kw-it">
+                      <span class="kw-tx">pizza delivery 10001</span>
+                      <span class="kw-vl">590/mo</span>
+                      <span class="kw-df">Low</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="kw-cd">
+                  <h5>Content Suggestions</h5>
+                  <div class="cs-ls">
+                    <div class="cs-it">
+                      <strong>Location Pages</strong>
+                      <p>Create pages for nearby neighborhoods</p>
+                      <button class="bt-sm">Generate</button>
+                    </div>
+                    <div class="cs-it">
+                      <strong>Service Area Content</strong>
+                      <p>Optimize for delivery areas</p>
+                      <button class="bt-sm">Generate</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep3"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="nextStep3"><span>Generate Schema</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: Schema Generation -->
+    <div class="st-bx" id="step4" style="display:none">
+      <div class="st-ic">🏷️</div>
+      <div class="st-hd">
+        <h2>Local Schema Generation</h2>
+        <p>Generate structured data for better local search visibility</p>
+      </div>
+      <div class="st-bd">
+        <div class="sc-gd">
+          <div class="sc-cd">
+            <div class="sc-hd">
+              <h4>Local Business Schema</h4>
+              <button class="bt-cp" onclick="copySchema('business')">Copy</button>
+            </div>
+            <div class="sc-pr" id="businessSchemaPreview">
+               <pre><code>&#123;
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Joe's Pizza",
+  "address": &#123;
+    "@type": "PostalAddress",
+    "streetAddress": "123 Main Street",
+    "addressLocality": "New York",
+    "addressRegion": "NY",
+    "postalCode": "10001"
+  &#125;,
+  "telephone": "(555) 123-4567",
+  "url": "https://www.example.com"
+&#125;</code></pre>
+             </div>
+           </div>
+           <div class="sc-cd">
+             <div class="sc-hd">
+               <h4>Opening Hours Schema</h4>
+               <button class="bt-cp" onclick="copySchema('hours')">Copy</button>
+             </div>
+             <div class="sc-pr" id="hoursSchemaPreview">
+               <pre><code>&#123;
+  "openingHoursSpecification": [
+    &#123;
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "11:00",
+      "closes": "22:00"
+    &#125;,
+    &#123;
+      "@type": "OpeningHoursSpecification", 
+      "dayOfWeek": ["Saturday", "Sunday"],
+      "opens": "12:00",
+      "closes": "23:00"
+    &#125;
+  ]
+&#125;</code></pre>
+             </div>
+           </div>
+           <div class="sc-cd">
+             <div class="sc-hd">
+               <h4>Review Schema</h4>
+               <button class="bt-cp" onclick="copySchema('review')">Copy</button>
+             </div>
+             <div class="sc-pr" id="reviewSchemaPreview">
+               <pre><code>&#123;
+  "aggregateRating": &#123;
+    "@type": "AggregateRating",
+    "ratingValue": "4.5",
+    "reviewCount": "127"
+  &#125;
+&#125;</code></pre>
+             </div>
+           </div>
+           <div class="sc-cd">
+             <div class="sc-hd">
+               <h4>Menu Schema</h4>
+               <button class="bt-cp" onclick="copySchema('menu')">Copy</button>
+             </div>
+             <div class="sc-pr" id="menuSchemaPreview">
+               <pre><code>&#123;
+  "hasMenu": &#123;
+    "@type": "Menu",
+    "name": "Main Menu",
+    "hasMenuSection": [
+      &#123;
+        "@type": "MenuSection",
+        "name": "Pizza",
+        "hasMenuItem": [
+          &#123;
+            "@type": "MenuItem",
+            "name": "Margherita Pizza",
+            "offers": &#123;
+              "@type": "Offer",
+              "price": "18.99",
+              "priceCurrency": "USD"
+            &#125;
+          &#125;
+        ]
+      &#125;
+    ]
+  &#125;
+&#125;</code></pre>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep4"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="nextStep4"><span>Export Results</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5: Export -->
+    <div class="st-bx" id="step5" style="display:none">
+      <div class="st-ic">📤</div>
+      <div class="st-hd">
+        <h2>Export Local SEO Package</h2>
+        <p>Download your complete local SEO optimization package</p>
+      </div>
+      <div class="st-bd">
+        <div class="ex-gd">
+          <div class="ex-cd">
+            <div class="ex-ic">📋</div>
+            <h4>Audit Report</h4>
+            <p>Complete local SEO audit with recommendations</p>
+            <button class="bt-ex" id="exportReport">Download PDF</button>
+          </div>
+          <div class="ex-cd">
+            <div class="ex-ic">🏷️</div>
+            <h4>Schema Markup</h4>
+            <p>All generated structured data files</p>
+            <button class="bt-ex" id="exportSchema">Download JSON</button>
+          </div>
+          <div class="ex-cd">
+            <div class="ex-ic">📝</div>
+            <h4>Citation List</h4>
+            <p>Directory submission checklist</p>
+            <button class="bt-ex" id="exportCitations">Download CSV</button>
+          </div>
+          <div class="ex-cd">
+            <div class="ex-ic">📊</div>
+            <h4>Keyword Research</h4>
+            <p>Local keyword opportunities</p>
+            <button class="bt-ex" id="exportKeywords">Download Excel</button>
+          </div>
+          <div class="ex-cd">
+            <div class="ex-ic">🔧</div>
+            <h4>Implementation Guide</h4>
+            <p>Step-by-step optimization instructions</p>
+            <button class="bt-ex" id="exportGuide">Download PDF</button>
+          </div>
+          <div class="ex-cd">
+            <div class="ex-ic">📱</div>
+            <h4>GMB Optimization</h4>
+            <p>Google My Business optimization checklist</p>
+            <button class="bt-ex" id="exportGMB">Download PDF</button>
+          </div>
+        </div>
+        
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep5"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="optimizeAnother"><span>Optimize Another Business</span><span class="bt-ar">🔄</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<style>
+  .mn { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+  .pg-hd { text-align: center; margin-bottom: 3rem; }
+  .hd-ic { font-size: 3rem; margin-bottom: 1rem; }
+  .tl { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; color: #1a1a1a; }
+  .st { font-size: 1.2rem; color: #666; margin-bottom: 2rem; }
+
+  .pr-wr { margin-bottom: 3rem; }
+  .pr-st { display: flex; align-items: center; justify-content: center; gap: 1rem; }
+  .pr-it { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+  .pr-nm { width: 2.5rem; height: 2.5rem; border-radius: 50%; background: #e5e7eb; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+  .pr-lb { font-size: 0.875rem; color: #666; }
+  .pr-ln { width: 3rem; height: 2px; background: #e5e7eb; }
+  .pr-it.cp .pr-nm { background: #3b82f6; color: white; }
+  .pr-it.cp .pr-lb { color: #3b82f6; font-weight: 600; }
+
+  .st-cn { max-width: 900px; margin: 0 auto; }
+  .st-bx { background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+  .st-ic { font-size: 2rem; margin-bottom: 1rem; }
+  .st-hd { margin-bottom: 2rem; }
+  .st-hd h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .st-hd p { color: #666; }
+
+  .fm-gd { display: grid; gap: 1.5rem; margin-bottom: 2rem; }
+  .fm-gd-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .fm-gr { display: flex; flex-direction: column; gap: 0.5rem; }
+  .fm-lb { display: flex; flex-direction: column; gap: 0.5rem; }
+  .lb-tx { font-weight: 500; color: #374151; }
+  .rq { color: #ef4444; }
+  .fm-in, .fm-sl { padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 6px; font-size: 1rem; }
+  .fm-in:focus, .fm-sl:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
+
+  .bt-gr { display: flex; gap: 1rem; justify-content: flex-end; }
+  .bt-pr, .bt-sc, .bt-sm, .bt-ex, .bt-cp, .bt-fx { padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; border: none; }
+  .bt-pr { background: #3b82f6; color: white; }
+  .bt-pr:hover { background: #2563eb; }
+  .bt-sc { background: #f3f4f6; color: #374151; }
+  .bt-sc:hover { background: #e5e7eb; }
+  .bt-sm { background: #10b981; color: white; padding: 0.5rem 1rem; font-size: 0.875rem; }
+  .bt-sm:hover { background: #059669; }
+  .bt-ex { background: #6366f1; color: white; }
+  .bt-ex:hover { background: #4f46e5; }
+  .bt-cp { background: #f59e0b; color: white; padding: 0.5rem 1rem; font-size: 0.875rem; }
+  .bt-cp:hover { background: #d97706; }
+  .bt-fx { background: #ef4444; color: white; padding: 0.25rem 0.75rem; font-size: 0.75rem; }
+  .bt-fx:hover { background: #dc2626; }
+  .bt-ar { font-size: 1.2rem; }
+
+  .au-pr { margin-bottom: 2rem; }
+  .pr-br { width: 100%; height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden; }
+  .pr-fl { height: 100%; background: #3b82f6; width: 0%; transition: width 0.3s ease; }
+  .pr-tx { text-align: center; margin-top: 1rem; font-weight: 500; }
+
+  .au-rs { margin-bottom: 2rem; }
+  .rs-gd { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+  .rs-cd { text-align: center; padding: 1.5rem; border: 1px solid #e5e7eb; border-radius: 8px; }
+  .rs-sc { font-size: 2.5rem; font-weight: 700; color: #3b82f6; margin-bottom: 0.5rem; }
+  .rs-cd h4 { margin: 0 0 1rem 0; }
+  .rs-ls { text-align: left; }
+  .rs-it { padding: 0.25rem 0; font-size: 0.875rem; }
+
+  .is-ls { border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+  .is-ls h4 { margin: 0 0 1rem 0; }
+  .is-it { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem; border-radius: 6px; margin-bottom: 1rem; }
+  .is-it.hi { background: #fef2f2; }
+  .is-it.md { background: #fffbeb; }
+  .is-it.lw { background: #f0fdf4; }
+  .is-ic { font-size: 1.5rem; }
+  .is-tx strong { display: block; margin-bottom: 0.25rem; }
+  .is-tx p { margin: 0; color: #666; font-size: 0.875rem; }
+
+  .op-tb { margin-bottom: 2rem; }
+  .tb-hd { display: flex; border-bottom: 1px solid #e5e7eb; margin-bottom: 2rem; }
+  .tb-bt { padding: 1rem 1.5rem; border: none; background: none; cursor: pointer; border-bottom: 2px solid transparent; }
+  .tb-bt.cp { border-bottom-color: #3b82f6; color: #3b82f6; font-weight: 600; }
+  .tb-cn { display: none; }
+  .tb-cn:first-of-type { display: block; }
+
+  .op-cd { border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+  .op-cd h4 { margin: 0 0 1rem 0; }
+  .op-ls { display: grid; gap: 1rem; }
+  .op-it { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #f9fafb; border-radius: 6px; }
+  .op-tx strong { display: block; margin-bottom: 0.25rem; }
+  .op-tx p { margin: 0; color: #666; font-size: 0.875rem; }
+
+  .np-gd { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .np-cd { border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+  .np-cd h5 { margin: 0 0 1rem 0; }
+  .np-in { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+  .np-lb { font-weight: 500; }
+  .np-vl { color: #666; }
+  .ic-ls { display: grid; gap: 0.5rem; }
+  .ic-it { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: #fef2f2; border-radius: 4px; }
+  .ic-sr { font-weight: 500; }
+  .ic-is { color: #ef4444; font-size: 0.875rem; }
+
+  .ct-gd { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .ct-cd { border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+  .ct-cd h5 { margin: 0 0 1rem 0; }
+  .ct-ls { display: grid; gap: 0.75rem; }
+  .ct-it { display: flex; justify-content: space-between; align-items: center; }
+  .ct-in { flex: 1; }
+  .ct-nm { font-weight: 500; }
+  .ct-st { color: #666; font-size: 0.875rem; }
+
+  .kw-gd { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .kw-cd { border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+  .kw-cd h5 { margin: 0 0 1rem 0; }
+  .kw-ls { display: grid; gap: 0.5rem; }
+  .kw-it { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1rem; align-items: center; padding: 0.75rem; background: #f9fafb; border-radius: 4px; }
+  .kw-tx { font-weight: 500; }
+  .kw-vl { color: #666; font-size: 0.875rem; }
+  .kw-df { font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 12px; }
+  .cs-ls { display: grid; gap: 1rem; }
+  .cs-it { padding: 1rem; background: #f9fafb; border-radius: 6px; }
+  .cs-it strong { display: block; margin-bottom: 0.25rem; }
+  .cs-it p { margin: 0 0 0.75rem 0; color: #666; font-size: 0.875rem; }
+
+  .sc-gd { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .sc-cd { border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+  .sc-hd { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #f9fafb; border-bottom: 1px solid #e5e7eb; }
+  .sc-hd h4 { margin: 0; }
+  .sc-pr { padding: 1rem; max-height: 300px; overflow-y: auto; }
+  .sc-pr pre { margin: 0; font-size: 0.75rem; }
+  .sc-pr code { color: #374151; }
+
+  .ex-gd { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+  .ex-cd { text-align: center; padding: 2rem; border: 1px solid #e5e7eb; border-radius: 8px; }
+  .ex-ic { font-size: 2.5rem; margin-bottom: 1rem; }
+  .ex-cd h4 { margin: 0 0 0.5rem 0; }
+  .ex-cd p { color: #666; margin-bottom: 1.5rem; }
+</style>
+
+<script>
+  let currentStep: number = 1;
+  const totalSteps: number = 5;
+
+  // Navigation functions
+  function showStep(step: number): void {
+    for (let i = 1; i <= totalSteps; i++) {
+      const stepEl = document.getElementById(`step${i}`) as HTMLElement | null;
+      if (stepEl) stepEl.style.display = 'none';
+    }
+
+    const currentStepEl = document.getElementById(`step${step}`) as HTMLElement | null;
+    if (currentStepEl) currentStepEl.style.display = 'block';
+
+    updateProgressBar(step);
+    currentStep = step;
+  }
+
+  function updateProgressBar(step: number): void {
+    const progressItems = document.querySelectorAll<HTMLElement>('.pr-it');
+    progressItems.forEach((item, index) => {
+      if (index + 1 <= step) {
+        item.classList.add('cp');
+      } else {
+        item.classList.remove('cp');
+      }
+    });
+  }
+
+  // Step 1: Business Info
+  document.getElementById('nextStep1')?.addEventListener('click', (e: MouseEvent) => {
+    const nameEl = document.getElementById('businessName') as HTMLInputElement | null;
+    const categoryEl = document.getElementById('businessCategory') as HTMLSelectElement | null;
+    const addressEl = document.getElementById('streetAddress') as HTMLInputElement | null;
+    const cityEl = document.getElementById('city') as HTMLInputElement | null;
+    const stateEl = document.getElementById('state') as HTMLInputElement | null;
+    const zipEl = document.getElementById('zipCode') as HTMLInputElement | null;
+    const phoneEl = document.getElementById('phoneNumber') as HTMLInputElement | null;
+
+    if (!nameEl || !categoryEl || !addressEl || !cityEl || !stateEl || !zipEl || !phoneEl) {
+      alert('Please fill in all required fields');
+      return;
+    }
+
+    const name = nameEl.value.trim();
+    const category = categoryEl.value;
+    const address = addressEl.value.trim();
+    const city = cityEl.value.trim();
+    const state = stateEl.value.trim();
+    const zip = zipEl.value.trim();
+    const phone = phoneEl.value.trim();
+
+    if (name && category && address && city && state && zip && phone) {
+      const standardNameEl = document.getElementById('standardName') as HTMLElement | null;
+      const standardAddressEl = document.getElementById('standardAddress') as HTMLElement | null;
+      const standardPhoneEl = document.getElementById('standardPhone') as HTMLElement | null;
+      if (standardNameEl) standardNameEl.textContent = name;
+      if (standardAddressEl) standardAddressEl.textContent = `${address}, ${city}, ${state} ${zip}`;
+      if (standardPhoneEl) standardPhoneEl.textContent = phone;
+
+      showStep(2);
+    } else {
+      alert('Please fill in all required fields');
+    }
+  });
+
+  // Step 2: Audit
+  document.getElementById('startAudit')?.addEventListener('click', (e: MouseEvent) => {
+    const progress = document.getElementById('auditProgress') as HTMLElement | null;
+    const results = document.getElementById('auditResults') as HTMLElement | null;
+    const startBtn = document.getElementById('startAudit') as HTMLElement | null;
+    const nextBtn = document.getElementById('nextStep2') as HTMLElement | null;
+
+    if (!progress || !results || !startBtn || !nextBtn) return;
+
+    progress.style.display = 'block';
+    startBtn.style.display = 'none';
+
+    let progressValue = 0;
+    const progressFill = document.getElementById('progressFill') as HTMLElement | null;
+    const progressText = document.getElementById('progressText') as HTMLElement | null;
+    if (!progressFill || !progressText) return;
+
+    const steps: string[] = [
+      'Checking Google My Business...',
+      'Analyzing NAP consistency...',
+      'Scanning citations...',
+      'Evaluating reviews...',
+      'Generating recommendations...'
+    ];
+
+    const interval = setInterval(() => {
+      progressValue += 20;
+      progressFill.style.width = String(progressValue) + '%';
+
+      if (progressValue <= 100) {
+        const idx = Math.floor(progressValue / 20) - 1;
+        progressText.textContent = steps[idx] || 'Completing audit...';
+      }
+
+      if (progressValue >= 100) {
+        clearInterval(interval);
+        setTimeout(() => {
+          progress.style.display = 'none';
+          results.style.display = 'block';
+          nextBtn.style.display = 'inline-flex';
+        }, 1000);
+      }
+    }, 800);
+  });
+
+  document.getElementById('backStep2')?.addEventListener('click', () => showStep(1));
+  document.getElementById('nextStep2')?.addEventListener('click', () => showStep(3));
+
+  // Step 3: Optimization tabs
+  document.querySelectorAll<HTMLButtonElement>('.tb-bt').forEach((button) => {
+    button.addEventListener('click', (ev: MouseEvent) => {
+      const target = ev.currentTarget as HTMLButtonElement | null;
+      if (!target) return;
+      const tab = target.dataset.tab;
+      if (!tab) return;
+
+      // Update active tab
+      document.querySelectorAll<HTMLButtonElement>('.tb-bt').forEach((btn) => btn.classList.remove('cp'));
+      target.classList.add('cp');
+
+      // Show corresponding content
+      document.querySelectorAll<HTMLElement>('.tb-cn').forEach((content) => {
+        content.style.display = 'none';
+      });
+      const tabContent = document.getElementById(`${tab}Tab`) as HTMLElement | null;
+      if (tabContent) tabContent.style.display = 'block';
+    });
+  });
+
+  // Optimization functions
+  function generateDescription(): void {
+    alert('AI-generated business description created!');
+  }
+
+  function setHours(): void {
+    alert('Business hours configuration opened!');
+  }
+
+  function createPosts(): void {
+    alert('Google Posts generator opened!');
+  }
+
+  function optimizePhotos() {
+    alert('Photo optimization tool opened!');
+  }
+
+  document.getElementById('backStep3')?.addEventListener('click', () => showStep(2));
+  document.getElementById('nextStep3')?.addEventListener('click', () => showStep(4));
+
+  // Step 4: Schema
+   function copySchema(type: 'business' | 'hours' | 'review' | 'menu'): void {
+     const schemaData = {
+       business: `{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Joe's Pizza",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "123 Main Street",
+    "addressLocality": "New York",
+    "addressRegion": "NY",
+    "postalCode": "10001"
+  },
+  "telephone": "(555) 123-4567",
+  "url": "https://www.example.com"
+}`,
+       hours: `{
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "11:00",
+      "closes": "22:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification", 
+      "dayOfWeek": ["Saturday", "Sunday"],
+      "opens": "12:00",
+      "closes": "23:00"
+    }
+  ]
+}`,
+       review: `{
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.5",
+    "reviewCount": "127"
+  }
+}`,
+       menu: `{
+  "hasMenu": {
+    "@type": "Menu",
+    "name": "Main Menu",
+    "hasMenuSection": [
+      {
+        "@type": "MenuSection",
+        "name": "Pizza",
+        "hasMenuItem": [
+          {
+            "@type": "MenuItem",
+            "name": "Margherita Pizza",
+            "offers": {
+              "@type": "Offer",
+              "price": "18.99",
+              "priceCurrency": "USD"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}`
+     };
+     
+     if (navigator.clipboard && navigator.clipboard.writeText) {
+       navigator.clipboard.writeText(schemaData[type])
+         .then(() => {
+           alert('Schema copied to clipboard!');
+         })
+         .catch(() => {
+           alert('Failed to copy schema.');
+         });
+     } else {
+       // Fallback copy
+       const ta = document.createElement('textarea');
+       ta.value = schemaData[type];
+       document.body.appendChild(ta);
+       ta.select();
+       try { document.execCommand('copy'); alert('Schema copied to clipboard!'); } catch (e) { alert('Failed to copy schema.'); }
+       document.body.removeChild(ta);
+     }
+   }
+
+  document.getElementById('backStep4')?.addEventListener('click', () => showStep(3));
+  document.getElementById('nextStep4')?.addEventListener('click', () => showStep(5));
+
+  // Step 5: Export
+  document.getElementById('exportReport')?.addEventListener('click', () => {
+    alert('Audit report PDF downloaded!');
+  });
+
+  document.getElementById('exportSchema')?.addEventListener('click', () => {
+    const businessEl = document.getElementById('businessSchemaPreview') as HTMLElement | null;
+    const hoursEl = document.getElementById('hoursSchemaPreview') as HTMLElement | null;
+    const reviewEl = document.getElementById('reviewSchemaPreview') as HTMLElement | null;
+    const menuEl = document.getElementById('menuSchemaPreview') as HTMLElement | null;
+
+    const businessTxt = businessEl?.textContent || '';
+    const hoursTxt = hoursEl?.textContent || '';
+    const reviewTxt = reviewEl?.textContent || '';
+    const menuTxt = menuEl?.textContent || '';
+
+    try {
+      const schemas = {
+        business: JSON.parse(businessTxt),
+        hours: JSON.parse(hoursTxt),
+        review: JSON.parse(reviewTxt),
+        menu: JSON.parse(menuTxt)
+      };
+
+      const blob = new Blob([JSON.stringify(schemas, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'local-seo-schemas.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      alert('Failed to parse schema JSON.');
+    }
+  });
+
+  document.getElementById('exportCitations')?.addEventListener('click', () => {
+    alert('Citation list CSV downloaded!');
+  });
+
+  document.getElementById('exportKeywords')?.addEventListener('click', () => {
+    alert('Keyword research Excel downloaded!');
+  });
+
+  document.getElementById('exportGuide')?.addEventListener('click', () => {
+    alert('Implementation guide PDF downloaded!');
+  });
+
+  document.getElementById('exportGMB')?.addEventListener('click', () => {
+    alert('GMB optimization checklist PDF downloaded!');
+  });
+
+  document.getElementById('backStep5')?.addEventListener('click', () => showStep(4));
+  document.getElementById('optimizeAnother')?.addEventListener('click', () => {
+    // Reset form
+    document.querySelectorAll<HTMLInputElement | HTMLSelectElement>('input, select').forEach((el) => {
+      if (el instanceof HTMLSelectElement) {
+        el.selectedIndex = 0;
+      } else if (el instanceof HTMLInputElement) {
+        el.value = '';
+      }
+    });
+
+    // Reset audit results
+    const auditResults = document.getElementById('auditResults') as HTMLElement | null;
+    const startAuditBtn = document.getElementById('startAudit') as HTMLElement | null;
+    const nextStep2Btn = document.getElementById('nextStep2') as HTMLElement | null;
+    if (auditResults) auditResults.style.display = 'none';
+    if (startAuditBtn) startAuditBtn.style.display = 'inline-flex';
+    if (nextStep2Btn) nextStep2Btn.style.display = 'none';
+
+    showStep(1);
+  });
+
+  // Initialize
+  showStep(1);
+</script>
+</Layout>

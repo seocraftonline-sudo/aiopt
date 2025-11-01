@@ -1,0 +1,288 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+---
+<Layout>
+<Nav/>
+<main class="mn">
+<header class="hd">
+<h1 class="tl">Keyword Research & NLP Terms</h1>
+<p class="st">Discover semantic keywords and NLP terms to optimize your content</p>
+</header>
+
+<div class="ly">
+<div class="in-sc">
+<div class="in-bx">
+<label class="lb">
+<span>Target Keyword</span>
+<input type="text" id="keywordInput" placeholder="e.g., best coffee makers" class="in"/>
+</label>
+<button id="analyzeBtn" class="bt">🔍 Analyze Keyword</button>
+</div>
+
+<div class="tp-sc">
+<h3>Quick Tips</h3>
+<div class="tp-ls">
+<div class="tp-it">💡 Use specific, long-tail keywords for better results</div>
+<div class="tp-it">📊 Consider search intent behind keywords</div>
+<div class="tp-it">🎯 Target keywords with commercial value</div>
+</div>
+</div>
+</div>
+
+<div class="rs-sc" id="resultsSection" style="display:none">
+<div class="ov-cd">
+<div class="ov-hd">
+<h3>Keyword Overview</h3>
+</div>
+<div class="mt-gd">
+<div class="mt-cd">
+<div class="mt-lb">Search Volume</div>
+<div class="mt-vl" id="searchVolume">-</div>
+</div>
+<div class="mt-cd">
+<div class="mt-lb">Difficulty</div>
+<div class="mt-vl" id="difficulty">-</div>
+</div>
+<div class="mt-cd">
+<div class="mt-lb">CPC</div>
+<div class="mt-vl" id="cpc">-</div>
+</div>
+<div class="mt-cd">
+<div class="mt-lb">Intent</div>
+<div class="mt-vl" id="intent">-</div>
+</div>
+</div>
+</div>
+
+<div class="kw-cd">
+<div class="kw-hd">
+<h3>Related NLP Terms</h3>
+<p>Semantic keywords to include in your content</p>
+</div>
+<div class="kw-gd" id="nlpTerms"></div>
+</div>
+
+<div class="qu-cd">
+<div class="qu-hd">
+<h3>People Also Ask</h3>
+<p>Common questions related to your keyword</p>
+</div>
+<div class="qu-ls" id="questionsList"></div>
+</div>
+
+<div class="rl-cd">
+<div class="rl-hd">
+<h3>Related Keywords</h3>
+<p>Alternative keyword opportunities</p>
+</div>
+<div class="rl-gd" id="relatedKeywords"></div>
+</div>
+</div>
+</div>
+</main>
+</Layout>
+
+<script>
+const keywordInput = document.getElementById('keywordInput') as HTMLInputElement;
+const analyzeBtn = document.getElementById('analyzeBtn') as HTMLButtonElement;
+const resultsSection = document.getElementById('resultsSection') as HTMLDivElement;
+const searchVolume = document.getElementById('searchVolume') as HTMLDivElement;
+const difficulty = document.getElementById('difficulty') as HTMLDivElement;
+const cpc = document.getElementById('cpc') as HTMLDivElement;
+const intent = document.getElementById('intent') as HTMLDivElement;
+const nlpTerms = document.getElementById('nlpTerms') as HTMLDivElement;
+const questionsList = document.getElementById('questionsList') as HTMLDivElement;
+const relatedKeywords = document.getElementById('relatedKeywords') as HTMLDivElement;
+
+const sampleNLPTerms: Record<string, string[]> = {
+  'coffee makers': ['brewing', 'espresso', 'drip coffee', 'french press', 'grind size', 'water temperature', 'coffee beans', 'automatic', 'programmable', 'carafe', 'filter', 'strength control'],
+  'seo tools': ['keyword research', 'backlink analysis', 'rank tracking', 'site audit', 'competitor analysis', 'on-page optimization', 'technical SEO', 'content optimization', 'SERP features', 'domain authority'],
+  'fitness tracker': ['heart rate monitor', 'step counter', 'sleep tracking', 'GPS', 'waterproof', 'battery life', 'smartphone sync', 'activity zones', 'calorie tracking', 'workout modes']
+};
+
+const sampleQuestions: Record<string, string[]> = {
+  'coffee makers': [
+    'What is the best type of coffee maker?',
+    'How does a drip coffee maker work?',
+    'What is the difference between espresso and regular coffee?',
+    'How often should you clean a coffee maker?',
+    'What features should I look for in a coffee maker?'
+  ],
+  'seo tools': [
+    'What are the best free SEO tools?',
+    'How do SEO tools help improve rankings?',
+    'What is keyword difficulty?',
+    'How accurate are SEO tools?',
+    'Which SEO metrics are most important?'
+  ],
+  'fitness tracker': [
+    'What is the most accurate fitness tracker?',
+    'Do fitness trackers really help you lose weight?',
+    'How do fitness trackers measure heart rate?',
+    'Are fitness trackers worth the money?',
+    'What is the difference between fitness tracker and smartwatch?'
+  ]
+};
+
+const sampleRelated: Record<string, string[]> = {
+  'coffee makers': ['best coffee machine', 'coffee brewing methods', 'espresso maker reviews', 'automatic coffee machine', 'coffee maker comparison'],
+  'seo tools': ['SEO software', 'keyword tools', 'backlink checker', 'SEO audit tool', 'rank tracker'],
+  'fitness tracker': ['activity tracker', 'health monitor', 'smart band', 'fitness watch', 'wearable device']
+};
+
+function getClosestMatch(keyword: string, data: Record<string, string[]>): string[] {
+  const lowerKeyword = keyword.toLowerCase();
+  const exactMatch = data[lowerKeyword];
+  if (exactMatch) return exactMatch;
+
+  for (const key in data) {
+    if (lowerKeyword.includes(key) || key.includes(lowerKeyword)) {
+      return data[key];
+    }
+  }
+
+  return Object.values(data)[0];
+}
+
+analyzeBtn.addEventListener('click', () => {
+  const keyword = keywordInput.value.trim();
+  if (!keyword) {
+    alert('Please enter a keyword');
+    return;
+  }
+
+  analyzeBtn.disabled = true;
+  analyzeBtn.textContent = '🔄 Analyzing...';
+
+  setTimeout(() => {
+    const volume = Math.floor(Math.random() * 50000) + 5000;
+    const difficultyValue = Math.floor(Math.random() * 100);
+    const cpcValue = (Math.random() * 5 + 0.5).toFixed(2);
+    const intents = ['Informational', 'Commercial', 'Transactional', 'Navigational'];
+    const intentValue = intents[Math.floor(Math.random() * intents.length)];
+
+    searchVolume.textContent = volume.toLocaleString() + '/mo';
+    difficulty.innerHTML = `<span style="color:${difficultyValue < 40 ? '#10b981' : difficultyValue < 70 ? '#f59e0b' : '#ef4444'}">${difficultyValue}/100</span>`;
+    cpc.textContent = '$' + cpcValue;
+    intent.textContent = intentValue;
+
+    const terms = getClosestMatch(keyword, sampleNLPTerms);
+    nlpTerms.innerHTML = terms.map(term => `
+      <div class="kw-tg">
+        <span>${term}</span>
+        <button class="kw-cp" title="Copy to clipboard">📋</button>
+      </div>
+    `).join('');
+
+    const questions = getClosestMatch(keyword, sampleQuestions);
+    questionsList.innerHTML = questions.map(q => `
+      <div class="qu-it">
+        <div class="qu-ic">❓</div>
+        <div class="qu-tx">${q}</div>
+      </div>
+    `).join('');
+
+    const related = getClosestMatch(keyword, sampleRelated);
+    relatedKeywords.innerHTML = related.map(kw => `
+      <div class="rl-tg">
+        <span>${kw}</span>
+        <div class="rl-mt">
+          <span class="rl-vol">${Math.floor(Math.random() * 20000) + 1000}/mo</span>
+          <span class="rl-dif" style="color:${Math.random() > 0.5 ? '#10b981' : '#f59e0b'}">${Math.floor(Math.random() * 100)}</span>
+        </div>
+      </div>
+    `).join('');
+
+    resultsSection.style.display = 'flex';
+    resultsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    analyzeBtn.disabled = false;
+    analyzeBtn.textContent = '🔍 Analyze Keyword';
+  }, 1500);
+});
+
+document.addEventListener('click', (e) => {
+  const target = e.target as HTMLElement;
+  if (target.classList.contains('kw-cp')) {
+    const text = target.previousElementSibling?.textContent || '';
+    navigator.clipboard.writeText(text);
+    const original = target.textContent;
+    target.textContent = '✓';
+    setTimeout(() => {
+      target.textContent = original;
+    }, 1000);
+  }
+});
+</script>
+
+<style>
+.mn{margin-left:240px;padding:48px;min-height:100vh;max-width:1400px;background:#f8fafc}
+.hd{margin-bottom:48px;text-align:center}
+.tl{font-size:40px;font-weight:800;color:#1a202c;margin:0 0 12px 0}
+.st{font-size:18px;color:#64748b;margin:0}
+.ly{display:flex;flex-direction:column;gap:32px}
+
+.in-sc{background:#fff;border:2px solid #e2e8f0;border-radius:16px;padding:32px;box-shadow:0 4px 6px rgba(0,0,0,.05)}
+.in-bx{margin-bottom:24px}
+.lb{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.lb span{font-size:14px;font-weight:600;color:#475569}
+.in{width:100%;padding:14px 16px;border:2px solid #e2e8f0;border-radius:10px;font-size:16px;font-family:inherit;transition:all .2s ease}
+.in:focus{outline:none;border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.1)}
+.in::placeholder{color:#94a3b8}
+.bt{width:100%;padding:16px;background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;transition:all .3s ease;box-shadow:0 4px 12px rgba(37,99,235,.3)}
+.bt:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,99,235,.4)}
+.bt:disabled{opacity:.6;cursor:not-allowed}
+
+.tp-sc{background:#f8fafc;border-radius:12px;padding:20px}
+.tp-sc h3{font-size:16px;font-weight:700;color:#1a202c;margin:0 0 16px 0}
+.tp-ls{display:flex;flex-direction:column;gap:10px}
+.tp-it{display:flex;align-items:center;gap:10px;font-size:14px;color:#475569;padding:10px;background:#fff;border-radius:8px;border:1px solid #e2e8f0}
+
+.rs-sc{display:flex;flex-direction:column;gap:32px}
+.ov-cd,.kw-cd,.qu-cd,.rl-cd{background:#fff;border:2px solid #e2e8f0;border-radius:16px;padding:32px;box-shadow:0 4px 6px rgba(0,0,0,.05)}
+.ov-hd,.kw-hd,.qu-hd,.rl-hd{margin-bottom:24px}
+.ov-hd h3,.kw-hd h3,.qu-hd h3,.rl-hd h3{font-size:22px;font-weight:700;color:#1a202c;margin:0 0 6px 0}
+.kw-hd p,.qu-hd p,.rl-hd p{font-size:14px;color:#64748b;margin:0}
+
+.mt-gd{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.mt-cd{background:#f8fafc;border:2px solid #e2e8f0;border-radius:12px;padding:20px;text-align:center}
+.mt-lb{font-size:13px;color:#64748b;font-weight:600;margin-bottom:8px}
+.mt-vl{font-size:24px;color:#1a202c;font-weight:800}
+
+.kw-gd{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.kw-tg{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#eff6ff;border:1px solid#bfdbfe;border-radius:8px;font-size:14px;color:#1e40af;font-weight:500;transition:all .2s ease}
+.kw-tg:hover{background:#dbeafe;transform:translateY(-1px)}
+.kw-cp{background:none;border:none;cursor:pointer;font-size:14px;padding:4px;transition:transform .2s ease}
+.kw-cp:hover{transform:scale(1.2)}
+
+.qu-ls{display:flex;flex-direction:column;gap:12px}
+.qu-it{display:flex;align-items:flex-start;gap:12px;padding:16px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;transition:all .2s ease}
+.qu-it:hover{background:#eff6ff;border-color:#bfdbfe}
+.qu-ic{font-size:20px;flex-shrink:0}
+.qu-tx{font-size:15px;color:#1a202c;font-weight:500;line-height:1.5}
+
+.rl-gd{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.rl-tg{padding:16px;background:#f8fafc;border:2px solid #e2e8f0;border-radius:10px;transition:all .2s ease}
+.rl-tg:hover{background:#fff;border-color:#3b82f6;transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.rl-tg span{display:block;font-size:15px;color:#1a202c;font-weight:600;margin-bottom:8px}
+.rl-mt{display:flex;gap:12px;font-size:13px}
+.rl-vol{color:#64748b}
+.rl-dif{font-weight:700}
+
+@media(max-width:1024px){
+.mt-gd{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:768px){
+.mn{margin-left:72px;padding:32px}
+.tl{font-size:32px}
+.mt-gd{grid-template-columns:1fr}
+.kw-gd,.rl-gd{grid-template-columns:1fr}
+}
+
+@media(max-width:480px){
+.mn{margin-left:0;padding:20px;padding-top:80px}
+.in-sc,.ov-cd,.kw-cd,.qu-cd,.rl-cd{padding:20px}
+}
+</style>

@@ -1,0 +1,1148 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+---
+<Layout>
+<Nav/>
+<main class="mn">
+  <div class="pg-hd">
+    <div class="hd-ic">🎤</div>
+    <h1 class="tl">Voice Search Optimization</h1>
+    <p class="st">Optimize your content for voice search queries and conversational AI</p>
+  </div>
+
+  <!-- Progress -->
+  <div class="pr-wr">
+    <div class="pr-st" id="progressBar">
+      <div class="pr-it cp" data-step="1"><div class="pr-nm">1</div><div class="pr-lb">Analyze</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="2"><div class="pr-nm">2</div><div class="pr-lb">Optimize</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="3"><div class="pr-nm">3</div><div class="pr-lb">Test</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="4"><div class="pr-nm">4</div><div class="pr-lb">Deploy</div></div>
+    </div>
+  </div>
+
+  <div class="st-cn">
+    <!-- Step 1: Voice Search Analysis -->
+    <div class="st-bx" id="step1">
+      <div class="st-ic">🔍</div>
+      <div class="st-hd">
+        <h2>Voice Search Analysis</h2>
+        <p>Analyze your content for voice search optimization opportunities</p>
+      </div>
+      <div class="st-bd">
+        <div class="an-gd">
+          <div class="an-cd">
+            <h3>📝 Content Input</h3>
+            <div class="in-fm">
+              <div class="fm-gr">
+                <label class="fm-lb">
+                  <span class="lb-tx">Website URL</span>
+                  <input type="url" class="fm-in" id="websiteUrl" placeholder="https://example.com">
+                </label>
+              </div>
+              <div class="fm-gr">
+                <label class="fm-lb">
+                  <span class="lb-tx">Target Keywords</span>
+                  <textarea class="fm-ta" id="targetKeywords" placeholder="Enter your target keywords, one per line..." rows="4"></textarea>
+                </label>
+              </div>
+              <div class="fm-gr">
+                <label class="fm-lb">
+                  <span class="lb-tx">Industry/Niche</span>
+                  <select class="fm-sl" id="industry">
+                    <option value="">Select Industry</option>
+                    <option value="healthcare">Healthcare</option>
+                    <option value="finance">Finance</option>
+                    <option value="ecommerce">E-commerce</option>
+                    <option value="technology">Technology</option>
+                    <option value="education">Education</option>
+                    <option value="travel">Travel</option>
+                    <option value="food">Food & Restaurant</option>
+                    <option value="real-estate">Real Estate</option>
+                    <option value="automotive">Automotive</option>
+                    <option value="other">Other</option>
+                  </select>
+                </label>
+              </div>
+              <div class="fm-gr">
+                <label class="fm-lb">
+                  <span class="lb-tx">Target Location</span>
+                  <input type="text" class="fm-in" id="targetLocation" placeholder="e.g., New York, USA">
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="an-cd">
+            <h3>🎯 Voice Search Patterns</h3>
+            <div class="pt-ls">
+              <div class="pt-it">
+                <div class="pt-ic">❓</div>
+                <div class="pt-info">
+                  <div class="pt-nm">Question-based Queries</div>
+                  <div class="pt-ds">Who, What, Where, When, Why, How</div>
+                  <div class="pt-ex">"How to optimize for voice search?"</div>
+                </div>
+                <div class="pt-st">
+                  <span class="st-bd">85%</span>
+                  <span class="st-lb">of voice searches</span>
+                </div>
+              </div>
+              <div class="pt-it">
+                <div class="pt-ic">📍</div>
+                <div class="pt-info">
+                  <div class="pt-nm">Local Queries</div>
+                  <div class="pt-ds">Near me, closest, nearby</div>
+                  <div class="pt-ex">"Best pizza near me"</div>
+                </div>
+                <div class="pt-st">
+                  <span class="st-bd">58%</span>
+                  <span class="st-lb">are local</span>
+                </div>
+              </div>
+              <div class="pt-it">
+                <div class="pt-ic">🗣️</div>
+                <div class="pt-info">
+                  <div class="pt-nm">Conversational Tone</div>
+                  <div class="pt-ds">Natural language patterns</div>
+                  <div class="pt-ex">"What's the weather like today?"</div>
+                </div>
+                <div class="pt-st">
+                  <span class="st-bd">76%</span>
+                  <span class="st-lb">conversational</span>
+                </div>
+              </div>
+              <div class="pt-it">
+                <div class="pt-ic">⚡</div>
+                <div class="pt-info">
+                  <div class="pt-nm">Action-oriented</div>
+                  <div class="pt-ds">Commands and requests</div>
+                  <div class="pt-ex">"Book a table for two"</div>
+                </div>
+                <div class="pt-st">
+                  <span class="st-bd">42%</span>
+                  <span class="st-lb">action-based</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="an-rs" id="analysisResults" style="display:none">
+          <h3>📊 Analysis Results</h3>
+          <div class="rs-gd">
+            <div class="rs-cd">
+              <div class="rs-hd">
+                <div class="rs-ic">📈</div>
+                <div class="rs-tl">Voice Search Readiness</div>
+                <div class="rs-sc">72%</div>
+              </div>
+              <div class="rs-mt">
+                <div class="mt-it">
+                  <span class="mt-lb">Question Keywords:</span>
+                  <span class="mt-vl good">18 found</span>
+                </div>
+                <div class="mt-it">
+                  <span class="mt-lb">Conversational Phrases:</span>
+                  <span class="mt-vl warning">12 found</span>
+                </div>
+                <div class="mt-it">
+                  <span class="mt-lb">Local Optimization:</span>
+                  <span class="mt-vl poor">3 found</span>
+                </div>
+                <div class="mt-it">
+                  <span class="mt-lb">Featured Snippets:</span>
+                  <span class="mt-vl good">7 eligible</span>
+                </div>
+              </div>
+            </div>
+            <div class="rs-cd">
+              <div class="rs-hd">
+                <div class="rs-ic">🎯</div>
+                <div class="rs-tl">Optimization Opportunities</div>
+              </div>
+              <div class="op-ls">
+                <div class="op-it high">
+                  <div class="op-pr">High</div>
+                  <div class="op-tx">Add FAQ section with question-based content</div>
+                </div>
+                <div class="op-it medium">
+                  <div class="op-pr">Medium</div>
+                  <div class="op-tx">Optimize for "near me" local searches</div>
+                </div>
+                <div class="op-it medium">
+                  <div class="op-pr">Medium</div>
+                  <div class="op-tx">Create conversational content structure</div>
+                </div>
+                <div class="op-it low">
+                  <div class="op-pr">Low</div>
+                  <div class="op-tx">Improve page loading speed for voice results</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bt-gr">
+          <button class="bt-pr" id="analyzeContent"><span>🔍 Analyze Content</span></button>
+          <button class="bt-pr" id="nextStep1" style="display:none"><span>Start Optimization</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Voice Search Optimization -->
+    <div class="st-bx" id="step2" style="display:none">
+      <div class="st-ic">⚙️</div>
+      <div class="st-hd">
+        <h2>Content Optimization</h2>
+        <p>Optimize your content for voice search queries</p>
+      </div>
+      <div class="st-bd">
+        <div class="op-tb">
+          <div class="tb-hd">
+            <button class="tb-bt active" data-tab="faq">FAQ Optimization</button>
+            <button class="tb-bt" data-tab="local">Local SEO</button>
+            <button class="tb-bt" data-tab="conversational">Conversational Content</button>
+            <button class="tb-bt" data-tab="snippets">Featured Snippets</button>
+          </div>
+          
+          <!-- FAQ Optimization -->
+          <div class="tb-cn active" data-tab="faq">
+            <div class="fq-gn">
+              <h3>❓ FAQ Generator</h3>
+              <div class="gn-fm">
+                <div class="fm-gr">
+                  <label class="fm-lb">
+                    <span class="lb-tx">Topic/Service</span>
+                    <input type="text" class="fm-in" id="faqTopic" placeholder="e.g., Digital Marketing Services">
+                  </label>
+                </div>
+                <div class="fm-gr">
+                  <button class="bt-sc" id="generateFAQ">Generate FAQ Questions</button>
+                </div>
+              </div>
+              
+              <div class="fq-ls" id="faqList">
+                <div class="fq-it">
+                  <div class="fq-qs">What is voice search optimization?</div>
+                  <textarea class="fq-an" placeholder="Enter your answer here...">Voice search optimization is the process of optimizing your content to appear in voice search results. It involves creating content that matches how people naturally speak and ask questions.</textarea>
+                  <div class="fq-ac">
+                    <button class="ac-bt edit">✏️ Edit</button>
+                    <button class="ac-bt delete">🗑️ Delete</button>
+                  </div>
+                </div>
+                <div class="fq-it">
+                  <div class="fq-qs">How does voice search work?</div>
+                  <textarea class="fq-an" placeholder="Enter your answer here...">Voice search uses natural language processing to understand spoken queries and provide relevant answers from web content that best matches the user's intent.</textarea>
+                  <div class="fq-ac">
+                    <button class="ac-bt edit">✏️ Edit</button>
+                    <button class="ac-bt delete">🗑️ Delete</button>
+                  </div>
+                </div>
+                <div class="fq-it">
+                  <div class="fq-qs">Why is voice search important for SEO?</div>
+                  <textarea class="fq-an" placeholder="Enter your answer here...">Voice search is important because it's growing rapidly, with over 50% of adults using voice search daily. It helps capture featured snippets and improves local search visibility.</textarea>
+                  <div class="fq-ac">
+                    <button class="ac-bt edit">✏️ Edit</button>
+                    <button class="ac-bt delete">🗑️ Delete</button>
+                  </div>
+                </div>
+              </div>
+              <button class="bt-sc" id="addFAQ">+ Add New FAQ</button>
+            </div>
+          </div>
+
+          <!-- Local SEO -->
+          <div class="tb-cn" data-tab="local">
+            <div class="lc-op">
+              <h3>📍 Local Voice Search Optimization</h3>
+              <div class="lc-gd">
+                <div class="lc-cd">
+                  <h4>Business Information</h4>
+                  <div class="bi-fm">
+                    <div class="fm-gr">
+                      <label class="fm-lb">
+                        <span class="lb-tx">Business Name</span>
+                        <input type="text" class="fm-in" id="businessName" placeholder="Your Business Name">
+                      </label>
+                    </div>
+                    <div class="fm-gr">
+                      <label class="fm-lb">
+                        <span class="lb-tx">Address</span>
+                        <input type="text" class="fm-in" id="businessAddress" placeholder="123 Main St, City, State">
+                      </label>
+                    </div>
+                    <div class="fm-gr">
+                      <label class="fm-lb">
+                        <span class="lb-tx">Phone Number</span>
+                        <input type="tel" class="fm-in" id="businessPhone" placeholder="+1 (555) 123-4567">
+                      </label>
+                    </div>
+                    <div class="fm-gr">
+                      <label class="fm-lb">
+                        <span class="lb-tx">Business Hours</span>
+                        <textarea class="fm-ta" id="businessHours" placeholder="Mon-Fri: 9AM-6PM&#10;Sat: 10AM-4PM&#10;Sun: Closed" rows="3"></textarea>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="lc-cd">
+                  <h4>Local Keywords</h4>
+                  <div class="lk-ls" id="localKeywords">
+                    <div class="lk-it">
+                      <span class="lk-tx">"[service] near me"</span>
+                      <span class="lk-vl">High</span>
+                    </div>
+                    <div class="lk-it">
+                      <span class="lk-tx">"best [service] in [city]"</span>
+                      <span class="lk-vl">High</span>
+                    </div>
+                    <div class="lk-it">
+                      <span class="lk-tx">"[service] [city] reviews"</span>
+                      <span class="lk-vl">Medium</span>
+                    </div>
+                    <div class="lk-it">
+                      <span class="lk-tx">"top [service] [area]"</span>
+                      <span class="lk-vl">Medium</span>
+                    </div>
+                  </div>
+                  <button class="bt-sc" id="generateLocalKeywords">Generate More Keywords</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Conversational Content -->
+          <div class="tb-cn" data-tab="conversational">
+            <div class="cv-op">
+              <h3>🗣️ Conversational Content Optimizer</h3>
+              <div class="cv-gd">
+                <div class="cv-cd">
+                  <h4>Content Rewriter</h4>
+                  <div class="rw-fm">
+                    <div class="fm-gr">
+                      <label class="fm-lb">
+                        <span class="lb-tx">Original Content</span>
+                        <textarea class="fm-ta" id="originalContent" placeholder="Paste your existing content here..." rows="6"></textarea>
+                      </label>
+                    </div>
+                    <div class="fm-gr">
+                      <button class="bt-pr" id="rewriteContent">🔄 Make Conversational</button>
+                    </div>
+                    <div class="fm-gr">
+                      <label class="fm-lb">
+                        <span class="lb-tx">Conversational Version</span>
+                        <textarea class="fm-ta" id="conversationalContent" placeholder="Conversational version will appear here..." rows="6" readonly></textarea>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="cv-cd">
+                  <h4>Voice Search Phrases</h4>
+                  <div class="vs-ls">
+                    <div class="vs-ct">
+                      <div class="ct-hd">Question Words</div>
+                      <div class="ct-tg">
+                        <span class="tg-it">How to</span>
+                        <span class="tg-it">What is</span>
+                        <span class="tg-it">Where can I</span>
+                        <span class="tg-it">When should</span>
+                        <span class="tg-it">Why do</span>
+                        <span class="tg-it">Who is</span>
+                      </div>
+                    </div>
+                    <div class="vs-ct">
+                      <div class="ct-hd">Action Phrases</div>
+                      <div class="ct-tg">
+                        <span class="tg-it">Help me</span>
+                        <span class="tg-it">Show me</span>
+                        <span class="tg-it">Find me</span>
+                        <span class="tg-it">Tell me about</span>
+                        <span class="tg-it">I need to</span>
+                        <span class="tg-it">I want to</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Featured Snippets -->
+          <div class="tb-cn" data-tab="snippets">
+            <div class="sn-op">
+              <h3>⭐ Featured Snippet Optimization</h3>
+              <div class="sn-gd">
+                <div class="sn-cd">
+                  <h4>Snippet Types</h4>
+                  <div class="st-ls">
+                    <div class="st-it">
+                      <div class="st-ic">📝</div>
+                      <div class="st-info">
+                        <div class="st-nm">Paragraph</div>
+                        <div class="st-ds">Direct answers to questions</div>
+                      </div>
+                      <div class="st-ex">
+                        <div class="ex-qs">What is SEO?</div>
+                        <div class="ex-an">SEO (Search Engine Optimization) is the practice of optimizing websites to rank higher in search engine results...</div>
+                      </div>
+                    </div>
+                    <div class="st-it">
+                      <div class="st-ic">📋</div>
+                      <div class="st-info">
+                        <div class="st-nm">List</div>
+                        <div class="st-ds">Step-by-step processes</div>
+                      </div>
+                      <div class="st-ex">
+                        <div class="ex-qs">How to optimize for voice search?</div>
+                        <div class="ex-an">1. Research voice search keywords<br>2. Create FAQ content<br>3. Optimize for local search...</div>
+                      </div>
+                    </div>
+                    <div class="st-it">
+                      <div class="st-ic">📊</div>
+                      <div class="st-info">
+                        <div class="st-nm">Table</div>
+                        <div class="st-ds">Comparative data</div>
+                      </div>
+                      <div class="st-ex">
+                        <div class="ex-qs">Voice search vs text search</div>
+                        <div class="ex-an">Voice: Conversational, longer queries<br>Text: Keywords, shorter queries</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="sn-cd">
+                  <h4>Snippet Generator</h4>
+                  <div class="sg-fm">
+                    <div class="fm-gr">
+                      <label class="fm-lb">
+                        <span class="lb-tx">Target Question</span>
+                        <input type="text" class="fm-in" id="snippetQuestion" placeholder="What question do you want to answer?">
+                      </label>
+                    </div>
+                    <div class="fm-gr">
+                      <label class="fm-lb">
+                        <span class="lb-tx">Answer Type</span>
+                        <select class="fm-sl" id="snippetType">
+                          <option value="paragraph">Paragraph</option>
+                          <option value="list">List</option>
+                          <option value="table">Table</option>
+                        </select>
+                      </label>
+                    </div>
+                    <div class="fm-gr">
+                      <button class="bt-pr" id="generateSnippet">Generate Snippet</button>
+                    </div>
+                    <div class="fm-gr">
+                      <div class="sn-pv" id="snippetPreview">
+                        <div class="pv-hd">Preview</div>
+                        <div class="pv-cn">Generated snippet will appear here...</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep2"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="nextStep2"><span>Test Optimization</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Voice Search Testing -->
+    <div class="st-bx" id="step3" style="display:none">
+      <div class="st-ic">🧪</div>
+      <div class="st-hd">
+        <h2>Voice Search Testing</h2>
+        <p>Test your optimized content with voice search simulators</p>
+      </div>
+      <div class="st-bd">
+        <div class="ts-gd">
+          <div class="ts-cd">
+            <h3>🎤 Voice Query Simulator</h3>
+            <div class="vs-sm">
+              <div class="sm-cn">
+                <div class="sm-in">
+                  <input type="text" class="sm-tx" id="voiceQuery" placeholder="Type a voice search query to test...">
+                  <button class="sm-bt" id="simulateVoice">🎤 Test Query</button>
+                </div>
+                <div class="sm-sg">
+                  <button class="sg-bt" data-query="How to improve SEO rankings?">How to improve SEO rankings?</button>
+                  <button class="sg-bt" data-query="Best digital marketing agency near me">Best digital marketing agency near me</button>
+                  <button class="sg-bt" data-query="What is content marketing?">What is content marketing?</button>
+                  <button class="sg-bt" data-query="Where can I learn SEO?">Where can I learn SEO?</button>
+                </div>
+              </div>
+              <div class="sm-rs" id="simulationResults">
+                <div class="rs-hd">Search Results Preview</div>
+                <div class="rs-cn">
+                  <div class="rs-it featured">
+                    <div class="rs-tg">Featured Snippet</div>
+                    <div class="rs-tl">How to Improve SEO Rankings: Complete Guide</div>
+                    <div class="rs-ds">SEO ranking improvement involves optimizing your website's content, technical aspects, and user experience. Key strategies include keyword research, quality content creation, and building authoritative backlinks...</div>
+                    <div class="rs-ur">yourwebsite.com/seo-guide</div>
+                  </div>
+                  <div class="rs-it">
+                    <div class="rs-tl">10 Proven SEO Strategies That Work</div>
+                    <div class="rs-ds">Discover the most effective SEO strategies used by top-ranking websites...</div>
+                    <div class="rs-ur">competitor1.com/seo-strategies</div>
+                  </div>
+                  <div class="rs-it">
+                    <div class="rs-tl">SEO Ranking Factors 2024</div>
+                    <div class="rs-ds">Learn about the latest SEO ranking factors and how to optimize for them...</div>
+                    <div class="rs-ur">competitor2.com/ranking-factors</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ts-cd">
+            <h3>📊 Performance Metrics</h3>
+            <div class="pm-ls">
+              <div class="pm-it">
+                <div class="pm-ic">🎯</div>
+                <div class="pm-info">
+                  <div class="pm-nm">Voice Search Visibility</div>
+                  <div class="pm-vl">78%</div>
+                  <div class="pm-ch">+12% from last test</div>
+                </div>
+              </div>
+              <div class="pm-it">
+                <div class="pm-ic">⚡</div>
+                <div class="pm-info">
+                  <div class="pm-nm">Response Speed</div>
+                  <div class="pm-vl">1.2s</div>
+                  <div class="pm-ch">-0.3s improvement</div>
+                </div>
+              </div>
+              <div class="pm-it">
+                <div class="pm-ic">📱</div>
+                <div class="pm-info">
+                  <div class="pm-nm">Mobile Compatibility</div>
+                  <div class="pm-vl">95%</div>
+                  <div class="pm-ch">Excellent</div>
+                </div>
+              </div>
+              <div class="pm-it">
+                <div class="pm-ic">🗣️</div>
+                <div class="pm-info">
+                  <div class="pm-nm">Conversational Match</div>
+                  <div class="pm-vl">82%</div>
+                  <div class="pm-ch">+8% improvement</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ts-rp">
+          <h3>📋 Test Report</h3>
+          <div class="rp-gd">
+            <div class="rp-cd success">
+              <div class="rp-ic">✅</div>
+              <div class="rp-info">
+                <div class="rp-tl">Passed Tests</div>
+                <div class="rp-ls">
+                  <div class="rp-it">FAQ content structure optimized</div>
+                  <div class="rp-it">Local business information complete</div>
+                  <div class="rp-it">Conversational keywords integrated</div>
+                  <div class="rp-it">Featured snippet format implemented</div>
+                </div>
+              </div>
+            </div>
+            <div class="rp-cd warning">
+              <div class="rp-ic">⚠️</div>
+              <div class="rp-info">
+                <div class="rp-tl">Needs Improvement</div>
+                <div class="rp-ls">
+                  <div class="rp-it">Page loading speed could be faster</div>
+                  <div class="rp-it">More long-tail keywords needed</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep3"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="nextStep3"><span>Deploy Changes</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: Deployment -->
+    <div class="st-bx" id="step4" style="display:none">
+      <div class="st-ic">🚀</div>
+      <div class="st-hd">
+        <h2>Deploy Optimizations</h2>
+        <p>Deploy your voice search optimizations and monitor performance</p>
+      </div>
+      <div class="st-bd">
+        <div class="dp-gd">
+          <div class="dp-cd">
+            <h3>📤 Export Options</h3>
+            <div class="ex-ls">
+              <div class="ex-it">
+                <div class="ex-ic">📄</div>
+                <div class="ex-info">
+                  <div class="ex-nm">HTML/CSS Export</div>
+                  <div class="ex-ds">Download optimized HTML with structured data</div>
+                </div>
+                <button class="ex-bt">Download HTML</button>
+              </div>
+              <div class="ex-it">
+                <div class="ex-ic">🔧</div>
+                <div class="ex-info">
+                  <div class="ex-nm">WordPress Plugin</div>
+                  <div class="ex-ds">Install voice search optimization plugin</div>
+                </div>
+                <button class="ex-bt">Get Plugin</button>
+              </div>
+              <div class="ex-it">
+                <div class="ex-ic">📊</div>
+                <div class="ex-info">
+                  <div class="ex-nm">Schema Markup</div>
+                  <div class="ex-ds">JSON-LD structured data for voice search</div>
+                </div>
+                <button class="ex-bt">Copy Schema</button>
+              </div>
+              <div class="ex-it">
+                <div class="ex-ic">📋</div>
+                <div class="ex-info">
+                  <div class="ex-nm">Implementation Guide</div>
+                  <div class="ex-ds">Step-by-step deployment instructions</div>
+                </div>
+                <button class="ex-bt">View Guide</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="dp-cd">
+            <h3>📈 Monitoring Setup</h3>
+            <div class="mn-fm">
+              <div class="fm-gr">
+                <label class="fm-lb">
+                  <span class="lb-tx">Google Search Console</span>
+                  <input type="url" class="fm-in" placeholder="Connect your GSC property">
+                  <button class="cn-bt">Connect</button>
+                </label>
+              </div>
+              <div class="fm-gr">
+                <label class="fm-lb">
+                  <span class="lb-tx">Google Analytics</span>
+                  <input type="text" class="fm-in" placeholder="GA4 Measurement ID">
+                  <button class="cn-bt">Connect</button>
+                </label>
+              </div>
+              <div class="fm-gr">
+                <label class="fm-lb">
+                  <span class="lb-tx">Voice Search Tracking</span>
+                  <div class="tr-op">
+                    <label class="tr-ch">
+                      <input type="checkbox" checked>
+                      <span class="ch-mk"></span>
+                      <span class="ch-lb">Track voice search queries</span>
+                    </label>
+                    <label class="tr-ch">
+                      <input type="checkbox" checked>
+                      <span class="ch-mk"></span>
+                      <span class="ch-lb">Monitor featured snippet performance</span>
+                    </label>
+                    <label class="tr-ch">
+                      <input type="checkbox">
+                      <span class="ch-mk"></span>
+                      <span class="ch-lb">Local search tracking</span>
+                    </label>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sm-cd">
+          <h3>📊 Optimization Summary</h3>
+          <div class="sm-st">
+            <div class="st-it">
+              <div class="st-ic">❓</div>
+              <div class="st-vl">24</div>
+              <div class="st-lb">FAQ Questions Added</div>
+            </div>
+            <div class="st-it">
+              <div class="st-ic">📍</div>
+              <div class="st-vl">12</div>
+              <div class="st-lb">Local Keywords Optimized</div>
+            </div>
+            <div class="st-it">
+              <div class="st-ic">🗣️</div>
+              <div class="st-vl">18</div>
+              <div class="st-lb">Conversational Phrases</div>
+            </div>
+            <div class="st-it">
+              <div class="st-ic">⭐</div>
+              <div class="st-vl">8</div>
+              <div class="st-lb">Featured Snippet Targets</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep4"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="completeOptimization"><span>Complete Optimization</span><span class="bt-ar">✓</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<style>
+.an-gd { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+.an-cd { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+.an-cd h3 { margin: 0 0 1rem 0; font-weight: 600; }
+
+.pt-ls { display: flex; flex-direction: column; gap: 1rem; }
+.pt-it { display: flex; align-items: center; gap: 1rem; padding: 1rem; border: 1px solid #e5e7eb; border-radius: 6px; }
+.pt-ic { font-size: 1.5rem; }
+.pt-info { flex: 1; }
+.pt-nm { font-weight: 500; margin-bottom: 0.25rem; }
+.pt-ds { font-size: 0.875rem; color: #6b7280; margin-bottom: 0.25rem; }
+.pt-ex { font-size: 0.75rem; color: #2563eb; font-style: italic; }
+.pt-st { text-align: center; }
+.st-bd { font-size: 1.25rem; font-weight: 600; color: #2563eb; }
+.st-lb { font-size: 0.75rem; color: #6b7280; }
+
+.an-rs { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; margin-top: 2rem; }
+.an-rs h3 { margin: 0 0 1rem 0; font-weight: 600; }
+.rs-gd { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.rs-cd { }
+.rs-hd { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
+.rs-ic { font-size: 1.5rem; }
+.rs-tl { font-weight: 600; flex: 1; }
+.rs-sc { font-size: 1.5rem; font-weight: 600; color: #10b981; }
+.rs-mt { display: flex; flex-direction: column; gap: 0.5rem; }
+.mt-it { display: flex; justify-content: space-between; font-size: 0.875rem; }
+.mt-lb { color: #6b7280; }
+.mt-vl { font-weight: 500; }
+.mt-vl.good { color: #10b981; }
+.mt-vl.warning { color: #f59e0b; }
+.mt-vl.poor { color: #ef4444; }
+
+.op-ls { display: flex; flex-direction: column; gap: 0.5rem; }
+.op-it { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem; border-radius: 4px; }
+.op-it.high { background: #fef2f2; border-left: 4px solid #ef4444; }
+.op-it.medium { background: #fffbeb; border-left: 4px solid #f59e0b; }
+.op-it.low { background: #f0fdf4; border-left: 4px solid #10b981; }
+.op-pr { font-weight: 600; font-size: 0.75rem; text-transform: uppercase; min-width: 60px; }
+.op-it.high .op-pr { color: #ef4444; }
+.op-it.medium .op-pr { color: #f59e0b; }
+.op-it.low .op-pr { color: #10b981; }
+.op-tx { font-size: 0.875rem; }
+
+.op-tb { }
+.tb-hd { display: flex; border-bottom: 1px solid #e5e7eb; margin-bottom: 2rem; }
+.tb-bt { padding: 1rem 1.5rem; border: none; background: none; cursor: pointer; border-bottom: 2px solid transparent; font-weight: 500; }
+.tb-bt.active { border-bottom-color: #2563eb; color: #2563eb; }
+.tb-cn { display: none; }
+.tb-cn.active { display: block; }
+
+.fq-gn { }
+.fq-gn h3 { margin: 0 0 1rem 0; font-weight: 600; }
+.gn-fm { margin-bottom: 2rem; }
+.fq-ls { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1rem; }
+.fq-it { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px; padding: 1rem; }
+.fq-qs { font-weight: 500; margin-bottom: 0.5rem; color: #1f2937; }
+.fq-an { width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 4px; resize: vertical; min-height: 80px; margin-bottom: 0.5rem; }
+.fq-ac { display: flex; gap: 0.5rem; }
+.ac-bt { padding: 0.5rem 1rem; border: 1px solid #d1d5db; background: white; border-radius: 4px; cursor: pointer; font-size: 0.875rem; }
+.ac-bt:hover { background: #f3f4f6; }
+
+.lc-op { }
+.lc-op h3 { margin: 0 0 1rem 0; font-weight: 600; }
+.lc-gd { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.lc-cd { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px; padding: 1.5rem; }
+.lc-cd h4 { margin: 0 0 1rem 0; font-weight: 600; }
+.bi-fm { }
+.lk-ls { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+.lk-it { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem; background: white; border-radius: 4px; }
+.lk-tx { font-size: 0.875rem; }
+.lk-vl { font-size: 0.75rem; font-weight: 500; padding: 0.25rem 0.5rem; border-radius: 12px; }
+.lk-it .lk-vl { background: #dbeafe; color: #1d4ed8; }
+
+.cv-op { }
+.cv-op h3 { margin: 0 0 1rem 0; font-weight: 600; }
+.cv-gd { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.cv-cd { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px; padding: 1.5rem; }
+.cv-cd h4 { margin: 0 0 1rem 0; font-weight: 600; }
+.rw-fm { }
+.vs-ls { display: flex; flex-direction: column; gap: 1rem; }
+.vs-ct { }
+.ct-hd { font-weight: 500; margin-bottom: 0.5rem; }
+.ct-tg { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tg-it { padding: 0.25rem 0.75rem; background: #e5e7eb; border-radius: 12px; font-size: 0.875rem; }
+
+.sn-op { }
+.sn-op h3 { margin: 0 0 1rem 0; font-weight: 600; }
+.sn-gd { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.sn-cd { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px; padding: 1.5rem; }
+.sn-cd h4 { margin: 0 0 1rem 0; font-weight: 600; }
+.st-ls { display: flex; flex-direction: column; gap: 1rem; }
+.st-it { border: 1px solid #e5e7eb; border-radius: 6px; padding: 1rem; background: white; }
+.st-ic { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.st-info { margin-bottom: 1rem; }
+.st-nm { font-weight: 500; margin-bottom: 0.25rem; }
+.st-ds { font-size: 0.875rem; color: #6b7280; }
+.st-ex { }
+.ex-qs { font-weight: 500; font-size: 0.875rem; margin-bottom: 0.25rem; }
+.ex-an { font-size: 0.75rem; color: #6b7280; }
+.sg-fm { }
+.sn-pv { background: white; border: 1px solid #e5e7eb; border-radius: 6px; padding: 1rem; margin-top: 1rem; }
+.pv-hd { font-weight: 500; margin-bottom: 0.5rem; }
+.pv-cn { font-size: 0.875rem; color: #6b7280; }
+
+.ts-gd { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+.ts-cd { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+.ts-cd h3 { margin: 0 0 1rem 0; font-weight: 600; }
+.vs-sm { }
+.sm-cn { margin-bottom: 2rem; }
+.sm-in { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+.sm-tx { flex: 1; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 6px; }
+.sm-bt { padding: 0.75rem 1rem; background: #2563eb; color: white; border: none; border-radius: 6px; cursor: pointer; }
+.sm-bt:hover { background: #1d4ed8; }
+.sm-sg { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.sg-bt { padding: 0.5rem 1rem; background: #f3f4f6; border: 1px solid #d1d5db; border-radius: 4px; cursor: pointer; font-size: 0.875rem; }
+.sg-bt:hover { background: #e5e7eb; }
+
+.sm-rs { }
+.rs-hd { font-weight: 500; margin-bottom: 1rem; }
+.rs-cn { display: flex; flex-direction: column; gap: 1rem; }
+.rs-it { padding: 1rem; border: 1px solid #e5e7eb; border-radius: 6px; }
+.rs-it.featured { border-color: #2563eb; background: #eff6ff; }
+.rs-tg { font-size: 0.75rem; color: #2563eb; font-weight: 500; margin-bottom: 0.25rem; }
+.rs-tl { font-weight: 500; color: #1d4ed8; margin-bottom: 0.25rem; }
+.rs-ds { font-size: 0.875rem; color: #6b7280; margin-bottom: 0.25rem; }
+.rs-ur { font-size: 0.75rem; color: #10b981; }
+
+.pm-ls { display: flex; flex-direction: column; gap: 1rem; }
+.pm-it { display: flex; align-items: center; gap: 1rem; padding: 1rem; border: 1px solid #e5e7eb; border-radius: 6px; }
+.pm-ic { font-size: 1.5rem; }
+.pm-info { flex: 1; }
+.pm-nm { font-weight: 500; margin-bottom: 0.25rem; }
+.pm-vl { font-size: 1.25rem; font-weight: 600; color: #2563eb; }
+.pm-ch { font-size: 0.875rem; color: #10b981; }
+
+.ts-rp { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+.ts-rp h3 { margin: 0 0 1rem 0; font-weight: 600; }
+.rp-gd { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.rp-cd { padding: 1rem; border-radius: 6px; }
+.rp-cd.success { background: #f0fdf4; border: 1px solid #bbf7d0; }
+.rp-cd.warning { background: #fffbeb; border: 1px solid #fed7aa; }
+.rp-ic { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.rp-tl { font-weight: 600; margin-bottom: 0.5rem; }
+.rp-ls { display: flex; flex-direction: column; gap: 0.25rem; }
+.rp-it { font-size: 0.875rem; color: #6b7280; }
+
+.dp-gd { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+.dp-cd { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+.dp-cd h3 { margin: 0 0 1rem 0; font-weight: 600; }
+.ex-ls { display: flex; flex-direction: column; gap: 1rem; }
+.ex-it { display: flex; align-items: center; gap: 1rem; padding: 1rem; border: 1px solid #e5e7eb; border-radius: 6px; }
+.ex-ic { font-size: 1.5rem; }
+.ex-info { flex: 1; }
+.ex-nm { font-weight: 500; margin-bottom: 0.25rem; }
+.ex-ds { font-size: 0.875rem; color: #6b7280; }
+.ex-bt { padding: 0.5rem 1rem; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; }
+.ex-bt:hover { background: #1d4ed8; }
+
+.mn-fm { }
+.cn-bt { padding: 0.5rem 1rem; background: #10b981; color: white; border: none; border-radius: 4px; cursor: pointer; margin-left: 0.5rem; }
+.cn-bt:hover { background: #059669; }
+.tr-op { display: flex; flex-direction: column; gap: 0.5rem; }
+.tr-ch { display: flex; align-items: center; gap: 0.5rem; }
+.tr-ch input { position: absolute; opacity: 0; }
+.ch-mk { display: block; width: 16px; height: 16px; border: 2px solid #d1d5db; border-radius: 3px; position: relative; }
+.tr-ch input:checked + .ch-mk { background: #2563eb; border-color: #2563eb; }
+.tr-ch input:checked + .ch-mk::after { content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 0.75rem; }
+.ch-lb { font-size: 0.875rem; }
+
+.sm-cd { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+.sm-cd h3 { margin: 0 0 1rem 0; font-weight: 600; }
+.sm-st { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.st-it { text-align: center; padding: 1rem; }
+.st-ic { font-size: 2rem; margin-bottom: 0.5rem; }
+.st-vl { font-size: 1.5rem; font-weight: 600; color: #2563eb; margin-bottom: 0.25rem; }
+.st-lb { font-size: 0.875rem; color: #6b7280; }
+</style>
+
+<script>
+let currentStep = 1;
+
+// Step navigation
+function showStep(step) {
+  document.querySelectorAll('.st-bx').forEach(box => box.style.display = 'none');
+  document.getElementById(`step${step}`).style.display = 'block';
+  
+  // Update progress
+  document.querySelectorAll('.pr-it').forEach((item, index) => {
+    item.classList.toggle('cp', index + 1 === step);
+    item.classList.toggle('cm', index + 1 < step);
+  });
+  
+  currentStep = step;
+}
+
+// Step 1: Analysis
+document.getElementById('analyzeContent').addEventListener('click', function() {
+  // Simulate analysis
+  this.innerHTML = '<span>🔄 Analyzing...</span>';
+  this.disabled = true;
+  
+  setTimeout(() => {
+    document.getElementById('analysisResults').style.display = 'block';
+    document.getElementById('nextStep1').style.display = 'inline-flex';
+    this.innerHTML = '<span>✓ Analysis Complete</span>';
+  }, 2000);
+});
+
+document.getElementById('nextStep1').addEventListener('click', () => showStep(2));
+
+// Step 2: Optimization tabs
+document.querySelectorAll('.tb-bt').forEach(button => {
+  button.addEventListener('click', function() {
+    const tab = this.dataset.tab;
+    
+    // Update active tab
+    document.querySelectorAll('.tb-bt').forEach(btn => btn.classList.remove('active'));
+    this.classList.add('active');
+    
+    // Show corresponding content
+    document.querySelectorAll('.tb-cn').forEach(content => content.classList.remove('active'));
+    document.querySelector(`[data-tab="${tab}"]`).classList.add('active');
+  });
+});
+
+// FAQ functionality
+document.getElementById('generateFAQ').addEventListener('click', function() {
+  const topic = document.getElementById('faqTopic').value;
+  if (!topic) {
+    alert('Please enter a topic first');
+    return;
+  }
+  
+  // Simulate FAQ generation
+  this.innerHTML = '🔄 Generating...';
+  this.disabled = true;
+  
+  setTimeout(() => {
+    // Add new FAQ items (simulation)
+    const faqList = document.getElementById('faqList');
+    const newFAQ = document.createElement('div');
+    newFAQ.className = 'fq-it';
+    newFAQ.innerHTML = `
+      <div class="fq-qs">How does ${topic} work?</div>
+      <textarea class="fq-an" placeholder="Enter your answer here..."></textarea>
+      <div class="fq-ac">
+        <button class="ac-bt edit">✏️ Edit</button>
+        <button class="ac-bt delete">🗑️ Delete</button>
+      </div>
+    `;
+    faqList.appendChild(newFAQ);
+    
+    this.innerHTML = 'Generate FAQ Questions';
+    this.disabled = false;
+  }, 1500);
+});
+
+document.getElementById('addFAQ').addEventListener('click', function() {
+  const faqList = document.getElementById('faqList');
+  const newFAQ = document.createElement('div');
+  newFAQ.className = 'fq-it';
+  newFAQ.innerHTML = `
+    <div class="fq-qs">New question?</div>
+    <textarea class="fq-an" placeholder="Enter your answer here..."></textarea>
+    <div class="fq-ac">
+      <button class="ac-bt edit">✏️ Edit</button>
+      <button class="ac-bt delete">🗑️ Delete</button>
+    </div>
+  `;
+  faqList.appendChild(newFAQ);
+});
+
+// Local keywords generation
+document.getElementById('generateLocalKeywords').addEventListener('click', function() {
+  this.innerHTML = '🔄 Generating...';
+  this.disabled = true;
+  
+  setTimeout(() => {
+    const keywordsList = document.getElementById('localKeywords');
+    const newKeyword = document.createElement('div');
+    newKeyword.className = 'lk-it';
+    newKeyword.innerHTML = `
+      <span class="lk-tx">"affordable [service] near [location]"</span>
+      <span class="lk-vl">Medium</span>
+    `;
+    keywordsList.appendChild(newKeyword);
+    
+    this.innerHTML = 'Generate More Keywords';
+    this.disabled = false;
+  }, 1000);
+});
+
+// Content rewriter
+document.getElementById('rewriteContent').addEventListener('click', function() {
+  const originalContent = document.getElementById('originalContent').value;
+  if (!originalContent) {
+    alert('Please enter content to rewrite');
+    return;
+  }
+  
+  this.innerHTML = '🔄 Rewriting...';
+  this.disabled = true;
+  
+  setTimeout(() => {
+    // Simulate conversational rewrite
+    const conversationalVersion = originalContent
+      .replace(/\b(is|are)\b/g, 'is really')
+      .replace(/\b(can)\b/g, 'can easily')
+      .replace(/\./g, ', which means you get better results.');
+    
+    document.getElementById('conversationalContent').value = conversationalVersion;
+    
+    this.innerHTML = '🔄 Make Conversational';
+    this.disabled = false;
+  }, 1500);
+});
+
+// Featured snippet generator
+document.getElementById('generateSnippet').addEventListener('click', function() {
+  const question = document.getElementById('snippetQuestion').value;
+  const type = document.getElementById('snippetType').value;
+  
+  if (!question) {
+    alert('Please enter a question');
+    return;
+  }
+  
+  this.innerHTML = '🔄 Generating...';
+  this.disabled = true;
+  
+  setTimeout(() => {
+    const preview = document.getElementById('snippetPreview');
+    let content = '';
+    
+    if (type === 'paragraph') {
+      content = `<div class="pv-cn"><strong>${question}</strong><br><br>This is a comprehensive answer that directly addresses the question in a clear, concise manner. The answer provides valuable information that users are looking for when they ask this question.</div>`;
+    } else if (type === 'list') {
+      content = `<div class="pv-cn"><strong>${question}</strong><br><br>1. First important step<br>2. Second crucial step<br>3. Third essential step<br>4. Final step to complete</div>`;
+    } else if (type === 'table') {
+      content = `<div class="pv-cn"><strong>${question}</strong><br><br><table style="width:100%; border-collapse: collapse;"><tr><th style="border:1px solid #ddd; padding:8px;">Feature</th><th style="border:1px solid #ddd; padding:8px;">Description</th></tr><tr><td style="border:1px solid #ddd; padding:8px;">Option 1</td><td style="border:1px solid #ddd; padding:8px;">Details about option 1</td></tr><tr><td style="border:1px solid #ddd; padding:8px;">Option 2</td><td style="border:1px solid #ddd; padding:8px;">Details about option 2</td></tr></table></div>`;
+    }
+    
+    preview.innerHTML = content;
+    
+    this.innerHTML = 'Generate Snippet';
+    this.disabled = false;
+  }, 1500);
+});
+
+document.getElementById('backStep2').addEventListener('click', () => showStep(1));
+document.getElementById('nextStep2').addEventListener('click', () => showStep(3));
+
+// Step 3: Voice search testing
+document.getElementById('simulateVoice').addEventListener('click', function() {
+  const query = document.getElementById('voiceQuery').value;
+  if (!query) {
+    alert('Please enter a voice search query');
+    return;
+  }
+  
+  // Simulate voice search results
+  this.innerHTML = '🔄 Testing...';
+  this.disabled = true;
+  
+  setTimeout(() => {
+    // Update results based on query
+    const resultsContainer = document.getElementById('simulationResults');
+    resultsContainer.querySelector('.rs-tl').textContent = `Results for: "${query}"`;
+    resultsContainer.querySelector('.rs-ds').textContent = `Optimized content that answers "${query}" with relevant information and proper voice search formatting...`;
+    
+    this.innerHTML = '🎤 Test Query';
+    this.disabled = false;
+  }, 1500);
+});
+
+// Suggestion buttons
+document.querySelectorAll('.sg-bt').forEach(button => {
+  button.addEventListener('click', function() {
+    const query = this.dataset.query;
+    document.getElementById('voiceQuery').value = query;
+    document.getElementById('simulateVoice').click();
+  });
+});
+
+document.getElementById('backStep3').addEventListener('click', () => showStep(2));
+document.getElementById('nextStep3').addEventListener('click', () => showStep(4));
+
+// Step 4: Deployment
+document.querySelectorAll('.ex-bt').forEach(button => {
+  button.addEventListener('click', function() {
+    const action = this.textContent;
+    
+    if (action === 'Download HTML') {
+      // Simulate download
+      const blob = new Blob(['<html>Voice search optimized content</html>'], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'voice-search-optimized.html';
+      a.click();
+      URL.revokeObjectURL(url);
+    } else if (action === 'Copy Schema') {
+       // Copy schema to clipboard
+       const schema = `{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "What is voice search optimization?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Voice search optimization is the process of optimizing your content to appear in voice search results."
+    }
+  }]
+}`;
+       navigator.clipboard.writeText(schema).then(() => {
+         alert('Schema markup copied to clipboard!');
+       });
+     } else {
+       alert(`${action} functionality will be implemented soon!`);
+     }
+   });
+ });
+
+ // Connect buttons
+ document.querySelectorAll('.cn-bt').forEach(button => {
+   button.addEventListener('click', function() {
+     const service = this.previousElementSibling.placeholder || this.previousElementSibling.textContent;
+     alert(`Connecting to ${service}...`);
+   });
+ });
+
+ document.getElementById('backStep4').addEventListener('click', () => showStep(3));
+ document.getElementById('completeOptimization').addEventListener('click', function() {
+   alert('Voice search optimization completed successfully! 🎉');
+   // Reset to step 1
+   showStep(1);
+ });
+
+ // Initialize
+ showStep(1);
+ </script>
+ </Layout>

@@ -1,0 +1,943 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+---
+<Layout>
+<Nav/>
+<main class="mn">
+  <div class="pg-hd">
+    <div class="hd-ic">🌍</div>
+    <h1 class="tl">Multilingual Optimization</h1>
+    <p class="st">Optimize your content for global audiences with AI-powered translation and localization</p>
+  </div>
+
+  <!-- Progress -->
+  <div class="pr-wr">
+    <div class="pr-st" id="progressBar">
+      <div class="pr-it cp" data-step="1"><div class="pr-nm">1</div><div class="pr-lb">Setup</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="2"><div class="pr-nm">2</div><div class="pr-lb">Translate</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="3"><div class="pr-nm">3</div><div class="pr-lb">Localize</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="4"><div class="pr-nm">4</div><div class="pr-lb">Optimize</div></div>
+    </div>
+  </div>
+
+  <div class="st-cn">
+    <!-- Step 1: Language Setup -->
+    <div class="st-bx" id="step1">
+      <div class="st-ic">🔧</div>
+      <div class="st-hd">
+        <h2>Language Configuration</h2>
+        <p>Set up your source language and target markets</p>
+      </div>
+      <div class="st-bd">
+        <div class="lg-gd">
+          <div class="lg-cd">
+            <h3>📝 Source Content</h3>
+            <div class="sc-fm">
+              <div class="fm-gr">
+                <label class="fm-lb">
+                  <span class="lb-tx">Source Language</span>
+                  <select class="fm-sl" id="sourceLanguage">
+                    <option value="en" selected>English</option>
+                    <option value="es">Spanish</option>
+                    <option value="fr">French</option>
+                    <option value="de">German</option>
+                    <option value="it">Italian</option>
+                    <option value="pt">Portuguese</option>
+                    <option value="zh">Chinese</option>
+                    <option value="ja">Japanese</option>
+                    <option value="ko">Korean</option>
+                    <option value="ar">Arabic</option>
+                  </select>
+                </label>
+              </div>
+              <div class="fm-gr">
+                <label class="fm-lb">
+                  <span class="lb-tx">Content Type</span>
+                  <select class="fm-sl" id="contentType">
+                    <option value="website">Website Content</option>
+                    <option value="blog">Blog Articles</option>
+                    <option value="product">Product Descriptions</option>
+                    <option value="marketing">Marketing Materials</option>
+                    <option value="social">Social Media Posts</option>
+                    <option value="email">Email Campaigns</option>
+                  </select>
+                </label>
+              </div>
+              <div class="fm-gr">
+                <label class="fm-lb">
+                  <span class="lb-tx">Content Input</span>
+                  <textarea class="fm-ta" id="sourceContent" placeholder="Paste your content here or upload a file..." rows="8"></textarea>
+                </label>
+              </div>
+              <div class="fm-gr">
+                <div class="fl-up">
+                  <input type="file" id="fileInput" accept=".txt,.docx,.pdf" style="display:none">
+                  <button class="fl-bt" onclick="document.getElementById('fileInput').click()">📁 Upload File</button>
+                  <span class="fl-nm" id="fileName"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lg-cd">
+            <h3>🎯 Target Markets</h3>
+            <div class="tg-ls" id="targetLanguages">
+              <div class="tg-it" data-lang="es">
+                <div class="tg-fl">🇪🇸</div>
+                <div class="tg-info">
+                  <div class="tg-nm">Spanish</div>
+                  <div class="tg-rg">Spain, Latin America</div>
+                </div>
+                <label class="tg-ch">
+                  <input type="checkbox" value="es">
+                  <span class="ch-mk"></span>
+                </label>
+              </div>
+              <div class="tg-it" data-lang="fr">
+                <div class="tg-fl">🇫🇷</div>
+                <div class="tg-info">
+                  <div class="tg-nm">French</div>
+                  <div class="tg-rg">France, Canada, Africa</div>
+                </div>
+                <label class="tg-ch">
+                  <input type="checkbox" value="fr">
+                  <span class="ch-mk"></span>
+                </label>
+              </div>
+              <div class="tg-it" data-lang="de">
+                <div class="tg-fl">🇩🇪</div>
+                <div class="tg-info">
+                  <div class="tg-nm">German</div>
+                  <div class="tg-rg">Germany, Austria, Switzerland</div>
+                </div>
+                <label class="tg-ch">
+                  <input type="checkbox" value="de">
+                  <span class="ch-mk"></span>
+                </label>
+              </div>
+              <div class="tg-it" data-lang="zh">
+                <div class="tg-fl">🇨🇳</div>
+                <div class="tg-info">
+                  <div class="tg-nm">Chinese</div>
+                  <div class="tg-rg">China, Taiwan, Singapore</div>
+                </div>
+                <label class="tg-ch">
+                  <input type="checkbox" value="zh">
+                  <span class="ch-mk"></span>
+                </label>
+              </div>
+              <div class="tg-it" data-lang="ja">
+                <div class="tg-fl">🇯🇵</div>
+                <div class="tg-info">
+                  <div class="tg-nm">Japanese</div>
+                  <div class="tg-rg">Japan</div>
+                </div>
+                <label class="tg-ch">
+                  <input type="checkbox" value="ja">
+                  <span class="ch-mk"></span>
+                </label>
+              </div>
+              <div class="tg-it" data-lang="pt">
+                <div class="tg-fl">🇧🇷</div>
+                <div class="tg-info">
+                  <div class="tg-nm">Portuguese</div>
+                  <div class="tg-rg">Brazil, Portugal</div>
+                </div>
+                <label class="tg-ch">
+                  <input type="checkbox" value="pt">
+                  <span class="ch-mk"></span>
+                </label>
+              </div>
+            </div>
+            <div class="tg-st">
+              <div class="st-it">
+                <span class="st-lb">Selected Languages:</span>
+                <span class="st-ct" id="selectedCount">0</span>
+              </div>
+              <div class="st-it">
+                <span class="st-lb">Estimated Cost:</span>
+                <span class="st-pr" id="estimatedCost">$0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bt-gr">
+          <button class="bt-pr" id="nextStep1"><span>Start Translation</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: AI Translation -->
+    <div class="st-bx" id="step2" style="display:none">
+      <div class="st-ic">🤖</div>
+      <div class="st-hd">
+        <h2>AI Translation</h2>
+        <p>Generate high-quality translations with AI assistance</p>
+      </div>
+      <div class="st-bd">
+        <div class="tr-gd">
+          <!-- Translation Progress -->
+          <div class="tr-pr">
+            <h3>🔄 Translation Progress</h3>
+            <div class="pr-ls" id="translationProgress">
+              <div class="pr-it">
+                <div class="pr-lg">
+                  <div class="pr-fl">🇪🇸</div>
+                  <span class="pr-nm">Spanish</span>
+                </div>
+                <div class="pr-br">
+                  <div class="pr-fl" style="width: 100%"></div>
+                </div>
+                <div class="pr-st completed">✓ Complete</div>
+              </div>
+              <div class="pr-it">
+                <div class="pr-lg">
+                  <div class="pr-fl">🇫🇷</div>
+                  <span class="pr-nm">French</span>
+                </div>
+                <div class="pr-br">
+                  <div class="pr-fl" style="width: 75%"></div>
+                </div>
+                <div class="pr-st processing">⏳ Processing</div>
+              </div>
+              <div class="pr-it">
+                <div class="pr-lg">
+                  <div class="pr-fl">🇩🇪</div>
+                  <span class="pr-nm">German</span>
+                </div>
+                <div class="pr-br">
+                  <div class="pr-fl" style="width: 0%"></div>
+                </div>
+                <div class="pr-st pending">⏸️ Pending</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Translation Preview -->
+          <div class="tr-pv">
+            <h3>📖 Translation Preview</h3>
+            <div class="pv-tb">
+              <div class="tb-hd">
+                <button class="tb-bt active" data-lang="source">Original</button>
+                <button class="tb-bt" data-lang="es">Spanish</button>
+                <button class="tb-bt" data-lang="fr">French</button>
+                <button class="tb-bt" data-lang="de">German</button>
+              </div>
+              <div class="tb-cn">
+                <div class="cn-bx active" data-lang="source">
+                  <div class="cn-tx" id="originalContent">
+                    Welcome to our innovative platform that revolutionizes content creation. Our AI-powered tools help businesses create engaging content that resonates with their target audience across multiple channels and languages.
+                  </div>
+                </div>
+                <div class="cn-bx" data-lang="es">
+                  <div class="cn-tx">
+                    Bienvenido a nuestra plataforma innovadora que revoluciona la creación de contenido. Nuestras herramientas impulsadas por IA ayudan a las empresas a crear contenido atractivo que resuena con su audiencia objetivo a través de múltiples canales e idiomas.
+                  </div>
+                  <div class="cn-ac">
+                    <button class="ac-bt edit">✏️ Edit</button>
+                    <button class="ac-bt approve">✓ Approve</button>
+                  </div>
+                </div>
+                <div class="cn-bx" data-lang="fr">
+                  <div class="cn-tx">
+                    Bienvenue sur notre plateforme innovante qui révolutionne la création de contenu. Nos outils alimentés par l'IA aident les entreprises à créer du contenu engageant qui résonne avec leur public cible à travers plusieurs canaux et langues.
+                  </div>
+                  <div class="cn-ac">
+                    <button class="ac-bt edit">✏️ Edit</button>
+                    <button class="ac-bt approve">✓ Approve</button>
+                  </div>
+                </div>
+                <div class="cn-bx" data-lang="de">
+                  <div class="cn-tx">
+                    Willkommen auf unserer innovativen Plattform, die die Content-Erstellung revolutioniert. Unsere KI-gestützten Tools helfen Unternehmen dabei, ansprechende Inhalte zu erstellen, die bei ihrer Zielgruppe über mehrere Kanäle und Sprachen hinweg Anklang finden.
+                  </div>
+                  <div class="cn-ac">
+                    <button class="ac-bt edit">✏️ Edit</button>
+                    <button class="ac-bt approve">✓ Approve</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Translation Settings -->
+        <div class="tr-st">
+          <h3>⚙️ Translation Settings</h3>
+          <div class="st-gd">
+            <div class="st-gr">
+              <label class="st-lb">
+                <span class="lb-tx">Translation Style</span>
+                <select class="st-sl" id="translationStyle">
+                  <option value="formal">Formal</option>
+                  <option value="casual" selected>Casual</option>
+                  <option value="technical">Technical</option>
+                  <option value="marketing">Marketing</option>
+                </select>
+              </label>
+            </div>
+            <div class="st-gr">
+              <label class="st-lb">
+                <span class="lb-tx">Quality Level</span>
+                <select class="st-sl" id="qualityLevel">
+                  <option value="standard">Standard</option>
+                  <option value="premium" selected>Premium</option>
+                  <option value="professional">Professional</option>
+                </select>
+              </label>
+            </div>
+            <div class="st-gr">
+              <label class="st-lb">
+                <span class="lb-tx">Preserve Formatting</span>
+                <label class="tg-sw">
+                  <input type="checkbox" id="preserveFormatting" checked>
+                  <span class="sw-sl"></span>
+                </label>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep2"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="nextStep2"><span>Localize Content</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Cultural Localization -->
+    <div class="st-bx" id="step3" style="display:none">
+      <div class="st-ic">🎭</div>
+      <div class="st-hd">
+        <h2>Cultural Localization</h2>
+        <p>Adapt content for local cultures and preferences</p>
+      </div>
+      <div class="st-bd">
+        <div class="lc-gd">
+          <!-- Cultural Insights -->
+          <div class="ci-cd">
+            <h3>🧠 Cultural Insights</h3>
+            <div class="ci-ls" id="culturalInsights">
+              <div class="ci-it">
+                <div class="ci-ic">🇪🇸</div>
+                <div class="ci-info">
+                  <div class="ci-tl">Spanish Markets</div>
+                  <div class="ci-ds">Consider regional variations between Spain and Latin America. Use formal "usted" for business content.</div>
+                  <div class="ci-tg">
+                    <span class="tg-it">Formal tone</span>
+                    <span class="tg-it">Regional variants</span>
+                  </div>
+                </div>
+              </div>
+              <div class="ci-it">
+                <div class="ci-ic">🇫🇷</div>
+                <div class="ci-info">
+                  <div class="ci-tl">French Markets</div>
+                  <div class="ci-ds">French audiences prefer detailed explanations. Avoid anglicisms and maintain linguistic purity.</div>
+                  <div class="ci-tg">
+                    <span class="tg-it">Detailed content</span>
+                    <span class="tg-it">Pure French</span>
+                  </div>
+                </div>
+              </div>
+              <div class="ci-it">
+                <div class="ci-ic">🇩🇪</div>
+                <div class="ci-info">
+                  <div class="ci-tl">German Markets</div>
+                  <div class="ci-ds">German audiences value precision and technical details. Use compound words appropriately.</div>
+                  <div class="ci-tg">
+                    <span class="tg-it">Technical precision</span>
+                    <span class="tg-it">Compound words</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Localization Adjustments -->
+          <div class="la-cd">
+            <h3>🔧 Localization Adjustments</h3>
+            <div class="la-tb">
+              <div class="tb-hd">
+                <div class="hd-cl">Element</div>
+                <div class="hd-cl">Original</div>
+                <div class="hd-cl">Localized</div>
+                <div class="hd-cl">Action</div>
+              </div>
+              <div class="tb-rw">
+                <div class="rw-cl">Currency</div>
+                <div class="rw-cl">$99.99</div>
+                <div class="rw-cl">
+                  <select class="lc-sl">
+                    <option value="eur">€89.99</option>
+                    <option value="gbp">£79.99</option>
+                    <option value="cad">CAD $129.99</option>
+                  </select>
+                </div>
+                <div class="rw-cl">
+                  <button class="ac-bt apply">Apply</button>
+                </div>
+              </div>
+              <div class="tb-rw">
+                <div class="rw-cl">Date Format</div>
+                <div class="rw-cl">12/25/2024</div>
+                <div class="rw-cl">
+                  <select class="lc-sl">
+                    <option value="eu">25/12/2024</option>
+                    <option value="iso">2024-12-25</option>
+                    <option value="long">25 December 2024</option>
+                  </select>
+                </div>
+                <div class="rw-cl">
+                  <button class="ac-bt apply">Apply</button>
+                </div>
+              </div>
+              <div class="tb-rw">
+                <div class="rw-cl">Phone Format</div>
+                <div class="rw-cl">+1 (555) 123-4567</div>
+                <div class="rw-cl">
+                  <input type="text" class="lc-in" value="+33 1 23 45 67 89">
+                </div>
+                <div class="rw-cl">
+                  <button class="ac-bt apply">Apply</button>
+                </div>
+              </div>
+              <div class="tb-rw">
+                <div class="rw-cl">Address</div>
+                <div class="rw-cl">123 Main St, City, State 12345</div>
+                <div class="rw-cl">
+                  <input type="text" class="lc-in" value="123 Rue Principale, 75001 Paris">
+                </div>
+                <div class="rw-cl">
+                  <button class="ac-bt apply">Apply</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cultural Preferences -->
+        <div class="cp-cd">
+          <h3>🎨 Cultural Preferences</h3>
+          <div class="cp-gd">
+            <div class="cp-it">
+              <div class="cp-hd">Color Associations</div>
+              <div class="cp-bd">
+                <div class="cl-ls">
+                  <div class="cl-it">
+                    <div class="cl-sw" style="background: #ff0000;"></div>
+                    <div class="cl-info">
+                      <div class="cl-nm">Red</div>
+                      <div class="cl-ds">Luck in China, Danger in Western cultures</div>
+                    </div>
+                  </div>
+                  <div class="cl-it">
+                    <div class="cl-sw" style="background: #ffffff; border: 1px solid #ccc;"></div>
+                    <div class="cl-info">
+                      <div class="cl-nm">White</div>
+                      <div class="cl-ds">Purity in West, Mourning in some Asian cultures</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="cp-it">
+              <div class="cp-hd">Reading Direction</div>
+              <div class="cp-bd">
+                <div class="rd-ls">
+                  <label class="rd-it">
+                    <input type="radio" name="readingDir" value="ltr" checked>
+                    <span class="rd-lb">Left to Right (LTR)</span>
+                  </label>
+                  <label class="rd-it">
+                    <input type="radio" name="readingDir" value="rtl">
+                    <span class="rd-lb">Right to Left (RTL)</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep3"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="nextStep3"><span>Optimize & Export</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: SEO Optimization & Export -->
+    <div class="st-bx" id="step4" style="display:none">
+      <div class="st-ic">🚀</div>
+      <div class="st-hd">
+        <h2>SEO Optimization & Export</h2>
+        <p>Optimize for local search and export your multilingual content</p>
+      </div>
+      <div class="st-bd">
+        <div class="op-gd">
+          <!-- SEO Analysis -->
+          <div class="seo-cd">
+            <h3>📈 SEO Analysis</h3>
+            <div class="seo-ls">
+              <div class="seo-it">
+                <div class="seo-lg">
+                  <div class="seo-fl">🇪🇸</div>
+                  <span class="seo-nm">Spanish</span>
+                </div>
+                <div class="seo-mt">
+                  <div class="mt-it">
+                    <span class="mt-lb">Keyword Density:</span>
+                    <span class="mt-vl good">2.3%</span>
+                  </div>
+                  <div class="mt-it">
+                    <span class="mt-lb">Readability:</span>
+                    <span class="mt-vl excellent">95/100</span>
+                  </div>
+                  <div class="mt-it">
+                    <span class="mt-lb">Local Keywords:</span>
+                    <span class="mt-vl good">8 found</span>
+                  </div>
+                </div>
+                <div class="seo-sc">92</div>
+              </div>
+              <div class="seo-it">
+                <div class="seo-lg">
+                  <div class="seo-fl">🇫🇷</div>
+                  <span class="seo-nm">French</span>
+                </div>
+                <div class="seo-mt">
+                  <div class="mt-it">
+                    <span class="mt-lb">Keyword Density:</span>
+                    <span class="mt-vl warning">3.1%</span>
+                  </div>
+                  <div class="mt-it">
+                    <span class="mt-lb">Readability:</span>
+                    <span class="mt-vl good">88/100</span>
+                  </div>
+                  <div class="mt-it">
+                    <span class="mt-lb">Local Keywords:</span>
+                    <span class="mt-vl good">6 found</span>
+                  </div>
+                </div>
+                <div class="seo-sc">87</div>
+              </div>
+              <div class="seo-it">
+                <div class="seo-lg">
+                  <div class="seo-fl">🇩🇪</div>
+                  <span class="seo-nm">German</span>
+                </div>
+                <div class="seo-mt">
+                  <div class="mt-it">
+                    <span class="mt-lb">Keyword Density:</span>
+                    <span class="mt-vl good">2.7%</span>
+                  </div>
+                  <div class="mt-it">
+                    <span class="mt-lb">Readability:</span>
+                    <span class="mt-vl good">91/100</span>
+                  </div>
+                  <div class="mt-it">
+                    <span class="mt-lb">Local Keywords:</span>
+                    <span class="mt-vl excellent">12 found</span>
+                  </div>
+                </div>
+                <div class="seo-sc">94</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Export Options -->
+          <div class="ex-cd">
+            <h3>📤 Export Options</h3>
+            <div class="ex-gd">
+              <div class="ex-it">
+                <div class="ex-ic">📄</div>
+                <div class="ex-info">
+                  <div class="ex-nm">Document Files</div>
+                  <div class="ex-ds">Export as Word, PDF, or text files</div>
+                </div>
+                <div class="ex-fm">
+                  <select class="ex-sl">
+                    <option value="docx">Word (.docx)</option>
+                    <option value="pdf">PDF (.pdf)</option>
+                    <option value="txt">Text (.txt)</option>
+                  </select>
+                  <button class="ex-bt">Download</button>
+                </div>
+              </div>
+              <div class="ex-it">
+                <div class="ex-ic">🌐</div>
+                <div class="ex-info">
+                  <div class="ex-nm">Web Files</div>
+                  <div class="ex-ds">Export as HTML with proper hreflang tags</div>
+                </div>
+                <div class="ex-fm">
+                  <select class="ex-sl">
+                    <option value="html">HTML (.html)</option>
+                    <option value="json">JSON (.json)</option>
+                    <option value="xml">XML (.xml)</option>
+                  </select>
+                  <button class="ex-bt">Download</button>
+                </div>
+              </div>
+              <div class="ex-it">
+                <div class="ex-ic">🔗</div>
+                <div class="ex-info">
+                  <div class="ex-nm">CMS Integration</div>
+                  <div class="ex-ds">Direct integration with popular CMS platforms</div>
+                </div>
+                <div class="ex-fm">
+                  <select class="ex-sl">
+                    <option value="wordpress">WordPress</option>
+                    <option value="drupal">Drupal</option>
+                    <option value="shopify">Shopify</option>
+                  </select>
+                  <button class="ex-bt">Publish</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Summary Stats -->
+        <div class="sm-cd">
+          <h3>📊 Translation Summary</h3>
+          <div class="sm-gd">
+            <div class="sm-it">
+              <div class="sm-ic">🌍</div>
+              <div class="sm-vl">3</div>
+              <div class="sm-lb">Languages</div>
+            </div>
+            <div class="sm-it">
+              <div class="sm-ic">📝</div>
+              <div class="sm-vl">1,247</div>
+              <div class="sm-lb">Words Translated</div>
+            </div>
+            <div class="sm-it">
+              <div class="sm-ic">⏱️</div>
+              <div class="sm-vl">2.3</div>
+              <div class="sm-lb">Minutes Saved</div>
+            </div>
+            <div class="sm-it">
+              <div class="sm-ic">💰</div>
+              <div class="sm-vl">$127</div>
+              <div class="sm-lb">Cost Savings</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep4"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="completeProject"><span>Complete Project</span><span class="bt-ar">✓</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<style>
+.lg-gd { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+.lg-cd { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+.lg-cd h3 { margin: 0 0 1rem 0; font-weight: 600; }
+
+.fl-up { display: flex; align-items: center; gap: 1rem; }
+.fl-bt { padding: 0.75rem 1rem; background: #f3f4f6; border: 1px solid #d1d5db; border-radius: 6px; cursor: pointer; }
+.fl-bt:hover { background: #e5e7eb; }
+.fl-nm { font-size: 0.875rem; color: #6b7280; }
+
+.tg-ls { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem; }
+.tg-it { display: flex; align-items: center; gap: 1rem; padding: 1rem; border: 1px solid #e5e7eb; border-radius: 6px; cursor: pointer; }
+.tg-it:hover { background: #f9fafb; }
+.tg-fl { font-size: 1.5rem; }
+.tg-info { flex: 1; }
+.tg-nm { font-weight: 500; margin-bottom: 0.25rem; }
+.tg-rg { font-size: 0.875rem; color: #6b7280; }
+.tg-ch { position: relative; }
+.tg-ch input { position: absolute; opacity: 0; }
+.ch-mk { display: block; width: 20px; height: 20px; border: 2px solid #d1d5db; border-radius: 4px; position: relative; }
+.tg-ch input:checked + .ch-mk { background: #2563eb; border-color: #2563eb; }
+.tg-ch input:checked + .ch-mk::after { content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 0.75rem; }
+
+.tg-st { display: flex; justify-content: space-between; padding: 1rem; background: #f9fafb; border-radius: 6px; }
+.st-it { display: flex; align-items: center; gap: 0.5rem; }
+.st-lb { font-weight: 500; }
+.st-ct { color: #2563eb; font-weight: 600; }
+.st-pr { color: #10b981; font-weight: 600; }
+
+.tr-gd { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+.tr-pr, .tr-pv { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+.tr-pr h3, .tr-pv h3 { margin: 0 0 1rem 0; font-weight: 600; }
+
+.pr-ls { display: flex; flex-direction: column; gap: 1rem; }
+.pr-it { display: flex; align-items: center; gap: 1rem; }
+.pr-lg { display: flex; align-items: center; gap: 0.5rem; min-width: 100px; }
+.pr-fl { font-size: 1.25rem; }
+.pr-nm { font-weight: 500; }
+.pr-br { flex: 1; height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden; }
+.pr-fl { height: 100%; background: #10b981; transition: width 0.3s ease; }
+.pr-st { min-width: 100px; text-align: right; font-size: 0.875rem; }
+.pr-st.completed { color: #10b981; }
+.pr-st.processing { color: #f59e0b; }
+.pr-st.pending { color: #6b7280; }
+
+.pv-tb { }
+.tb-hd { display: flex; border-bottom: 1px solid #e5e7eb; margin-bottom: 1rem; }
+.tb-bt { padding: 0.75rem 1rem; border: none; background: none; cursor: pointer; border-bottom: 2px solid transparent; }
+.tb-bt.active { border-bottom-color: #2563eb; color: #2563eb; font-weight: 500; }
+.tb-cn { }
+.cn-bx { display: none; }
+.cn-bx.active { display: block; }
+.cn-tx { padding: 1rem; background: #f9fafb; border-radius: 6px; margin-bottom: 1rem; line-height: 1.6; }
+.cn-ac { display: flex; gap: 0.5rem; }
+.ac-bt { padding: 0.5rem 1rem; border: 1px solid #d1d5db; background: white; border-radius: 4px; cursor: pointer; font-size: 0.875rem; }
+.ac-bt:hover { background: #f3f4f6; }
+.ac-bt.approve { background: #10b981; color: white; border-color: #10b981; }
+
+.tr-st { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+.tr-st h3 { margin: 0 0 1rem 0; font-weight: 600; }
+.st-gd { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.st-gr { }
+.st-lb { display: flex; align-items: center; justify-content: space-between; }
+.st-sl { width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 4px; }
+
+.tg-sw { position: relative; display: inline-block; width: 44px; height: 24px; }
+.tg-sw input { opacity: 0; width: 0; height: 0; }
+.sw-sl { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #ccc; border-radius: 24px; transition: 0.4s; }
+.sw-sl:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: 0.4s; }
+.tg-sw input:checked + .sw-sl { background: #2563eb; }
+.tg-sw input:checked + .sw-sl:before { transform: translateX(20px); }
+
+.lc-gd { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+.ci-cd, .la-cd { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+.ci-cd h3, .la-cd h3 { margin: 0 0 1rem 0; font-weight: 600; }
+
+.ci-ls { display: flex; flex-direction: column; gap: 1rem; }
+.ci-it { display: flex; gap: 1rem; padding: 1rem; border: 1px solid #e5e7eb; border-radius: 6px; }
+.ci-ic { font-size: 1.5rem; }
+.ci-info { flex: 1; }
+.ci-tl { font-weight: 500; margin-bottom: 0.5rem; }
+.ci-ds { font-size: 0.875rem; color: #6b7280; margin-bottom: 0.5rem; }
+.ci-tg { display: flex; gap: 0.5rem; }
+.tg-it { padding: 0.25rem 0.5rem; background: #e5e7eb; border-radius: 12px; font-size: 0.75rem; }
+
+.la-tb { }
+.tb-hd { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 1rem; padding: 0.75rem; background: #f9fafb; border-radius: 6px 6px 0 0; font-weight: 500; }
+.tb-rw { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 1rem; padding: 0.75rem; border-bottom: 1px solid #e5e7eb; align-items: center; }
+.lc-sl, .lc-in { padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 4px; width: 100%; }
+.ac-bt.apply { background: #2563eb; color: white; border-color: #2563eb; }
+
+.cp-cd { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+.cp-cd h3 { margin: 0 0 1rem 0; font-weight: 600; }
+.cp-gd { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.cp-it { }
+.cp-hd { font-weight: 500; margin-bottom: 0.5rem; }
+.cp-bd { }
+
+.cl-ls { display: flex; flex-direction: column; gap: 0.5rem; }
+.cl-it { display: flex; align-items: center; gap: 0.5rem; }
+.cl-sw { width: 20px; height: 20px; border-radius: 4px; }
+.cl-info { }
+.cl-nm { font-weight: 500; font-size: 0.875rem; }
+.cl-ds { font-size: 0.75rem; color: #6b7280; }
+
+.rd-ls { display: flex; flex-direction: column; gap: 0.5rem; }
+.rd-it { display: flex; align-items: center; gap: 0.5rem; }
+.rd-lb { font-size: 0.875rem; }
+
+.op-gd { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+.seo-cd, .ex-cd { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+.seo-cd h3, .ex-cd h3 { margin: 0 0 1rem 0; font-weight: 600; }
+
+.seo-ls { display: flex; flex-direction: column; gap: 1rem; }
+.seo-it { display: flex; align-items: center; gap: 1rem; padding: 1rem; border: 1px solid #e5e7eb; border-radius: 6px; }
+.seo-lg { display: flex; align-items: center; gap: 0.5rem; min-width: 100px; }
+.seo-fl { font-size: 1.25rem; }
+.seo-nm { font-weight: 500; }
+.seo-mt { flex: 1; display: flex; flex-direction: column; gap: 0.25rem; }
+.mt-it { display: flex; justify-content: space-between; font-size: 0.875rem; }
+.mt-lb { color: #6b7280; }
+.mt-vl { font-weight: 500; }
+.mt-vl.excellent { color: #10b981; }
+.mt-vl.good { color: #059669; }
+.mt-vl.warning { color: #f59e0b; }
+.seo-sc { font-size: 1.5rem; font-weight: 600; color: #10b981; }
+
+.ex-gd { display: flex; flex-direction: column; gap: 1rem; }
+.ex-it { display: flex; align-items: center; gap: 1rem; padding: 1rem; border: 1px solid #e5e7eb; border-radius: 6px; }
+.ex-ic { font-size: 1.5rem; }
+.ex-info { flex: 1; }
+.ex-nm { font-weight: 500; margin-bottom: 0.25rem; }
+.ex-ds { font-size: 0.875rem; color: #6b7280; }
+.ex-fm { display: flex; gap: 0.5rem; }
+.ex-sl { padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 4px; }
+.ex-bt { padding: 0.5rem 1rem; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; }
+.ex-bt:hover { background: #1d4ed8; }
+
+.sm-cd { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+.sm-cd h3 { margin: 0 0 1rem 0; font-weight: 600; }
+.sm-gd { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.sm-it { text-align: center; padding: 1rem; }
+.sm-ic { font-size: 2rem; margin-bottom: 0.5rem; }
+.sm-vl { font-size: 1.5rem; font-weight: 600; color: #2563eb; margin-bottom: 0.25rem; }
+.sm-lb { font-size: 0.875rem; color: #6b7280; }
+</style>
+
+<script>
+let currentStep = 1;
+let selectedLanguages = [];
+let translationData = {};
+
+// Step navigation
+function showStep(step) {
+  document.querySelectorAll('.st-bx').forEach(box => box.style.display = 'none');
+  document.getElementById(`step${step}`).style.display = 'block';
+  
+  // Update progress
+  document.querySelectorAll('.pr-it').forEach((item, index) => {
+    item.classList.toggle('cp', index + 1 === step);
+    item.classList.toggle('cm', index + 1 < step);
+  });
+  
+  currentStep = step;
+}
+
+// Step 1: Setup
+document.getElementById('nextStep1').addEventListener('click', () => {
+  const content = document.getElementById('sourceContent').value;
+  if (!content.trim()) {
+    alert('Please enter content to translate');
+    return;
+  }
+  
+  selectedLanguages = Array.from(document.querySelectorAll('.tg-ch input:checked')).map(cb => cb.value);
+  if (selectedLanguages.length === 0) {
+    alert('Please select at least one target language');
+    return;
+  }
+  
+  showStep(2);
+  simulateTranslation();
+});
+
+// Language selection
+document.querySelectorAll('.tg-ch input').forEach(checkbox => {
+  checkbox.addEventListener('change', updateLanguageStats);
+});
+
+function updateLanguageStats() {
+  const selected = document.querySelectorAll('.tg-ch input:checked').length;
+  document.getElementById('selectedCount').textContent = selected;
+  document.getElementById('estimatedCost').textContent = `$${(selected * 15).toFixed(0)}`;
+}
+
+// File upload
+document.getElementById('fileInput').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (file) {
+    document.getElementById('fileName').textContent = file.name;
+    // Simulate file reading
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('sourceContent').value = 'File content loaded: ' + file.name;
+    };
+    reader.readAsText(file);
+  }
+});
+
+// Step 2: Translation
+document.getElementById('backStep2').addEventListener('click', () => showStep(1));
+document.getElementById('nextStep2').addEventListener('click', () => showStep(3));
+
+function simulateTranslation() {
+  const progressItems = document.querySelectorAll('.pr-it');
+  let currentIndex = 0;
+  
+  function updateProgress() {
+    if (currentIndex < progressItems.length) {
+      const item = progressItems[currentIndex];
+      const progressBar = item.querySelector('.pr-fl');
+      const status = item.querySelector('.pr-st');
+      
+      // Simulate progress
+      let width = 0;
+      const interval = setInterval(() => {
+        width += 10;
+        progressBar.style.width = width + '%';
+        
+        if (width >= 100) {
+          clearInterval(interval);
+          status.textContent = '✓ Complete';
+          status.className = 'pr-st completed';
+          currentIndex++;
+          setTimeout(updateProgress, 500);
+        }
+      }, 100);
+    }
+  }
+  
+  updateProgress();
+}
+
+// Translation preview tabs
+document.querySelectorAll('.tb-bt').forEach(button => {
+  button.addEventListener('click', function() {
+    const lang = this.dataset.lang;
+    
+    // Update active tab
+    document.querySelectorAll('.tb-bt').forEach(btn => btn.classList.remove('active'));
+    this.classList.add('active');
+    
+    // Show corresponding content
+    document.querySelectorAll('.cn-bx').forEach(box => box.classList.remove('active'));
+    document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+  });
+});
+
+// Step 3: Localization
+document.getElementById('backStep3').addEventListener('click', () => showStep(2));
+document.getElementById('nextStep3').addEventListener('click', () => showStep(4));
+
+// Apply localization changes
+document.querySelectorAll('.ac-bt.apply').forEach(button => {
+  button.addEventListener('click', function() {
+    this.textContent = '✓ Applied';
+    this.style.background = '#10b981';
+    this.disabled = true;
+  });
+});
+
+// Step 4: Export
+document.getElementById('backStep4').addEventListener('click', () => showStep(3));
+
+document.getElementById('completeProject').addEventListener('click', function() {
+  alert('Project completed successfully! All translations have been processed and are ready for use.');
+});
+
+// Export buttons
+document.querySelectorAll('.ex-bt').forEach(button => {
+  button.addEventListener('click', function() {
+    const format = this.previousElementSibling.value;
+    const action = this.textContent;
+    
+    if (action === 'Download') {
+      // Simulate download
+      const blob = new Blob(['Translated content in ' + format + ' format'], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `translations.${format}`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } else if (action === 'Publish') {
+      alert(`Publishing to ${format}...`);
+    }
+  });
+});
+
+// Initialize
+showStep(1);
+updateLanguageStats();
+</script>
+</Layout>

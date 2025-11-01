@@ -1,0 +1,661 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+---
+<Layout>
+<Nav/>
+<main class="mn">
+  <div class="pg-hd">
+    <div class="hd-ic">👥</div>
+    <h1 class="tl">Collaborative Workspace</h1>
+    <p class="st">Create, edit, and manage content with your team in real-time</p>
+  </div>
+
+  <!-- Progress -->
+  <div class="pr-wr">
+    <div class="pr-st" id="progressBar">
+      <div class="pr-it cp" data-step="1"><div class="pr-nm">1</div><div class="pr-lb">Setup</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="2"><div class="pr-nm">2</div><div class="pr-lb">Invite</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="3"><div class="pr-nm">3</div><div class="pr-lb">Create</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="4"><div class="pr-nm">4</div><div class="pr-lb">Collaborate</div></div>
+    </div>
+  </div>
+
+  <div class="st-cn">
+    <!-- Step 1: Workspace Setup -->
+    <div class="st-bx" id="step1">
+      <div class="st-ic">🏢</div>
+      <div class="st-hd">
+        <h2>Create Your Workspace</h2>
+        <p>Set up your collaborative content workspace</p>
+      </div>
+      <div class="st-bd">
+        <div class="fm-gd">
+          <div class="fm-gr">
+            <label class="fm-lb">
+              <span class="lb-tx">Workspace Name</span>
+              <input type="text" id="workspaceName" class="fm-in" placeholder="e.g., Marketing Team, Blog Content, Product Launch">
+            </label>
+          </div>
+          <div class="fm-gr">
+            <label class="fm-lb">
+              <span class="lb-tx">Description</span>
+              <textarea id="workspaceDesc" class="fm-ta" placeholder="Brief description of your workspace purpose..."></textarea>
+            </label>
+          </div>
+          <div class="fm-gr">
+            <label class="fm-lb">
+              <span class="lb-tx">Workspace Type</span>
+              <select id="workspaceType" class="fm-sl">
+                <option value="marketing">Marketing Team</option>
+                <option value="content">Content Creation</option>
+                <option value="product">Product Documentation</option>
+                <option value="agency">Agency Client Work</option>
+                <option value="personal">Personal Projects</option>
+              </select>
+            </label>
+          </div>
+          <div class="fm-gr">
+            <label class="fm-lb">
+              <span class="lb-tx">Privacy Settings</span>
+              <div class="pr-gd">
+                <label class="pr-it"><input type="radio" name="privacy" value="private" checked><span class="pr-lb">🔒 Private - Invite only</span></label>
+                <label class="pr-it"><input type="radio" name="privacy" value="team"><span class="pr-lb">👥 Team - Organization members</span></label>
+                <label class="pr-it"><input type="radio" name="privacy" value="public"><span class="pr-lb">🌐 Public - Anyone with link</span></label>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="bt-gr">
+          <button class="bt-pr" id="nextStep1"><span>Invite Team Members</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Team Invitations -->
+    <div class="st-bx" id="step2" style="display:none">
+      <div class="st-ic">📧</div>
+      <div class="st-hd">
+        <h2>Invite Team Members</h2>
+        <p>Add collaborators to your workspace</p>
+      </div>
+      <div class="st-bd">
+        <div class="iv-gd">
+          <div class="iv-cd">
+            <h3>Add Members</h3>
+            <div class="mb-fm">
+              <div class="mb-in">
+                <input type="email" id="memberEmail" class="fm-in" placeholder="Enter email address">
+                <select id="memberRole" class="fm-sl">
+                  <option value="editor">Editor</option>
+                  <option value="reviewer">Reviewer</option>
+                  <option value="viewer">Viewer</option>
+                  <option value="admin">Admin</option>
+                </select>
+                <button class="bt-sc" id="addMember">Add</button>
+              </div>
+              <div class="mb-bl">
+                <button class="bl-bt" id="bulkInvite">📋 Bulk Invite</button>
+                <button class="bl-bt" id="importContacts">📱 Import Contacts</button>
+              </div>
+            </div>
+          </div>
+          <div class="iv-cd">
+            <h3>Team Members</h3>
+            <div class="tm-ls" id="teamList">
+              <div class="tm-it owner">
+                <div class="tm-av">👤</div>
+                <div class="tm-info">
+                  <div class="tm-nm">You</div>
+                  <div class="tm-em">owner@example.com</div>
+                </div>
+                <div class="tm-rl">Owner</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="rl-gd">
+          <div class="rl-cd">
+            <h4>👑 Admin</h4>
+            <p>Full access, manage members, settings</p>
+          </div>
+          <div class="rl-cd">
+            <h4>✏️ Editor</h4>
+            <p>Create, edit, and publish content</p>
+          </div>
+          <div class="rl-cd">
+            <h4>👀 Reviewer</h4>
+            <p>Review, comment, and approve content</p>
+          </div>
+          <div class="rl-cd">
+            <h4>👁️ Viewer</h4>
+            <p>View content and leave comments</p>
+          </div>
+        </div>
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep2"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="nextStep2"><span>Create Content</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Content Creation -->
+    <div class="st-bx" id="step3" style="display:none">
+      <div class="st-ic">📝</div>
+      <div class="st-hd">
+        <h2>Create New Content</h2>
+        <p>Start a new collaborative project</p>
+      </div>
+      <div class="st-bd">
+        <div class="ct-gd">
+          <div class="ct-cd" data-type="article">
+            <div class="ct-ic">📄</div>
+            <div class="ct-info">
+              <h3 class="ct-nm">Article</h3>
+              <p class="ct-ds">Blog posts, guides, and long-form content</p>
+            </div>
+            <button class="ct-bt">Create</button>
+          </div>
+          <div class="ct-cd" data-type="social">
+            <div class="ct-ic">📱</div>
+            <div class="ct-info">
+              <h3 class="ct-nm">Social Media</h3>
+              <p class="ct-ds">Posts for Facebook, Twitter, LinkedIn</p>
+            </div>
+            <button class="ct-bt">Create</button>
+          </div>
+          <div class="ct-cd" data-type="email">
+            <div class="ct-ic">📧</div>
+            <div class="ct-info">
+              <h3 class="ct-nm">Email Campaign</h3>
+              <p class="ct-ds">Newsletters and marketing emails</p>
+            </div>
+            <button class="ct-bt">Create</button>
+          </div>
+          <div class="ct-cd" data-type="landing">
+            <div class="ct-ic">🎯</div>
+            <div class="ct-info">
+              <h3 class="ct-nm">Landing Page</h3>
+              <p class="ct-ds">Sales pages and conversion content</p>
+            </div>
+            <button class="ct-bt">Create</button>
+          </div>
+          <div class="ct-cd" data-type="video">
+            <div class="ct-ic">🎥</div>
+            <div class="ct-info">
+              <h3 class="ct-nm">Video Script</h3>
+              <p class="ct-ds">YouTube, TikTok, and video content</p>
+            </div>
+            <button class="ct-bt">Create</button>
+          </div>
+          <div class="ct-cd" data-type="presentation">
+            <div class="ct-ic">📊</div>
+            <div class="ct-info">
+              <h3 class="ct-nm">Presentation</h3>
+              <p class="ct-ds">Slides and pitch decks</p>
+            </div>
+            <button class="ct-bt">Create</button>
+          </div>
+        </div>
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep3"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="nextStep3"><span>Start Collaborating</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: Collaboration Interface -->
+    <div class="st-bx" id="step4" style="display:none">
+      <div class="st-ic">🤝</div>
+      <div class="st-hd">
+        <h2>Collaborative Editor</h2>
+        <p>Real-time editing with your team</p>
+      </div>
+      <div class="st-bd">
+        <div class="ed-gd">
+          <!-- Sidebar -->
+          <div class="ed-sb">
+            <div class="sb-sc">
+              <h3>Team Activity</h3>
+              <div class="ac-ls" id="activityList">
+                <div class="ac-it">
+                  <div class="ac-av">👤</div>
+                  <div class="ac-tx">Sarah started editing</div>
+                  <div class="ac-tm">2m ago</div>
+                </div>
+                <div class="ac-it">
+                  <div class="ac-av">👨</div>
+                  <div class="ac-tx">Mike added a comment</div>
+                  <div class="ac-tm">5m ago</div>
+                </div>
+                <div class="ac-it">
+                  <div class="ac-av">👩</div>
+                  <div class="ac-tx">Lisa approved changes</div>
+                  <div class="ac-tm">10m ago</div>
+                </div>
+              </div>
+            </div>
+            <div class="sb-sc">
+              <h3>Online Now</h3>
+              <div class="on-ls" id="onlineList">
+                <div class="on-it">
+                  <div class="on-av online">👤</div>
+                  <div class="on-nm">Sarah</div>
+                  <div class="on-st">Editing</div>
+                </div>
+                <div class="on-it">
+                  <div class="on-av online">👨</div>
+                  <div class="on-nm">Mike</div>
+                  <div class="on-st">Reviewing</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Editor -->
+          <div class="ed-mn">
+            <div class="ed-tb">
+              <div class="tb-gr">
+                <button class="tb-bt" id="boldBtn"><strong>B</strong></button>
+                <button class="tb-bt" id="italicBtn"><em>I</em></button>
+                <button class="tb-bt" id="underlineBtn"><u>U</u></button>
+              </div>
+              <div class="tb-gr">
+                <button class="tb-bt" id="headingBtn">H1</button>
+                <button class="tb-bt" id="listBtn">• List</button>
+                <button class="tb-bt" id="linkBtn">🔗</button>
+              </div>
+              <div class="tb-gr">
+                <button class="tb-bt" id="commentBtn">💬</button>
+                <button class="tb-bt" id="suggestBtn">✏️</button>
+                <button class="tb-bt" id="approveBtn">✅</button>
+              </div>
+            </div>
+            <div class="ed-ct">
+              <div class="ed-tl">
+                <input type="text" id="contentTitle" class="tl-in" placeholder="Enter your title here..." value="Collaborative Content Strategy">
+              </div>
+              <div class="ed-bd" id="editor" contenteditable="true">
+                <h2>Introduction</h2>
+                <p>Welcome to our collaborative workspace! This is where we'll create amazing content together.</p>
+                
+                <h2>Content Strategy</h2>
+                <p>Our approach focuses on:</p>
+                <ul>
+                  <li>Audience-first content creation</li>
+                  <li>Data-driven optimization</li>
+                  <li>Cross-platform distribution</li>
+                </ul>
+
+                <h2>Next Steps</h2>
+                <p>Let's work together to refine this content and make it even better!</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comments Panel -->
+          <div class="ed-cm">
+            <h3>Comments</h3>
+            <div class="cm-ls" id="commentsList">
+              <div class="cm-it">
+                <div class="cm-av">👨</div>
+                <div class="cm-ct">
+                  <div class="cm-hd">
+                    <span class="cm-nm">Mike</span>
+                    <span class="cm-tm">5m ago</span>
+                  </div>
+                  <div class="cm-tx">Great start! Maybe we should add more specific examples?</div>
+                  <div class="cm-ac">
+                    <button class="cm-bt">Reply</button>
+                    <button class="cm-bt">Resolve</button>
+                  </div>
+                </div>
+              </div>
+              <div class="cm-it">
+                <div class="cm-av">👩</div>
+                <div class="cm-ct">
+                  <div class="cm-hd">
+                    <span class="cm-nm">Lisa</span>
+                    <span class="cm-tm">10m ago</span>
+                  </div>
+                  <div class="cm-tx">The strategy section looks good. Ready to approve!</div>
+                  <div class="cm-ac">
+                    <button class="cm-bt">Reply</button>
+                    <button class="cm-bt resolved">Resolved</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="cm-fm">
+              <textarea id="newComment" class="cm-in" placeholder="Add a comment..."></textarea>
+              <button class="cm-sb" id="submitComment">Post</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep4"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="saveContent"><span>Save & Publish</span><span class="bt-ar">💾</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<style>
+.pr-gd { display: flex; flex-direction: column; gap: 0.5rem; }
+.pr-it { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 6px; cursor: pointer; }
+.pr-it:hover { background: #f3f4f6; }
+.pr-lb { font-size: 0.875rem; }
+
+.iv-gd { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+.iv-cd { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+.mb-fm { display: flex; flex-direction: column; gap: 1rem; }
+.mb-in { display: flex; gap: 0.5rem; }
+.mb-bl { display: flex; gap: 0.5rem; }
+.bl-bt { padding: 0.5rem 1rem; border: 1px solid #d1d5db; background: white; border-radius: 6px; cursor: pointer; font-size: 0.875rem; }
+.bl-bt:hover { background: #f3f4f6; }
+
+.tm-ls { display: flex; flex-direction: column; gap: 0.5rem; max-height: 300px; overflow-y: auto; }
+.tm-it { display: flex; align-items: center; gap: 1rem; padding: 1rem; background: #f9fafb; border-radius: 6px; }
+.tm-it.owner { background: #fef3c7; }
+.tm-av { width: 40px; height: 40px; border-radius: 50%; background: #e5e7eb; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; }
+.tm-info { flex: 1; }
+.tm-nm { font-weight: 600; margin-bottom: 0.25rem; }
+.tm-em { font-size: 0.875rem; color: #6b7280; }
+.tm-rl { padding: 0.25rem 0.75rem; background: #2563eb; color: white; border-radius: 12px; font-size: 0.75rem; }
+
+.rl-gd { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+.rl-cd { padding: 1rem; border: 1px solid #e5e7eb; border-radius: 6px; text-align: center; }
+.rl-cd h4 { margin: 0 0 0.5rem 0; font-size: 0.875rem; }
+.rl-cd p { margin: 0; font-size: 0.75rem; color: #6b7280; }
+
+.ct-gd { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+.ct-cd { display: flex; align-items: center; gap: 1rem; padding: 1.5rem; border: 2px solid #e5e7eb; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+.ct-cd:hover { border-color: #2563eb; background: #f8faff; }
+.ct-cd.selected { border-color: #10b981; background: #f0fdf4; }
+.ct-ic { font-size: 2rem; }
+.ct-info { flex: 1; }
+.ct-nm { margin: 0 0 0.25rem 0; font-weight: 600; }
+.ct-ds { margin: 0; color: #6b7280; font-size: 0.875rem; }
+.ct-bt { padding: 0.5rem 1rem; border: 1px solid #2563eb; background: #2563eb; color: white; border-radius: 6px; cursor: pointer; }
+.ct-bt:hover { background: #1d4ed8; }
+
+.ed-gd { display: grid; grid-template-columns: 250px 1fr 300px; gap: 1rem; height: 600px; }
+.ed-sb { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1rem; overflow-y: auto; }
+.sb-sc { margin-bottom: 2rem; }
+.sb-sc h3 { margin: 0 0 1rem 0; font-size: 1rem; font-weight: 600; }
+
+.ac-ls { display: flex; flex-direction: column; gap: 0.5rem; }
+.ac-it { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem; background: #f9fafb; border-radius: 4px; }
+.ac-av { width: 24px; height: 24px; border-radius: 50%; background: #e5e7eb; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; }
+.ac-tx { flex: 1; font-size: 0.75rem; }
+.ac-tm { font-size: 0.625rem; color: #6b7280; }
+
+.on-ls { display: flex; flex-direction: column; gap: 0.5rem; }
+.on-it { display: flex; align-items: center; gap: 0.5rem; }
+.on-av { width: 24px; height: 24px; border-radius: 50%; background: #e5e7eb; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; position: relative; }
+.on-av.online::after { content: ''; position: absolute; bottom: -2px; right: -2px; width: 8px; height: 8px; background: #10b981; border-radius: 50%; border: 2px solid white; }
+.on-nm { font-weight: 500; font-size: 0.875rem; }
+.on-st { font-size: 0.75rem; color: #6b7280; }
+
+.ed-mn { background: white; border: 1px solid #e5e7eb; border-radius: 8px; display: flex; flex-direction: column; }
+.ed-tb { display: flex; gap: 1rem; padding: 1rem; border-bottom: 1px solid #e5e7eb; }
+.tb-gr { display: flex; gap: 0.25rem; }
+.tb-bt { padding: 0.5rem; border: 1px solid #d1d5db; background: white; border-radius: 4px; cursor: pointer; font-size: 0.875rem; }
+.tb-bt:hover { background: #f3f4f6; }
+.tb-bt.active { background: #2563eb; color: white; }
+
+.ed-ct { flex: 1; padding: 1rem; overflow-y: auto; }
+.tl-in { width: 100%; padding: 0.5rem; border: none; font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; }
+.tl-in:focus { outline: none; }
+.ed-bd { min-height: 400px; line-height: 1.6; }
+.ed-bd:focus { outline: none; }
+.ed-bd h2 { margin: 1.5rem 0 0.5rem 0; }
+.ed-bd p { margin: 0.5rem 0; }
+.ed-bd ul { margin: 0.5rem 0; padding-left: 1.5rem; }
+
+.ed-cm { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1rem; display: flex; flex-direction: column; }
+.ed-cm h3 { margin: 0 0 1rem 0; font-size: 1rem; font-weight: 600; }
+.cm-ls { flex: 1; overflow-y: auto; margin-bottom: 1rem; }
+.cm-it { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+.cm-av { width: 32px; height: 32px; border-radius: 50%; background: #e5e7eb; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+.cm-ct { flex: 1; }
+.cm-hd { display: flex; justify-content: space-between; margin-bottom: 0.25rem; }
+.cm-nm { font-weight: 500; font-size: 0.875rem; }
+.cm-tm { font-size: 0.75rem; color: #6b7280; }
+.cm-tx { font-size: 0.875rem; margin-bottom: 0.5rem; }
+.cm-ac { display: flex; gap: 0.5rem; }
+.cm-bt { padding: 0.25rem 0.5rem; border: 1px solid #d1d5db; background: white; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
+.cm-bt:hover { background: #f3f4f6; }
+.cm-bt.resolved { background: #10b981; color: white; border-color: #10b981; }
+
+.cm-fm { display: flex; flex-direction: column; gap: 0.5rem; }
+.cm-in { padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 4px; resize: vertical; min-height: 60px; }
+.cm-sb { padding: 0.5rem 1rem; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; }
+.cm-sb:hover { background: #1d4ed8; }
+</style>
+
+<script>
+let currentStep: number = 1;
+let workspace: { name?: string; desc?: string; type?: string; privacy?: string } = {};
+type TeamMember = { id: number; email: string; role: string; name: string; avatar: string; status: string };
+let teamMembers: TeamMember[] = [];
+let selectedContentType: string = '';
+
+function showStep(step: number): void {
+  document.querySelectorAll<HTMLElement>('.st-bx').forEach((box) => (box.style.display = 'none'));
+  const stepBox = document.getElementById(`step${step}`) as HTMLElement | null;
+  if (stepBox) stepBox.style.display = 'block';
+  document.querySelectorAll<HTMLElement>('.pr-it').forEach((item, index) => {
+    item.classList.toggle('cp', index + 1 === step);
+    item.classList.toggle('cm', index + 1 < step);
+  });
+  currentStep = step;
+}
+
+const nextStep1 = document.getElementById('nextStep1') as HTMLButtonElement | null;
+if (nextStep1) {
+  nextStep1.addEventListener('click', () => {
+    const nameEl = document.getElementById('workspaceName') as HTMLInputElement | null;
+    const descEl = document.getElementById('workspaceDesc') as HTMLTextAreaElement | null;
+    const typeEl = document.getElementById('workspaceType') as HTMLSelectElement | null;
+    const privacyEl = document.querySelector('input[name="privacy"]:checked') as HTMLInputElement | null;
+
+    const name = nameEl?.value ?? '';
+    const desc = descEl?.value ?? '';
+    const type = typeEl?.value ?? '';
+    const privacy = privacyEl?.value ?? '';
+
+    if (!name.trim()) {
+      alert('Please enter a workspace name');
+      return;
+    }
+    if (!privacy) {
+      alert('Please select a privacy option');
+      return;
+    }
+
+    workspace = { name, desc, type, privacy };
+    showStep(2);
+  });
+}
+
+const addMemberBtn = document.getElementById('addMember') as HTMLButtonElement | null;
+if (addMemberBtn) {
+  addMemberBtn.addEventListener('click', () => {
+    const emailEl = document.getElementById('memberEmail') as HTMLInputElement | null;
+    const roleEl = document.getElementById('memberRole') as HTMLSelectElement | null;
+    const email = emailEl?.value ?? '';
+    const role = roleEl?.value ?? 'editor';
+
+    if (!email.trim()) {
+      alert('Please enter an email address');
+      return;
+    }
+    if (!email.includes('@')) {
+      alert('Please enter a valid email address');
+      return;
+    }
+    addTeamMember(email, role);
+    if (emailEl) emailEl.value = '';
+  });
+}
+
+function addTeamMember(email: string, role: string): void {
+  const member: TeamMember = {
+    id: Date.now(),
+    email,
+    role,
+    name: email.split('@')[0],
+    avatar: '👤',
+    status: 'invited',
+  };
+  teamMembers.push(member);
+  updateTeamList();
+}
+
+function updateTeamList(): void {
+  const teamList = document.getElementById('teamList') as HTMLElement | null;
+  if (!teamList) return;
+  const memberItems = teamMembers
+    .map(
+      (member) => `
+    <div class="tm-it">
+      <div class="tm-av">${member.avatar}</div>
+      <div class="tm-info">
+        <div class="tm-nm">${member.name}</div>
+        <div class="tm-em">${member.email}</div>
+      </div>
+      <div class="tm-rl">${member.role}</div>
+    </div>
+  `
+    )
+    .join('');
+  teamList.innerHTML = teamList.innerHTML + memberItems;
+}
+
+const bulkInvite = document.getElementById('bulkInvite') as HTMLButtonElement | null;
+if (bulkInvite) {
+  bulkInvite.addEventListener('click', () => {
+    const emails = prompt('Enter email addresses separated by commas:');
+    if (emails) {
+      const emailList = emails
+        .split(',')
+        .map((e) => e.trim())
+        .filter((e) => e);
+      emailList.forEach((email) => {
+        if (email.includes('@')) addTeamMember(email, 'editor');
+      });
+    }
+  });
+}
+
+const backStep2 = document.getElementById('backStep2') as HTMLButtonElement | null;
+if (backStep2) backStep2.addEventListener('click', () => showStep(1));
+const nextStep2 = document.getElementById('nextStep2') as HTMLButtonElement | null;
+if (nextStep2) nextStep2.addEventListener('click', () => showStep(3));
+
+document.querySelectorAll<HTMLElement>('.ct-cd').forEach((card) => {
+  card.addEventListener('click', (e: MouseEvent) => {
+    document.querySelectorAll<HTMLElement>('.ct-cd').forEach((c) => c.classList.remove('selected'));
+    const target = e.currentTarget as HTMLElement;
+    target.classList.add('selected');
+    selectedContentType = target.dataset.type ?? '';
+  });
+});
+
+const backStep3 = document.getElementById('backStep3') as HTMLButtonElement | null;
+if (backStep3) backStep3.addEventListener('click', () => showStep(2));
+const nextStep3 = document.getElementById('nextStep3') as HTMLButtonElement | null;
+if (nextStep3) {
+  nextStep3.addEventListener('click', () => {
+    if (!selectedContentType) {
+      alert('Please select a content type');
+      return;
+    }
+    showStep(4);
+  });
+}
+
+const backStep4 = document.getElementById('backStep4') as HTMLButtonElement | null;
+if (backStep4) backStep4.addEventListener('click', () => showStep(3));
+
+const boldBtn = document.getElementById('boldBtn') as HTMLButtonElement | null;
+if (boldBtn) boldBtn.addEventListener('click', () => document.execCommand('bold'));
+const italicBtn = document.getElementById('italicBtn') as HTMLButtonElement | null;
+if (italicBtn) italicBtn.addEventListener('click', () => document.execCommand('italic'));
+const underlineBtn = document.getElementById('underlineBtn') as HTMLButtonElement | null;
+if (underlineBtn) underlineBtn.addEventListener('click', () => document.execCommand('underline'));
+const headingBtn = document.getElementById('headingBtn') as HTMLButtonElement | null;
+if (headingBtn) headingBtn.addEventListener('click', () => document.execCommand('formatBlock', false, 'h2'));
+const listBtn = document.getElementById('listBtn') as HTMLButtonElement | null;
+if (listBtn) listBtn.addEventListener('click', () => document.execCommand('insertUnorderedList'));
+const linkBtn = document.getElementById('linkBtn') as HTMLButtonElement | null;
+if (linkBtn)
+  linkBtn.addEventListener('click', () => {
+    const url = prompt('Enter URL:');
+    if (url) document.execCommand('createLink', false, url);
+  });
+
+const submitComment = document.getElementById('submitComment') as HTMLButtonElement | null;
+if (submitComment) {
+  submitComment.addEventListener('click', () => {
+    const commentEl = document.getElementById('newComment') as HTMLTextAreaElement | null;
+    const comment = commentEl?.value ?? '';
+    if (comment.trim()) {
+      addComment('You', comment);
+      if (commentEl) commentEl.value = '';
+    }
+  });
+}
+
+function addComment(author: string, text: string): void {
+  const commentsList = document.getElementById('commentsList') as HTMLElement | null;
+  if (!commentsList) return;
+  const commentHTML = `
+    <div class="cm-it">
+      <div class="cm-av">👤</div>
+      <div class="cm-ct">
+        <div class="cm-hd">
+          <span class="cm-nm">${author}</span>
+          <span class="cm-tm">now</span>
+        </div>
+        <div class="cm-tx">${text}</div>
+        <div class="cm-ac">
+          <button class="cm-bt">Reply</button>
+          <button class="cm-bt">Resolve</button>
+        </div>
+      </div>
+    </div>
+  `;
+  commentsList.insertAdjacentHTML('beforeend', commentHTML);
+}
+
+const saveContent = document.getElementById('saveContent') as HTMLButtonElement | null;
+if (saveContent) {
+  saveContent.addEventListener('click', () => {
+    const titleEl = document.getElementById('contentTitle') as HTMLInputElement | null;
+    const editorEl = document.getElementById('editor') as HTMLElement | null;
+    const title = titleEl?.value ?? '';
+    const content = editorEl?.innerHTML ?? '';
+    if (confirm('Save and publish this content?')) {
+      alert('Content saved successfully! Team members have been notified.');
+    }
+  });
+}
+
+function simulateActivity(): void {
+  const activities = ['Sarah is typing...', 'Mike viewed the document', 'Lisa left a comment', 'John joined the workspace'];
+  setInterval(() => {
+    const _activity = activities[Math.floor(Math.random() * activities.length)];
+  }, 10000);
+}
+
+showStep(1);
+simulateActivity();
+</script>
+</Layout>

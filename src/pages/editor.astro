@@ -1,0 +1,401 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+---
+<Layout>
+<Nav/>
+<main class="mn">
+<div class="ed-ly">
+<aside class="sd">
+<div class="sd-hd">
+<h3>Content Analysis</h3>
+</div>
+<div class="sc-bx">
+<div class="sc-cr">
+<svg class="sc-sv" viewBox="0 0 100 100">
+<circle class="sc-bg" cx="50" cy="50" r="45"></circle>
+<circle class="sc-fg" id="scoreCircle" cx="50" cy="50" r="45"></circle>
+<defs>
+<linearGradient id="gr" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" style="stop-color:#3b82f6"/>
+<stop offset="100%" style="stop-color:#2563eb"/>
+</linearGradient>
+</defs>
+</svg>
+<div class="sc-tx">
+<div class="sc-vl" id="scoreValue">0</div>
+<div class="sc-lb">NLP Score</div>
+</div>
+</div>
+</div>
+
+<div class="mt-sc">
+<h4>Content Metrics</h4>
+<div class="mt-it">
+<div class="mt-lb">Word Count</div>
+<div class="mt-vl" id="wordCount">0</div>
+</div>
+<div class="mt-it">
+<div class="mt-lb">Characters</div>
+<div class="mt-vl" id="charCount">0</div>
+</div>
+<div class="mt-it">
+<div class="mt-lb">Reading Time</div>
+<div class="mt-vl" id="readTime">0 min</div>
+</div>
+<div class="mt-it">
+<div class="mt-lb">Keyword Density</div>
+<div class="mt-vl" id="keywordDensity">0%</div>
+</div>
+</div>
+
+<div class="kw-sc">
+<h4>Target Keywords</h4>
+<div class="kw-in">
+<input type="text" id="keywordInput" placeholder="Enter target keyword" class="kw-inp">
+<button id="addKeyword" class="kw-btn">Add</button>
+</div>
+<div class="kw-ls" id="keywordList"></div>
+</div>
+
+<div class="sg-sc">
+<h4>Suggestions</h4>
+<div class="sg-ls" id="suggestionsList">
+<div class="sg-it inf">
+<span class="sg-ic">ℹ️</span>
+<span>Start writing to get optimization suggestions</span>
+</div>
+</div>
+</div>
+</aside>
+
+<div class="ed-mn">
+<div class="ed-hd">
+<input type="text" id="titleInput" placeholder="Enter your title here..." class="tl-in">
+<div class="ed-tb">
+<button class="tb-btn" title="Bold" data-action="bold"><strong>B</strong></button>
+<button class="tb-btn" title="Italic" data-action="italic"><em>I</em></button>
+<button class="tb-btn" title="Heading 2" data-action="h2">H2</button>
+<button class="tb-btn" title="Heading 3" data-action="h3">H3</button>
+<button class="tb-btn" title="Bullet List" data-action="ul">•</button>
+<button class="tb-btn" title="Numbered List" data-action="ol">1.</button>
+<div class="tb-sp"></div>
+<button class="tb-btn ac" id="analyzeBtn">⚡ Analyze Content</button>
+</div>
+</div>
+<div class="ed-ar">
+<div contenteditable="true" id="contentEditor" class="ed-tx" data-placeholder="Start writing your SEO-optimized content here...
+
+Tips for better content:
+- Use your target keywords naturally
+- Break content into clear sections with headings
+- Write for humans first, search engines second
+- Include relevant examples and details
+- Keep paragraphs concise and readable"></div>
+</div>
+</div>
+</div>
+</main>
+</Layout>
+
+<script>
+const contentEditor = document.getElementById('contentEditor') as HTMLDivElement;
+const titleInput = document.getElementById('titleInput') as HTMLInputElement;
+const scoreValue = document.getElementById('scoreValue') as HTMLDivElement;
+const scoreCircle = document.getElementById('scoreCircle') as SVGCircleElement;
+const wordCount = document.getElementById('wordCount') as HTMLDivElement;
+const charCount = document.getElementById('charCount') as HTMLDivElement;
+const readTime = document.getElementById('readTime') as HTMLDivElement;
+const keywordDensity = document.getElementById('keywordDensity') as HTMLDivElement;
+const keywordInput = document.getElementById('keywordInput') as HTMLInputElement;
+const addKeyword = document.getElementById('addKeyword') as HTMLButtonElement;
+const keywordList = document.getElementById('keywordList') as HTMLDivElement;
+const suggestionsList = document.getElementById('suggestionsList') as HTMLDivElement;
+const analyzeBtn = document.getElementById('analyzeBtn') as HTMLButtonElement;
+
+let targetKeywords: string[] = [];
+
+function updateMetrics() {
+  const text = contentEditor.innerText || '';
+  const words = text.trim().split(/\s+/).filter(w => w.length > 0);
+  const chars = text.length;
+  const wordsPerMinute = 200;
+  const minutes = Math.ceil(words.length / wordsPerMinute);
+
+  wordCount.textContent = words.length.toString();
+  charCount.textContent = chars.toString();
+  readTime.textContent = `${minutes} min`;
+
+  if (targetKeywords.length > 0 && words.length > 0) {
+    const keywordOccurrences = targetKeywords.reduce((acc, kw) => {
+      const regex = new RegExp(kw, 'gi');
+      const matches = text.match(regex);
+      return acc + (matches ? matches.length : 0);
+    }, 0);
+    const density = ((keywordOccurrences / words.length) * 100).toFixed(2);
+    keywordDensity.textContent = `${density}%`;
+  } else {
+    keywordDensity.textContent = '0%';
+  }
+
+  calculateNLPScore();
+}
+
+function calculateNLPScore() {
+  const text = contentEditor.innerText || '';
+  const title = titleInput.value;
+  const words = text.trim().split(/\s+/).filter(w => w.length > 0);
+
+  let score = 0;
+
+  if (title.length > 10) score += 15;
+  if (words.length > 50) score += 15;
+  if (words.length > 300) score += 15;
+  if (words.length > 800) score += 10;
+
+  if (targetKeywords.length > 0) {
+    const hasKeywordInTitle = targetKeywords.some(kw =>
+      title.toLowerCase().includes(kw.toLowerCase())
+    );
+    if (hasKeywordInTitle) score += 15;
+
+    const keywordInContent = targetKeywords.some(kw =>
+      text.toLowerCase().includes(kw.toLowerCase())
+    );
+    if (keywordInContent) score += 15;
+  }
+
+  const hasHeadings = text.includes('\n\n') || contentEditor.querySelectorAll('h2, h3').length > 0;
+  if (hasHeadings) score += 10;
+
+  const paragraphs = text.split('\n\n').filter(p => p.trim().length > 0);
+  if (paragraphs.length >= 3) score += 5;
+
+  score = Math.min(100, score);
+
+  scoreValue.textContent = score.toString();
+  const circumference = 2 * Math.PI * 45;
+  const progress = (score / 100) * circumference;
+  scoreCircle.style.strokeDasharray = `${progress} ${circumference}`;
+
+  if (score < 40) {
+    scoreCircle.style.stroke = '#ef4444';
+  } else if (score < 70) {
+    scoreCircle.style.stroke = '#f59e0b';
+  } else {
+    scoreCircle.style.stroke = 'url(#gr)';
+  }
+}
+
+function addKeywordToList(keyword: string) {
+  if (!keyword.trim()) return;
+  if (targetKeywords.includes(keyword.toLowerCase())) return;
+
+  targetKeywords.push(keyword.toLowerCase());
+
+  const tag = document.createElement('div');
+  tag.className = 'kw-tg';
+  tag.innerHTML = `
+    <span>${keyword}</span>
+    <button class="kw-rm" data-keyword="${keyword.toLowerCase()}">×</button>
+  `;
+
+  keywordList.appendChild(tag);
+  keywordInput.value = '';
+  updateMetrics();
+}
+
+function removeKeyword(keyword: string) {
+  targetKeywords = targetKeywords.filter(k => k !== keyword);
+  updateMetrics();
+}
+
+function generateSuggestions() {
+  const text = contentEditor.innerText || '';
+  const title = titleInput.value;
+  const words = text.trim().split(/\s+/).filter(w => w.length > 0);
+  const suggestions = [];
+
+  if (title.length < 10) {
+    suggestions.push({ type: 'warning', text: 'Add a descriptive title (10+ characters)' });
+  }
+
+  if (words.length < 300) {
+    suggestions.push({ type: 'warning', text: `Add ${300 - words.length} more words for better SEO` });
+  }
+
+  if (targetKeywords.length === 0) {
+    suggestions.push({ type: 'info', text: 'Add target keywords to optimize content' });
+  } else {
+    const hasKeywordInTitle = targetKeywords.some(kw =>
+      title.toLowerCase().includes(kw.toLowerCase())
+    );
+    if (!hasKeywordInTitle) {
+      suggestions.push({ type: 'warning', text: 'Include target keyword in title' });
+    }
+  }
+
+  const headings = contentEditor.querySelectorAll('h2, h3').length;
+  if (headings < 2 && words.length > 200) {
+    suggestions.push({ type: 'warning', text: 'Add more headings to structure content' });
+  }
+
+  if (words.length > 800 && headings < 4) {
+    suggestions.push({ type: 'info', text: 'Consider adding more subheadings' });
+  }
+
+  if (suggestions.length === 0) {
+    suggestions.push({ type: 'success', text: '✓ Content looks well-optimized!' });
+  }
+
+  suggestionsList.innerHTML = suggestions.map(s => {
+    const icons: Record<string, string> = { success: '✓', warning: '⚠️', info: 'ℹ️' };
+    return `<div class="sg-it ${s.type}">
+      <span class="sg-ic">${icons[s.type]}</span>
+      <span>${s.text}</span>
+    </div>`;
+  }).join('');
+}
+
+contentEditor.addEventListener('input', () => {
+  updateMetrics();
+});
+
+titleInput.addEventListener('input', () => {
+  updateMetrics();
+});
+
+addKeyword.addEventListener('click', () => {
+  addKeywordToList(keywordInput.value);
+});
+
+keywordInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    addKeywordToList(keywordInput.value);
+  }
+});
+
+keywordList.addEventListener('click', (e) => {
+  const target = e.target as HTMLElement;
+  if (target.classList.contains('kw-rm')) {
+    const keyword = target.getAttribute('data-keyword');
+    if (keyword) {
+      removeKeyword(keyword);
+      target.closest('.kw-tg')?.remove();
+    }
+  }
+});
+
+analyzeBtn.addEventListener('click', () => {
+  generateSuggestions();
+  analyzeBtn.textContent = '✓ Analyzed!';
+  setTimeout(() => {
+    analyzeBtn.textContent = '⚡ Analyze Content';
+  }, 2000);
+});
+
+document.querySelectorAll('.tb-btn[data-action]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const action = btn.getAttribute('data-action');
+    if (action === 'h2') {
+      document.execCommand('formatBlock', false, '<h2>');
+    } else if (action === 'h3') {
+      document.execCommand('formatBlock', false, '<h3>');
+    } else if (action === 'ul') {
+      document.execCommand('insertUnorderedList');
+    } else if (action === 'ol') {
+      document.execCommand('insertOrderedList');
+    } else {
+      document.execCommand(action);
+    }
+    contentEditor.focus();
+  });
+});
+
+updateMetrics();
+</script>
+
+<style>
+.mn{margin-left:240px;padding:0;min-height:100vh;background:#f8fafc}
+.ed-ly{display:grid;grid-template-columns:350px 1fr;height:100vh;gap:0}
+.sd{background:#fff;border-right:2px solid #e2e8f0;padding:24px;overflow-y:auto;height:100vh}
+.sd-hd{margin-bottom:24px}
+.sd-hd h3{font-size:20px;font-weight:700;color:#1a202c;margin:0}
+
+.sc-bx{margin-bottom:32px}
+.sc-cr{position:relative;width:180px;height:180px;margin:0 auto 24px}
+.sc-sv{width:100%;height:100%;transform:rotate(-90deg)}
+.sc-bg{fill:none;stroke:#e5e7eb;stroke-width:8}
+.sc-fg{fill:none;stroke:url(#gr);stroke-width:8;stroke-linecap:round;stroke-dasharray:0 283;transition:stroke-dasharray .6s cubic-bezier(.4,0,.6,1),stroke .3s ease}
+.sc-tx{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.sc-vl{font-size:48px;font-weight:800;color:#2563eb;line-height:1}
+.sc-lb{font-size:13px;color:#64748b;font-weight:600;margin-top:6px}
+
+.mt-sc{margin-bottom:32px;padding:20px;background:#f8fafc;border-radius:12px}
+.mt-sc h4{font-size:15px;font-weight:700;color:#1a202c;margin:0 0 16px 0}
+.mt-it{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #e2e8f0}
+.mt-it:last-child{border-bottom:none}
+.mt-lb{font-size:13px;color:#64748b;font-weight:500}
+.mt-vl{font-size:15px;color:#1a202c;font-weight:700}
+
+.kw-sc{margin-bottom:32px}
+.kw-sc h4{font-size:15px;font-weight:700;color:#1a202c;margin:0 0 12px 0}
+.kw-in{display:flex;gap:8px;margin-bottom:12px}
+.kw-inp{flex:1;padding:8px 12px;border:2px solid #e2e8f0;border-radius:8px;font-size:13px;font-family:inherit}
+.kw-inp:focus{outline:none;border-color:#3b82f6}
+.kw-btn{padding:8px 16px;background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:transform .2s ease}
+.kw-btn:hover{transform:translateY(-1px)}
+.kw-ls{display:flex;flex-wrap:wrap;gap:8px}
+.kw-tg{display:flex;align-items:center;gap:6px;padding:6px 12px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;font-size:13px;color:#1e40af;font-weight:500}
+.kw-rm{background:none;border:none;color:#1e40af;font-size:18px;cursor:pointer;padding:0;line-height:1;font-weight:700}
+.kw-rm:hover{color:#1e3a8a}
+
+.sg-sc h4{font-size:15px;font-weight:700;color:#1a202c;margin:0 0 12px 0}
+.sg-ls{display:flex;flex-direction:column;gap:8px}
+.sg-it{display:flex;align-items:flex-start;gap:10px;padding:12px;border-radius:8px;font-size:13px;line-height:1.5}
+.sg-it.success{background:#f0fdf4;color:#166534;border:1px solid #bbf7d0}
+.sg-it.warning{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
+.sg-it.info{background:#eff6ff;color:#1e40af;border:1px solid #bfdbfe}
+.sg-ic{flex-shrink:0;font-size:16px}
+
+.ed-mn{flex:1;display:flex;flex-direction:column;height:100vh;overflow:hidden}
+.ed-hd{background:#fff;border-bottom:2px solid #e2e8f0;padding:24px}
+.tl-in{width:100%;border:none;font-size:32px;font-weight:700;color:#1a202c;margin-bottom:16px;font-family:inherit;padding:8px}
+.tl-in:focus{outline:none}
+.tl-in::placeholder{color:#cbd5e1}
+.ed-tb{display:flex;gap:4px;flex-wrap:wrap}
+.tb-btn{padding:8px 12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;font-size:14px;font-weight:600;color:#475569;cursor:pointer;transition:all .2s ease}
+.tb-btn:hover{background:#eff6ff;border-color:#3b82f6;color:#2563eb}
+.tb-btn.ac{background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;border:none;margin-left:auto}
+.tb-btn.ac:hover{transform:translateY(-1px)}
+.tb-sp{flex:1}
+
+.ed-ar{flex:1;overflow-y:auto;padding:24px}
+.ed-tx{min-height:100%;background:#fff;border:2px solid #e2e8f0;border-radius:12px;padding:32px;font-size:16px;line-height:1.8;color:#1a202c;font-family:inherit;box-shadow:0 4px 6px rgba(0,0,0,.05)}
+.ed-tx:focus{outline:none;border-color:#3b82f6}
+.ed-tx:empty:before{content:attr(data-placeholder);color:#94a3b8;white-space:pre-wrap}
+.ed-tx h2{font-size:28px;font-weight:700;margin:32px 0 16px 0}
+.ed-tx h3{font-size:22px;font-weight:700;margin:28px 0 14px 0}
+.ed-tx p{margin:16px 0}
+.ed-tx ul,.ed-tx ol{margin:16px 0;padding-left:24px}
+.ed-tx li{margin:8px 0}
+
+@media(max-width:1200px){
+.ed-ly{grid-template-columns:300px 1fr}
+}
+
+@media(max-width:768px){
+.mn{margin-left:72px}
+.ed-ly{grid-template-columns:1fr;grid-template-rows:auto 1fr}
+.sd{height:auto;border-right:none;border-bottom:2px solid #e2e8f0}
+}
+
+@media(max-width:480px){
+.mn{margin-left:0}
+.sd{padding:16px}
+.ed-hd{padding:16px}
+.tl-in{font-size:24px}
+.ed-ar{padding:16px}
+.ed-tx{padding:20px}
+}
+</style>

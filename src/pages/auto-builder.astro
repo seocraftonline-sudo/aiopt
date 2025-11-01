@@ -1,0 +1,613 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+---
+<Layout>
+<Nav/>
+<main class="mn">
+  <div class="pg-hd">
+    <div class="hd-ic">⚡</div>
+    <h1 class="tl">Automatic Optimized Content Builder</h1>
+    <p class="st">Create and optimize content in 7 structured steps</p>
+  </div>
+
+  <!-- Progress -->
+  <div class="pr-wr">
+    <div class="pr-st" id="progressBar">
+      <div class="pr-it cp" data-step="1"><div class="pr-nm">1</div><div class="pr-lb">Basic Info</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="2"><div class="pr-nm">2</div><div class="pr-lb">Title</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="3"><div class="pr-nm">3</div><div class="pr-lb">Outline</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="4"><div class="pr-nm">4</div><div class="pr-lb">Write</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="5"><div class="pr-nm">5</div><div class="pr-lb">Optimize</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="6"><div class="pr-nm">6</div><div class="pr-lb">Final</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="7"><div class="pr-nm">7</div><div class="pr-lb">Publish</div></div>
+
+    </div>
+  </div>
+
+  <div class="st-cn">
+    <!-- Step 1: Basic Info -->
+    <div class="st-bx" id="step1">
+      <div class="st-ic">🎯</div>
+      <div class="st-hd">
+        <h2>Basic Information</h2>
+        <p>Describe your content, choose language and seed keywords</p>
+      </div>
+      <div class="st-bd">
+        <div class="fm-gd">
+          <div class="fm-gr">
+            <label class="fm-lb">
+              <span class="lb-tx">Content Description<span class="rq">*</span></span>
+              <textarea id="contentDescription" class="fm-tx" rows="6" placeholder="Describe what you want to write..."></textarea>
+            </label>
+          </div>
+          <div class="fm-gr">
+            <label class="fm-lb">
+              <span class="lb-tx">Language</span>
+              <select id="contentLanguage" class="fm-sl">
+                <option>English</option>
+                <option>Spanish</option>
+                <option>French</option>
+                <option>German</option>
+              </select>
+            </label>
+          </div>
+          <div class="fm-gr">
+            <label class="fm-lb">
+              <span class="lb-tx">Keywords</span>
+              <input id="seedKeywords" class="fm-in" type="text" placeholder="comma-separated keywords"/>
+            </label>
+          </div>
+        </div>
+        <div class="bt-gr">
+          <button class="bt-pr" id="nextStep1"><span>Next</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Title Selection -->
+    <div class="st-bx" id="step2" style="display:none">
+      <div class="st-ic">🧠</div>
+      <div class="st-hd">
+        <h2>Title Selection</h2>
+        <p>Pick a compelling SEO-friendly title</p>
+      </div>
+      <div class="st-bd">
+        <div id="titleList" class="tt-ls"></div>
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep2"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="nextStep2"><span>Next</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Content Outline -->
+    <div class="st-bx" id="step3" style="display:none">
+      <div class="st-ic">📋</div>
+      <div class="st-hd">
+        <h2>Content Outline</h2>
+        <p>Select or tweak the structure</p>
+      </div>
+      <div class="st-bd">
+        <div id="outlineGrid" class="ol-gd"></div>
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep3"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="nextStep3"><span>Next</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: Content Writing -->
+    <div class="st-bx" id="step4" style="display:none">
+      <div class="st-ic">✍️</div>
+      <div class="st-hd">
+        <h2>Content Writing</h2>
+        <p>Generate draft content by section</p>
+      </div>
+      <div class="st-bd">
+        <button class="bt-gn" id="generateDraft"><span class="gn-ic">⚙️</span><span>Generate Draft</span></button>
+        <div id="writingPreview" class="wr-gd"></div>
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep4"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="nextStep4"><span>Next</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5: Optimize -->
+    <div class="st-bx" id="step5" style="display:none">
+      <div class="st-ic">🔍</div>
+      <div class="st-hd">
+        <h2>Optimize by Parts</h2>
+        <p>Draft divided into 5 parts. Edit suggested keywords per part.</p>
+      </div>
+      <div class="st-bd">
+        <div id="optimizeGrid" class="op-gd"></div>
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep5"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="nextStep5"><span>Next</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 6: Final Content -->
+    <div class="st-bx" id="step6" style="display:none">
+      <div class="st-ic">✅</div>
+      <div class="st-hd">
+        <h2>Final Content</h2>
+        <p>Combined, optimized content preview</p>
+      </div>
+      <div class="st-bd">
+        <input type="text" id="finalTitle" class="ct-tl" placeholder="Final title"/>
+        <div class="ct-bx"><div id="finalContent" class="ct-tx"></div></div>
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep6"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="nextStep6"><span>Next</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 7: Publish -->
+    <div class="st-bx" id="step7" style="display:none">
+      <div class="st-ic">📤</div>
+      <div class="st-hd">
+        <h2>Publish</h2>
+        <p>Choose how you want to publish your content</p>
+      </div>
+      <div class="st-bd">
+        <div class="pb-gd">
+          <button class="pb-cd" id="downloadHTML"><div class="pb-ic">📄</div><div class="pb-tx">Download HTML</div></button>
+          <button class="pb-cd" id="downloadMarkdown"><div class="pb-ic">📝</div><div class="pb-tx">Download Markdown</div></button>
+          <button class="pb-cd" id="openEditor"><div class="pb-ic">✍️</div><div class="pb-tx">Open in Editor</div></button>
+          <button class="pb-cd" id="publishWordPress"><div class="pb-ic">🧩</div><div class="pb-tx">Publish to WordPress</div></button>
+          <button class="pb-cd" id="copyContent"><div class="pb-ic">📋</div><div class="pb-tx">Copy to Clipboard</div></button>
+        </div>
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep7"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="nextStep7"><span>Next</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+
+      <!-- WordPress Modal -->
+      <div class="md" id="wpModal">
+        <div class="md-ct">
+          <div class="md-hd"><h3 class="md-tl">Publish to WordPress</h3><button id="closeModal" class="md-cl">×</button></div>
+          <form id="wpForm" class="md-fm">
+            <label class="lb"><span class="lb-tx">Site URL</span><input id="wpUrl" class="in" placeholder="https://example.com"/></label>
+            <label class="lb"><span class="lb-tx">Username</span><input id="wpUser" class="in" placeholder="admin"/></label>
+            <label class="lb"><span class="lb-tx">Application Password</span><input id="wpPass" class="in" type="password" placeholder="••••••"/></label>
+            <div class="md-ft">
+              <button type="button" id="cancelPublish" class="bt-sc">Cancel</button>
+              <button type="submit" class="bt-pr">Publish</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 8: Summary -->
+    <div class="st-bx" id="step8" style="display:none">
+      <div class="st-ic">🎉</div>
+      <div class="st-hd">
+        <h2>All Set!</h2>
+        <p>Your content has been created and is ready to go</p>
+      </div>
+      <div class="st-bd">
+        <div class="sm-bx">
+          <p><strong>Title:</strong> <span id="summaryTitle"></span></p>
+          <p><strong>Words:</strong> <span id="summaryWords"></span></p>
+          <p><strong>Language:</strong> <span id="summaryLang"></span></p>
+        </div>
+        <div class="bt-gr">
+          <button class="bt-pr" id="startOver"><span>Start New</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .pg-hd{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+    .hd-ic{font-size:28px;background:#fff;border:2px solid #e5e7eb;padding:10px;border-radius:12px}
+    .pr-wr{margin-bottom:16px}
+    .pr-st{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .pr-it{background:#fff;border:2px solid #e5e7eb;border-radius:12px;padding:8px 12px;display:flex;align-items:center;gap:8px}
+    .pr-it.cp{border-color:#10b981}
+    .pr-nm{font-weight:800;color:#374151}
+    .pr-lb{font-size:13px;color:#6b7280;font-weight:700}
+    .pr-ln{width:24px;height:2px;background:#e5e7eb}
+    .st-bx{background:#fff;border:2px solid #e5e7eb;border-radius:16px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+    .st-ic{font-size:24px}
+    .st-hd h2{margin:4px 0 6px 0}
+    .fm-gd{display:grid;gap:16px}
+    .fm-lb{display:flex;flex-direction:column;gap:8px}
+    .fm-in,.fm-sl,.fm-tx{background:#fafafa;border:2px solid #e5e7eb;border-radius:10px;padding:12px 14px;font-size:14px;color:#1f2937}
+    .bt-gr{display:flex;gap:10px;justify-content:flex-end;margin-top:16px}
+    .bt-sc{background:#fff;border:2px solid #e5e7eb;border-radius:10px;padding:10px 18px;font-weight:700;color:#374151}
+    .bt-pr{background:#1f2937;border:none;border-radius:10px;padding:12px 20px;font-weight:700;color:#fff}
+    .bt-gn{background:linear-gradient(135deg,#10b981,#059669);border:none;border-radius:10px;padding:12px 18px;color:#fff;font-weight:700;margin-bottom:12px}
+    .tt-ls{display:flex;flex-direction:column;gap:12px}
+    .tt-it{padding:12px;border:2px solid #e5e7eb;border-radius:12px;cursor:pointer}
+    .tt-it.ac{border-color:#10b981;background:#f0fdf4}
+    .ol-gd{display:flex;flex-direction:column;gap:10px}
+    .ol-it{padding:12px;border:2px solid #e5e7eb;border-radius:12px}
+    .wr-gd{display:flex;flex-direction:column;gap:14px}
+    .wr-it{border:2px solid #f3f4f6;border-radius:12px;padding:14px}
+    .wr-tl{font-weight:800;margin-bottom:6px}
+    .op-gd{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px}
+    .op-it{border:2px solid #f3f4f6;border-radius:12px;padding:14px}
+    .kw-ls{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+    .kw{padding:6px 10px;background:#fafafa;border:1px solid #e5e7eb;border-radius:8px;font-size:12px;color:#374151}
+    .ct-tl{width:100%;background:#fafafa;border:2px solid #e5e7eb;border-radius:10px;padding:12px 14px;margin-bottom:12px}
+    .ct-bx{background:#fafafa;border:2px solid #e5e7eb;border-radius:12px;overflow:hidden}
+    .ct-tx{padding:20px;background:#fff;min-height:200px}
+    .pb-gd{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:16px}
+    .pb-cd{background:#fff;border:2px solid #e5e7eb;border-radius:12px;padding:16px;display:flex;align-items:center;gap:10px;cursor:pointer}
+    .pb-ic{font-size:22px}
+    .md{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;align-items:center;justify-content:center;padding:20px}
+    .md-ct{background:#fff;border-radius:16px;width:100%;max-width:600px;overflow:hidden}
+    .md-hd{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:2px solid #f3f4f6}
+    .md-tl{font-size:18px;font-weight:700}
+    .md-cl{background:transparent;border:none;font-size:24px;color:#6b7280;cursor:pointer}
+    .md-fm{padding:20px}
+    .sm-bx{background:#fafafa;border:2px solid #e5e7eb;border-radius:12px;padding:14px}
+  </style>
+
+  <script>
+    // @ts-nocheck
+    let currentStep = 1;
+    /** @type {{description:string;language:string;keywords:string[];title:string;outline:string[];parts:{name:string;draft:string}[];optimized:Record<string,string>;final:string}} */
+    const projectData = ({
+      description: '',
+      language: 'English',
+      keywords: [],
+      title: '',
+      outline: [],
+      parts: [],
+      optimized: {},
+      final: ''
+    });
+
+    function updateProgressBar(step){
+      document.querySelectorAll('.pr-it').forEach((item) => {
+        const sn = Number(item.getAttribute('data-step')) || 0;
+        if (sn < step) { item.classList.add('dn'); item.classList.remove('cp'); }
+        else if (sn === step) { item.classList.add('cp'); item.classList.remove('dn'); }
+        else { item.classList.remove('cp','dn'); }
+      });
+      document.querySelectorAll('.pr-ln').forEach((ln, idx) => {
+        if (idx < step - 1) ln.classList.add('dn'); else ln.classList.remove('dn');
+      });
+    }
+
+    function showStep(step){
+      for(let i=1;i<=7;i++){
+        const el = document.getElementById('step'+i);
+        if(el) el.style.display = (i===step? 'block' : 'none');
+      }
+      currentStep = step; updateProgressBar(step); window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    // Helper to clamp titles between 50-60 chars
+    function clampTitle(t){
+      let s = (t||'').replace(/\s+/g,' ').trim();
+      if(s.length>60) {
+        s = s.slice(0,60);
+        // avoid cutting in the middle of a word
+        s = s.replace(/\s\S*$/, '');
+      }
+      if(s.length<50){
+        const extra = (projectData.description||'').replace(/\s+/g,' ').trim();
+        const need = 50 - s.length;
+        s = (s + ' ' + extra.slice(0, need)).trim();
+      }
+      return s;
+    }
+
+    // Step 1 → 2
+    document.getElementById('nextStep1')?.addEventListener('click', () => {
+      const descEl = /** @type {HTMLTextAreaElement|null} */(document.getElementById('contentDescription'));
+      const langEl = /** @type {HTMLSelectElement|null} */(document.getElementById('contentLanguage'));
+      const kwEl = /** @type {HTMLInputElement|null} */(document.getElementById('seedKeywords'));
+      const desc = (descEl?.value || '').trim();
+      const lang = langEl?.value || 'English';
+      const kws = (kwEl?.value || '').split(',').map(k=>k.trim()).filter(Boolean);
+      if(!desc){ alert('Please add a description'); return; }
+      projectData.description = desc; projectData.language = lang; projectData.keywords = kws;
+      // generate 10 titles of 50-60 chars
+      const base = desc.length>40? desc.slice(0,40) : desc;
+      const patterns = ['Step-by-step guide','Pro tips that work','Complete handbook','Essential strategies','Beginner to pro','Secrets revealed','Made easy','Ultimate tutorial','From scratch','Do it right'];
+      const tl = document.getElementById('titleList'); tl.innerHTML='';
+      const ideas = Array.from({length:10}).map((_,i)=> clampTitle(`${base} — ${patterns[i]}`));
+      ideas.forEach(t => {
+        const d = document.createElement('div'); d.className='tt-it'; d.textContent=t; d.addEventListener('click',()=>{
+          document.querySelectorAll('.tt-it').forEach(x=>x.classList.remove('ac')); d.classList.add('ac'); projectData.title=t;
+        }); tl.appendChild(d);
+      });
+      showStep(2);
+    });
+    document.getElementById('backStep2')?.addEventListener('click',()=>showStep(1));
+    document.getElementById('nextStep2')?.addEventListener('click',()=>{
+      if(!projectData.title){ alert('Select a title'); return; }
+      const ol = /** @type {HTMLElement|null} */(document.getElementById('outlineGrid'));
+      if(!ol) return; ol.innerHTML='';
+      // Two large outline options
+      const outlineA = [
+        'Introduction','Benefits and Overview','Tools and Ingredients','Step-by-Step Process','Troubleshooting & Tips','Conclusion'
+      ];
+      const outlineB = [
+        'Introduction','Understanding Core Concepts','Preparation Checklist','Execution Phases','Optimization & QA','Wrap-up'
+      ];
+      const makeOutlineCard = (items, id) => {
+        const card = document.createElement('div'); card.className='ol-it'; card.setAttribute('data-id', id);
+        card.innerHTML = `<h3 style='margin-bottom:8px'>Outline ${id==='A'?'A':'B'}</h3><div style='display:grid;gap:6px'>${items.map(it=>`<div>• ${it}</div>`).join('')}</div>`;
+        card.addEventListener('click',()=>{
+          document.querySelectorAll('.ol-it').forEach(x=>x.classList.remove('ac'));
+          card.classList.add('ac'); projectData.outline = items.slice();
+        });
+        return card;
+      };
+      ol.appendChild(makeOutlineCard(outlineA,'A'));
+      ol.appendChild(makeOutlineCard(outlineB,'B'));
+      // Custom outline card
+      const custom = document.createElement('div'); custom.className='ol-it'; custom.innerHTML = `
+        <h3 style='margin-bottom:8px'>Custom Outline</h3>
+        <p style='color:#6b7280;margin-bottom:8px'>Create your own outline structure from scratch</p>
+        <button class='bt-sc' id='startCustomOutline'>Start Custom Outline</button>
+        <div id='customOutlineBox' style='margin-top:10px;display:none'>
+          <textarea id='customOutline' class='fm-tx' rows='10' placeholder='Enter one section per line'></textarea>
+        </div>`;
+      ol.appendChild(custom);
+      custom.querySelector('#startCustomOutline')?.addEventListener('click',()=>{
+        (custom.querySelector('#customOutlineBox') as HTMLElement).style.display='block';
+        document.querySelectorAll('.ol-it').forEach(x=>x.classList.remove('ac'));
+        custom.classList.add('ac');
+      });
+      showStep(3);
+    });
+
+    document.getElementById('backStep3')?.addEventListener('click',()=>showStep(2));
+    document.getElementById('nextStep3')?.addEventListener('click',()=>{
+      const customEl = /** @type {HTMLTextAreaElement|null} */(document.getElementById('customOutline'));
+      if(customEl && customEl.value.trim()){
+        projectData.outline = customEl.value.split(/\n+/).map(s=>s.trim()).filter(Boolean);
+      } else if(!projectData.outline.length){
+        alert('Please select an outline or create a custom one'); return;
+      }
+      showStep(4);
+    });
+
+    // Step 4: Draft generation (large-sized content)
+    document.getElementById('generateDraft')?.addEventListener('click',()=>{
+      const wr = /** @type {HTMLElement|null} */(document.getElementById('writingPreview'));
+      if(!wr) return;
+      projectData.parts = (projectData.outline.length? projectData.outline.slice(0,5) : ['Introduction','Section 2','Section 3','Section 4','Conclusion']).map((name,idx)=>({
+        name,
+        draft:`<h3>${name}</h3><p>${projectData.description} — section ${idx+1}. This draft covers key points, provides practical guidance, and sets up optimization.</p>`
+      }));
+      const combined = projectData.parts.map(p=>`<h2>${p.name}</h2>${p.draft}`).join('\n');
+      wr.innerHTML = `<div class='ct-bx'><div class='ct-tx'>${combined}</div></div>`;
+    });
+    document.getElementById('backStep4')?.addEventListener('click',()=>showStep(3));
+    document.getElementById('nextStep4')?.addEventListener('click',()=>{
+      if(!projectData.parts.length){ alert('Generate draft first'); return; }
+      const grid = /** @type {HTMLElement|null} */(document.getElementById('optimizeGrid'));
+      if(!grid) return; grid.innerHTML='';
+      const kwBase = (projectData.keywords.length? projectData.keywords[0] : 'topic');
+      projectData.parts.forEach((p,idx)=>{
+        const seeds = ['how to','best','guide','tips','mistakes','tools','benefits','questions','alternatives','checklist'];
+        const kwds = seeds.map(s=>`${kwBase} ${s}`);
+        const card=document.createElement('div'); card.className='op-it';
+        card.innerHTML=`<h4 style='margin-bottom:6px'>${p.name}</h4>
+          <div style='font-size:13px;color:#4b5563;margin-bottom:8px'>Edit keywords for this part (comma-separated):</div>
+          <input type='text' class='in' id='kwInput${idx}' value='${kwds.join(', ')}' />
+          <button class='bt-sc' id='optBtn${idx}' style='margin-top:10px'>Optimize for me</button>
+          <div id='optOut${idx}' class='ct-tx' style='margin-top:10px'></div>`;
+        grid.appendChild(card);
+        const btn = card.querySelector('#optBtn'+idx);
+        (btn as HTMLElement|undefined)?.addEventListener('click',()=>{
+          const out = card.querySelector('#optOut'+idx) as HTMLElement | null;
+          const kwInput = card.querySelector('#kwInput'+idx) as HTMLInputElement | null;
+          const kws = (kwInput?.value || '').split(',').map(s=>s.trim()).filter(Boolean);
+          const optimized = `<h3>${p.name} — Optimized</h3><p>${p.draft.replace('</p>','')} This version integrates targeted keywords (${kws.join(', ')}), adds clear subheadings, and improves semantic coverage for ${kwBase}. It focuses on search intent and on-page relevance for better SEO performance.</p>`;
+          if(out) out.innerHTML = optimized; projectData.optimized[p.name]=optimized;
+        });
+      });
+      showStep(5);
+    });
+
+     document.getElementById('backStep5')?.addEventListener('click',()=>showStep(4));
+     document.getElementById('nextStep5')?.addEventListener('click',()=>{
+       const fn = /** @type {HTMLElement|null} */(document.getElementById('finalContent'));
+       const parts = projectData.parts.map((p)=> projectData.optimized[p.name] || p.draft);
+       projectData.final = parts.join('\n');
+       if(fn) fn.innerHTML = projectData.final;
+       const ft = /** @type {HTMLInputElement|null} */(document.getElementById('finalTitle'));
+       if(ft) ft.value = projectData.title;
+       showStep(6);
+     });
+
+     document.getElementById('backStep6')?.addEventListener('click',()=>showStep(5));
+     document.getElementById('nextStep6')?.addEventListener('click',()=>{
+       const ft = /** @type {HTMLInputElement|null} */(document.getElementById('finalTitle'));
+       projectData.title = (ft?.value || projectData.title);
+       showStep(7);
+     });
+
+     // Publish actions remain
+     document.getElementById('downloadHTML')?.addEventListener('click',()=>{
+       const html = `<!doctype html><html><head><meta charset='utf-8'><title>${projectData.title}</title></head><body><h1>${projectData.title}</h1>${projectData.final}</body></html>`;
+       const blob = new Blob([html],{type:'text/html'}); const url = URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=(projectData.title||'content').replace(/\s+/g,'-')+'.html'; a.click(); URL.revokeObjectURL(url);
+     });
+     document.getElementById('downloadMarkdown')?.addEventListener('click',()=>{
+       const md = projectData.final
+         .replace(/<h3>/g,'### ').replace(/<\/h3>/g,'\n\n')
+         .replace(/<p>/g,'').replace(/<\/p>/g,'\n\n');
+       const blob = new Blob([`# ${projectData.title}\n\n${md}`],{type:'text/markdown'}); const url = URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=(projectData.title||'content').replace(/\s+/g,'-')+'.md'; a.click(); URL.revokeObjectURL(url);
+     });
+     document.getElementById('openEditor')?.addEventListener('click',()=>{
+       localStorage.setItem('editorContent', projectData.final);
+       localStorage.setItem('editorTitle', projectData.title);
+       window.location.href = '/editor';
+     });
+    document.getElementById('copyContent')?.addEventListener('click',()=>{
+      const tmp = document.createElement('textarea');
+      tmp.value = `${projectData.title}\n\n${projectData.final.replace(/<[^>]+>/g,'')}`;
+      document.body.appendChild(tmp);
+      tmp.select();
+      document.execCommand('copy');
+      document.body.removeChild(tmp);
+      alert('Content copied to clipboard');
+    });
+
+     document.getElementById('publishWordPress')?.addEventListener('click',()=>{ const m=document.getElementById('wpModal'); if(m) m.style.display='flex'; });
+     document.getElementById('closeModal')?.addEventListener('click',()=>{ const m=document.getElementById('wpModal'); if(m) m.style.display='none'; });
+     document.getElementById('cancelPublish')?.addEventListener('click',()=>{ const m=document.getElementById('wpModal'); if(m) m.style.display='none'; });
+     document.getElementById('wpForm')?.addEventListener('submit',(e)=>{ e.preventDefault(); alert('Demo: WordPress publishing simulated.'); const m=document.getElementById('wpModal'); if(m) m.style.display='none'; });
+
+     document.getElementById('backStep7')?.addEventListener('click',()=>showStep(6));
+     document.getElementById('nextStep7')?.addEventListener('click',()=>{
+      // Summary step removed; remain on Publish
+      showStep(7);
+    });
+
+     document.getElementById('startOver')?.addEventListener('click',()=>{ window.location.reload(); });
+
+     updateProgressBar(1);
+   </script>
+ </main>
+ </Layout>
+
+<style>
+  /* Progress bar styling */
+  .pr-it.cp .pr-nm {
+    background: #1f2937;
+    border-color: #1f2937;
+    color: white;
+  }
+  .pr-it.cp .pr-lb {
+    color: #1f2937;
+    font-weight: 500;
+  }
+  
+  /* Button styling */
+  .bt-pr, .bt-sc, .bt-gn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .bt-pr {
+    background: #1f2937;
+    color: white;
+    border: none;
+  }
+  .bt-pr:hover {
+    background: #111827;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,.2);
+  }
+  .bt-sc {
+    background: #f3f4f6;
+    color: #4b5563;
+    border: 1px solid #e5e7eb;
+  }
+  .bt-sc:hover {
+    background: #e5e7eb;
+    transform: translateY(-2px);
+  }
+  .bt-gn {
+    background: #10b981;
+    color: white;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .bt-gn:hover {
+    background: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,.2);
+  }
+  
+  /* Card styling */
+  .st-bx {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.04);
+    border: 2px solid #e5e7eb;
+    overflow: hidden;
+    transition: all .3s cubic-bezier(.4,0,.2,1);
+  }
+  
+  /* Form elements */
+  .fm-tx, .fm-in, .fm-sl {
+    background: #fafafa;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 14px;
+    color: #1f2937;
+    font-family: inherit;
+    transition: all .2s ease;
+    width: 100%;
+  }
+  .fm-tx:focus, .fm-in:focus, .fm-sl:focus {
+    outline: none;
+    border-color: #10b981;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(16,185,129,.1);
+  }
+  
+  /* Card hover effects */
+  .tl-cd:hover, .pb-cd:hover {
+    border-color: #10b981;
+    background: #f0fdf4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,.1);
+  }
+  .tl-cd.selected {
+    border-color: #10b981;
+    background: #f0fdf4;
+  }
+  
+  /* Keyword tags */
+  .op-kw.selected {
+    background: #dcfce7;
+    border-color: #86efac;
+    color: #166534;
+  }
+  
+  /* Required field indicator */
+  .rq {
+    color: #ef4444;
+    margin-left: 2px;
+  }
+  
+  /* Publish cards */
+  .pb-cd {
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: all .3s cubic-bezier(.4,0,.2,1);
+  }
+  .pb-cd:hover {
+    border-color: #10b981;
+    background: #f0fdf4;
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0,0,0,.1), 0 12px 32px rgba(0,0,0,.08);
+  }
+</style>

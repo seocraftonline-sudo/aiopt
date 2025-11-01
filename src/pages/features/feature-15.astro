@@ -1,0 +1,357 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+---
+<Layout>
+  <Nav />
+  <main class="mn">
+    <header class="hd">
+      <h1 class="tl">Feature 15: Semantic Internal Linking</h1>
+      <p class="st">Analyze entities, discover opportunities, and build internal links.</p>
+    </header>
+
+    <section class="tool">
+      <div class="steps">
+        <button class="step-item active" data-step="1">1. Content</button>
+        <button class="step-item" data-step="2">2. Entities</button>
+        <button class="step-item" data-step="3">3. Opportunities</button>
+        <button class="step-item" data-step="4">4. Linking</button>
+        <button class="step-item" data-step="5">5. Export</button>
+      </div>
+
+      <!-- Step 1: Content -->
+      <section id="step-1" class="step active">
+        <h3>Source Content</h3>
+        <p class="help">Paste text, provide a URL, upload files, or load a sitemap to index pages and compute semantic relationships.</p>
+
+        <div class="source-grid">
+          <div class="source-card">
+            <h4>Paste Text</h4>
+            <textarea id="sil-source-text" class="txt" rows="6" placeholder="Paste article or page copy here..."></textarea>
+          </div>
+          <div class="source-card">
+            <h4>Single URL</h4>
+            <input id="sil-source-url" class="in" type="url" placeholder="https://example.com/page" />
+            <button id="sil-fetch-url" class="btn">Fetch & Index</button>
+          </div>
+          <div class="source-card">
+            <h4>Upload File(s)</h4>
+            <input id="sil-source-file" class="in" type="file" accept=".txt,.md,.html,.docx,.pdf" multiple />
+          </div>
+          <div class="source-card">
+            <h4>Load Sitemap</h4>
+            <input id="sil-source-sitemap" class="in" type="url" placeholder="https://example.com/sitemap.xml" />
+            <button id="sil-load-sitemap" class="btn">Load URLs</button>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="sil-start-index" class="btn primary">Start Indexing</button>
+          <button class="btn next" data-next="2">Next →</button>
+        </div>
+      </section>
+
+      <!-- Step 2: Entities -->
+      <section id="step-2" class="step">
+        <h3>Entity Extraction</h3>
+        <p class="help">We identify people, organizations, products, and key concepts to map topical relevance across your content.</p>
+
+        <div class="stats">
+          <div class="stat"><span id="sil-entities-count">0</span><label>Entities</label></div>
+          <div class="stat"><span id="sil-topics-count">0</span><label>Topics</label></div>
+          <div class="stat"><span id="sil-clusters-count">0</span><label>Clusters</label></div>
+        </div>
+
+        <div class="entities-list" id="sil-entities-list"></div>
+
+        <div class="actions">
+          <button id="sil-run-entities" class="btn">Run Extraction</button>
+          <button class="btn prev" data-prev="1">← Back</button>
+          <button class="btn next" data-next="3">Next →</button>
+        </div>
+      </section>
+
+      <!-- Step 3: Opportunities -->
+      <section id="step-3" class="step">
+        <h3>Link Opportunities</h3>
+        <p class="help">We suggest internal links based on semantic similarity, topic coverage, and entity overlap.</p>
+
+        <div class="filters">
+          <label>Similarity ≥ <input id="sil-threshold" class="in sm" type="number" value="0.6" min="0" max="1" step="0.05" /></label>
+          <label>Max suggestions <input id="sil-max-suggestions" class="in sm" type="number" value="20" min="1" max="200" /></label>
+        </div>
+
+        <div class="table-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>From Page</th>
+                <th>To Page</th>
+                <th>Anchor Text</th>
+                <th>Similarity</th>
+                <th>Priority</th>
+                <th>Select</th>
+              </tr>
+            </thead>
+            <tbody id="sil-opps-body"></tbody>
+          </table>
+        </div>
+
+        <div class="actions">
+          <button id="sil-generate-opps" class="btn">Generate Opportunities</button>
+          <button class="btn prev" data-prev="2">← Back</button>
+          <button class="btn next" data-next="4">Next →</button>
+        </div>
+      </section>
+
+      <!-- Step 4: Linking -->
+      <section id="step-4" class="step">
+        <h3>Build Internal Links</h3>
+        <p class="help">Set constraints and preview changes before applying.</p>
+
+        <div class="constraints">
+          <label><input id="sil-limit-links" type="number" class="in sm" value="5" min="1" max="20" /> Max links per page</label>
+          <label><input id="sil-avoid-dupes" type="checkbox" checked /> Avoid duplicate anchors</label>
+          <label><input id="sil-respect-topics" type="checkbox" checked /> Respect topical relevance</label>
+        </div>
+
+        <div class="preview" id="sil-preview">
+          <div class="preview-note">Select opportunities to see a diff-like preview of inserted links.</div>
+        </div>
+
+        <div class="actions">
+          <button id="sil-build-plan" class="btn">Build Link Plan</button>
+          <button class="btn prev" data-prev="3">← Back</button>
+          <button class="btn next" data-next="5">Next →</button>
+        </div>
+      </section>
+
+      <!-- Step 5: Export -->
+      <section id="step-5" class="step">
+        <h3>Export & Apply</h3>
+        <p class="help">Export selected internal links as CSV/JSON, copy to clipboard, or download HTML diffs.</p>
+
+        <div class="export-grid">
+          <button id="sil-export-csv" class="btn">Export CSV</button>
+          <button id="sil-export-json" class="btn">Export JSON</button>
+          <button id="sil-export-html" class="btn">Download HTML Diffs</button>
+          <button id="sil-copy-plan" class="btn">Copy Plan</button>
+        </div>
+
+        <div class="actions">
+          <button class="btn prev" data-prev="4">← Back</button>
+        </div>
+      </section>
+    </section>
+
+    <section class="info">
+      <div class="cd">
+        <div class="cd-ic">ℹ️</div>
+        <h3 class="cd-tl">How it works</h3>
+        <p class="cd-ds">We build an entity graph from your content and compute semantic similarity between pages to recommend high-quality internal links. You set constraints and export a plan.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    let currentStep: number = 1;
+
+    function setStep(step: number): void {
+      currentStep = step;
+      const steps = document.querySelectorAll('.step');
+      steps.forEach((s) => s.classList.remove('active'));
+      const active = document.getElementById(`step-${step}`);
+      if (active) active.classList.add('active');
+
+      const items = document.querySelectorAll('.step-item');
+      items.forEach((i) => i.classList.remove('active'));
+      const btn = document.querySelector(`.step-item[data-step="${step}"]`);
+      if (btn) btn.classList.add('active');
+    }
+
+    document.addEventListener('click', (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
+      const next = target.getAttribute('data-next');
+      const prev = target.getAttribute('data-prev');
+      const stepAttr = target.getAttribute('data-step');
+      if (next) setStep(Number(next));
+      else if (prev) setStep(Number(prev));
+      else if (stepAttr) setStep(Number(stepAttr));
+    });
+
+    const entities: { name: string; type: string }[] = [
+      { name: 'Semantic SEO', type: 'Concept' },
+      { name: 'Internal Links', type: 'Topic' },
+      { name: 'Anchor Text', type: 'Concept' },
+      { name: 'Content Clusters', type: 'Topic' },
+      { name: 'Knowledge Graph', type: 'Concept' }
+    ];
+
+    function renderEntities(): void {
+      const list = document.getElementById('sil-entities-list');
+      if (!list) return;
+      list.innerHTML = '';
+      entities.forEach((en) => {
+        const row = document.createElement('div');
+        row.className = 'entity-row';
+        row.innerHTML = `
+          <div class="entity">
+            <span class="chip">${en.type}</span>
+            <input class="in" type="text" value="${en.name}" />
+          </div>
+          <div class="anchors">
+            <input class="in sm" type="text" placeholder="Anchor suggestion (optional)" />
+            <button class="btn sm">Add</button>
+          </div>
+        `;
+        list.appendChild(row);
+      });
+      const ec = document.getElementById('sil-entities-count');
+      const tc = document.getElementById('sil-topics-count');
+      const cc = document.getElementById('sil-clusters-count');
+      if (ec) ec.textContent = String(entities.length);
+      if (tc) tc.textContent = '2';
+      if (cc) cc.textContent = '3';
+    }
+
+    function generateOpportunities(): void {
+      const tbody = document.getElementById('sil-opps-body');
+      const thresholdEl = document.getElementById('sil-threshold') as HTMLInputElement | null;
+      const maxEl = document.getElementById('sil-max-suggestions') as HTMLInputElement | null;
+      if (!tbody || !thresholdEl || !maxEl) return;
+      const threshold = Number(thresholdEl.value || '0.6');
+      const max = Number(maxEl.value || '20');
+      const sample = [
+        { from: '/blog/semantic-seo', to: '/guides/internal-linking', anchor: 'internal linking best practices', sim: 0.86, pri: 'High' },
+        { from: '/blog/topic-clusters', to: '/blog/anchor-text', anchor: 'anchor text', sim: 0.78, pri: 'Medium' },
+        { from: '/guides/knowledge-graph', to: '/blog/semantic-seo', anchor: 'semantic SEO', sim: 0.74, pri: 'Medium' },
+        { from: '/blog/content-hubs', to: '/guides/topic-clusters', anchor: 'content clusters', sim: 0.69, pri: 'Low' }
+      ].filter((r) => r.sim >= threshold).slice(0, max);
+      tbody.innerHTML = '';
+      sample.forEach((r, i) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${r.from}</td>
+          <td>${r.to}</td>
+          <td><input type="text" class="in" value="${r.anchor}" /></td>
+          <td>${r.sim.toFixed(2)}</td>
+          <td>${r.pri}</td>
+          <td><input type="checkbox" class="chk" data-index="${i}" checked /></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function buildPreview(): void {
+      const preview = document.getElementById('sil-preview');
+      if (!preview) return;
+      preview.innerHTML = `
+        <div class="diff">
+          <div class="file">/blog/semantic-seo.html</div>
+          <pre><code>
+  ...
+  <p>Semantic SEO improves discoverability by connecting related concepts and pages.</p>
+  <p>Learn more in our <mark class="ins">&lt;a href=\"/guides/internal-linking\"&gt;internal linking best practices&lt;/a&gt;</mark> guide.</p>
+  ...
+          </code></pre>
+        </div>
+      `;
+    }
+
+    // Bind buttons
+    window.addEventListener('DOMContentLoaded', () => {
+      const runEntities = document.getElementById('sil-run-entities');
+      if (runEntities) runEntities.addEventListener('click', () => { renderEntities(); });
+
+      const genOpps = document.getElementById('sil-generate-opps');
+      if (genOpps) genOpps.addEventListener('click', () => { generateOpportunities(); });
+
+      const buildPlan = document.getElementById('sil-build-plan');
+      if (buildPlan) buildPlan.addEventListener('click', () => { buildPreview(); });
+
+      const startIndex = document.getElementById('sil-start-index');
+      if (startIndex) startIndex.addEventListener('click', () => { setStep(2); renderEntities(); });
+
+      const exportCsv = document.getElementById('sil-export-csv');
+      if (exportCsv) exportCsv.addEventListener('click', () => {
+        const data = 'from,to,anchor,similarity,priority\n/blog/semantic-seo,/guides/internal-linking,internal linking best practices,0.86,High';
+        const blob = new Blob([data], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'internal-links.csv'; a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      const exportJson = document.getElementById('sil-export-json');
+      if (exportJson) exportJson.addEventListener('click', () => {
+        const json = [{ from: '/blog/semantic-seo', to: '/guides/internal-linking', anchor: 'internal linking best practices', similarity: 0.86, priority: 'High' }];
+        const blob = new Blob([JSON.stringify(json, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'internal-links.json'; a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      const exportHtml = document.getElementById('sil-export-html');
+      if (exportHtml) exportHtml.addEventListener('click', () => {
+        const html = '<html><body><h1>Diffs</h1><pre>&lt;a href="/guides/internal-linking"&gt;internal linking best practices&lt;/a&gt;</pre></body></html>';
+        const blob = new Blob([html], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'diffs.html'; a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      const copyPlan = document.getElementById('sil-copy-plan');
+      if (copyPlan) copyPlan.addEventListener('click', async () => {
+        const text = '- /blog/semantic-seo → /guides/internal-linking (anchor: internal linking best practices)';
+        try { await navigator.clipboard.writeText(text); } catch { /* noop */ }
+      });
+    });
+  </script>
+
+  <style>
+    .tool { background: #fff; border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 1rem; }
+    .steps { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .step-item { padding: 0.5rem 0.75rem; border: 1px solid #e5e7eb; background: #f9fafb; border-radius: 0.5rem; cursor: pointer; font-weight: 500; }
+    .step-item.active { background: #2563eb; color: #fff; border-color: #2563eb; }
+    .step { display: none; }
+    .step.active { display: block; }
+
+    .help { color: #6b7280; margin-bottom: 1rem; }
+    .source-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .source-card { border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 1rem; background: #fff; }
+    .txt { width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.375rem; }
+    .in { padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.375rem; width: 100%; }
+    .in.sm { width: auto; }
+    .btn { padding: 0.5rem 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; background: #f3f4f6; cursor: pointer; }
+    .btn.primary { background: #2563eb; color: #fff; border-color: #2563eb; }
+    .btn.next, .btn.prev { background: #f9fafb; }
+    .actions { display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap; }
+
+    .stats { display: flex; gap: 1rem; margin-bottom: 1rem; }
+    .stat { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 0.75rem; min-width: 120px; text-align: center; }
+    .stat span { display: block; font-size: 1.25rem; font-weight: 700; }
+    .entities-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .entity-row { display: grid; grid-template-columns: 1fr auto; gap: 0.5rem; align-items: center; border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 0.5rem; }
+    .chip { background: #eef2ff; color: #374151; padding: 0.125rem 0.5rem; border-radius: 9999px; font-size: 0.75rem; margin-right: 0.5rem; }
+    .anchors { display: flex; gap: 0.5rem; align-items: center; }
+
+    .filters { display: flex; gap: 1rem; align-items: center; margin-bottom: 0.5rem; }
+    .table-wrap { overflow-x: auto; border: 1px solid #e5e7eb; border-radius: 0.5rem; }
+    .tbl { width: 100%; border-collapse: collapse; }
+    .tbl th, .tbl td { border-bottom: 1px solid #e5e7eb; padding: 0.5rem; text-align: left; }
+    .tbl thead th { background: #f9fafb; }
+
+    .constraints { display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; }
+    .preview { border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 0.75rem; background: #f9fafb; }
+    .preview .file { font-weight: 600; margin-bottom: 0.25rem; }
+    .diff code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    .diff .ins { background: #d1fae5; }
+
+    .export-grid { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+
+    .info .cd { margin-top: 1rem; }
+  </style>
+</Layout>

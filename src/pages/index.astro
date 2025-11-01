@@ -1,0 +1,209 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+---
+<Layout>
+<Nav/>
+<main class="mn">
+<header class="hd">
+<div class="hd-tx">
+<h1 class="tl">SEO Content Optimizer</h1>
+<p class="st">Write better content, rank higher on Google with AI-powered semantic SEO analysis</p>
+</div>
+</header>
+
+<div class="qs">
+<a href="/editor" class="qs-btn pr">
+<div class="ic">✍️</div>
+<div class="tx">
+<div class="lb">Content Editor</div>
+<div class="ds">Write & optimize with real-time SEO scoring</div>
+</div>
+</a>
+<a href="/gen" class="qs-btn sc">
+<div class="ic">🎯</div>
+<div class="tx">
+<div class="lb">Keyword Research</div>
+<div class="ds">Find NLP terms and semantic keywords</div>
+</div>
+</a>
+<a href="/opt" class="qs-btn tr">
+<div class="ic">📊</div>
+<div class="tx">
+<div class="lb">SERP Analysis</div>
+<div class="ds">Analyze top-ranking competitor content</div>
+</div>
+</a>
+<a href="/seo" class="qs-btn qu">
+<div class="ic">🔗</div>
+<div class="tx">
+<div class="lb">Content Brief</div>
+<div class="ds">Generate AI-powered content outlines</div>
+</div>
+</a>
+</div>
+
+<section class="ft">
+<div class="ft-hd">
+<h2>Key Features</h2>
+<p>Everything you need for content optimization</p>
+</div>
+<div class="ft-gd">
+<div class="ft-cd">
+<div class="ft-ic">🤖</div>
+<h3>AI Content Generation</h3>
+<p>Create SEO-optimized content with advanced AI that understands context and semantic relationships</p>
+</div>
+<div class="ft-cd">
+<div class="ft-ic">📈</div>
+<h3>NLP Score</h3>
+<p>Real-time Natural Language Processing score showing how well your content matches search intent</p>
+</div>
+<div class="ft-cd">
+<div class="ft-ic">🔍</div>
+<h3>Competitor Analysis</h3>
+<p>Analyze top 30 SERP results to identify gaps and opportunities in your content strategy</p>
+</div>
+<div class="ft-cd">
+<div class="ft-ic">💡</div>
+<h3>Smart Suggestions</h3>
+<p>Get intelligent recommendations for headings, keywords, and content structure improvements</p>
+</div>
+<div class="ft-cd">
+<div class="ft-ic">📝</div>
+<h3>Content Outline</h3>
+<p>Generate comprehensive outlines based on SERP analysis and semantic keyword research</p>
+</div>
+<div class="ft-cd">
+<div class="ft-ic">🎨</div>
+<h3>Rich Text Editor</h3>
+<p>Beautiful, distraction-free editor with live SEO scoring and optimization suggestions</p>
+</div>
+</div>
+</section>
+
+<section class="hw">
+<div class="hw-hd">
+<h2>How It Works</h2>
+<p>Simple workflow for better content</p>
+</div>
+<div class="hw-st">
+<div class="st-it">
+<div class="st-nm">1</div>
+<div class="st-ct">
+<h3>Enter Target Keyword</h3>
+<p>Start by entering your target keyword or topic to analyze</p>
+</div>
+</div>
+<div class="st-ar">→</div>
+<div class="st-it">
+<div class="st-nm">2</div>
+<div class="st-ct">
+<h3>Analyze Competition</h3>
+<p>We analyze top-ranking pages and extract NLP terms</p>
+</div>
+</div>
+<div class="st-ar">→</div>
+<div class="st-it">
+<div class="st-nm">3</div>
+<div class="st-ct">
+<h3>Write & Optimize</h3>
+<p>Create content with real-time scoring and suggestions</p>
+</div>
+</div>
+<div class="st-ar">→</div>
+<div class="st-it">
+<div class="st-nm">4</div>
+<div class="st-ct">
+<h3>Rank Higher</h3>
+<p>Publish optimized content that ranks on Google</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="ct">
+<div class="ct-bx">
+<h2>Ready to optimize your content?</h2>
+<p>Start creating SEO-optimized content that ranks</p>
+<a href="/editor" class="ct-btn">Get Started Now</a>
+</div>
+</section>
+</main>
+</Layout>
+<style>
+.mn{margin-left:240px;padding:48px;min-height:100vh;max-width:1400px;margin-right:auto;background:#f8fafc;animation:sf .4s ease}
+.hd{text-align:center;margin-bottom:64px;padding:48px 32px 0}
+.tl{font-size:48px;font-weight:800;color:#2563eb;margin:0 0 16px 0;line-height:1.2;letter-spacing:-0.02em}
+.st{font-size:20px;color:#64748b;margin:0;font-weight:500;max-width:800px;margin:0 auto}
+
+.qs{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:80px}
+.qs-btn{display:flex;align-items:center;gap:20px;padding:28px;background:#fff;border:2px solid #e2e8f0;border-radius:16px;text-decoration:none;transition:all .3s cubic-bezier(.4,0,.2,1);box-shadow:0 4px 6px rgba(0,0,0,.05),0 1px 3px rgba(0,0,0,.03);position:relative;overflow:hidden}
+.qs-btn::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(37,99,235,.05) 0%,rgba(59,130,246,.05) 100%);opacity:0;transition:opacity .3s ease}
+.qs-btn:hover{transform:translateY(-4px);box-shadow:0 12px 24px rgba(37,99,235,.15),0 4px 8px rgba(37,99,235,.08);border-color:#3b82f6}
+.qs-btn:hover::before{opacity:1}
+.qs-btn.pr .ic{background:#3b82f6;color:#fff}
+.qs-btn.sc .ic{background:#10b981;color:#fff}
+.qs-btn.tr .ic{background:#f59e0b;color:#fff}
+.qs-btn.qu .ic{background:#8b5cf6;color:#fff}
+.ic{width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:12px;font-size:28px;flex-shrink:0;box-shadow:0 4px 12px rgba(0,0,0,.1);transition:transform .3s ease}
+.qs-btn:hover .ic{transform:scale(1.1)}
+.tx{flex:1;min-width:0}
+.lb{font-size:20px;font-weight:700;color:#1a202c;margin-bottom:4px;line-height:1.3}
+.ds{font-size:14px;color:#64748b;line-height:1.5}
+
+.ft{margin-bottom:80px}
+.ft-hd{text-align:center;margin-bottom:48px}
+.ft-hd h2{font-size:36px;font-weight:800;color:#1a202c;margin:0 0 12px 0}
+.ft-hd p{font-size:18px;color:#64748b;margin:0}
+.ft-gd{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.ft-cd{background:#fff;padding:32px;border:2px solid #e2e8f0;border-radius:16px;transition:all .3s ease;box-shadow:0 4px 6px rgba(0,0,0,.05)}
+.ft-cd:hover{transform:translateY(-4px);box-shadow:0 12px 24px rgba(0,0,0,.1);border-color:#3b82f6}
+.ft-ic{font-size:48px;margin-bottom:20px}
+.ft-cd h3{font-size:20px;font-weight:700;color:#1a202c;margin:0 0 12px 0}
+.ft-cd p{font-size:15px;color:#64748b;line-height:1.7;margin:0}
+
+.hw{margin-bottom:80px}
+.hw-hd{text-align:center;margin-bottom:48px}
+.hw-hd h2{font-size:36px;font-weight:800;color:#1a202c;margin:0 0 12px 0}
+.hw-hd p{font-size:18px;color:#64748b;margin:0}
+.hw-st{display:flex;align-items:flex-start;justify-content:center;gap:24px;flex-wrap:wrap}
+.st-it{background:#fff;padding:32px;border:2px solid #e2e8f0;border-radius:16px;flex:1;min-width:200px;max-width:250px;text-align:center;transition:all .3s ease;box-shadow:0 4px 6px rgba(0,0,0,.05)}
+.st-it:hover{transform:translateY(-4px);box-shadow:0 12px 24px rgba(0,0,0,.1);border-color:#3b82f6}
+.st-nm{width:56px;height:56px;background:#3b82f6;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;margin:0 auto 20px;box-shadow:0 4px 12px rgba(37,99,235,.3)}
+.st-ct h3{font-size:18px;font-weight:700;color:#1a202c;margin:0 0 8px 0}
+.st-ct p{font-size:14px;color:#64748b;line-height:1.6;margin:0}
+.st-ar{font-size:32px;color:#cbd5e1;font-weight:700;flex-shrink:0}
+
+.ct{background:#2563eb;border-radius:24px;padding:64px;text-align:center;box-shadow:0 20px 48px rgba(37,99,235,.25);margin-bottom:48px}
+.ct-bx h2{font-size:36px;font-weight:800;color:#fff;margin:0 0 16px 0}
+.ct-bx p{font-size:18px;color:#e0e7ff;margin:0 0 32px 0}
+.ct-btn{display:inline-block;background:#fff;color:#2563eb;padding:16px 48px;border-radius:12px;font-size:18px;font-weight:700;text-decoration:none;transition:all .3s ease;box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.ct-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+
+@keyframes sf{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:1200px){
+.qs{grid-template-columns:1fr}
+.ft-gd{grid-template-columns:repeat(2,1fr)}
+.hw-st{flex-wrap:wrap}
+.st-ar{display:none}
+}
+
+@media(max-width:768px){
+.mn{margin-left:72px;padding:32px}
+.hd{padding:32px 16px}
+.tl{font-size:36px}
+.st{font-size:16px}
+.ft-gd{grid-template-columns:1fr}
+.st-it{max-width:none}
+}
+
+@media(max-width:480px){
+.mn{margin-left:0;padding:20px;padding-top:80px}
+.tl{font-size:32px}
+.qs-btn{padding:20px}
+.ic{width:48px;height:48px;font-size:24px}
+.lb{font-size:18px}
+}
+</style>

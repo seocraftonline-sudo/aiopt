@@ -1,0 +1,1219 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+---
+<Layout>
+<Nav/>
+<main class="mn">
+<div class="pg-hd">
+<div class="hd-ic">⚡</div>
+<h1 class="tl">Content Automator</h1>
+<p class="st">AI-powered workflow from keyword to published content in 4 simple steps</p>
+</div>
+
+<div class="pr-wr">
+<div class="pr-st">
+<div class="pr-it cp" data-step="1">
+<div class="pr-nm">1</div>
+<div class="pr-lb">Basic Input</div>
+</div>
+<div class="pr-ln"></div>
+<div class="pr-it" data-step="2">
+<div class="pr-nm">2</div>
+<div class="pr-lb">Research</div>
+</div>
+<div class="pr-ln"></div>
+<div class="pr-it" data-step="3">
+<div class="pr-nm">3</div>
+<div class="pr-lb">Create</div>
+</div>
+<div class="pr-ln"></div>
+<div class="pr-it" data-step="4">
+<div class="pr-nm">4</div>
+<div class="pr-lb">Publish</div>
+</div>
+</div>
+</div>
+
+<div class="st-cn">
+<div class="st-bx" id="step1">
+<div class="st-ic">🎯</div>
+<div class="st-hd">
+<h2>Define Your Content Target</h2>
+<p>Enter your target keyword and specify content parameters</p>
+</div>
+<div class="st-bd">
+<div class="fm-gd">
+<div class="fm-gr">
+<label class="fm-lb">
+<span class="lb-tx">Target Keyword<span class="rq">*</span></span>
+<input type="text" id="targetKeyword" placeholder="e.g., best wireless headphones 2025" class="fm-in"/>
+<span class="lb-ht">Main keyword you want to rank for</span>
+</label>
+</div>
+<div class="fm-gr">
+<label class="fm-lb">
+<span class="lb-tx">Content Title<span class="rq">*</span></span>
+<input type="text" id="contentTitleInput" placeholder="e.g., The Ultimate Guide to Best Wireless Headphones 2025" class="fm-in"/>
+<span class="lb-ht">SEO-optimized title for your content</span>
+</label>
+</div>
+<div class="fm-rw">
+<div class="fm-gr">
+<label class="fm-lb">
+<span class="lb-tx">Target Audience</span>
+<select id="targetAudience" class="fm-in">
+<option value="general">General Audience</option>
+<option value="beginners">Beginners</option>
+<option value="professionals">Professionals</option>
+<option value="business">Business</option>
+</select>
+</label>
+</div>
+<div class="fm-gr">
+<label class="fm-lb">
+<span class="lb-tx">Content Type</span>
+<select id="contentType" class="fm-in">
+<option value="blog">Blog Post</option>
+<option value="guide">Complete Guide</option>
+<option value="review">Product Review</option>
+<option value="comparison">Comparison</option>
+<option value="listicle">Listicle</option>
+</select>
+</label>
+</div>
+</div>
+</div>
+<button class="bt-pr" id="nextStep1">
+<span>Start Research</span>
+<span class="bt-ar">→</span>
+</button>
+</div>
+</div>
+
+<div class="st-bx" id="step2" style="display:none">
+<div class="st-ic">🔍</div>
+<div class="st-hd">
+<h2>Keyword Summary</h2>
+<p>Organized insights: semantic terms and top SERP competitors</p>
+</div>
+<div class="st-bd" style="max-width:1400px;margin:0 auto">
+
+<div class="km-sc">
+<div class="km-hd">
+<div class="km-ic">🎯</div>
+<h3 class="km-ti">Key Semantic Terms</h3>
+<p class="km-sb">Grouped by topic to guide content structure and on-page relevance</p>
+</div>
+<div class="km-gd" id="semanticTermsGrid">
+<div class="km-cl">
+<div class="km-ch">Core Topic</div>
+<div class="km-tg">
+<span class="km-tm">primary keyword</span>
+<span class="km-tm">search intent</span>
+<span class="km-tm">buyer journey</span>
+<span class="km-tm">topic cluster</span>
+<span class="km-tm">pillar page</span>
+</div>
+</div>
+<div class="km-cl">
+<div class="km-ch">Entities</div>
+<div class="km-tg">
+<span class="km-tm">brand mention</span>
+<span class="km-tm">product category</span>
+<span class="km-tm">feature set</span>
+<span class="km-tm">use cases</span>
+<span class="km-tm">competitors</span>
+</div>
+</div>
+<div class="km-cl">
+<div class="km-ch">Modifiers</div>
+<div class="km-tg">
+<span class="km-tm">best</span>
+<span class="km-tm">vs</span>
+<span class="km-tm">pricing</span>
+<span class="km-tm">reviews</span>
+<span class="km-tm">alternatives</span>
+</div>
+</div>
+<div class="km-cl">
+<div class="km-ch">Questions</div>
+<div class="km-tg">
+<span class="km-tm">what is</span>
+<span class="km-tm">how to</span>
+<span class="km-tm">is it worth</span>
+<span class="km-tm">benefits</span>
+<span class="km-tm">drawbacks</span>
+</div>
+</div>
+<div class="km-cl">
+<div class="km-ch">Technical</div>
+<div class="km-tg">
+<span class="km-tm">schema markup</span>
+<span class="km-tm">page speed</span>
+<span class="km-tm">core web vitals</span>
+<span class="km-tm">internal links</span>
+<span class="km-tm">canonical</span>
+</div>
+</div>
+<div class="km-cl">
+<div class="km-ch">Long-tail</div>
+<div class="km-tg">
+<span class="km-tm">best tools for [task]</span>
+<span class="km-tm">[product] vs [competitor]</span>
+<span class="km-tm">how to choose [category]</span>
+<span class="km-tm">[category] pricing guide</span>
+<span class="km-tm">top-rated [year]</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="sr-sc">
+<div class="sr-hd">
+<div class="sr-ic">🏆</div>
+<h3 class="sr-ti">Top 10 SERP Competitors</h3>
+<p class="sr-sb">Snapshot of ranking pages with content depth and authority metrics</p>
+</div>
+<div class="sr-ls" id="serpCompetitorsList">
+<div class="sr-it">
+<div class="sr-rk">1</div>
+<div class="sr-cn">
+<h4 class="sr-tl">Comprehensive Guide to Topic Clusters</h4>
+<a href="#" class="sr-ur">https://example.com/topic-clusters</a>
+</div>
+<div class="sr-mt">
+<span class="sr-wd">1,980 words</span>
+<span class="sr-da">DA 86</span>
+</div>
+</div>
+<div class="sr-it">
+<div class="sr-rk">2</div>
+<div class="sr-cn">
+<h4 class="sr-tl">How to Map Search Intent Effectively</h4>
+<a href="#" class="sr-ur">https://seoinsights.com/search-intent</a>
+</div>
+<div class="sr-mt">
+<span class="sr-wd">1,450 words</span>
+<span class="sr-da">DA 73</span>
+</div>
+</div>
+<div class="sr-it">
+<div class="sr-rk">3</div>
+<div class="sr-cn">
+<h4 class="sr-tl">Best Tools for Keyword Research in 2025</h4>
+<a href="#" class="sr-ur">https://marketerhub.io/keyword-tools-2025</a>
+</div>
+<div class="sr-mt">
+<span class="sr-wd">2,320 words</span>
+<span class="sr-da">DA 62</span>
+</div>
+</div>
+<div class="sr-it">
+<div class="sr-rk">4</div>
+<div class="sr-cn">
+<h4 class="sr-tl">Topic Cluster vs Pillar Page: Key Differences</h4>
+<a href="#" class="sr-ur">https://contentcraft.co/cluster-vs-pillar</a>
+</div>
+<div class="sr-mt">
+<span class="sr-wd">1,120 words</span>
+<span class="sr-da">DA 54</span>
+</div>
+</div>
+<div class="sr-it">
+<div class="sr-rk">5</div>
+<div class="sr-cn">
+<h4 class="sr-tl">Schema Markup Basics for Beginners</h4>
+<a href="#" class="sr-ur">https://techseo.academy/schema-basics</a>
+</div>
+<div class="sr-mt">
+<span class="sr-wd">1,780 words</span>
+<span class="sr-da">DA 49</span>
+</div>
+</div>
+<div class="sr-it">
+<div class="sr-rk">6</div>
+<div class="sr-cn">
+<h4 class="sr-tl">Internal Linking Strategies that Scale</h4>
+<a href="#" class="sr-ur">https://optigrowth.com/internal-linking</a>
+</div>
+<div class="sr-mt">
+<span class="sr-wd">1,630 words</span>
+<span class="sr-da">DA 57</span>
+</div>
+</div>
+<div class="sr-it">
+<div class="sr-rk">7</div>
+<div class="sr-cn">
+<h4 class="sr-tl">Core Web Vitals: A Practical Checklist</h4>
+<a href="#" class="sr-ur">https://pagespeedlab.dev/cwv-checklist</a>
+</div>
+<div class="sr-mt">
+<span class="sr-wd">2,040 words</span>
+<span class="sr-da">DA 38</span>
+</div>
+</div>
+<div class="sr-it">
+<div class="sr-rk">8</div>
+<div class="sr-cn">
+<h4 class="sr-tl">Pricing Pages that Convert: Patterns</h4>
+<a href="#" class="sr-ur">https://uxpatterns.io/pricing-pages</a>
+</div>
+<div class="sr-mt">
+<span class="sr-wd">1,260 words</span>
+<span class="sr-da">DA 41</span>
+</div>
+</div>
+<div class="sr-it">
+<div class="sr-rk">9</div>
+<div class="sr-cn">
+<h4 class="sr-tl">Alternatives to Leading SEO Platforms</h4>
+<a href="#" class="sr-ur">https://stackcompare.app/seo-alternatives</a>
+</div>
+<div class="sr-mt">
+<span class="sr-wd">1,510 words</span>
+<span class="sr-da">DA 52</span>
+</div>
+</div>
+<div class="sr-it">
+<div class="sr-rk">10</div>
+<div class="sr-cn">
+<h4 class="sr-tl">How to Build a Pillar Page from Scratch</h4>
+<a href="#" class="sr-ur">https://contentengineer.io/pillar-page-guide</a>
+</div>
+<div class="sr-mt">
+<span class="sr-wd">2,210 words</span>
+<span class="sr-da">DA 44</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="bt-gr">
+<button class="bt-sc" id="backStep2">
+<span class="bt-ar">←</span>
+<span>Back</span>
+</button>
+<button class="bt-pr" id="nextStep2">
+<span>Generate Content</span>
+<span class="bt-ar">→</span>
+</button>
+</div>
+</div>
+</div>
+
+<div class="st-bx" id="step3" style="display:none">
+<div class="st-ic">✍️</div>
+<div class="st-hd">
+<h2>Content Generation</h2>
+<p>Creating SEO-optimized content for: <strong class="kw-hl" id="kwDisplay2"></strong></p>
+</div>
+<div class="st-bd">
+<div class="ed-gd">
+<div class="ed-sd">
+<div class="sc-wr">
+<div class="sc-hd">Content Score</div>
+<div class="sc-cr">
+<svg class="sc-sv" viewBox="0 0 120 120">
+<circle class="sc-bg" cx="60" cy="60" r="54"></circle>
+<circle class="sc-fg" id="contentScore" cx="60" cy="60" r="54"></circle>
+</svg>
+<div class="sc-vl" id="scoreDisplay">0</div>
+</div>
+</div>
+<div class="mt-wr">
+<div class="mt-hd">Metrics</div>
+<div class="mt-ls">
+<div class="mt-rw">
+<span class="mt-ic">📝</span>
+<span class="mt-tx">Words</span>
+<span class="mt-nm" id="wordCountStep3">0</span>
+</div>
+<div class="mt-rw">
+<span class="mt-ic">📑</span>
+<span class="mt-tx">Headings</span>
+<span class="mt-nm" id="headingCount">0</span>
+</div>
+<div class="mt-rw">
+<span class="mt-ic">🎯</span>
+<span class="mt-tx">Keywords</span>
+<span class="mt-nm" id="keywordUsage">0</span>
+</div>
+</div>
+</div>
+<button class="bt-gn" id="generateContent">
+<span class="gn-ic">✨</span>
+<span>Generate Content</span>
+</button>
+</div>
+<div class="ed-ar">
+<input type="text" id="contentTitle" placeholder="Title will appear here..." class="ct-tl" readonly/>
+<div class="ct-bx">
+<div id="generatedContent" class="ct-tx">
+<div class="ct-em">
+<div class="em-ic">💡</div>
+<h3>Ready to Generate</h3>
+<p>Click "Generate Content" to create AI-optimized content based on your competitor analysis and target keyword.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bt-gr">
+<button class="bt-sc" id="backStep3">
+<span class="bt-ar">←</span>
+<span>Back</span>
+</button>
+<button class="bt-pr" id="nextStep3">
+<span>Publish Content</span>
+<span class="bt-ar">→</span>
+</button>
+</div>
+</div>
+</div>
+
+<div class="st-bx" id="step4" style="display:none">
+<div class="fn-wr">
+<div class="fn-sc">
+<div class="fn-ic">✓</div>
+<h2>Content Ready!</h2>
+<p>Your SEO-optimized content has been generated successfully</p>
+<div class="fn-st">
+<div class="st-it">
+<span class="st-lb">Final Score</span>
+<span class="st-vl" id="finalScore">-</span>
+</div>
+<div class="st-it">
+<span class="st-lb">Word Count</span>
+<span class="st-vl" id="finalWords">-</span>
+</div>
+<div class="st-it">
+<span class="st-lb">Keyword</span>
+<span class="st-vl" id="finalKeyword">-</span>
+</div>
+</div>
+</div>
+
+<div class="pb-sc">
+<div class="pb-hd">
+<h3>📤 Publishing Options</h3>
+<p>Choose how you want to publish your content</p>
+</div>
+<div class="pb-gd">
+<button class="pb-cd" id="publishWordPress">
+<div class="pb-ic wp">
+<svg viewBox="0 0 24 24" fill="currentColor">
+<path d="M12.158 12.786L9.46 20.625a9.948 9.948 0 002.554.33c1.053 0 2.062-.168 3.01-.475-.024-.036-.046-.073-.065-.112l-2.801-7.582zm9.096-5.47c0 1.272-.363 2.244-.673 2.952-.413.872-.8 1.61-.8 2.482 0 .971.736 1.875 1.79 1.875.047 0 .092-.006.137-.008A9.965 9.965 0 0012 22c-3.844 0-7.213-2.175-8.889-5.37l2.446-7.094c.407-.994.878-2.097.878-3.036 0-.314-.028-.606-.076-.883 2.127-1.052 4.514-1.617 7.021-1.617 2.873 0 5.531.816 7.805 2.23-.05.004-.104.007-.157.007-1.056 0-1.805-.92-1.805-1.91 0-.995.748-1.918 1.804-1.918.048 0 .093.007.14.01A9.965 9.965 0 0012 2C6.478 2 2 6.478 2 12a9.958 9.958 0 001.502 5.286l4.117-11.92c.685-1.71 1.82-2.866 3.496-2.866.094 0 .187.005.28.014 1.074.097 1.87 1.058 1.87 2.132 0 .233-.036.457-.104.668l-2.386 6.908 4.71-12.583A9.937 9.937 0 0112 2.004c5.516 0 9.996 4.473 9.996 9.989 0 .338-.017.673-.049 1.004l.308-.841c.31-.844.673-1.817.673-2.95 0-.867-.214-1.495-.502-2.046A9.965 9.965 0 0022 12c0 5.522-4.478 10-10 10S2 17.522 2 12 6.478 2 12 2s10 4.478 10 10z"/>
+</svg>
+</div>
+<div class="pb-tx">
+<div class="pb-tl">Publish to WordPress</div>
+<div class="pb-ds">Publish directly to your WordPress site</div>
+</div>
+<div class="pb-ar">→</div>
+</button>
+<button class="pb-cd" id="copyContent">
+<div class="pb-ic">📋</div>
+<div class="pb-tx">
+<div class="pb-tl">Copy to Clipboard</div>
+<div class="pb-ds">Copy all content with formatting</div>
+</div>
+<div class="pb-ar">→</div>
+</button>
+<button class="pb-cd" id="downloadHTML">
+<div class="pb-ic">💾</div>
+<div class="pb-tx">
+<div class="pb-tl">Download HTML</div>
+<div class="pb-ds">Export as HTML file</div>
+</div>
+<div class="pb-ar">→</div>
+</button>
+<button class="pb-cd" id="downloadMarkdown">
+<div class="pb-ic">📝</div>
+<div class="pb-tx">
+<div class="pb-tl">Download Markdown</div>
+<div class="pb-ds">Export as MD file</div>
+</div>
+<div class="pb-ar">→</div>
+</button>
+<button class="pb-cd" id="openEditor">
+<div class="pb-ic">✏️</div>
+<div class="pb-tx">
+<div class="pb-tl">Continue Editing</div>
+<div class="pb-ds">Open in full editor</div>
+</div>
+<div class="pb-ar">→</div>
+</button>
+</div>
+</div>
+</div>
+<button class="bt-rs" id="startOver">🔄 Start New Project</button>
+</div>
+</div>
+</div>
+</main>
+
+<div class="md" id="wpModal" style="display:none">
+<div class="md-ov"></div>
+<div class="md-cn">
+<div class="md-hd">
+<h3>Publish to WordPress</h3>
+<button class="md-cl" id="closeModal">×</button>
+</div>
+<div class="md-bd">
+<form id="wpForm">
+<div class="fm-gr">
+<label class="fm-lb">
+<span class="lb-tx">WordPress Site URL</span>
+<input type="url" id="wpUrl" placeholder="https://yoursite.com" class="fm-in" required/>
+</label>
+</div>
+<div class="fm-gr">
+<label class="fm-lb">
+<span class="lb-tx">Username</span>
+<input type="text" id="wpUsername" placeholder="admin" class="fm-in" required/>
+</label>
+</div>
+<div class="fm-gr">
+<label class="fm-lb">
+<span class="lb-tx">Application Password</span>
+<input type="password" id="wpPassword" placeholder="xxxx xxxx xxxx xxxx" class="fm-in" required/>
+<span class="lb-ht">Create an application password in WordPress Settings</span>
+</label>
+</div>
+<div class="fm-gr">
+<label class="fm-lb">
+<span class="lb-tx">Post Status</span>
+<select id="wpStatus" class="fm-in">
+<option value="draft">Draft</option>
+<option value="publish">Publish Immediately</option>
+<option value="pending">Pending Review</option>
+</select>
+</label>
+</div>
+<div class="md-ft">
+<button type="button" class="bt-sc" id="cancelPublish">Cancel</button>
+<button type="submit" class="bt-pr" id="publishBtn">
+<span>Publish to WordPress</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</Layout>
+
+<style>
+.mn{margin-left:240px;padding:48px 48px 80px;min-height:100vh;background:linear-gradient(135deg,#f8fafc 0%,#f1f5f9 100%)}
+
+.pg-hd{text-align:center;margin-bottom:48px;padding:48px 32px;background:#fff;border-radius:20px;box-shadow:0 4px 6px rgba(0,0,0,.03),0 12px 24px rgba(0,0,0,.05);border:2px solid #e2e8f0}
+.hd-ic{font-size:56px;margin-bottom:16px;animation:pl 2s ease-in-out infinite}
+@keyframes pl{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.tl{font-size:42px;font-weight:800;color:#1a202c;margin:0 0 12px 0;letter-spacing:-0.02em}
+.st{font-size:18px;color:#64748b;margin:0;max-width:700px;margin:0 auto}
+
+.pr-wr{background:#fff;border-radius:20px;padding:40px;margin-bottom:40px;box-shadow:0 4px 6px rgba(0,0,0,.03),0 12px 24px rgba(0,0,0,.05);border:2px solid #e2e8f0}
+.pr-st{display:flex;align-items:center;justify-content:space-between;max-width:1000px;margin:0 auto}
+.pr-it{display:flex;flex-direction:column;align-items:center;gap:12px;transition:all .4s cubic-bezier(.4,0,.2,1)}
+.pr-nm{width:56px;height:56px;background:#f1f5f9;color:#94a3b8;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;transition:all .4s cubic-bezier(.4,0,.2,1);border:3px solid transparent}
+.pr-lb{font-size:14px;color:#94a3b8;font-weight:700;transition:all .4s cubic-bezier(.4,0,.2,1);text-transform:uppercase;letter-spacing:.05em}
+.pr-it.cp .pr-nm{background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;box-shadow:0 8px 20px rgba(59,130,246,.4);border-color:#3b82f6;transform:scale(1.1)}
+.pr-it.cp .pr-lb{color:#3b82f6}
+.pr-it.dn .pr-nm{background:linear-gradient(135deg,#10b981,#059669);color:#fff;border-color:#10b981}
+.pr-it.dn .pr-lb{color:#10b981}
+.pr-ln{flex:1;height:3px;background:#e5e7eb;margin:0 24px;border-radius:2px;transition:all .4s ease;position:relative;overflow:hidden}
+.pr-ln::after{content:'';position:absolute;left:0;top:0;height:100%;width:0;background:linear-gradient(90deg,#10b981,#059669);transition:width .4s ease}
+.pr-ln.dn::after{width:100%}
+
+.st-cn{max-width:1200px;margin:0 auto}
+.st-bx{background:#fff;border-radius:20px;padding:48px;box-shadow:0 4px 6px rgba(0,0,0,.03),0 12px 24px rgba(0,0,0,.05);border:2px solid #e2e8f0;position:relative;overflow:hidden}
+#step2{background:transparent;border:none;box-shadow:none;padding:0}
+#step2 .st-bd{display:flex;flex-direction:column;gap:0;padding:0;max-width:1400px;margin:0 auto}
+.st-bx::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#3b82f6,#8b5cf6,#ec4899);opacity:0;transition:opacity .3s ease}
+.st-bx:hover::before{opacity:1}
+.st-ic{font-size:48px;margin-bottom:24px;display:inline-block;padding:16px;background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:16px;box-shadow:0 4px 12px rgba(59,130,246,.15)}
+.st-hd{margin-bottom:40px}
+.st-hd h2{font-size:32px;font-weight:800;color:#1a202c;margin:0 0 8px 0}
+.st-hd p{font-size:16px;color:#64748b;margin:0}
+.kw-hl{color:#3b82f6;font-weight:700}
+
+.fm-gd{display:flex;flex-direction:column;gap:28px;margin-bottom:40px}
+.fm-rw{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.fm-gr{display:flex;flex-direction:column}
+.fm-lb{display:flex;flex-direction:column;gap:8px}
+.lb-tx{font-size:14px;font-weight:700;color:#1a202c}
+.rq{color:#ef4444;margin-left:4px}
+.fm-in{padding:14px 18px;border:2px solid #e2e8f0;border-radius:12px;font-size:16px;font-family:inherit;transition:all .3s ease;background:#fff}
+.fm-in:focus{outline:none;border-color:#3b82f6;box-shadow:0 0 0 4px rgba(59,130,246,.1);transform:translateY(-1px)}
+.fm-in::placeholder{color:#cbd5e1}
+.lb-ht{font-size:12px;color:#94a3b8;font-weight:500}
+
+.bt-pr{width:100%;padding:18px 32px;background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;transition:all .3s ease;box-shadow:0 8px 20px rgba(59,130,246,.3);display:flex;align-items:center;justify-content:center;gap:12px}
+.bt-pr:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 12px 28px rgba(59,130,246,.4)}
+.bt-pr:disabled{opacity:.6;cursor:not-allowed}
+.bt-sc{padding:14px 28px;background:#fff;color:#64748b;border:2px solid #e2e8f0;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;transition:all .3s ease;display:flex;align-items:center;gap:8px}
+.bt-sc:hover{border-color:#3b82f6;color:#3b82f6;transform:translateY(-1px)}
+.bt-gr{display:flex;gap:16px;justify-content:space-between;margin-top:40px}
+.bt-ar{font-size:18px;transition:transform .3s ease}
+.bt-pr:hover .bt-ar{transform:translateX(4px)}
+.bt-sc:hover .bt-ar{transform:translateX(-4px)}
+.bt-rs{width:100%;padding:16px;background:#f8fafc;color:#64748b;border:2px solid #e2e8f0;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;transition:all .3s ease;margin-top:32px}
+.bt-rs:hover{background:#fff;border-color:#3b82f6;color:#3b82f6}
+
+.ld-sc{display:flex;align-items:center;justify-content:center;min-height:600px;padding:60px 40px;animation:fadeIn .5s ease-out}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.ld-cn{background:#fff;border-radius:24px;padding:60px;max-width:600px;width:100%;box-shadow:0 4px 6px rgba(0,0,0,.03),0 20px 40px rgba(0,0,0,.08);border:1px solid #e5e7eb}
+.ld-hd{text-align:center;margin-bottom:40px}
+.ld-ic-wp{width:100px;height:100px;margin:0 auto 24px;position:relative}
+.ld-ic{width:100%;height:100%}
+.ld-c1,.ld-c2,.ld-c3{fill:none;stroke-width:2;stroke-linecap:round}
+.ld-c1{stroke:#3b82f6;stroke-dasharray:126;animation:dash1 2s ease-in-out infinite}
+.ld-c2{stroke:#8b5cf6;stroke-dasharray:94;animation:dash2 2s ease-in-out infinite .3s}
+.ld-c3{stroke:#ec4899;stroke-dasharray:63;animation:dash3 2s ease-in-out infinite .6s}
+@keyframes dash1{0%,100%{stroke-dashoffset:126;opacity:.3}50%{stroke-dashoffset:0;opacity:1}}
+@keyframes dash2{0%,100%{stroke-dashoffset:94;opacity:.3}50%{stroke-dashoffset:0;opacity:1}}
+@keyframes dash3{0%,100%{stroke-dashoffset:63;opacity:.3}50%{stroke-dashoffset:0;opacity:1}}
+.ld-ti{font-size:24px;font-weight:700;color:#111827;margin:0 0 8px 0}
+.ld-ds{font-size:14px;color:#6b7280;margin:0}
+.ld-st{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+.ld-it{display:flex;align-items:center;gap:12px;padding:14px 20px;background:#f9fafb;border-radius:10px;font-size:14px;color:#6b7280;font-weight:500;transition:all .3s ease}
+.ld-it.active{background:linear-gradient(135deg,#eff6ff,#dbeafe);color:#1e40af;border-left:3px solid #3b82f6}
+.ld-pb{height:6px;background:#f1f5f9;border-radius:3px;overflow:hidden}
+.ld-pg{height:100%;background:linear-gradient(90deg,#3b82f6,#8b5cf6,#ec4899);width:0;transition:width .3s ease;border-radius:3px;position:relative}
+.ld-pg::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:shimmer 1.5s infinite}
+@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+
+.rs-sc{display:flex;flex-direction:column;gap:32px;animation:slideUp .6s ease-out}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.rs-hd{background:linear-gradient(135deg,#1e40af,#3b82f6);border-radius:20px;padding:40px;margin-bottom:8px;box-shadow:0 10px 30px rgba(59,130,246,.25)}
+.rs-bd{display:flex;align-items:center;gap:24px}
+.rs-ic{font-size:48px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.1))}
+.rs-ti{font-size:32px;font-weight:800;color:#fff;margin:0 0 6px 0;letter-spacing:-0.02em}
+.rs-ds{font-size:15px;color:rgba(255,255,255,.9);margin:0}
+.rs-gr{display:grid;grid-template-columns:1fr;gap:32px}
+.mt-gd{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:40px}
+.mt-cd{background:linear-gradient(135deg,#f8fafc,#fff);border:2px solid #e2e8f0;border-radius:16px;padding:24px;transition:all .3s ease;position:relative;overflow:hidden}
+.mt-cd::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);transform:scaleX(0);transition:transform .3s ease}
+.mt-cd:hover{transform:translateY(-4px);box-shadow:0 12px 24px rgba(0,0,0,.1);border-color:#3b82f6}
+.mt-cd:hover::before{transform:scaleX(1)}
+.mt-hd{display:flex;align-items:center;gap:10px;margin-bottom:16px;font-size:14px;color:#64748b;font-weight:600}
+.mt-ic{font-size:24px}
+.mt-vl{font-size:32px;color:#1a202c;font-weight:800;margin-bottom:8px}
+.mt-lb{font-size:13px;color:#94a3b8;font-weight:500}
+
+.kw-sc,.cp-sc{background:#fff;border-radius:20px;padding:36px;box-shadow:0 2px 4px rgba(0,0,0,.02),0 8px 16px rgba(0,0,0,.04);border:1px solid #e5e7eb;transition:all .3s ease}
+.kw-sc:hover,.cp-sc:hover{box-shadow:0 4px 12px rgba(0,0,0,.06),0 12px 32px rgba(0,0,0,.08);transform:translateY(-2px)}
+.sc-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;padding-bottom:24px;border-bottom:2px solid #e5e7eb}
+.hd-lf{display:flex;align-items:center;gap:16px}
+.hd-ic{font-size:32px;width:56px;height:56px;background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(59,130,246,.15)}
+.hd-ti{font-size:20px;font-weight:700;color:#111827;margin:0 0 4px 0}
+.hd-sb{font-size:13px;color:#6b7280;margin:0}
+.hd-bg{background:#f1f5f9;color:#6b7280;font-size:12px;font-weight:600;padding:6px 14px;border-radius:20px}
+
+
+.kw-gd{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:8px}
+.kw-gr{background:#fff;border:2px solid #e5e7eb;border-radius:16px;padding:0;overflow:hidden;transition:all .3s ease;animation:fadeInUp .5s ease-out;animation-fill-mode:both;position:relative;min-height:200px;display:flex;flex-direction:column}
+.kw-gr:nth-child(1){animation-delay:.05s}
+.kw-gr:nth-child(1) .gr-hd{background:linear-gradient(135deg,#3b82f6,#2563eb)}
+.kw-gr:nth-child(2){animation-delay:.1s}
+.kw-gr:nth-child(2) .gr-hd{background:linear-gradient(135deg,#8b5cf6,#7c3aed)}
+.kw-gr:nth-child(3){animation-delay:.15s}
+.kw-gr:nth-child(3) .gr-hd{background:linear-gradient(135deg,#ec4899,#db2777)}
+.kw-gr:nth-child(4){animation-delay:.2s}
+.kw-gr:nth-child(4) .gr-hd{background:linear-gradient(135deg,#10b981,#059669)}
+.kw-gr:nth-child(5){animation-delay:.25s}
+.kw-gr:nth-child(5) .gr-hd{background:linear-gradient(135deg,#f59e0b,#d97706)}
+.kw-gr:nth-child(6){animation-delay:.3s}
+.kw-gr:nth-child(6) .gr-hd{background:linear-gradient(135deg,#ef4444,#dc2626)}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.kw-gr:hover{border-color:#3b82f6;box-shadow:0 8px 24px rgba(0,0,0,.12);transform:translateY(-4px)}
+.gr-hd{font-size:12px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.06em;padding:16px 20px;margin:0;display:flex;align-items:center;gap:10px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.gr-hd::before{content:'■';font-size:10px;opacity:.8}
+.gr-dv{height:3px;background:linear-gradient(90deg,rgba(59,130,246,.3),transparent)}
+.gr-tg{display:flex;flex-wrap:wrap;gap:10px;row-gap:10px;padding:24px;flex:1;align-content:flex-start}
+.kw-tg{background:linear-gradient(135deg,#f8fafc,#f1f5f9);border:1.5px solid #e2e8f0;color:#334155;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;white-space:nowrap;transition:all .25s cubic-bezier(.4,0,.2,1);cursor:pointer;line-height:1.4;box-shadow:0 1px 3px rgba(0,0,0,.05);position:relative;overflow:hidden}
+.kw-tg::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(180deg,#3b82f6,#8b5cf6);transform:scaleY(0);transition:transform .25s ease}
+.kw-tg:hover{border-color:#3b82f6;background:linear-gradient(135deg,#eff6ff,#dbeafe);color:#1e40af;transform:translateY(-2px);box-shadow:0 4px 12px rgba(59,130,246,.25)}
+.kw-tg:hover::before{transform:scaleY(1)}
+.kw-tg:active{transform:translateY(0) scale(0.98)}
+
+.cp-ls{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+.cp-cd{background:#fff;border:2px solid #e5e7eb;border-radius:16px;padding:24px 28px;transition:all .3s ease;cursor:pointer;animation:slideInLeft .4s ease-out;animation-fill-mode:both}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+.cp-cd:nth-child(1){animation-delay:.05s}
+.cp-cd:nth-child(2){animation-delay:.1s}
+.cp-cd:nth-child(3){animation-delay:.15s}
+.cp-cd:nth-child(4){animation-delay:.2s}
+.cp-cd:nth-child(5){animation-delay:.25s}
+.cp-cd:nth-child(6){animation-delay:.3s}
+.cp-cd:nth-child(7){animation-delay:.35s}
+.cp-cd:nth-child(8){animation-delay:.4s}
+.cp-cd:nth-child(9){animation-delay:.45s}
+.cp-cd:nth-child(10){animation-delay:.5s}
+.cp-cd:hover{border-color:#3b82f6;box-shadow:0 6px 20px rgba(59,130,246,.15);transform:translateY(-2px)}
+.cd-tp{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.cd-lf{display:flex;align-items:center;gap:16px;flex:1;min-width:0}
+.cd-rk{width:40px;height:40px;background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;flex-shrink:0;box-shadow:0 4px 12px rgba(59,130,246,.3)}
+.cd-inf{flex:1;min-width:0}
+.cd-dm{font-size:16px;font-weight:700;color:#1e293b;margin:0 0 4px 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cd-ur{font-size:13px;color:#64748b;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cd-ur a{color:#3b82f6;text-decoration:none;transition:color .2s ease}
+.cd-ur a:hover{color:#1e40af;text-decoration:underline}
+.cd-st{flex-shrink:0}
+.st-bg{background:#d1fae5;color:#065f46;padding:6px 14px;border-radius:8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.cd-mt{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.mt-cl{display:flex;flex-direction:column;gap:8px}
+.mt-hd{font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.05em}
+.mt-pr{display:flex;align-items:center;gap:12px}
+.pr-br{flex:1;height:8px;background:#f1f5f9;border-radius:4px;overflow:hidden;position:relative}
+.pr-fl{height:100%;border-radius:4px;transition:width .5s ease}
+.pr-tx{font-size:13px;font-weight:700;color:#1e293b;min-width:80px;text-align:right}
+
+.kw-hd::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.kw-hd.hp{background:linear-gradient(135deg,#dcfce7,#bbf7d0);color:#166534;border-color:#86efac}
+.kw-hd.hp::before{background:linear-gradient(90deg,#10b981,#059669)}
+.kw-hd.qp{background:linear-gradient(135deg,#dbeafe,#bfdbfe);color:#1e40af;border-color:#93c5fd}
+.kw-hd.qp::before{background:linear-gradient(90deg,#3b82f6,#2563eb)}
+.kw-hd.ux{background:linear-gradient(135deg,#fae8ff,#f3e8ff);color:#6b21a8;border-color:#d8b4fe}
+.kw-hd.ux::before{background:linear-gradient(90deg,#a855f7,#9333ea)}
+.kw-hd.vp{background:linear-gradient(135deg,#fed7aa,#fdba74);color:#9a3412;border-color:#fb923c}
+.kw-hd.vp::before{background:linear-gradient(90deg,#f97316,#ea580c)}
+.kw-hd.fi{background:linear-gradient(135deg,#fce7f3,#fbcfe8);color:#9f1239;border-color:#f9a8d4}
+.kw-hd.fi::before{background:linear-gradient(90deg,#ec4899,#db2777)}
+.kw-ct{flex:1}
+.kw-cnt{width:28px;height:28px;background:rgba(255,255,255,.9);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;box-shadow:0 2px 4px rgba(0,0,0,.1)}
+.kw-ls{padding:16px;display:flex;flex-direction:column;gap:10px;max-height:420px;overflow-y:auto}
+.kw-ls::-webkit-scrollbar{width:6px}
+.kw-ls::-webkit-scrollbar-track{background:#f1f5f9;border-radius:3px}
+.kw-ls::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
+.kw-ls::-webkit-scrollbar-thumb:hover{background:#94a3b8}
+.kw-cd{padding:12px 14px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;font-size:13px;font-weight:600;position:relative;padding-left:20px;transition:all .3s ease;cursor:pointer;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.kw-cd:hover{transform:translateX(4px);box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.kw-br{position:absolute;left:8px;top:50%;transform:translateY(-50%);width:4px;height:18px;border-radius:2px}
+.kw-cd.hp .kw-br{background:linear-gradient(180deg,#10b981,#059669)}
+.kw-cd.hp:hover{border-color:#10b981;background:linear-gradient(135deg,#ecfdf5,#d1fae5)}
+.kw-cd.qp .kw-br{background:linear-gradient(180deg,#3b82f6,#2563eb)}
+.kw-cd.qp:hover{border-color:#3b82f6;background:linear-gradient(135deg,#eff6ff,#dbeafe)}
+.kw-cd.ux .kw-br{background:linear-gradient(180deg,#a855f7,#9333ea)}
+.kw-cd.ux:hover{border-color:#a855f7;background:linear-gradient(135deg,#faf5ff,#f3e8ff)}
+.kw-cd.vp .kw-br{background:linear-gradient(180deg,#f97316,#ea580c)}
+.kw-cd.vp:hover{border-color:#f97316;background:linear-gradient(135deg,#fff7ed,#ffedd5)}
+.kw-cd.fi .kw-br{background:linear-gradient(180deg,#ec4899,#db2777)}
+.kw-cd.fi:hover{border-color:#ec4899;background:linear-gradient(135deg,#fdf2f8,#fce7f3)}
+.kw-tx{color:#374151}
+
+.cp-sc{background:#f8fafc;border-radius:24px;padding:48px;border:1px solid #e5e7eb;box-shadow:0 2px 8px rgba(0,0,0,.04),inset 0 1px 0 rgba(255,255,255,.8);margin-top:32px}
+.cp-hd{margin-bottom:40px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px}
+.cp-hd .hd-ic{font-size:48px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.1))}
+.cp-hd h3{font-size:28px;font-weight:800;color:#1a202c;margin:0;letter-spacing:-0.02em}
+.cp-hd p{font-size:15px;color:#64748b;margin:0}
+.cp-mn{display:flex;flex-direction:column;gap:32px}
+.cp-tp{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:8px}
+.cp-cd{background:#fff;border-radius:20px;border:1px solid #e5e7eb;padding:28px;position:relative;overflow:hidden;transition:all .4s cubic-bezier(.4,0,.2,1);box-shadow:0 4px 8px rgba(0,0,0,.04),0 2px 4px rgba(0,0,0,.02)}
+.cp-cd::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;transition:all .3s ease}
+.cp-cd.tp1::before{background:linear-gradient(90deg,#fbbf24,#f59e0b)}
+.cp-cd.tp2::before{background:linear-gradient(90deg,#94a3b8,#64748b)}
+.cp-cd.tp3::before{background:linear-gradient(90deg,#fb923c,#ea580c)}
+.cp-cd:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,.12),0 8px 16px rgba(0,0,0,.08)}
+.cp-rk-bg{position:absolute;top:20px;right:20px;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:50%;opacity:.15;font-size:48px;font-weight:900}
+.cp-cd.tp1 .cp-rk-bg{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#78350f}
+.cp-cd.tp2 .cp-rk-bg{background:linear-gradient(135deg,#94a3b8,#64748b);color:#1e293b}
+.cp-cd.tp3 .cp-rk-bg{background:linear-gradient(135deg,#fb923c,#ea580c);color:#7c2d12}
+.cp-rk-nr{font-size:32px;font-weight:900;position:relative;z-index:1}
+.cp-cnt{position:relative;z-index:2}
+.cp-tl{font-size:16px;font-weight:700;color:#1a202c;margin-bottom:12px;line-height:1.4;padding-right:60px}
+.cp-dm{font-size:13px;color:#64748b;margin-bottom:16px;display:flex;align-items:center;gap:6px;font-weight:500}
+.dm-ic{font-size:16px}
+.cp-st{display:flex;gap:20px;padding-top:16px;border-top:1px solid #f1f5f9}
+.st-im{display:flex;flex-direction:column;gap:4px}
+.st-lb{font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.st-vl{font-size:20px;color:#1a202c;font-weight:800}
+.cp-gd{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.cp-cd-sm{background:#fff;border-radius:14px;border:1px solid #e5e7eb;overflow:hidden;transition:all .3s ease;box-shadow:0 2px 4px rgba(0,0,0,.03)}
+.cp-cd-sm:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(0,0,0,.08);border-color:#cbd5e1}
+.cd-hd{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:linear-gradient(135deg,#f8fafc,#f1f5f9);border-bottom:1px solid #e5e7eb}
+.cd-rk{font-size:18px;font-weight:800;color:#3b82f6}
+.cd-da{padding:4px 10px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;border-radius:6px;font-size:11px;font-weight:700;box-shadow:0 2px 6px rgba(16,185,129,.25)}
+.cd-bd{padding:16px}
+.cd-tl{font-size:14px;font-weight:700;color:#1a202c;margin-bottom:8px;line-height:1.4}
+.cd-dm{font-size:12px;color:#64748b;margin-bottom:6px;font-weight:500}
+.cd-wc{font-size:12px;color:#94a3b8;font-weight:600}
+
+.ed-gd{display:grid;grid-template-columns:320px 1fr;gap:32px;margin-bottom:40px}
+.ed-sd{display:flex;flex-direction:column;gap:24px}
+.sc-wr,.mt-wr{background:#f8fafc;border:2px solid #e2e8f0;border-radius:16px;padding:24px}
+.sc-hd,.mt-hd{font-size:14px;font-weight:700;color:#64748b;margin-bottom:20px;text-transform:uppercase;letter-spacing:.05em}
+.sc-cr{position:relative;width:140px;height:140px;margin:0 auto 20px}
+.sc-sv{width:100%;height:100%;transform:rotate(-90deg)}
+.sc-bg{fill:none;stroke:#e5e7eb;stroke-width:10}
+.sc-fg{fill:none;stroke:url(#gr);stroke-width:10;stroke-linecap:round;stroke-dasharray:0 339;transition:stroke-dasharray .8s cubic-bezier(.4,0,.2,1)}
+.sc-vl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:800;color:#3b82f6}
+.mt-ls{display:flex;flex-direction:column;gap:16px}
+.mt-rw{display:flex;align-items:center;gap:12px;padding:12px;background:#fff;border-radius:10px;border:2px solid #e5e7eb}
+.mt-rw .mt-ic{font-size:20px}
+.mt-rw .mt-tx{flex:1;font-size:14px;color:#64748b;font-weight:600}
+.mt-rw .mt-nm{font-size:16px;color:#1a202c;font-weight:800}
+.bt-gn{width:100%;padding:16px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:all .3s ease;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 8px 20px rgba(16,185,129,.3)}
+.bt-gn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 12px 28px rgba(16,185,129,.4)}
+.bt-gn:disabled{opacity:.6;cursor:not-allowed}
+.gn-ic{font-size:20px;animation:sh 1.5s ease-in-out infinite}
+@keyframes sh{0%,100%{transform:scale(1) rotate(0deg)}50%{transform:scale(1.2) rotate(10deg)}}
+
+.ed-ar{}
+.ct-tl{width:100%;padding:16px 20px;border:2px solid #e2e8f0;border-radius:12px;font-size:22px;font-weight:700;color:#1a202c;font-family:inherit;margin-bottom:20px;background:#fff}
+.ct-tl:focus{outline:none;border-color:#3b82f6}
+.ct-bx{border:2px solid #e2e8f0;border-radius:16px;padding:32px;background:#fff;min-height:600px}
+.ct-tx{font-size:16px;line-height:1.8;color:#1a202c}
+.ct-tx h2{font-size:28px;font-weight:800;margin:32px 0 16px 0;color:#1a202c}
+.ct-tx h3{font-size:22px;font-weight:700;margin:24px 0 12px 0;color:#1a202c}
+.ct-tx p{margin:16px 0;color:#374151}
+.ct-tx ul{margin:16px 0;padding-left:28px}
+.ct-tx li{margin:10px 0;color:#374151}
+.ct-em{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 40px;color:#64748b}
+.em-ic{font-size:64px;margin-bottom:24px;opacity:.5}
+.ct-em h3{font-size:24px;font-weight:700;color:#1a202c;margin:0 0 12px 0}
+.ct-em p{font-size:16px;color:#64748b;margin:0;max-width:500px}
+
+.fn-wr{display:flex;flex-direction:column;gap:40px}
+.fn-sc{text-align:center;padding:48px;background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:20px;border:2px solid #a7f3d0}
+.fn-ic{width:80px;height:80px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:48px;font-weight:800;margin:0 auto 24px;box-shadow:0 12px 28px rgba(16,185,129,.3);animation:bn 1s ease-in-out}
+@keyframes bn{0%{transform:scale(0) rotate(-180deg)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
+.fn-sc h2{font-size:32px;font-weight:800;color:#065f46;margin:0 0 12px 0}
+.fn-sc p{font-size:16px;color:#059669;margin:0 0 32px 0}
+.fn-st{display:flex;justify-content:center;gap:48px;flex-wrap:wrap}
+.st-it{display:flex;flex-direction:column;gap:8px}
+.st-lb{font-size:13px;color:#059669;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.st-vl{font-size:28px;color:#065f46;font-weight:800}
+
+.pb-sc{padding:40px;background:#fff;border-radius:20px;border:2px solid #e2e8f0}
+.pb-hd{margin-bottom:32px}
+.pb-hd h3{font-size:24px;font-weight:800;color:#1a202c;margin:0 0 8px 0}
+.pb-hd p{font-size:15px;color:#64748b;margin:0}
+.pb-gd{display:grid;gap:16px}
+.pb-cd{display:flex;align-items:center;gap:20px;padding:24px;background:#f8fafc;border:2px solid #e2e8f0;border-radius:16px;cursor:pointer;transition:all .3s ease;text-align:left}
+.pb-cd:hover{background:#fff;border-color:#3b82f6;transform:translateX(4px);box-shadow:0 8px 20px rgba(59,130,246,.15)}
+.pb-ic{width:56px;height:56px;background:linear-gradient(135deg,#eff6ff,#dbeafe);color:#3b82f6;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;transition:all .3s ease}
+.pb-ic.wp{background:linear-gradient(135deg,#1e3a8a,#1e40af);color:#fff}
+.pb-ic svg{width:32px;height:32px}
+.pb-cd:hover .pb-ic{transform:scale(1.1) rotate(5deg)}
+.pb-tx{flex:1}
+.pb-tl{font-size:17px;font-weight:700;color:#1a202c;margin-bottom:4px}
+.pb-ds{font-size:13px;color:#64748b}
+.pb-ar{font-size:24px;color:#cbd5e1;transition:all .3s ease}
+.pb-cd:hover .pb-ar{color:#3b82f6;transform:translateX(4px)}
+
+.md{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px}
+.md-ov{position:absolute;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(4px)}
+.md-cn{position:relative;background:#fff;border-radius:20px;max-width:500px;width:100%;max-height:90vh;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.3);border:2px solid #e2e8f0}
+.md-hd{display:flex;justify-content:space-between;align-items:center;padding:24px 32px;border-bottom:2px solid #f1f5f9}
+.md-hd h3{font-size:22px;font-weight:800;color:#1a202c;margin:0}
+.md-cl{width:40px;height:40px;background:#f1f5f9;border:none;border-radius:10px;font-size:24px;color:#64748b;cursor:pointer;transition:all .3s ease;display:flex;align-items:center;justify-content:center}
+.md-cl:hover{background:#e5e7eb;color:#1a202c;transform:rotate(90deg)}
+.md-bd{padding:32px}
+.md-ft{display:flex;gap:12px;margin-top:32px}
+
+@media(max-width:1200px){
+.ed-gd{grid-template-columns:1fr}
+.mt-gd{grid-template-columns:repeat(2,1fr)}
+.kw-gd{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:768px){
+.mn{margin-left:72px;padding:32px}
+.pg-hd{padding:32px 24px}
+.tl{font-size:32px}
+.pr-wr{padding:24px}
+.pr-st{flex-wrap:wrap;gap:24px}
+.pr-ln{display:none}
+.st-bx{padding:32px}
+#step2{padding:24px}
+.fm-rw{grid-template-columns:1fr}
+.mt-gd{grid-template-columns:1fr}
+.fn-st{gap:24px}
+.ks-hd{padding:32px 20px 24px}
+.ks-tl{font-size:26px}
+.ks-bx,.cp-bx{padding:32px}
+.kw-gd{grid-template-columns:1fr}
+.cp-cd{flex-direction:column;align-items:flex-start;gap:12px}
+.cp-st{width:100%}
+}
+
+@media(max-width:480px){
+.mn{margin-left:0;padding:20px;padding-top:80px}
+.pg-hd{padding:24px 16px}
+.tl{font-size:28px}
+.pr-wr{padding:20px}
+.st-bx{padding:24px}
+#step2{padding:16px}
+.ks-hd{padding:24px 16px 20px}
+.ks-tl{font-size:22px}
+.ks-bx,.cp-bx{padding:24px;margin:16px 0}
+.kw-gd{gap:16px}
+.cp-cd{padding:16px}
+}
+
+.km-sc{background:#fff;border-radius:16px;padding:40px;margin-bottom:32px;border:2px solid #e5e7eb}
+.km-hd{text-align:center;margin-bottom:32px}
+.km-ic{font-size:40px;margin-bottom:12px}
+.km-ti{font-size:24px;font-weight:800;color:#1a202c;margin:0 0 8px 0}
+.km-sb{font-size:14px;color:#64748b;margin:0}
+.km-gd{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.km-cl{background:#f8fafc;border-radius:12px;padding:20px;border:1px solid #e2e8f0}
+.km-ch{font-size:12px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid #e2e8f0}
+.km-tg{display:flex;flex-direction:column;gap:8px}
+.km-tm{display:inline-block;padding:6px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:6px;font-size:13px;color:#334155;font-weight:500;transition:all .2s ease}
+.km-tm:hover{border-color:#3b82f6;background:#eff6ff;color:#1e40af;transform:translateX(2px)}
+
+.sr-sc{background:#fff;border-radius:16px;padding:40px;border:2px solid #e5e7eb}
+.sr-hd{text-align:center;margin-bottom:32px}
+.sr-ic{font-size:40px;margin-bottom:12px}
+.sr-ti{font-size:24px;font-weight:800;color:#1a202c;margin:0 0 8px 0}
+.sr-sb{font-size:14px;color:#64748b;margin:0}
+.sr-ls{display:flex;flex-direction:column;gap:12px}
+.sr-it{display:flex;align-items:center;gap:20px;padding:20px;background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0;transition:all .3s ease}
+.sr-it:hover{background:#fff;border-color:#3b82f6;box-shadow:0 4px 12px rgba(59,130,246,.1);transform:translateX(4px)}
+.sr-rk{width:36px;height:36px;background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;flex-shrink:0}
+.sr-cn{flex:1;min-width:0}
+.sr-tl{font-size:15px;font-weight:700;color:#1e293b;margin:0 0 4px 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sr-ur{font-size:12px;color:#3b82f6;text-decoration:none;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sr-ur:hover{text-decoration:underline;color:#1e40af}
+.sr-mt{display:flex;gap:16px;flex-shrink:0}
+.sr-wd,.sr-da{font-size:12px;color:#64748b;font-weight:600}
+.sr-wd::before{content:'📝 ';margin-right:4px}
+.sr-da::before{content:'📊 ';margin-right:4px}
+</style>
+
+<script>
+let currentStep = 1;
+let projectData = {
+  keyword: '',
+  audience: '',
+  contentType: '',
+  analysis: {},
+  content: '',
+  title: '',
+  score: 0,
+  wordCount: 0
+};
+
+const sampleCompetitors = [
+  { rank: 1, title: 'Comprehensive Guide to Topic Clusters', url: 'https://example.com/topic-clusters', words: 1980, da: 86 },
+  { rank: 2, title: 'How to Map Search Intent Effectively', url: 'https://seoinsights.com/search-intent', words: 1450, da: 73 },
+  { rank: 3, title: 'Best Tools for Keyword Research in 2025', url: 'https://marketerhub.io/keyword-tools-2025', words: 2320, da: 62 },
+  { rank: 4, title: 'Topic Cluster vs Pillar Page: Key Differences', url: 'https://contentcraft.co/cluster-vs-pillar', words: 1120, da: 54 },
+  { rank: 5, title: 'Schema Markup Basics for Beginners', url: 'https://techseo.academy/schema-basics', words: 1780, da: 49 },
+  { rank: 6, title: 'Internal Linking Strategies that Scale', url: 'https://optigrowth.com/internal-linking', words: 1630, da: 57 },
+  { rank: 7, title: 'Core Web Vitals: A Practical Checklist', url: 'https://pagespeedlab.dev/cwv-checklist', words: 2040, da: 38 },
+  { rank: 8, title: 'Pricing Pages that Convert: Patterns', url: 'https://uxpatterns.io/pricing-pages', words: 1260, da: 41 },
+  { rank: 9, title: 'Alternatives to Leading SEO Platforms', url: 'https://stackcompare.app/seo-alternatives', words: 1510, da: 52 },
+  { rank: 10, title: 'How to Build a Pillar Page from Scratch', url: 'https://contentengineer.io/pillar-page-guide', words: 2210, da: 44 }
+];
+
+const keywordGroups = {
+  'Core Topic': ['primary keyword', 'buyer journey', 'pillar page', 'search intent', 'topic cluster'],
+  'Entities': ['brand mention', 'feature set', 'competitors', 'product category', 'use cases'],
+  'Modifiers': ['best', 'vs', 'pricing', 'reviews', 'alternatives'],
+  'Questions': ['what is', 'how to', 'is it worth', 'benefits', 'drawbacks'],
+  'Technical': ['schema markup', 'core web vitals', 'canonical', 'page speed', 'internal links'],
+  'Long-tail': ['best tools for [task]', '[product] vs [competitor]', 'how to choose [category]', '[category] pricing guide', 'top-rated [year]']
+};
+
+function updateProgressBar(step) {
+  document.querySelectorAll('.pr-it').forEach((item, index) => {
+    const stepNum = index + 1;
+    if (stepNum < step) {
+      item.classList.add('dn');
+      item.classList.remove('cp');
+    } else if (stepNum === step) {
+      item.classList.add('cp');
+      item.classList.remove('dn');
+    } else {
+      item.classList.remove('cp', 'dn');
+    }
+  });
+
+  document.querySelectorAll('.pr-ln').forEach((line, index) => {
+    if (index < step - 1) {
+      line.classList.add('dn');
+    } else {
+      line.classList.remove('dn');
+    }
+  });
+}
+
+function showStep(step) {
+  for (let i = 1; i <= 4; i++) {
+    const stepEl = document.getElementById(`step${i}`);
+    if (stepEl) stepEl.style.display = i === step ? 'block' : 'none';
+  }
+  currentStep = step;
+  updateProgressBar(step);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.getElementById('nextStep1')?.addEventListener('click', () => {
+  const keyword = (document.getElementById('targetKeyword') as HTMLInputElement).value;
+  const contentTitle = (document.getElementById('contentTitleInput') as HTMLInputElement).value;
+  const audience = (document.getElementById('targetAudience') as HTMLSelectElement).value;
+  const contentType = (document.getElementById('contentType') as HTMLSelectElement).value;
+
+  if (!keyword.trim()) {
+    alert('Please enter a target keyword');
+    return;
+  }
+
+  if (!contentTitle.trim()) {
+    alert('Please enter a content title');
+    return;
+  }
+
+  projectData.keyword = keyword;
+  projectData.title = contentTitle;
+  projectData.audience = audience;
+  projectData.contentType = contentType;
+
+  const kwDisplay2 = document.getElementById('kwDisplay2');
+  if (kwDisplay2) kwDisplay2.textContent = keyword;
+
+  showStep(2);
+});
+
+document.getElementById('backStep2')?.addEventListener('click', () => showStep(1));
+document.getElementById('nextStep2')?.addEventListener('click', () => {
+  showStep(3);
+  generateContent();
+});
+
+document.getElementById('backStep3')?.addEventListener('click', () => showStep(2));
+
+document.getElementById('generateContent')?.addEventListener('click', () => {
+  const btn = document.getElementById('generateContent') as HTMLButtonElement;
+  const originalText = btn.innerHTML;
+  btn.innerHTML = '<span class="gn-ic">⏳</span><span>Generating...</span>';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    const title = projectData.title || `The Ultimate Guide to ${projectData.keyword} for ${new Date().getFullYear()}`;
+    const content = `
+<h2>Introduction</h2>
+<p>If you're searching for the best ${projectData.keyword}, you've come to the right place. In this comprehensive guide, we'll explore everything you need to know, including expert recommendations, detailed comparisons, and key factors to consider when making your decision. Whether you're a first-time buyer or looking to upgrade, this guide will provide you with all the information necessary to make an informed choice.</p>
+
+<p>The market for ${projectData.keyword} has evolved significantly in recent years, with new innovations and improvements being introduced regularly. Understanding what sets exceptional options apart from average ones requires careful evaluation of multiple factors, from build quality and performance to long-term reliability and customer support. We've conducted extensive research, analyzed hundreds of customer reviews, and consulted with industry experts to bring you the most accurate and up-to-date information available.</p>
+
+<h2>What Makes Great ${projectData.keyword}?</h2>
+<p>When evaluating ${projectData.keyword}, several critical factors come into play that separate excellent options from mediocre ones. Quality, performance, durability, and value for money are essential considerations, but they're just the beginning. The best ${projectData.keyword} combines superior craftsmanship with innovative features, reliable performance, and exceptional user experience.</p>
+
+<p>Understanding what makes a truly outstanding ${projectData.keyword} requires looking beyond surface-level specifications. It involves examining the materials used in construction, the engineering behind the design, the reputation of the manufacturer, and the real-world experiences of users who have put these products through their paces. Premium ${projectData.keyword} typically feature advanced technology, superior materials, and thoughtful design elements that enhance both functionality and longevity.</p>
+
+<h3>Key Features to Consider</h3>
+<p>Based on our analysis of top-ranking content and expert reviews, here are the most important features to look for when selecting ${projectData.keyword}:</p>
+<ul>
+<li>Premium quality construction and materials that ensure long-term durability</li>
+<li>Outstanding performance and reliability across various conditions</li>
+<li>Excellent value for money with features that justify the investment</li>
+<li>Positive customer reviews and consistently high ratings from verified buyers</li>
+<li>Comprehensive warranty and responsive customer support</li>
+<li>Advanced features and innovative technology that enhance user experience</li>
+<li>Energy efficiency and sustainable design practices where applicable</li>
+<li>Compatibility with existing systems and future-proof design</li>
+</ul>
+
+<h2>Understanding Different Types and Categories</h2>
+<p>The ${projectData.keyword} market offers various types and categories, each designed to meet specific needs and preferences. Understanding these distinctions is crucial for making the right choice. Entry-level options provide essential functionality at an affordable price point, making them ideal for beginners or those with basic requirements. Mid-range options offer enhanced features and better build quality, striking a balance between performance and cost. Premium options deliver top-tier performance, advanced features, and superior materials for users who demand the absolute best.</p>
+
+<p>Each category serves a distinct purpose and target audience. Entry-level ${projectData.keyword} are perfect for casual users or those just getting started, offering reliable performance without overwhelming complexity. Mid-range options appeal to enthusiasts and regular users who want enhanced capabilities without breaking the bank. Premium ${projectData.keyword} cater to professionals and demanding users who require cutting-edge features, exceptional build quality, and uncompromising performance.</p>
+
+<h2>Top Recommendations for ${new Date().getFullYear()}</h2>
+<p>After extensive research and analysis, we've identified the best ${projectData.keyword} available today. Each option has been carefully evaluated based on performance, features, customer satisfaction, and overall value. Our recommendations span different price points and use cases to ensure there's an ideal option for every buyer, regardless of budget or specific requirements.</p>
+
+<h3>Our Top Overall Pick</h3>
+<p>For most people, we recommend [Product/Option Name] as the best overall choice. It offers an excellent balance of quality, performance, and value that's hard to beat. With outstanding customer reviews averaging 4.7 out of 5 stars and proven reliability backed by thousands of satisfied users, it consistently delivers exceptional results. The combination of advanced features, intuitive design, and competitive pricing makes it our top recommendation for ${projectData.keyword}.</p>
+
+<p>What sets this option apart is its attention to detail and commitment to user satisfaction. The manufacturer has incorporated feedback from real users to refine and improve every aspect of the design. From the ergonomic considerations to the premium materials used throughout, every element reflects a dedication to excellence. The comprehensive warranty and responsive customer support team provide additional peace of mind, ensuring you're fully supported throughout your ownership experience.</p>
+
+<h3>Best Budget-Friendly Option</h3>
+<p>If you're looking for a more affordable alternative, [Budget Option] provides excellent value without compromising on essential features. It's perfect for those who want quality ${projectData.keyword} without breaking the bank. While it may not have all the bells and whistles of premium models, it delivers solid performance and reliability where it matters most.</p>
+
+<p>This budget-friendly option proves that you don't need to spend a fortune to get a dependable ${projectData.keyword}. It focuses on core functionality and builds quality, delivering a no-frills experience that gets the job done effectively. Customer reviews consistently praise its reliability and surprising performance given its affordable price point, making it an excellent choice for budget-conscious buyers or those new to ${projectData.keyword}.</p>
+
+<h3>Best Premium Option</h3>
+<p>For users who demand the absolute best and are willing to invest in top-tier quality, [Premium Option] represents the pinnacle of ${projectData.keyword} engineering. It incorporates cutting-edge technology, premium materials, and advanced features that justify its higher price point. This is the choice for professionals, enthusiasts, and anyone who refuses to compromise on performance and quality.</p>
+
+<h2>Comprehensive Buying Guide</h2>
+<p>Selecting the right ${projectData.keyword} depends on your specific needs, preferences, and budget. Consider factors like your intended use case, frequency of use, skill level, and long-term goals. Our detailed buying guide will help you navigate the decision-making process and identify the option that best aligns with your requirements.</p>
+
+<h3>Determining Your Budget</h3>
+<p>Establishing a realistic budget is the first step in your buying journey. While it's tempting to focus solely on the lowest price, remember that ${projectData.keyword} is an investment. Spending a bit more upfront often results in better performance, longer lifespan, and lower total cost of ownership. Consider not just the initial purchase price, but also ongoing costs, maintenance requirements, and potential upgrade paths.</p>
+
+<h3>Assessing Your Needs</h3>
+<p>Take time to honestly evaluate your needs and how you'll use your ${projectData.keyword}. Will it be for casual occasional use, regular daily use, or demanding professional applications? Do you need advanced features, or will basic functionality suffice? Understanding your requirements helps narrow down options and prevents overspending on features you'll never use or under-buying and feeling disappointed with limited capabilities.</p>
+
+<h3>Research and Comparison</h3>
+<p>Don't rush your decision. Read professional reviews, watch video demonstrations, and pay attention to user feedback from verified purchasers. Compare specifications side-by-side, but also consider intangible factors like brand reputation, customer service quality, and community support. Sometimes the best choice isn't the one with the most impressive spec sheet, but the one that offers the best overall experience and satisfaction.</p>
+
+<h3>Where to Buy</h3>
+<p>Choosing the right retailer is almost as important as choosing the right ${projectData.keyword}. Look for authorized dealers with strong reputations, comprehensive return policies, and excellent customer service. Consider factors like shipping costs, delivery times, warranty support, and availability of accessories. Sometimes paying slightly more at a reputable retailer provides value through better service and peace of mind.</p>
+
+<h2>Common Mistakes to Avoid</h2>
+<p>Many buyers make preventable mistakes when purchasing ${projectData.keyword}. Being aware of these pitfalls helps you avoid disappointment and ensures you make a smart investment. One common error is focusing exclusively on price without considering long-term value and total cost of ownership. Another mistake is being swayed by impressive specifications without understanding how those specs translate to real-world performance.</p>
+
+<p>Don't overlook the importance of compatibility with your existing equipment and future needs. Avoid impulse purchases based on sales pressure or limited-time offers. Take time to verify that the ${projectData.keyword} you're considering truly meets your needs and will continue to serve you well into the future. Remember that the cheapest option often costs more in the long run through repairs, replacements, and frustration.</p>
+
+<h2>Maintenance and Care Tips</h2>
+<p>Proper maintenance extends the lifespan of your ${projectData.keyword} and ensures optimal performance. Follow manufacturer recommendations for cleaning, storage, and regular maintenance. Keep documentation and warranty information organized and accessible. Address minor issues promptly before they become major problems. With proper care, quality ${projectData.keyword} can provide years of reliable service and excellent performance.</p>
+
+<h2>Conclusion</h2>
+<p>Finding the best ${projectData.keyword} doesn't have to be complicated or overwhelming. By considering the factors outlined in this guide and reviewing our expert recommendations, you'll be well-equipped to make an informed decision that you'll be happy with for years to come. Whether you prioritize performance, value, specific features, or a combination of factors, there's an option that's perfect for your unique needs and circumstances.</p>
+
+<p>Remember that the best ${projectData.keyword} is the one that meets your specific requirements while fitting within your budget. Don't feel pressured to buy the most expensive option if a mid-range model provides everything you need. Conversely, don't compromise on essential features just to save a few dollars if those features are important to your use case. Take your time, do your research, and make a decision you can feel confident about.</p>
+    `;
+
+    projectData.title = title;
+    projectData.content = content;
+
+    const titleEl = document.getElementById('contentTitle') as HTMLInputElement;
+    const contentEl = document.getElementById('generatedContent');
+
+    if (titleEl) titleEl.value = title;
+    if (contentEl) contentEl.innerHTML = content;
+
+    const words = content.trim().split(/\s+/).length;
+    const headings = (content.match(/<h[23]>/g) || []).length;
+    const keywordCount = (content.toLowerCase().match(new RegExp(projectData.keyword.toLowerCase(), 'g')) || []).length;
+
+    projectData.wordCount = words;
+
+    (document.getElementById('wordCountStep3') as HTMLElement).textContent = words.toString();
+    (document.getElementById('headingCount') as HTMLElement).textContent = headings.toString();
+    (document.getElementById('keywordUsage') as HTMLElement).textContent = keywordCount.toString();
+
+    const score = Math.min(95, 75 + Math.floor(Math.random() * 20));
+    projectData.score = score;
+    (document.getElementById('scoreDisplay') as HTMLElement).textContent = score.toString();
+
+    const circumference = 2 * Math.PI * 54;
+    const progress = (score / 100) * circumference;
+    const scoreCircle = document.getElementById('contentScore') as SVGCircleElement;
+    if (scoreCircle) {
+      scoreCircle.style.strokeDasharray = `${progress} ${circumference}`;
+    }
+
+    btn.innerHTML = '<span>✓</span><span>Content Generated!</span>';
+    setTimeout(() => {
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+    }, 2000);
+  }, 3000);
+});
+
+document.getElementById('nextStep3')?.addEventListener('click', () => {
+  (document.getElementById('finalScore') as HTMLElement).textContent = projectData.score + '/100';
+  (document.getElementById('finalWords') as HTMLElement).textContent = projectData.wordCount.toString();
+  (document.getElementById('finalKeyword') as HTMLElement).textContent = projectData.keyword;
+  showStep(4);
+});
+
+document.getElementById('publishWordPress')?.addEventListener('click', () => {
+  document.getElementById('wpModal')!.style.display = 'flex';
+});
+
+document.getElementById('closeModal')?.addEventListener('click', () => {
+  document.getElementById('wpModal')!.style.display = 'none';
+});
+
+document.getElementById('cancelPublish')?.addEventListener('click', () => {
+  document.getElementById('wpModal')!.style.display = 'none';
+});
+
+document.getElementById('wpForm')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('publishBtn') as HTMLButtonElement;
+  btn.innerHTML = '<span>⏳ Publishing...</span>';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    alert('Demo mode: In production, this would publish to your WordPress site using the REST API.');
+    document.getElementById('wpModal')!.style.display = 'none';
+    btn.innerHTML = '<span>Publish to WordPress</span>';
+    btn.disabled = false;
+  }, 2000);
+});
+
+document.getElementById('copyContent')?.addEventListener('click', () => {
+  const fullContent = `${projectData.title}\n\n${projectData.content}`;
+  navigator.clipboard.writeText(fullContent);
+  alert('✓ Content copied to clipboard!');
+});
+
+document.getElementById('downloadHTML')?.addEventListener('click', () => {
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${projectData.title}</title>
+<style>body{font-family:system-ui,sans-serif;line-height:1.6;max-width:800px;margin:0 auto;padding:40px 20px}h1{font-size:2.5em;margin-bottom:0.5em}h2{font-size:2em;margin-top:1.5em}h3{font-size:1.5em;margin-top:1.2em}p{margin:1em 0}ul{margin:1em 0;padding-left:2em}li{margin:0.5em 0}</style>
+</head>
+<body>
+<h1>${projectData.title}</h1>
+${projectData.content}
+</body>
+</html>`;
+  const blob = new Blob([html], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${projectData.keyword.replace(/\s+/g, '-')}.html`;
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+document.getElementById('downloadMarkdown')?.addEventListener('click', () => {
+  const markdown = projectData.content
+    .replace(/<h2>/g, '## ')
+    .replace(/<\/h2>/g, '\n\n')
+    .replace(/<h3>/g, '### ')
+    .replace(/<\/h3>/g, '\n\n')
+    .replace(/<p>/g, '')
+    .replace(/<\/p>/g, '\n\n')
+    .replace(/<ul>/g, '\n')
+    .replace(/<\/ul>/g, '\n')
+    .replace(/<li>/g, '- ')
+    .replace(/<\/li>/g, '\n');
+
+  const fullMarkdown = `# ${projectData.title}\n\n${markdown}`;
+  const blob = new Blob([fullMarkdown], { type: 'text/markdown' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${projectData.keyword.replace(/\s+/g, '-')}.md`;
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+document.getElementById('openEditor')?.addEventListener('click', () => {
+  localStorage.setItem('editorContent', projectData.content);
+  localStorage.setItem('editorTitle', projectData.title);
+  window.location.href = '/editor';
+});
+
+document.getElementById('startOver')?.addEventListener('click', () => {
+  if (confirm('Start a new project? Current progress will be lost.')) {
+    projectData = {
+      keyword: '',
+      audience: '',
+      contentType: '',
+      analysis: {},
+      content: '',
+      title: '',
+      score: 0,
+      wordCount: 0
+    };
+    (document.getElementById('targetKeyword') as HTMLInputElement).value = '';
+    showStep(1);
+  }
+});
+
+updateProgressBar(1);
+</script>
+</Layout>

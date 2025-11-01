@@ -1,0 +1,1264 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+---
+<Layout>
+<Nav/>
+<main class="mn">
+<header class="hd">
+<h1 class="tl">Video Script Generator</h1>
+<p class="st">Turn briefs into structured scripts and shot lists with AI-powered content creation.</p>
+</header>
+
+<!-- Progress Bar -->
+<div class="progress-container">
+  <div class="progress-bar">
+    <div class="progress-step active" data-step="1">
+      <div class="step-number">1</div>
+      <div class="step-label">Brief</div>
+    </div>
+    <div class="progress-step" data-step="2">
+      <div class="step-number">2</div>
+      <div class="step-label">Structure</div>
+    </div>
+    <div class="progress-step" data-step="3">
+      <div class="step-number">3</div>
+      <div class="step-label">Script</div>
+    </div>
+    <div class="progress-step" data-step="4">
+      <div class="step-number">4</div>
+      <div class="step-label">Shot List</div>
+    </div>
+    <div class="progress-step" data-step="5">
+      <div class="step-number">5</div>
+      <div class="step-label">Export</div>
+    </div>
+  </div>
+</div>
+
+<!-- Step 1: Brief Input -->
+<div class="step-content" id="step1">
+  <div class="step-header">
+    <h2>Step 1: Video Brief</h2>
+    <p>Provide the basic information about your video project</p>
+  </div>
+  
+  <div class="form-grid">
+    <div class="form-group">
+      <label for="videoTitle">Video Title</label>
+      <input type="text" id="videoTitle" placeholder="Enter your video title">
+    </div>
+    
+    <div class="form-group">
+      <label for="videoType">Video Type</label>
+      <select id="videoType">
+        <option value="">Select video type</option>
+        <option value="explainer">Explainer Video</option>
+        <option value="tutorial">Tutorial</option>
+        <option value="promotional">Promotional</option>
+        <option value="testimonial">Testimonial</option>
+        <option value="social">Social Media</option>
+        <option value="documentary">Documentary</option>
+        <option value="commercial">Commercial</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="targetDuration">Target Duration</label>
+      <select id="targetDuration">
+        <option value="">Select duration</option>
+        <option value="30">30 seconds</option>
+        <option value="60">1 minute</option>
+        <option value="120">2 minutes</option>
+        <option value="300">5 minutes</option>
+        <option value="600">10 minutes</option>
+        <option value="custom">Custom</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="targetAudience">Target Audience</label>
+      <input type="text" id="targetAudience" placeholder="e.g., Young professionals, Parents, Students">
+    </div>
+    
+    <div class="form-group full-width">
+      <label for="videoObjective">Video Objective</label>
+      <textarea id="videoObjective" rows="3" placeholder="What do you want to achieve with this video?"></textarea>
+    </div>
+    
+    <div class="form-group full-width">
+      <label for="keyMessages">Key Messages</label>
+      <textarea id="keyMessages" rows="4" placeholder="List the main points you want to communicate (one per line)"></textarea>
+    </div>
+    
+    <div class="form-group">
+      <label for="tone">Tone & Style</label>
+      <select id="tone">
+        <option value="">Select tone</option>
+        <option value="professional">Professional</option>
+        <option value="casual">Casual</option>
+        <option value="friendly">Friendly</option>
+        <option value="authoritative">Authoritative</option>
+        <option value="humorous">Humorous</option>
+        <option value="inspirational">Inspirational</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="callToAction">Call to Action</label>
+      <input type="text" id="callToAction" placeholder="e.g., Visit our website, Subscribe, Buy now">
+    </div>
+  </div>
+  
+  <div class="step-actions">
+    <button class="btn-primary" id="nextStep1">Continue to Structure →</button>
+  </div>
+</div>
+
+<!-- Step 2: Script Structure -->
+<div class="step-content" id="step2" style="display: none;">
+  <div class="step-header">
+    <h2>Step 2: Script Structure</h2>
+    <p>Define the structure and flow of your video script</p>
+  </div>
+  
+  <div class="structure-options">
+    <div class="structure-templates">
+      <h3>Choose a Structure Template</h3>
+      <div class="template-grid">
+        <div class="template-card" data-template="hook-problem-solution">
+          <h4>Hook → Problem → Solution</h4>
+          <p>Great for explainer videos and tutorials</p>
+          <div class="template-preview">
+            <span>Hook (10%)</span>
+            <span>Problem (30%)</span>
+            <span>Solution (50%)</span>
+            <span>CTA (10%)</span>
+          </div>
+        </div>
+        
+        <div class="template-card" data-template="story-arc">
+          <h4>Story Arc</h4>
+          <p>Perfect for testimonials and case studies</p>
+          <div class="template-preview">
+            <span>Setup (20%)</span>
+            <span>Conflict (30%)</span>
+            <span>Resolution (40%)</span>
+            <span>CTA (10%)</span>
+          </div>
+        </div>
+        
+        <div class="template-card" data-template="feature-benefit">
+          <h4>Feature → Benefit</h4>
+          <p>Ideal for product demonstrations</p>
+          <div class="template-preview">
+            <span>Intro (15%)</span>
+            <span>Features (60%)</span>
+            <span>Benefits (20%)</span>
+            <span>CTA (5%)</span>
+          </div>
+        </div>
+        
+        <div class="template-card" data-template="custom">
+          <h4>Custom Structure</h4>
+          <p>Build your own structure</p>
+          <div class="template-preview">
+            <span>Flexible</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="structure-builder" id="structureBuilder" style="display: none;">
+      <h3>Customize Structure</h3>
+      <div class="structure-sections" id="structureSections">
+        <!-- Dynamic sections will be added here -->
+      </div>
+      <button class="btn-secondary" id="addSection">+ Add Section</button>
+    </div>
+  </div>
+  
+  <div class="step-actions">
+    <button class="btn-secondary" id="backStep2">← Back</button>
+    <button class="btn-primary" id="nextStep2">Generate Script →</button>
+  </div>
+</div>
+
+<!-- Step 3: Script Generation -->
+<div class="step-content" id="step3" style="display: none;">
+  <div class="step-header">
+    <h2>Step 3: Script Generation</h2>
+    <p>AI-generated script based on your brief and structure</p>
+  </div>
+  
+  <div class="script-generation">
+    <div class="generation-controls">
+      <button class="btn-primary" id="generateScript">🎬 Generate Script</button>
+      <button class="btn-secondary" id="regenerateScript" style="display: none;">🔄 Regenerate</button>
+      <div class="generation-options">
+        <label>
+          <input type="checkbox" id="includeNarration"> Include narration notes
+        </label>
+        <label>
+          <input type="checkbox" id="includeTimings"> Include timing markers
+        </label>
+        <label>
+          <input type="checkbox" id="includeTransitions"> Include transitions
+        </label>
+      </div>
+    </div>
+    
+    <div class="script-loading" id="scriptLoading" style="display: none;">
+      <div class="loading-spinner"></div>
+      <p>Generating your video script...</p>
+    </div>
+    
+    <div class="script-editor" id="scriptEditor" style="display: none;">
+      <div class="script-toolbar">
+        <button class="toolbar-btn" id="boldText">B</button>
+        <button class="toolbar-btn" id="italicText">I</button>
+        <button class="toolbar-btn" id="addNote">📝 Note</button>
+        <button class="toolbar-btn" id="addTiming">⏱️ Timing</button>
+        <select id="voiceStyle">
+          <option value="narrator">Narrator</option>
+          <option value="character1">Character 1</option>
+          <option value="character2">Character 2</option>
+          <option value="voiceover">Voice Over</option>
+        </select>
+      </div>
+      
+      <div class="script-content">
+        <div class="script-sections" id="scriptSections">
+          <!-- Generated script sections will appear here -->
+        </div>
+      </div>
+      
+      <div class="script-stats">
+        <div class="stat">
+          <span class="stat-label">Word Count:</span>
+          <span class="stat-value" id="wordCount">0</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Est. Duration:</span>
+          <span class="stat-value" id="estimatedDuration">0:00</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Reading Speed:</span>
+          <span class="stat-value">150 WPM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="step-actions">
+    <button class="btn-secondary" id="backStep3">← Back</button>
+    <button class="btn-primary" id="nextStep3" style="display: none;">Create Shot List →</button>
+  </div>
+</div>
+
+<!-- Step 4: Shot List -->
+<div class="step-content" id="step4" style="display: none;">
+  <div class="step-header">
+    <h2>Step 4: Shot List & Storyboard</h2>
+    <p>Visual planning for your video production</p>
+  </div>
+  
+  <div class="shot-list-generation">
+    <div class="generation-controls">
+      <button class="btn-primary" id="generateShotList">📹 Generate Shot List</button>
+      <div class="shot-options">
+        <label>
+          <input type="checkbox" id="includeAngles" checked> Camera angles
+        </label>
+        <label>
+          <input type="checkbox" id="includeMovements" checked> Camera movements
+        </label>
+        <label>
+          <input type="checkbox" id="includeLighting"> Lighting notes
+        </label>
+        <label>
+          <input type="checkbox" id="includeAudio"> Audio notes
+        </label>
+      </div>
+    </div>
+    
+    <div class="shot-loading" id="shotLoading" style="display: none;">
+      <div class="loading-spinner"></div>
+      <p>Creating shot list and storyboard...</p>
+    </div>
+    
+    <div class="shot-list-editor" id="shotListEditor" style="display: none;">
+      <div class="shot-list-toolbar">
+        <button class="btn-secondary" id="addShot">+ Add Shot</button>
+        <button class="btn-secondary" id="duplicateShot">📋 Duplicate</button>
+        <button class="btn-secondary" id="reorderShots">↕️ Reorder</button>
+        <select id="viewMode">
+          <option value="list">List View</option>
+          <option value="storyboard">Storyboard View</option>
+          <option value="timeline">Timeline View</option>
+        </select>
+      </div>
+      
+      <div class="shot-list-content" id="shotListContent">
+        <!-- Shot list items will be generated here -->
+      </div>
+    </div>
+  </div>
+  
+  <div class="step-actions">
+    <button class="btn-secondary" id="backStep4">← Back</button>
+    <button class="btn-primary" id="nextStep4" style="display: none;">Export & Share →</button>
+  </div>
+</div>
+
+<!-- Step 5: Export -->
+<div class="step-content" id="step5" style="display: none;">
+  <div class="step-header">
+    <h2>Step 5: Export & Share</h2>
+    <p>Download your script and shot list in various formats</p>
+  </div>
+  
+  <div class="export-options">
+    <div class="export-section">
+      <h3>Script Export</h3>
+      <div class="export-formats">
+        <button class="export-btn" id="exportScriptPDF">
+          <span class="export-icon">📄</span>
+          <span class="export-label">PDF Script</span>
+          <span class="export-desc">Professional script format</span>
+        </button>
+        
+        <button class="export-btn" id="exportScriptWord">
+          <span class="export-icon">📝</span>
+          <span class="export-label">Word Document</span>
+          <span class="export-desc">Editable script document</span>
+        </button>
+        
+        <button class="export-btn" id="exportScriptTXT">
+          <span class="export-icon">📋</span>
+          <span class="export-label">Plain Text</span>
+          <span class="export-desc">Simple text format</span>
+        </button>
+        
+        <button class="export-btn" id="exportScriptJSON">
+          <span class="export-icon">🔧</span>
+          <span class="export-label">JSON Data</span>
+          <span class="export-desc">For developers</span>
+        </button>
+      </div>
+    </div>
+    
+    <div class="export-section">
+      <h3>Shot List Export</h3>
+      <div class="export-formats">
+        <button class="export-btn" id="exportShotListPDF">
+          <span class="export-icon">🎬</span>
+          <span class="export-label">Shot List PDF</span>
+          <span class="export-desc">Production-ready format</span>
+        </button>
+        
+        <button class="export-btn" id="exportShotListExcel">
+          <span class="export-icon">📊</span>
+          <span class="export-label">Excel Spreadsheet</span>
+          <span class="export-desc">Editable shot list</span>
+        </button>
+        
+        <button class="export-btn" id="exportStoryboard">
+          <span class="export-icon">🖼️</span>
+          <span class="export-label">Storyboard PDF</span>
+          <span class="export-desc">Visual storyboard</span>
+        </button>
+      </div>
+    </div>
+    
+    <div class="export-section">
+      <h3>Share & Collaborate</h3>
+      <div class="share-options">
+        <button class="share-btn" id="shareLink">
+          <span class="share-icon">🔗</span>
+          <span class="share-label">Share Link</span>
+        </button>
+        
+        <button class="share-btn" id="shareEmail">
+          <span class="share-icon">📧</span>
+          <span class="share-label">Email</span>
+        </button>
+        
+        <button class="share-btn" id="shareSlack">
+          <span class="share-icon">💬</span>
+          <span class="share-label">Slack</span>
+        </button>
+        
+        <button class="share-btn" id="shareTeams">
+          <span class="share-icon">👥</span>
+          <span class="share-label">Teams</span>
+        </button>
+      </div>
+    </div>
+    
+    <div class="export-section">
+      <h3>Integration</h3>
+      <div class="integration-options">
+        <button class="integration-btn" id="exportToFinalCut">
+          <span class="integration-icon">🎞️</span>
+          <span class="integration-label">Final Cut Pro</span>
+        </button>
+        
+        <button class="integration-btn" id="exportToPremiere">
+          <span class="integration-icon">🎥</span>
+          <span class="integration-label">Adobe Premiere</span>
+        </button>
+        
+        <button class="integration-btn" id="exportToAvid">
+          <span class="integration-icon">📹</span>
+          <span class="integration-label">Avid Media</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="step-actions">
+    <button class="btn-secondary" id="backStep5">← Back</button>
+    <button class="btn-primary" id="startNew">Create New Script</button>
+  </div>
+</div>
+
+</main>
+
+<style>
+  .progress-container {
+    margin: 2rem 0;
+    padding: 0 2rem;
+  }
+  
+  .progress-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #e5e7eb;
+    z-index: 1;
+  }
+  
+  .progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .progress-step.active .step-number {
+    background: #3b82f6;
+    color: white;
+  }
+  
+  .progress-step.completed .step-number {
+    background: #10b981;
+    color: white;
+  }
+  
+  .step-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+    font-weight: 500;
+  }
+  
+  .progress-step.active .step-label {
+    color: #3b82f6;
+  }
+  
+  .step-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .step-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .step-header h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+  }
+  
+  .step-header p {
+    color: #6b7280;
+    font-size: 1.125rem;
+  }
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group.full-width {
+    grid-column: 1 / -1;
+  }
+  
+  .form-group label {
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+  
+  .template-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .template-card {
+    border: 2px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .template-card:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+  }
+  
+  .template-card.selected {
+    border-color: #3b82f6;
+    background: #eff6ff;
+  }
+  
+  .template-card h4 {
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+  }
+  
+  .template-card p {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+  
+  .template-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .template-preview span {
+    background: #f3f4f6;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    color: #6b7280;
+  }
+  
+  .structure-builder {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+  }
+  
+  .structure-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .script-generation,
+  .shot-list-generation {
+    margin-bottom: 2rem;
+  }
+  
+  .generation-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .generation-options {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .generation-options label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  
+  .script-loading,
+  .shot-loading {
+    text-align: center;
+    padding: 3rem;
+  }
+  
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e5e7eb;
+    border-top: 4px solid #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .script-editor,
+  .shot-list-editor {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+  
+  .script-toolbar,
+  .shot-list-toolbar {
+    background: #f9fafb;
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .toolbar-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    background: white;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  .toolbar-btn:hover {
+    background: #f3f4f6;
+  }
+  
+  .script-content {
+    padding: 1.5rem;
+    min-height: 400px;
+  }
+  
+  .script-stats {
+    background: #f9fafb;
+    padding: 1rem;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .stat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .stat-label {
+    font-weight: 600;
+    color: #6b7280;
+  }
+  
+  .stat-value {
+    font-weight: 700;
+    color: #1f2937;
+  }
+  
+  .export-options {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .export-section h3 {
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1rem;
+  }
+  
+  .export-formats,
+  .share-options,
+  .integration-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  
+  .export-btn,
+  .share-btn,
+  .integration-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.75rem;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+  }
+  
+  .export-btn:hover,
+  .share-btn:hover,
+  .integration-btn:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+  }
+  
+  .export-icon,
+  .share-icon,
+  .integration-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .export-label,
+  .share-label,
+  .integration-label {
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.25rem;
+  }
+  
+  .export-desc {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  
+  .step-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e5e7eb;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+  }
+  
+  .btn-primary {
+    background: #3b82f6;
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background: #2563eb;
+  }
+  
+  .btn-secondary {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+  }
+  
+  .btn-secondary:hover {
+    background: #e5e7eb;
+  }
+  
+  @media (max-width: 768px) {
+    .step-content {
+      padding: 1rem;
+    }
+    
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .template-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .export-formats,
+    .share-options,
+    .integration-options {
+      grid-template-columns: 1fr;
+    }
+    
+    .step-actions {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+</style>
+
+<script>
+  // Step navigation
+  let currentStep: number = 1;
+  const totalSteps: number = 5;
+  
+  function showStep(step: number): void {
+    // Hide all steps
+    for (let i = 1; i <= totalSteps; i++) {
+      const stepElement = document.getElementById(`step${i}`) as HTMLElement | null;
+      if (stepElement) {
+        stepElement.style.display = 'none';
+      }
+    }
+    
+    // Show current step
+    const currentStepElement = document.getElementById(`step${step}`) as HTMLElement | null;
+    if (currentStepElement) {
+      currentStepElement.style.display = 'block';
+    }
+    
+    // Update progress bar
+    updateProgressBar(step);
+    currentStep = step;
+  }
+  
+  function updateProgressBar(step: number): void {
+    const steps = document.querySelectorAll<HTMLElement>('.progress-step');
+    steps.forEach((stepEl, index) => {
+      stepEl.classList.remove('active', 'completed');
+      if (index + 1 < step) {
+        stepEl.classList.add('completed');
+      } else if (index + 1 === step) {
+        stepEl.classList.add('active');
+      }
+    });
+  }
+  
+  // Step 1: Brief Input
+  document.getElementById('nextStep1')?.addEventListener('click', (e: MouseEvent) => {
+    const titleEl = document.getElementById('videoTitle') as HTMLInputElement | null;
+    const typeEl = document.getElementById('videoType') as HTMLSelectElement | null;
+    const durationEl = document.getElementById('targetDuration') as HTMLSelectElement | null;
+
+    const title = titleEl?.value || '';
+    const type = typeEl?.value || '';
+    const duration = durationEl?.value || '';
+    
+    if (!title || !type || !duration) {
+      alert('Please fill in all required fields');
+      return;
+    }
+    
+    showStep(2);
+  });
+  
+  // Step 2: Structure
+  document.addEventListener('click', (e: MouseEvent) => {
+    const target = e.target as HTMLElement | null;
+    if (!target) return;
+    const card = target.closest('.template-card') as HTMLElement | null;
+    if (card) {
+      // Remove previous selection
+      document.querySelectorAll<HTMLElement>('.template-card').forEach(cardEl => {
+        cardEl.classList.remove('selected');
+      });
+      
+      // Add selection to clicked card
+      card.classList.add('selected');
+      
+      const template = (card.dataset.template || '');
+      const builder = document.getElementById('structureBuilder') as HTMLElement | null;
+      if (template === 'custom') {
+        if (builder) builder.style.display = 'block';
+      } else {
+        if (builder) builder.style.display = 'none';
+      }
+    }
+  });
+  
+  document.getElementById('backStep2')?.addEventListener('click', () => showStep(1));
+  document.getElementById('nextStep2')?.addEventListener('click', () => {
+    const selectedTemplate = document.querySelector('.template-card.selected') as HTMLElement | null;
+    if (!selectedTemplate) {
+      alert('Please select a structure template');
+      return;
+    }
+    showStep(3);
+  });
+  
+  // Step 3: Script Generation
+  document.getElementById('generateScript')?.addEventListener('click', () => {
+    const scriptLoading = document.getElementById('scriptLoading') as HTMLElement | null;
+    const scriptEditor = document.getElementById('scriptEditor') as HTMLElement | null;
+    const regenerateScript = document.getElementById('regenerateScript') as HTMLElement | null;
+    const nextStep3 = document.getElementById('nextStep3') as HTMLElement | null;
+    if (!scriptLoading || !scriptEditor || !regenerateScript || !nextStep3) return;
+
+    scriptLoading.style.display = 'block';
+    scriptEditor.style.display = 'none';
+    
+    // Simulate script generation
+    setTimeout(() => {
+      scriptLoading.style.display = 'none';
+      scriptEditor.style.display = 'block';
+      regenerateScript.style.display = 'inline-block';
+      nextStep3.style.display = 'inline-block';
+      
+      // Generate sample script content
+      generateSampleScript();
+      updateScriptStats();
+    }, 3000);
+  });
+  
+  function generateSampleScript(): void {
+    const scriptSections = document.getElementById('scriptSections') as HTMLElement | null;
+    if (!scriptSections) return;
+    scriptSections.innerHTML = `
+      <div class="script-section">
+        <h4>Hook (0:00 - 0:10)</h4>
+        <div class="script-text" contenteditable="true">
+          [FADE IN: Close-up of frustrated person at computer]
+          
+          NARRATOR (V.O.)
+          "Are you tired of spending hours creating video content that doesn't convert?"
+          
+          [CUT TO: Multiple browser tabs open, person looking overwhelmed]
+        </div>
+      </div>
+      
+      <div class="script-section">
+        <h4>Problem (0:10 - 0:30)</h4>
+        <div class="script-text" contenteditable="true">
+          NARRATOR (V.O.)
+          "Most businesses struggle with video marketing because they lack a clear script structure. Without proper planning, videos become rambling, unfocused, and fail to engage viewers."
+          
+          [MONTAGE: Various poorly made videos, viewers clicking away, low engagement metrics]
+        </div>
+      </div>
+      
+      <div class="script-section">
+        <h4>Solution (0:30 - 1:20)</h4>
+        <div class="script-text" contenteditable="true">
+          [TRANSITION: Smooth animation to clean, modern interface]
+          
+          NARRATOR (V.O.)
+          "Introducing our AI-powered Video Script Generator. Simply input your brief, choose a proven structure, and get a professional script in minutes."
+          
+          [SCREEN RECORDING: User going through the tool, showing each step]
+          
+          "Our AI analyzes your objectives, target audience, and key messages to create compelling scripts that convert."
+        </div>
+      </div>
+      
+      <div class="script-section">
+        <h4>Call to Action (1:20 - 1:30)</h4>
+        <div class="script-text" contenteditable="true">
+          [CUT TO: Happy user reviewing their generated script]
+          
+          NARRATOR (V.O.)
+          "Ready to create videos that actually work? Try our Video Script Generator today and transform your video marketing."
+          
+          [FADE TO: Logo and website URL]
+        </div>
+      </div>
+    `;
+  }
+  
+  function updateScriptStats(): void {
+    const sectionsEl = document.getElementById('scriptSections') as HTMLElement | null;
+    const scriptText = sectionsEl?.textContent || '';
+    const wordCount = scriptText ? scriptText.split(/\s+/).filter(Boolean).length : 0;
+    const duration = Math.ceil((wordCount / 150) * 60); // 150 WPM
+    
+    const wordCountEl = document.getElementById('wordCount') as HTMLElement | null;
+    const estimatedEl = document.getElementById('estimatedDuration') as HTMLElement | null;
+    if (wordCountEl) wordCountEl.textContent = String(wordCount);
+    if (estimatedEl) estimatedEl.textContent = `${Math.floor(duration / 60)}:${(duration % 60).toString().padStart(2, '0')}`;
+  }
+  
+  document.getElementById('backStep3')?.addEventListener('click', () => showStep(2));
+  document.getElementById('nextStep3')?.addEventListener('click', () => showStep(4));
+  
+  // Step 4: Shot List
+  document.getElementById('generateShotList')?.addEventListener('click', () => {
+    const shotLoading = document.getElementById('shotLoading') as HTMLElement | null;
+    const shotListEditor = document.getElementById('shotListEditor') as HTMLElement | null;
+    const nextStep4 = document.getElementById('nextStep4') as HTMLElement | null;
+    if (!shotLoading || !shotListEditor || !nextStep4) return;
+    shotLoading.style.display = 'block';
+    shotListEditor.style.display = 'none';
+    
+    // Simulate shot list generation
+    setTimeout(() => {
+      shotLoading.style.display = 'none';
+      shotListEditor.style.display = 'block';
+      nextStep4.style.display = 'inline-block';
+      
+      generateSampleShotList();
+    }, 2500);
+  });
+  
+  function generateSampleShotList(): void {
+    const shotListContent = document.getElementById('shotListContent') as HTMLElement | null;
+    if (!shotListContent) return;
+    shotListContent.innerHTML = `
+      <div class="shot-list-view">
+        <div class="shot-item">
+          <div class="shot-number">1</div>
+          <div class="shot-details">
+            <h4>Opening Hook - Frustrated User</h4>
+            <div class="shot-specs">
+              <span class="spec">Close-up</span>
+              <span class="spec">Static</span>
+              <span class="spec">0:00-0:05</span>
+            </div>
+            <p class="shot-description">Close-up shot of person looking frustrated at computer screen. Natural lighting from window. Shallow depth of field.</p>
+            <div class="shot-notes">
+              <strong>Camera:</strong> 85mm lens, f/2.8<br>
+              <strong>Audio:</strong> Room tone, keyboard typing sounds<br>
+              <strong>Props:</strong> Laptop, coffee cup, papers
+            </div>
+          </div>
+        </div>
+        
+        <div class="shot-item">
+          <div class="shot-number">2</div>
+          <div class="shot-details">
+            <h4>Browser Tabs - Overwhelm</h4>
+            <div class="shot-specs">
+              <span class="spec">Screen Recording</span>
+              <span class="spec">Zoom In</span>
+              <span class="spec">0:05-0:10</span>
+            </div>
+            <p class="shot-description">Screen recording showing multiple browser tabs opening rapidly. Zoom into cluttered interface.</p>
+            <div class="shot-notes">
+              <strong>Screen:</strong> 1920x1080 recording<br>
+              <strong>Audio:</strong> Tab opening sounds, mouse clicks<br>
+              <strong>Animation:</strong> Smooth zoom transition
+            </div>
+          </div>
+        </div>
+        
+        <div class="shot-item">
+          <div class="shot-number">3</div>
+          <div class="shot-details">
+            <h4>Problem Montage</h4>
+            <div class="shot-specs">
+              <span class="spec">Montage</span>
+              <span class="spec">Quick Cuts</span>
+              <span class="spec">0:10-0:30</span>
+            </div>
+            <p class="shot-description">Fast-paced montage of poor video examples, viewers clicking away, low engagement metrics.</p>
+            <div class="shot-notes">
+              <strong>Editing:</strong> 1-2 second cuts<br>
+              <strong>Audio:</strong> Upbeat but tense music<br>
+              <strong>Graphics:</strong> Declining chart animations
+            </div>
+          </div>
+        </div>
+        
+        <div class="shot-item">
+          <div class="shot-number">4</div>
+          <div class="shot-details">
+            <h4>Solution Reveal</h4>
+            <div class="shot-specs">
+              <span class="spec">Screen Recording</span>
+              <span class="spec">Smooth Pan</span>
+              <span class="spec">0:30-1:20</span>
+            </div>
+            <p class="shot-description">Clean transition to tool interface. Smooth screen recording showing user journey through the application.</p>
+            <div class="shot-notes">
+              <strong>Screen:</strong> Clean browser, no distractions<br>
+              <strong>Audio:</strong> Clear narration, subtle UI sounds<br>
+              <strong>Cursor:</strong> Smooth, deliberate movements
+            </div>
+          </div>
+        </div>
+        
+        <div class="shot-item">
+          <div class="shot-number">5</div>
+          <div class="shot-details">
+            <h4>Happy User & CTA</h4>
+            <div class="shot-specs">
+              <span class="spec">Medium Shot</span>
+              <span class="spec">Static</span>
+              <span class="spec">1:20-1:30</span>
+            </div>
+            <p class="shot-description">Medium shot of satisfied user reviewing their script. Cut to logo and website URL.</p>
+            <div class="shot-notes">
+              <strong>Camera:</strong> 50mm lens, f/4<br>
+              <strong>Lighting:</strong> Soft, professional<br>
+              <strong>Graphics:</strong> Logo animation, URL display
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+  
+  document.getElementById('backStep4')?.addEventListener('click', () => showStep(3));
+  document.getElementById('nextStep4')?.addEventListener('click', () => showStep(5));
+  
+  // Step 5: Export
+  document.getElementById('backStep5')?.addEventListener('click', () => showStep(4));
+  document.getElementById('startNew')?.addEventListener('click', () => {
+    if (confirm('Are you sure you want to start a new script? All current progress will be lost.')) {
+      // Reset form
+      document.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('input, select, textarea').forEach((input) => {
+        if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement) {
+          input.value = '';
+        } else if (input instanceof HTMLSelectElement) {
+          input.selectedIndex = 0;
+        }
+      });
+      
+      // Reset UI states
+      document.querySelectorAll<HTMLElement>('.template-card').forEach(card => {
+        card.classList.remove('selected');
+      });
+      
+      const structureBuilder = document.getElementById('structureBuilder') as HTMLElement | null;
+      const scriptEditor = document.getElementById('scriptEditor') as HTMLElement | null;
+      const shotListEditor = document.getElementById('shotListEditor') as HTMLElement | null;
+      const regenerateScript = document.getElementById('regenerateScript') as HTMLElement | null;
+      const nextStep3 = document.getElementById('nextStep3') as HTMLElement | null;
+      const nextStep4 = document.getElementById('nextStep4') as HTMLElement | null;
+      if (structureBuilder) structureBuilder.style.display = 'none';
+      if (scriptEditor) scriptEditor.style.display = 'none';
+      if (shotListEditor) shotListEditor.style.display = 'none';
+      if (regenerateScript) regenerateScript.style.display = 'none';
+      if (nextStep3) nextStep3.style.display = 'none';
+      if (nextStep4) nextStep4.style.display = 'none';
+      
+      showStep(1);
+    }
+  });
+  
+  // Export functions
+  document.getElementById('exportScriptPDF')?.addEventListener('click', () => {
+    alert('Exporting script as PDF...');
+  });
+  
+  document.getElementById('exportScriptWord')?.addEventListener('click', () => {
+    alert('Exporting script as Word document...');
+  });
+  
+  document.getElementById('exportScriptTXT')?.addEventListener('click', () => {
+    alert('Exporting script as plain text...');
+  });
+  
+  document.getElementById('exportScriptJSON')?.addEventListener('click', () => {
+    alert('Exporting script data as JSON...');
+  });
+  
+  document.getElementById('exportShotListPDF')?.addEventListener('click', () => {
+    alert('Exporting shot list as PDF...');
+  });
+  
+  document.getElementById('exportShotListExcel')?.addEventListener('click', () => {
+    alert('Exporting shot list as Excel spreadsheet...');
+  });
+  
+  document.getElementById('exportStoryboard')?.addEventListener('click', () => {
+    alert('Exporting storyboard as PDF...');
+  });
+  
+  // Share functions
+  document.getElementById('shareLink')?.addEventListener('click', () => {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(window.location.href)
+        .then(() => {
+          alert('Share link copied to clipboard!');
+        })
+        .catch(() => {
+          alert('Failed to copy share link.');
+        });
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = window.location.href;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); alert('Share link copied to clipboard!'); } catch (e) { alert('Failed to copy share link.'); }
+      document.body.removeChild(ta);
+    }
+  });
+  
+  document.getElementById('shareEmail')?.addEventListener('click', () => {
+    const subject = encodeURIComponent('Video Script Generated');
+    const body = encodeURIComponent('Check out this video script I created: ' + window.location.href);
+    window.open(`mailto:?subject=${subject}&body=${body}`);
+  });
+  
+  // Integration functions
+  document.getElementById('exportToFinalCut')?.addEventListener('click', () => {
+    alert('Exporting to Final Cut Pro format...');
+  });
+  
+  document.getElementById('exportToPremiere')?.addEventListener('click', () => {
+    alert('Exporting to Adobe Premiere format...');
+  });
+  
+  document.getElementById('exportToAvid')?.addEventListener('click', () => {
+    alert('Exporting to Avid Media Composer format...');
+  });
+  
+  // Initialize
+  showStep(1);
+</script>
+</Layout>

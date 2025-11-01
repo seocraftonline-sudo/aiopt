@@ -1,0 +1,103 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+---
+<Layout>
+<Nav/>
+<main class="mn">
+<div class="cd">
+<div class="hd">
+<div class="hd-ic">🎁</div>
+<div class="hd-tx">
+<h1 class="tl">Redeem Codes</h1>
+<p class="st">Enter your promotional codes to unlock rewards</p>
+</div>
+</div>
+<div class="cd-grd">
+<input type="text" class="in" placeholder="CODE 1" id="code1">
+<input type="text" class="in" placeholder="CODE 2" id="code2">
+<input type="text" class="in" placeholder="CODE 3" id="code3">
+<input type="text" class="in" placeholder="CODE 4" id="code4">
+<input type="text" class="in" placeholder="CODE 5" id="code5">
+<input type="text" class="in" placeholder="CODE 6" id="code6">
+</div>
+<button class="bt" id="redeemBtn">Redeem Codes</button>
+<div class="vf" id="verifying" style="display:none">
+<svg class="sp" viewBox="0 0 24 24">
+<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="50" stroke-linecap="round"/>
+</svg>
+<span>Verifying codes...</span>
+</div>
+<div class="rs" id="result"></div>
+<div class="inf">
+<h3 class="inf-tl">How to redeem:</h3>
+<ol class="inf-ls">
+<li>Enter your promotional codes in the fields above</li>
+<li>Each code can unlock different rewards</li>
+<li>You can enter multiple codes at once</li>
+<li>Codes are case-insensitive</li>
+</ol>
+</div>
+</div>
+</main>
+<script>
+const redeemBtn = document.getElementById('redeemBtn') as HTMLButtonElement;
+const verifying = document.getElementById('verifying') as HTMLDivElement;
+const result = document.getElementById('result') as HTMLDivElement;
+const inputs = [
+  document.getElementById('code1') as HTMLInputElement,
+  document.getElementById('code2') as HTMLInputElement,
+  document.getElementById('code3') as HTMLInputElement,
+  document.getElementById('code4') as HTMLInputElement,
+  document.getElementById('code5') as HTMLInputElement,
+  document.getElementById('code6') as HTMLInputElement
+];
+
+redeemBtn.addEventListener('click', async () => {
+  const codes = inputs.map(input => input.value.trim()).filter(code => code.length > 0);
+
+  if (codes.length === 0) {
+    result.innerHTML = '<div class="er">Please enter at least one code</div>';
+    result.style.display = 'block';
+    return;
+  }
+
+  redeemBtn.style.display = 'none';
+  verifying.style.display = 'flex';
+  result.style.display = 'none';
+
+  await new Promise(resolve => setTimeout(resolve, 2000));
+
+  const validCodes = ['WELCOME2024', 'PREMIUM50', 'STARTER25'];
+  const redeemedCodes = codes.filter(code => validCodes.includes(code.toUpperCase()));
+
+  redeemBtn.style.display = 'block';
+  verifying.style.display = 'none';
+  result.style.display = 'block';
+
+  if (redeemedCodes.length > 0) {
+    result.innerHTML = `
+      <div class="sc">
+        <div class="sc-ic">✓</div>
+        <div>
+          <div class="sc-tl">Codes Redeemed Successfully!</div>
+          <div class="sc-ds">${redeemedCodes.length} code${redeemedCodes.length > 1 ? 's' : ''} verified and applied to your account</div>
+        </div>
+      </div>
+    `;
+    inputs.forEach(input => input.value = '');
+  } else {
+    result.innerHTML = `
+      <div class="er">
+        <div class="er-ic">✕</div>
+        <div>
+          <div class="er-tl">Invalid Codes</div>
+          <div class="er-ds">None of the entered codes are valid. Please check and try again.</div>
+        </div>
+      </div>
+    `;
+  }
+});
+</script>
+</Layout>
+<style>.mn{margin-left:240px;padding:32px;min-height:100vh;max-width:900px;margin-right:auto;animation:sf .4s ease}.cd{background:#fff;border:2px solid #e5e7eb;border-radius:16px;padding:40px;box-shadow:0 2px 8px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.04)}.hd{display:flex;align-items:center;gap:20px;margin-bottom:32px}.hd-ic{font-size:48px;background:#f3f4f6;padding:16px;border-radius:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0}.hd-tx{flex-grow:1}.tl{font-size:28px;font-weight:700;margin:0 0 4px 0;color:#1f2937}.st{font-size:15px;color:#6b7280;margin:0}.cd-grd{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px}.in{background:#fafafa;border:2px solid #e5e7eb;border-radius:10px;padding:14px;font-size:14px;color:#6b7280;font-weight:600;text-align:center;transition:all .2s ease;font-family:inherit;text-transform:uppercase;letter-spacing:.5px}.in:focus{outline:none;border-color:#10b981;background:#fff;box-shadow:0 0 0 3px rgba(16,185,129,.1);color:#1f2937}.in::placeholder{color:#9ca3af;text-transform:uppercase;font-weight:600}.bt{background:#6b7280;border:none;border-radius:10px;padding:16px;font-size:15px;font-weight:600;color:#fff;cursor:pointer;transition:all .25s ease;width:100%;margin-bottom:20px}.bt:hover{background:#4b5563;transform:translateY(-1px)}.vf{display:flex;align-items:center;justify-content:center;gap:12px;padding:20px;color:#6b7280;font-size:15px;font-weight:500}.sp{width:24px;height:24px;color:#10b981;animation:sp 1s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}.rs{display:none;margin-bottom:20px}.sc{display:flex;align-items:flex-start;gap:16px;padding:20px;background:#d1fae5;border:2px solid #10b981;border-radius:12px}.sc-ic{font-size:28px;color:#059669;flex-shrink:0;width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border-radius:50%;font-weight:700}.sc-tl{font-size:16px;font-weight:700;color:#065f46;margin:0 0 4px 0}.sc-ds{font-size:14px;color:#047857}.er{display:flex;align-items:flex-start;gap:16px;padding:20px;background:#fee2e2;border:2px solid #ef4444;border-radius:12px}.er-ic{font-size:28px;color:#dc2626;flex-shrink:0;width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border-radius:50%;font-weight:700}.er-tl{font-size:16px;font-weight:700;color:#991b1b;margin:0 0 4px 0}.er-ds{font-size:14px;color:#b91c1c}.inf{border-top:2px solid #f3f4f6;padding-top:28px}.inf-tl{font-size:16px;font-weight:700;color:#1f2937;margin:0 0 16px 0}.inf-ls{margin:0;padding-left:20px;color:#6b7280;font-size:14px;line-height:1.8}.inf-ls li{margin-bottom:8px}@media(max-width:768px){.mn{margin-left:72px;padding:20px}.cd-grd{grid-template-columns:repeat(2,1fr)}}@media(max-width:480px){.mn{margin-left:0;padding:16px;padding-top:80px}.cd{padding:24px}.cd-grd{grid-template-columns:1fr}}</style>

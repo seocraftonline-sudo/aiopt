@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+---
+<Layout>
+<Nav/>
+<main class="mn">
+<header class="hd">
+<h1 class="tl">Tutorials</h1>
+<p class="st">Learn how to make the most of our platform</p>
+</header>
+<div class="gr">
+<div class="cd">
+<div class="cd-ic">📚</div>
+<h3 class="cd-tl">Getting Started</h3>
+<p class="cd-ds">Learn the basics of ContentFlow and create your first project</p>
+<a href="#" class="cd-lk">Start Tutorial →</a>
+</div>
+<div class="cd">
+<div class="cd-ic">✍️</div>
+<h3 class="cd-tl">Content Creation</h3>
+<p class="cd-ds">Master the art of creating engaging content with AI assistance</p>
+<a href="#" class="cd-lk">Start Tutorial →</a>
+</div>
+<div class="cd">
+<div class="cd-ic">🔍</div>
+<h3 class="cd-tl">SEO Optimization</h3>
+<p class="cd-ds">Optimize your content for search engines and boost visibility</p>
+<a href="#" class="cd-lk">Start Tutorial →</a>
+</div>
+<div class="cd">
+<div class="cd-ic">⚡</div>
+<h3 class="cd-tl">Automation Workflows</h3>
+<p class="cd-ds">Set up automated workflows to streamline your content process</p>
+<a href="#" class="cd-lk">Start Tutorial →</a>
+</div>
+<div class="cd">
+<div class="cd-ic">🎯</div>
+<h3 class="cd-tl">Keyword Research</h3>
+<p class="cd-ds">Discover high-performing keywords for your content strategy</p>
+<a href="#" class="cd-lk">Start Tutorial →</a>
+</div>
+<div class="cd">
+<div class="cd-ic">📊</div>
+<h3 class="cd-tl">Analytics Dashboard</h3>
+<p class="cd-ds">Track and analyze your content performance metrics</p>
+<a href="#" class="cd-lk">Start Tutorial →</a>
+</div>
+</div>
+</main>
+</Layout>
+<style>.mn{margin-left:240px;padding:32px;min-height:100vh;max-width:1400px;animation:sf .4s ease}.hd{margin-bottom:32px}.tl{font-size:32px;font-weight:700;margin:0 0 6px 0;color:#1f2937}.st{font-size:15px;color:#6b7280;margin:0}.gr{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px}.cd{background:#fff;border:2px solid #e5e7eb;border-radius:16px;padding:28px;box-shadow:0 2px 8px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.04);transition:all .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;gap:12px}.cd:hover{transform:translateY(-4px);box-shadow:0 4px 16px rgba(0,0,0,.1),0 12px 32px rgba(0,0,0,.08);border-color:#10b981}.cd-ic{font-size:40px;margin-bottom:8px}.cd-tl{font-size:18px;font-weight:700;color:#1f2937;margin:0}.cd-ds{font-size:14px;color:#6b7280;line-height:1.6;margin:0;flex-grow:1}.cd-lk{color:#10b981;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s ease;align-self:flex-start}.cd-lk:hover{color:#059669;transform:translateX(4px)}@media(max-width:768px){.mn{margin-left:72px;padding:20px}.gr{grid-template-columns:1fr}}@media(max-width:480px){.mn{margin-left:0;padding:16px;padding-top:80px}}</style>

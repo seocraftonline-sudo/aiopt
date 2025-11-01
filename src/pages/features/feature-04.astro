@@ -1,0 +1,730 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+---
+<Layout>
+<Nav/>
+<main class="mn">
+  <div class="pg-hd">
+    <div class="hd-ic">📅</div>
+    <h1 class="tl">Content Calendar</h1>
+    <p class="st">Plan, schedule, and manage your content across all platforms</p>
+  </div>
+
+  <!-- Progress -->
+  <div class="pr-wr">
+    <div class="pr-st" id="progressBar">
+      <div class="pr-it cp" data-step="1"><div class="pr-nm">1</div><div class="pr-lb">Setup</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="2"><div class="pr-nm">2</div><div class="pr-lb">Plan</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="3"><div class="pr-nm">3</div><div class="pr-lb">Schedule</div></div>
+      <div class="pr-ln"></div>
+      <div class="pr-it" data-step="4"><div class="pr-nm">4</div><div class="pr-lb">Manage</div></div>
+    </div>
+  </div>
+
+  <div class="st-cn">
+    <!-- Step 1: Calendar Setup -->
+    <div class="st-bx" id="step1">
+      <div class="st-ic">⚙️</div>
+      <div class="st-hd">
+        <h2>Calendar Configuration</h2>
+        <p>Set up your content calendar preferences</p>
+      </div>
+      <div class="st-bd">
+        <div class="cf-gd">
+          <div class="cf-cd">
+            <h3>📱 Connected Platforms</h3>
+            <div class="pl-ls">
+              <label class="pl-it">
+                <input type="checkbox" id="facebook" checked>
+                <div class="pl-ic">📘</div>
+                <div class="pl-info">
+                  <div class="pl-nm">Facebook</div>
+                  <div class="pl-st">Connected</div>
+                </div>
+              </label>
+              <label class="pl-it">
+                <input type="checkbox" id="twitter" checked>
+                <div class="pl-ic">🐦</div>
+                <div class="pl-info">
+                  <div class="pl-nm">Twitter</div>
+                  <div class="pl-st">Connected</div>
+                </div>
+              </label>
+              <label class="pl-it">
+                <input type="checkbox" id="instagram">
+                <div class="pl-ic">📷</div>
+                <div class="pl-info">
+                  <div class="pl-nm">Instagram</div>
+                  <div class="pl-st">Not connected</div>
+                </div>
+              </label>
+              <label class="pl-it">
+                <input type="checkbox" id="linkedin" checked>
+                <div class="pl-ic">💼</div>
+                <div class="pl-info">
+                  <div class="pl-nm">LinkedIn</div>
+                  <div class="pl-st">Connected</div>
+                </div>
+              </label>
+              <label class="pl-it">
+                <input type="checkbox" id="youtube">
+                <div class="pl-ic">📺</div>
+                <div class="pl-info">
+                  <div class="pl-nm">YouTube</div>
+                  <div class="pl-st">Not connected</div>
+                </div>
+              </label>
+              <label class="pl-it">
+                <input type="checkbox" id="blog" checked>
+                <div class="pl-ic">📝</div>
+                <div class="pl-info">
+                  <div class="pl-nm">Blog/Website</div>
+                  <div class="pl-st">Connected</div>
+                </div>
+              </label>
+            </div>
+          </div>
+          <div class="cf-cd">
+            <h3>🎯 Content Categories</h3>
+            <div class="ct-ls">
+              <div class="ct-it" data-color="#3b82f6">
+                <div class="ct-cl" style="background: #3b82f6;"></div>
+                <input type="text" value="Marketing" class="ct-nm">
+                <button class="ct-rm">×</button>
+              </div>
+              <div class="ct-it" data-color="#10b981">
+                <div class="ct-cl" style="background: #10b981;"></div>
+                <input type="text" value="Educational" class="ct-nm">
+                <button class="ct-rm">×</button>
+              </div>
+              <div class="ct-it" data-color="#f59e0b">
+                <div class="ct-cl" style="background: #f59e0b;"></div>
+                <input type="text" value="Product Updates" class="ct-nm">
+                <button class="ct-rm">×</button>
+              </div>
+              <div class="ct-it" data-color="#ef4444">
+                <div class="ct-cl" style="background: #ef4444;"></div>
+                <input type="text" value="Behind the Scenes" class="ct-nm">
+                <button class="ct-rm">×</button>
+              </div>
+            </div>
+            <button class="ct-ad" id="addCategory">+ Add Category</button>
+          </div>
+        </div>
+        <div class="tm-gd">
+          <div class="tm-cd">
+            <h3>⏰ Publishing Schedule</h3>
+            <div class="sc-gd">
+              <div class="sc-dy">
+                <label>Monday</label>
+                <input type="time" value="09:00" class="sc-tm">
+                <input type="time" value="15:00" class="sc-tm">
+              </div>
+              <div class="sc-dy">
+                <label>Tuesday</label>
+                <input type="time" value="09:00" class="sc-tm">
+                <input type="time" value="15:00" class="sc-tm">
+              </div>
+              <div class="sc-dy">
+                <label>Wednesday</label>
+                <input type="time" value="09:00" class="sc-tm">
+                <input type="time" value="15:00" class="sc-tm">
+              </div>
+              <div class="sc-dy">
+                <label>Thursday</label>
+                <input type="time" value="09:00" class="sc-tm">
+                <input type="time" value="15:00" class="sc-tm">
+              </div>
+              <div class="sc-dy">
+                <label>Friday</label>
+                <input type="time" value="09:00" class="sc-tm">
+                <input type="time" value="15:00" class="sc-tm">
+              </div>
+            </div>
+          </div>
+          <div class="tm-cd">
+            <h3>🌍 Time Zone</h3>
+            <select class="tz-sl">
+              <option value="UTC-8">Pacific Time (UTC-8)</option>
+              <option value="UTC-5" selected>Eastern Time (UTC-5)</option>
+              <option value="UTC+0">GMT (UTC+0)</option>
+              <option value="UTC+1">Central European Time (UTC+1)</option>
+              <option value="UTC+8">China Standard Time (UTC+8)</option>
+            </select>
+          </div>
+        </div>
+        <div class="bt-gr">
+          <button class="bt-pr" id="nextStep1"><span>Start Planning</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Content Planning -->
+    <div class="st-bx" id="step2" style="display:none">
+      <div class="st-ic">📋</div>
+      <div class="st-hd">
+        <h2>Content Planning</h2>
+        <p>Plan your content strategy and themes</p>
+      </div>
+      <div class="st-bd">
+        <div class="pl-gd">
+          <div class="pl-cd">
+            <h3>📊 Content Strategy</h3>
+            <div class="st-fm">
+              <div class="fm-gr">
+                <label class="fm-lb">
+                  <span class="lb-tx">Content Mix</span>
+                  <div class="mx-gd">
+                    <div class="mx-it">
+                      <span class="mx-lb">Educational</span>
+                      <input type="range" min="0" max="100" value="40" class="mx-sl" data-type="educational">
+                      <span class="mx-vl">40%</span>
+                    </div>
+                    <div class="mx-it">
+                      <span class="mx-lb">Promotional</span>
+                      <input type="range" min="0" max="100" value="20" class="mx-sl" data-type="promotional">
+                      <span class="mx-vl">20%</span>
+                    </div>
+                    <div class="mx-it">
+                      <span class="mx-lb">Entertainment</span>
+                      <input type="range" min="0" max="100" value="25" class="mx-sl" data-type="entertainment">
+                      <span class="mx-vl">25%</span>
+                    </div>
+                    <div class="mx-it">
+                      <span class="mx-lb">Behind Scenes</span>
+                      <input type="range" min="0" max="100" value="15" class="mx-sl" data-type="behind">
+                      <span class="mx-vl">15%</span>
+                    </div>
+                  </div>
+                </label>
+              </div>
+              <div class="fm-gr">
+                <label class="fm-lb">
+                  <span class="lb-tx">Posting Frequency</span>
+                  <select class="fm-sl" id="postFrequency">
+                    <option value="1">1 post per day</option>
+                    <option value="2" selected>2 posts per day</option>
+                    <option value="3">3 posts per day</option>
+                    <option value="custom">Custom schedule</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="pl-cd">
+            <h3>🎨 Content Themes</h3>
+            <div class="th-ls" id="themesList">
+              <div class="th-it">
+                <div class="th-ic">💡</div>
+                <div class="th-info">
+                  <div class="th-nm">Tips & Tricks</div>
+                  <div class="th-ds">Share helpful tips and industry insights</div>
+                </div>
+                <div class="th-dy">Monday</div>
+              </div>
+              <div class="th-it">
+                <div class="th-ic">📈</div>
+                <div class="th-info">
+                  <div class="th-nm">Success Stories</div>
+                  <div class="th-ds">Customer testimonials and case studies</div>
+                </div>
+                <div class="th-dy">Wednesday</div>
+              </div>
+              <div class="th-it">
+                <div class="th-ic">🎉</div>
+                <div class="th-info">
+                  <div class="th-nm">Fun Friday</div>
+                  <div class="th-ds">Light-hearted content and team moments</div>
+                </div>
+                <div class="th-dy">Friday</div>
+              </div>
+            </div>
+            <button class="th-ad" id="addTheme">+ Add Theme</button>
+          </div>
+        </div>
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep2"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="nextStep2"><span>Create Schedule</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Content Scheduling -->
+    <div class="st-bx" id="step3" style="display:none">
+      <div class="st-ic">📅</div>
+      <div class="st-hd">
+        <h2>Content Scheduling</h2>
+        <p>Schedule your content across platforms</p>
+      </div>
+      <div class="st-bd">
+        <div class="cl-gd">
+          <!-- Calendar View -->
+          <div class="cl-vw">
+            <div class="cl-hd">
+              <button class="cl-nv" id="prevMonth">‹</button>
+              <h3 class="cl-mn" id="currentMonth">December 2024</h3>
+              <button class="cl-nv" id="nextMonth">›</button>
+            </div>
+            <div class="cl-bd" id="calendar">
+              <!-- Calendar will be generated by JavaScript -->
+            </div>
+          </div>
+          
+          <!-- Content Form -->
+          <div class="ct-fm">
+            <h3>📝 Add Content</h3>
+            <div class="fm-gd">
+              <div class="fm-gr">
+                <label class="fm-lb">
+                  <span class="lb-tx">Content Type</span>
+                  <select class="fm-sl" id="contentType">
+                    <option value="post">Social Media Post</option>
+                    <option value="article">Blog Article</option>
+                    <option value="video">Video Content</option>
+                    <option value="story">Story/Reel</option>
+                    <option value="newsletter">Newsletter</option>
+                  </select>
+                </label>
+              </div>
+              <div class="fm-gr">
+                <label class="fm-lb">
+                  <span class="lb-tx">Title</span>
+                  <input type="text" class="fm-in" id="contentTitle" placeholder="Enter content title...">
+                </label>
+              </div>
+              <div class="fm-gr">
+                <label class="fm-lb">
+                  <span class="lb-tx">Description</span>
+                  <textarea class="fm-ta" id="contentDesc" placeholder="Content description or caption..."></textarea>
+                </label>
+              </div>
+              <div class="fm-gr">
+                <label class="fm-lb">
+                  <span class="lb-tx">Category</span>
+                  <select class="fm-sl" id="contentCategory">
+                    <option value="marketing">Marketing</option>
+                    <option value="educational">Educational</option>
+                    <option value="product">Product Updates</option>
+                    <option value="behind">Behind the Scenes</option>
+                  </select>
+                </label>
+              </div>
+              <div class="fm-gr">
+                <label class="fm-lb">
+                  <span class="lb-tx">Platforms</span>
+                  <div class="pl-ch">
+                    <label class="ch-it"><input type="checkbox" value="facebook" checked><span>Facebook</span></label>
+                    <label class="ch-it"><input type="checkbox" value="twitter" checked><span>Twitter</span></label>
+                    <label class="ch-it"><input type="checkbox" value="linkedin"><span>LinkedIn</span></label>
+                    <label class="ch-it"><input type="checkbox" value="instagram"><span>Instagram</span></label>
+                  </div>
+                </label>
+              </div>
+              <div class="fm-gr">
+                <label class="fm-lb">
+                  <span class="lb-tx">Schedule Date & Time</span>
+                  <div class="dt-gd">
+                    <input type="date" class="fm-in" id="scheduleDate">
+                    <input type="time" class="fm-in" id="scheduleTime" value="09:00">
+                  </div>
+                </label>
+              </div>
+              <div class="fm-gr">
+                <button class="bt-pr" id="addContent">📅 Schedule Content</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep3"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="nextStep3"><span>Manage Calendar</span><span class="bt-ar">→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: Calendar Management -->
+    <div class="st-bx" id="step4" style="display:none">
+      <div class="st-ic">📊</div>
+      <div class="st-hd">
+        <h2>Calendar Management</h2>
+        <p>Monitor and manage your scheduled content</p>
+      </div>
+      <div class="st-bd">
+        <div class="mg-gd">
+          <!-- Stats Overview -->
+          <div class="st-ov">
+            <div class="st-cd">
+              <div class="st-ic">📝</div>
+              <div class="st-info">
+                <div class="st-nm">24</div>
+                <div class="st-lb">Scheduled Posts</div>
+              </div>
+            </div>
+            <div class="st-cd">
+              <div class="st-ic">📅</div>
+              <div class="st-info">
+                <div class="st-nm">7</div>
+                <div class="st-lb">This Week</div>
+              </div>
+            </div>
+            <div class="st-cd">
+              <div class="st-ic">🎯</div>
+              <div class="st-info">
+                <div class="st-nm">4</div>
+                <div class="st-lb">Platforms</div>
+              </div>
+            </div>
+            <div class="st-cd">
+              <div class="st-ic">⏰</div>
+              <div class="st-info">
+                <div class="st-nm">3</div>
+                <div class="st-lb">Pending Approval</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content List -->
+          <div class="ct-ls">
+            <div class="ls-hd">
+              <h3>Upcoming Content</h3>
+              <div class="ls-fl">
+                <select class="fl-sl">
+                  <option value="all">All Platforms</option>
+                  <option value="facebook">Facebook</option>
+                  <option value="twitter">Twitter</option>
+                  <option value="linkedin">LinkedIn</option>
+                </select>
+                <select class="fl-sl">
+                  <option value="all">All Categories</option>
+                  <option value="marketing">Marketing</option>
+                  <option value="educational">Educational</option>
+                  <option value="product">Product Updates</option>
+                </select>
+              </div>
+            </div>
+            <div class="ls-bd" id="contentList">
+              <div class="ct-it">
+                <div class="ct-st scheduled"></div>
+                <div class="ct-info">
+                  <div class="ct-tl">5 Tips for Better Content Marketing</div>
+                  <div class="ct-mt">Dec 15, 2024 at 9:00 AM</div>
+                  <div class="ct-pl">
+                    <span class="pl-tg facebook">Facebook</span>
+                    <span class="pl-tg twitter">Twitter</span>
+                  </div>
+                </div>
+                <div class="ct-ac">
+                  <button class="ac-bt edit">✏️</button>
+                  <button class="ac-bt duplicate">📋</button>
+                  <button class="ac-bt delete">🗑️</button>
+                </div>
+              </div>
+              <div class="ct-it">
+                <div class="ct-st pending"></div>
+                <div class="ct-info">
+                  <div class="ct-tl">Product Launch Announcement</div>
+                  <div class="ct-mt">Dec 16, 2024 at 2:00 PM</div>
+                  <div class="ct-pl">
+                    <span class="pl-tg linkedin">LinkedIn</span>
+                    <span class="pl-tg facebook">Facebook</span>
+                  </div>
+                </div>
+                <div class="ct-ac">
+                  <button class="ac-bt approve">✅</button>
+                  <button class="ac-bt edit">✏️</button>
+                  <button class="ac-bt delete">🗑️</button>
+                </div>
+              </div>
+              <div class="ct-it">
+                <div class="ct-st draft"></div>
+                <div class="ct-info">
+                  <div class="ct-tl">Behind the Scenes: Team Meeting</div>
+                  <div class="ct-mt">Dec 17, 2024 at 11:00 AM</div>
+                  <div class="ct-pl">
+                    <span class="pl-tg instagram">Instagram</span>
+                  </div>
+                </div>
+                <div class="ct-ac">
+                  <button class="ac-bt schedule">📅</button>
+                  <button class="ac-bt edit">✏️</button>
+                  <button class="ac-bt delete">🗑️</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bt-gr">
+          <button class="bt-sc" id="backStep4"><span class="bt-ar">←</span><span>Back</span></button>
+          <button class="bt-pr" id="exportCalendar"><span>Export Calendar</span><span class="bt-ar">📤</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<style>
+.cf-gd { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+.cf-cd { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+.cf-cd h3 { margin: 0 0 1rem 0; font-weight: 600; }
+
+.pl-ls { display: flex; flex-direction: column; gap: 0.5rem; }
+.pl-it { display: flex; align-items: center; gap: 1rem; padding: 1rem; border: 1px solid #e5e7eb; border-radius: 6px; cursor: pointer; }
+.pl-it:hover { background: #f9fafb; }
+.pl-ic { font-size: 1.5rem; }
+.pl-info { flex: 1; }
+.pl-nm { font-weight: 500; margin-bottom: 0.25rem; }
+.pl-st { font-size: 0.875rem; color: #6b7280; }
+
+.ct-ls { display: flex; flex-direction: column; gap: 0.5rem; }
+.ct-it { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem; background: #f9fafb; border-radius: 6px; }
+.ct-cl { width: 16px; height: 16px; border-radius: 50%; }
+.ct-nm { flex: 1; border: none; background: transparent; font-weight: 500; }
+.ct-nm:focus { outline: none; }
+.ct-rm { background: none; border: none; color: #ef4444; cursor: pointer; font-size: 1.25rem; }
+.ct-ad { width: 100%; padding: 0.75rem; border: 2px dashed #d1d5db; background: transparent; border-radius: 6px; cursor: pointer; color: #6b7280; }
+.ct-ad:hover { border-color: #2563eb; color: #2563eb; }
+
+.tm-gd { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+.tm-cd { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+.tm-cd h3 { margin: 0 0 1rem 0; font-weight: 600; }
+
+.sc-gd { display: flex; flex-direction: column; gap: 0.75rem; }
+.sc-dy { display: flex; align-items: center; gap: 1rem; }
+.sc-dy label { width: 80px; font-weight: 500; }
+.sc-tm { padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 4px; }
+
+.tz-sl { width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 6px; }
+
+.pl-gd { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+.pl-cd { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+.pl-cd h3 { margin: 0 0 1rem 0; font-weight: 600; }
+
+.mx-gd { display: flex; flex-direction: column; gap: 1rem; }
+.mx-it { display: flex; align-items: center; gap: 1rem; }
+.mx-lb { width: 100px; font-size: 0.875rem; }
+.mx-sl { flex: 1; }
+.mx-vl { width: 40px; text-align: right; font-weight: 500; }
+
+.th-ls { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem; }
+.th-it { display: flex; align-items: center; gap: 1rem; padding: 1rem; border: 1px solid #e5e7eb; border-radius: 6px; }
+.th-ic { font-size: 1.5rem; }
+.th-info { flex: 1; }
+.th-nm { font-weight: 500; margin-bottom: 0.25rem; }
+.th-ds { font-size: 0.875rem; color: #6b7280; }
+.th-dy { padding: 0.25rem 0.75rem; background: #2563eb; color: white; border-radius: 12px; font-size: 0.75rem; }
+.th-ad { width: 100%; padding: 0.75rem; border: 2px dashed #d1d5db; background: transparent; border-radius: 6px; cursor: pointer; color: #6b7280; }
+.th-ad:hover { border-color: #2563eb; color: #2563eb; }
+
+.cl-gd { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+.cl-vw { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+.cl-hd { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+.cl-nv { background: none; border: none; font-size: 1.5rem; cursor: pointer; padding: 0.5rem; }
+.cl-nv:hover { background: #f3f4f6; border-radius: 4px; }
+.cl-mn { margin: 0; font-weight: 600; }
+
+.cl-bd { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; background: #e5e7eb; border-radius: 6px; overflow: hidden; }
+.cl-dy { background: white; padding: 0.75rem; min-height: 80px; position: relative; }
+.cl-dy.other-month { color: #9ca3af; background: #f9fafb; }
+.cl-dy.today { background: #dbeafe; }
+.cl-dy.selected { background: #2563eb; color: white; }
+.cl-dt { font-weight: 500; margin-bottom: 0.25rem; }
+.cl-ev { font-size: 0.75rem; background: #10b981; color: white; padding: 0.125rem 0.25rem; border-radius: 2px; margin-bottom: 0.125rem; }
+
+.ct-fm { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+.ct-fm h3 { margin: 0 0 1rem 0; font-weight: 600; }
+
+.dt-gd { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.pl-ch { display: flex; flex-direction: column; gap: 0.5rem; }
+.ch-it { display: flex; align-items: center; gap: 0.5rem; }
+
+.mg-gd { display: flex; flex-direction: column; gap: 2rem; }
+.st-ov { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+.st-cd { display: flex; align-items: center; gap: 1rem; padding: 1.5rem; background: white; border: 1px solid #e5e7eb; border-radius: 8px; }
+.st-cd .st-ic { font-size: 2rem; }
+.st-info { }
+.st-nm { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.25rem; }
+.st-lb { font-size: 0.875rem; color: #6b7280; }
+
+.ct-ls { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+.ls-hd { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+.ls-hd h3 { margin: 0; font-weight: 600; }
+.ls-fl { display: flex; gap: 0.5rem; }
+.fl-sl { padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 4px; font-size: 0.875rem; }
+
+.ls-bd { display: flex; flex-direction: column; gap: 0.75rem; }
+.ct-it { display: flex; align-items: center; gap: 1rem; padding: 1rem; border: 1px solid #e5e7eb; border-radius: 6px; }
+.ct-st { width: 12px; height: 12px; border-radius: 50%; }
+.ct-st.scheduled { background: #10b981; }
+.ct-st.pending { background: #f59e0b; }
+.ct-st.draft { background: #6b7280; }
+.ct-info { flex: 1; }
+.ct-tl { font-weight: 500; margin-bottom: 0.25rem; }
+.ct-mt { font-size: 0.875rem; color: #6b7280; margin-bottom: 0.5rem; }
+.ct-pl { display: flex; gap: 0.5rem; }
+.pl-tg { padding: 0.125rem 0.5rem; border-radius: 12px; font-size: 0.75rem; }
+.pl-tg.facebook { background: #1877f2; color: white; }
+.pl-tg.twitter { background: #1da1f2; color: white; }
+.pl-tg.linkedin { background: #0077b5; color: white; }
+.pl-tg.instagram { background: #e4405f; color: white; }
+
+.ct-ac { display: flex; gap: 0.5rem; }
+.ac-bt { padding: 0.5rem; border: 1px solid #d1d5db; background: white; border-radius: 4px; cursor: pointer; }
+.ac-bt:hover { background: #f3f4f6; }
+.ac-bt.approve { background: #10b981; color: white; border-color: #10b981; }
+.ac-bt.schedule { background: #2563eb; color: white; border-color: #2563eb; }
+</style>
+
+<script>
+let currentStep: number = 1;
+let currentDate: Date = new Date();
+type ScheduledContent = {
+  id: number;
+  title: string;
+  desc: string;
+  date: string;
+  time: string;
+  platforms: string[];
+  status: string;
+};
+let scheduledContent: ScheduledContent[] = [];
+
+function showStep(step: number): void {
+  document.querySelectorAll<HTMLElement>('.st-bx').forEach((box) => (box.style.display = 'none'));
+  const stepBox = document.getElementById(`step${step}`) as HTMLElement | null;
+  if (stepBox) stepBox.style.display = 'block';
+  document.querySelectorAll<HTMLElement>('.pr-it').forEach((item, index) => {
+    item.classList.toggle('cp', index + 1 === step);
+    item.classList.toggle('cm', index + 1 < step);
+  });
+  currentStep = step;
+}
+
+const nextStep1 = document.getElementById('nextStep1') as HTMLButtonElement | null;
+if (nextStep1) nextStep1.addEventListener('click', () => showStep(2));
+
+document.querySelectorAll<HTMLInputElement>('.mx-sl').forEach((slider) => {
+  slider.addEventListener('input', (e: Event) => {
+    const input = e.currentTarget as HTMLInputElement;
+    const valueSpan = input.parentElement?.querySelector('.mx-vl') as HTMLElement | null;
+    if (valueSpan) valueSpan.textContent = input.value + '%';
+  });
+});
+
+const backStep2 = document.getElementById('backStep2') as HTMLButtonElement | null;
+if (backStep2) backStep2.addEventListener('click', () => showStep(1));
+const nextStep2 = document.getElementById('nextStep2') as HTMLButtonElement | null;
+if (nextStep2)
+  nextStep2.addEventListener('click', () => {
+    showStep(3);
+    generateCalendar();
+  });
+
+const backStep3 = document.getElementById('backStep3') as HTMLButtonElement | null;
+if (backStep3) backStep3.addEventListener('click', () => showStep(2));
+const nextStep3 = document.getElementById('nextStep3') as HTMLButtonElement | null;
+if (nextStep3) nextStep3.addEventListener('click', () => showStep(4));
+
+function generateCalendar(): void {
+  const calendar = document.getElementById('calendar') as HTMLElement | null;
+  if (!calendar) return;
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const currentMonthEl = document.getElementById('currentMonth') as HTMLElement | null;
+  if (currentMonthEl) currentMonthEl.textContent = monthNames[currentDate.getMonth()] + ' ' + currentDate.getFullYear();
+
+  const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+  const startDate = new Date(firstDay);
+  startDate.setDate(startDate.getDate() - firstDay.getDay());
+
+  calendar.innerHTML = '';
+
+  const dayHeaders = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  dayHeaders.forEach((day) => {
+    const header = document.createElement('div');
+    header.className = 'cl-hd-dy';
+    header.textContent = day;
+    header.style.cssText = 'background: #f3f4f6; padding: 0.5rem; text-align: center; font-weight: 600; font-size: 0.875rem;';
+    calendar.appendChild(header);
+  });
+
+  for (let i = 0; i < 42; i++) {
+    const date = new Date(startDate);
+    date.setDate(startDate.getDate() + i);
+    const dayElement = document.createElement('div');
+    dayElement.className = 'cl-dy';
+    if (date.getMonth() !== currentDate.getMonth()) dayElement.classList.add('other-month');
+    if (date.toDateString() === new Date().toDateString()) dayElement.classList.add('today');
+    dayElement.innerHTML = `<div class="cl-dt">${date.getDate()}</div>`;
+    if (date.getDay() === 1 || date.getDay() === 3 || date.getDay() === 5) dayElement.innerHTML += '<div class="cl-ev">Post scheduled</div>';
+    dayElement.addEventListener('click', (e: MouseEvent) => {
+      document.querySelectorAll<HTMLElement>('.cl-dy').forEach((d) => d.classList.remove('selected'));
+      const target = e.currentTarget as HTMLElement;
+      target.classList.add('selected');
+      const selectedDate = date.toISOString().split('T')[0];
+      const scheduleDateEl = document.getElementById('scheduleDate') as HTMLInputElement | null;
+      if (scheduleDateEl) scheduleDateEl.value = selectedDate;
+    });
+    calendar.appendChild(dayElement);
+  }
+}
+
+const prevMonth = document.getElementById('prevMonth') as HTMLButtonElement | null;
+if (prevMonth)
+  prevMonth.addEventListener('click', () => {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    generateCalendar();
+  });
+const nextMonth = document.getElementById('nextMonth') as HTMLButtonElement | null;
+if (nextMonth)
+  nextMonth.addEventListener('click', () => {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    generateCalendar();
+  });
+
+const addContentBtn = document.getElementById('addContent') as HTMLButtonElement | null;
+if (addContentBtn)
+  addContentBtn.addEventListener('click', () => {
+    const titleEl = document.getElementById('contentTitle') as HTMLInputElement | null;
+    const descEl = document.getElementById('contentDesc') as HTMLTextAreaElement | null;
+    const dateEl = document.getElementById('scheduleDate') as HTMLInputElement | null;
+    const timeEl = document.getElementById('scheduleTime') as HTMLInputElement | null;
+    const title = titleEl?.value ?? '';
+    const desc = descEl?.value ?? '';
+    const date = dateEl?.value ?? '';
+    const time = timeEl?.value ?? '';
+    if (!title || !date) {
+      alert('Please fill in title and date');
+      return;
+    }
+    const platforms = Array.from(document.querySelectorAll<HTMLInputElement>('.pl-ch input:checked')).map((cb) => cb.value);
+    const content: ScheduledContent = { id: Date.now(), title, desc, date, time, platforms, status: 'scheduled' };
+    scheduledContent.push(content);
+    if (titleEl) titleEl.value = '';
+    if (descEl) descEl.value = '';
+    alert('Content scheduled successfully!');
+  });
+
+const backStep4 = document.getElementById('backStep4') as HTMLButtonElement | null;
+if (backStep4) backStep4.addEventListener('click', () => showStep(3));
+
+const exportCalendar = document.getElementById('exportCalendar') as HTMLButtonElement | null;
+if (exportCalendar)
+  exportCalendar.addEventListener('click', () => {
+    const data = { scheduledContent, exportDate: new Date().toISOString() };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'content-calendar.json';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+showStep(1);
+
+const scheduleDateEl = document.getElementById('scheduleDate') as HTMLInputElement | null;
+if (scheduleDateEl) scheduleDateEl.value = new Date().toISOString().split('T')[0];
+</script>
+</Layout>

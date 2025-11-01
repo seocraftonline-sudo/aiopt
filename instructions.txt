@@ -1,0 +1,526 @@
+# ContentFlow - AI Content Dashboard Development Instructions
+
+## Project Overview
+This is an Astro-based AI Content Dashboard application with a focus on performance, minimal code, and responsive design. The project uses system fonts, inline minified CSS, and follows strict optimization guidelines.
+
+## Core Technologies
+- Astro 5.2.5 (Static Site Generation)
+- No external CSS frameworks
+- System fonts only (no Google Fonts or external font CDNs)
+- Pure CSS with inline styles
+- Vanilla JavaScript for interactions
+- Supabase for database operations (when needed)
+
+## Architecture & File Structure
+
+### Component Structure
+- `/src/components/` - Reusable UI components
+  - `Nav.astro` - Main navigation with dropdown support
+  - `Card.astro`, `ActionCard.astro`, `StatCard.astro`, `DeadlineCard.astro` - Card variants
+  - `Welcome.astro` - Welcome section component
+
+### Layout Structure
+- `/src/layouts/Layout.astro` - Main layout wrapper
+  - Contains global inline styles
+  - All common CSS classes defined here
+  - Handles responsive breakpoints
+
+### Page Structure
+- `/src/pages/*.astro` - Individual pages
+  - Each page imports Layout and Nav
+  - Page-specific styles are scoped inline
+  - Follow the `.mn` (main) container pattern
+
+### Bulk Generator Structure
+- `/src/pages/bulk-generator/` - Bulk content generation tool
+  - `index.astro` - Input page for keywords and settings
+  - `results.astro` - Results page with responsive grid layout
+  - Uses CSS Grid for responsive article presentation
+  - Features clean card design with borders and hover effects
+  - Includes "Featured Articles" heading and descriptive text
+
+### Navigation Structure
+The navigation has a dropdown menu system:
+- Main nav items: Dashboard, Editor, Keywords, Optimizer, SEO, Automator
+- User Management dropdown (under Automator): Tutorials, Upgrade Packages, Redeem Codes, Gift and Offers, Support, Contact
+
+## Coding Standards
+
+### CSS Guidelines
+
+1. **Inline Styles Only**
+   - All styles must be inline within components
+   - Use minified CSS (remove whitespace, use shorthand)
+   - Never create external CSS files
+
+2. **Class Naming Convention**
+   - Use 2-3 letter abbreviated class names for minimal code
+   - Examples: `.mn` (main), `.hd` (header), `.tl` (title), `.st` (subtitle), `.cd` (card), `.bt` (button), `.gr` (grid)
+   - Be consistent with existing naming patterns
+
+3. **Color Palette**
+   - Primary green: #10b981 (hover: #059669)
+   - Dark text: #1f2937
+   - Gray text: #6b7280
+   - Light gray: #f9fafb
+   - Border: #e5e7eb
+   - Success green gradient: #d1fae5 to #a7f3d0
+   - Background: #f9fafb
+
+4. **Common CSS Classes** (defined in Layout.astro)
+   - `.mn` - Main content container (margin-left: 240px for sidebar)
+   - `.hd` - Header section
+   - `.tl` - Title text
+   - `.st` - Subtitle text
+   - `.gr` - Grid container
+   - `.cd` - Card component
+   - `.bt` - Button
+   - `.in` - Input field
+   - `.tx` - Textarea
+   - `.lb` - Label
+
+5. **Responsive Breakpoints**
+   ```css
+   Desktop: 1025px+ (full sidebar, max-width: 1400px)
+   Tablet: 641px-1024px (collapsed sidebar 72px)
+   Mobile: ≤640px (bottom navigation bar)
+   ```
+
+6. **Optimization Rules**
+   - Use shorthand properties (e.g., `margin:0 0 8px` instead of `margin-bottom:8px`)
+   - Combine selectors when possible
+   - Use transitions instead of complex animations
+   - Minimize box-shadows and effects
+
+### JavaScript Guidelines
+
+1. **Vanilla JavaScript Only**
+   - No frameworks or libraries
+   - Use `<script>` tags in Astro components
+   - Type-safe with TypeScript where needed
+   - Use DOM APIs directly
+
+2. **Event Handling**
+   - Query elements with specific IDs
+   - Use event delegation when appropriate
+   - Clean up event listeners when needed
+
+3. **Common Patterns**
+   ```javascript
+   // Modal pattern
+   const modal = document.getElementById('modalId');
+   const openBtn = document.getElementById('openBtn');
+   openBtn?.addEventListener('click', () => {
+     modal.style.display = 'flex';
+   });
+
+   // Form handling
+   form.addEventListener('submit', (e) => {
+     e.preventDefault();
+     // Handle form
+   });
+   ```
+
+### Astro Component Guidelines
+
+1. **Component Structure**
+   ```astro
+   ---
+   // Frontmatter: imports and logic
+   import Layout from '../layouts/Layout.astro';
+   ---
+   <!-- Template -->
+   <Layout>
+     <Nav/>
+     <main class="mn">
+       <!-- Content -->
+     </main>
+   </Layout>
+   <script>
+     // Client-side JavaScript
+   </script>
+   <style>
+     /* Scoped styles (minified) */
+   </style>
+   ```
+
+2. **Props Usage**
+   - Define props in frontmatter with TypeScript interfaces
+   - Keep components simple and focused
+
+3. **No External Dependencies**
+   - Avoid npm packages unless absolutely necessary
+   - Use native Web APIs
+
+## Design Guidelines
+
+### Visual Design
+
+1. **Cards & Containers**
+   - Background: white (#fff)
+   - Border: 2px solid #e5e7eb
+   - Border-radius: 16px (cards), 12px (smaller elements), 10px (buttons/inputs)
+   - Padding: 28px (desktop), 20px (tablet), 16px (mobile)
+   - Box-shadow: `0 2px 8px rgba(0,0,0,.06)`
+   - Hover: `transform:translateY(-4px)` + stronger shadow
+
+2. **Buttons**
+   - Background: #1f2937
+   - Color: white
+   - Padding: 13px 24px (desktop), 10px 18px (mobile)
+   - Border-radius: 10px
+   - Hover: darker background + translateY(-2px)
+   - Transition: .25s
+
+3. **Form Elements**
+   - Background: #fafafa
+   - Border: 2px solid #e5e7eb
+   - Border-radius: 10px
+   - Padding: 12px 14px
+   - Focus: border-color #10b981, background white
+
+4. **Typography**
+   - Font: System font stack (no external fonts)
+   - Titles: 32px (desktop), 24px (tablet), 22px (mobile)
+   - Body: 15px (desktop), 14px (mobile)
+   - Line-height: 1.5
+
+5. **Icons**
+   - Use emoji for quick implementation
+   - SVG masks for navigation icons
+   - Size: 20-24px (desktop), 18-20px (mobile)
+
+### Responsive Design Rules
+
+1. **Desktop (1025px+)**
+   - Full sidebar (240px wide)
+   - Content max-width: 1400px
+   - Full padding and spacing
+   - Multi-column grids
+
+2. **Tablet (641px-1024px)**
+   - Icon-only sidebar (72px wide)
+   - Content: margin-left 72px
+   - Reduced padding: 24px
+   - Grid: auto-fit with min 280px columns
+
+3. **Mobile (≤640px)**
+   - Bottom navigation bar (60px height)
+   - Content: no left margin, padding-bottom 68px
+   - Padding: 12px
+   - Single column grids
+   - Smaller fonts and buttons
+   - Hide dropdown menus in nav
+
+### Animation & Transitions
+
+1. **Page Load**
+   ```css
+   @keyframes sf{
+     from{opacity:0;transform:translateY(10px)}
+     to{opacity:1;transform:translateY(0)}
+   }
+   .mn{animation:sf .4s}
+   ```
+
+2. **Hover Effects**
+   - Cards: translateY(-4px) + shadow
+   - Buttons: darker color + translateY(-2px)
+   - Nav items: translateX(2px) + background
+
+3. **Focus States**
+   - Border color change to green (#10b981)
+   - Subtle box-shadow for inputs
+
+## Navigation System
+
+### Structure
+```
+Dashboard (/index)
+Editor (/editor)
+Keywords (/gen)
+Optimizer (/opt)
+SEO (/seo)
+Automator (/automator)
+User Management (dropdown)
+  ├─ Tutorials (/tutorials)
+  ├─ Upgrade Packages (/packages)
+  ├─ Redeem Codes (/redeem)
+  ├─ Gift and Offers (/offers)
+  ├─ Support (/support)
+  └─ Contact (/contact)
+```
+
+### Navigation Classes
+- `.nv` - Navigation container
+- `.ni` - Navigation item
+- `.ni.ac` - Active navigation item
+- `.dr` - Dropdown container
+- `.dr.op` - Open dropdown
+- `.dr-mn` - Dropdown menu
+- `.dr-it` - Dropdown item
+
+### Active States
+- Green gradient background for active items
+- Green left border indicator
+- Active class: `.ac`
+
+## Performance Rules
+
+1. **Always Minimize**
+   - Remove all unnecessary whitespace in styles
+   - Use shorthand CSS properties
+   - Combine similar selectors
+
+2. **No External Resources**
+   - No CDN links (fonts, libraries, etc.)
+   - System fonts only
+   - Inline everything
+
+3. **Optimize Images**
+   - Use SVG for icons
+   - Compress images before use
+   - Use appropriate formats
+
+4. **Lazy Loading**
+   - Use native lazy loading for images
+   - Defer non-critical JavaScript
+
+5. **Code Splitting**
+   - Keep JavaScript scoped to pages that need it
+   - Don't load unnecessary scripts
+
+## Database Usage (Supabase)
+
+When data persistence is needed:
+
+1. **Setup**
+   - Environment variables are in `.env`
+   - Use `@supabase/supabase-js` package
+   - Connection details pre-configured
+
+2. **Migrations**
+   - Use descriptive filenames
+   - Include comprehensive comments
+   - Always enable RLS (Row Level Security)
+   - Never use destructive operations
+
+3. **Queries**
+   - Use `.maybeSingle()` instead of `.single()` for 0-1 results
+   - Always handle errors
+   - Use TypeScript types
+
+4. **Security**
+   - Enable RLS on all tables
+   - Create restrictive policies
+   - Check `auth.uid()` for user data
+   - Never expose sensitive data
+
+## Adding New Pages
+
+### Step-by-Step Process
+
+1. **Create page file** in `/src/pages/`
+   ```astro
+   ---
+   import Layout from '../layouts/Layout.astro';
+   import Nav from '../components/Nav.astro';
+   ---
+   <Layout>
+   <Nav/>
+   <main class="mn">
+   <header class="hd">
+   <h1 class="tl">Page Title</h1>
+   <p class="st">Subtitle description</p>
+   </header>
+   <div class="gr">
+   <!-- Content -->
+   </div>
+   </main>
+   </Layout>
+   <style>/* Minified page-specific styles */</style>
+   ```
+
+2. **Add to navigation** (if needed) in `/src/components/Nav.astro`
+   - Add to `nr` array for main nav
+   - Add to `um` array for User Management dropdown
+
+3. **Test responsive design** at all breakpoints
+
+4. **Verify build** with `npm run build`
+
+## Adding New Features
+
+### Interactive Components
+
+1. **Modals**
+   ```astro
+   <div class="md" id="modalId" style="display:none">
+     <div class="md-ct">
+       <div class="md-hd">
+         <h2>Title</h2>
+         <button class="md-cl" id="closeBtn">✕</button>
+       </div>
+       <div class="md-bd">
+         <!-- Content -->
+       </div>
+     </div>
+   </div>
+   <script>
+   const modal = document.getElementById('modalId');
+   const closeBtn = document.getElementById('closeBtn');
+   closeBtn?.addEventListener('click', () => {
+     modal.style.display = 'none';
+   });
+   </script>
+   ```
+
+2. **Forms**
+   ```astro
+   <form class="fm" id="formId">
+     <label class="lb">
+       <span class="lb-tx">Label</span>
+       <input type="text" class="in" required>
+     </label>
+     <button type="submit" class="bt">Submit</button>
+   </form>
+   <script>
+   const form = document.getElementById('formId');
+   form?.addEventListener('submit', (e) => {
+     e.preventDefault();
+     // Handle submission
+   });
+   </script>
+   ```
+
+3. **Dropdowns**
+   - Use the pattern from Nav.astro
+   - Toggle classes with JavaScript
+   - Close on outside click
+
+## Testing Checklist
+
+Before committing changes:
+
+- [ ] Test on desktop (1920px, 1440px, 1280px)
+- [ ] Test on tablet (768px, 1024px)
+- [ ] Test on mobile (375px, 414px, 390px)
+- [ ] Verify navigation works on all devices
+- [ ] Check all interactive elements
+- [ ] Test form submissions
+- [ ] Verify hover states
+- [ ] Check active states in navigation
+- [ ] Run `npm run build` successfully
+- [ ] Verify no console errors
+- [ ] Check loading performance
+- [ ] Test with slow network throttling
+
+## Common Issues & Solutions
+
+### Issue: Navigation not responsive on mobile
+**Solution:** Check media queries in Nav.astro, ensure bottom nav appears at 640px breakpoint
+
+### Issue: Content hidden behind navigation
+**Solution:** Adjust padding-bottom on `.mn` for mobile (should be 68px)
+
+### Issue: Styles not applying
+**Solution:** Verify class names match Layout.astro global classes, check for typos
+
+### Issue: JavaScript not working
+**Solution:** Ensure IDs are unique, check that elements exist before adding listeners
+
+### Issue: Build failing
+**Solution:** Check for syntax errors, ensure all imports are correct, verify Astro syntax
+
+## Build & Deploy
+
+### Development
+```bash
+npm run dev
+```
+
+### Build
+```bash
+npm run build
+```
+
+### Preview
+```bash
+npm run preview
+```
+
+## Key Principles
+
+1. **Performance First** - Every byte matters
+2. **Mobile First** - Design for smallest screens first
+3. **Minimal Code** - Less is more
+4. **System Fonts** - Never load external fonts
+5. **Inline Everything** - No external CSS files
+6. **Vanilla JS** - No frameworks needed
+7. **Responsive Always** - Test all breakpoints
+8. **Accessible** - Semantic HTML, proper ARIA labels
+9. **Secure** - Enable RLS, validate inputs
+10. **Fast Loading** - Optimize everything
+
+## File Naming Conventions
+
+- Components: PascalCase.astro (e.g., `Nav.astro`, `ActionCard.astro`)
+- Pages: lowercase.astro (e.g., `index.astro`, `tutorials.astro`)
+- Utilities: camelCase (if needed)
+
+## Git Workflow
+
+1. Test locally
+2. Run build to verify
+3. Check responsive design
+4. Commit with clear messages
+5. Keep commits atomic
+
+## Maintenance Guidelines
+
+1. **Regular Audits**
+   - Check for unused code
+   - Verify all links work
+   - Test forms and interactions
+   - Update dependencies (rarely)
+
+2. **Code Quality**
+   - Keep styles minified
+   - Remove console.logs
+   - Comment complex logic
+   - Follow existing patterns
+
+3. **Performance Monitoring**
+   - Keep JavaScript minimal
+   - Optimize images
+   - Monitor bundle size
+   - Test load times
+
+## Contact & Support Pages Pattern
+
+These pages follow a specific structure:
+- Header with icon and title
+- Empty state or content area
+- Quick help section with cards
+- Modal for forms (if needed)
+
+## Pricing Pages Pattern
+
+Package/offer pages follow:
+- Toggle for monthly/yearly (if applicable)
+- Grid of cards with pricing
+- Feature lists with checkmarks
+- Call-to-action buttons
+- Featured/highlighted options
+
+## Remember
+
+- **Always build before considering the task complete**
+- **Test responsive design at all breakpoints**
+- **Keep code minimal and optimized**
+- **Follow existing patterns and conventions**
+- **Document any new patterns you introduce**
+- **Prioritize performance and user experience**
+- **Never sacrifice responsiveness for aesthetics**
+
+This project is built with care for performance, simplicity, and user experience. Continue that tradition.

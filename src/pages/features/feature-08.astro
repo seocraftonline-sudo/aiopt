@@ -1,0 +1,1593 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+---
+
+<Layout title="AI Image Generation">
+  <Nav />
+  
+  <div class="main-content">
+    <div class="container">
+      <!-- Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-step active" data-step="1">
+            <div class="step-number">1</div>
+            <div class="step-label">Prompt</div>
+          </div>
+          <div class="progress-step" data-step="2">
+            <div class="step-number">2</div>
+            <div class="step-label">Style</div>
+          </div>
+          <div class="progress-step" data-step="3">
+            <div class="step-number">3</div>
+            <div class="step-label">Generate</div>
+          </div>
+          <div class="progress-step" data-step="4">
+            <div class="step-number">4</div>
+            <div class="step-label">Export</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 1: Prompt Creation -->
+      <div class="step-content" id="step1">
+        <div class="step-header">
+          <h2>Create Your Image Prompt</h2>
+          <p>Describe the image you want to generate with AI</p>
+        </div>
+
+        <div class="form-section">
+          <div class="input-group">
+            <label>Main Prompt</label>
+            <textarea id="mainPrompt" placeholder="Describe your image in detail... (e.g., 'A futuristic cityscape at sunset with flying cars and neon lights')" class="prompt-input"></textarea>
+            <div class="prompt-suggestions">
+              <h4>Quick Suggestions:</h4>
+              <div class="suggestion-tags">
+                <span class="suggestion-tag" onclick="addToPrompt('professional headshot')">Professional Headshot</span>
+                <span class="suggestion-tag" onclick="addToPrompt('product photography')">Product Photography</span>
+                <span class="suggestion-tag" onclick="addToPrompt('landscape scenery')">Landscape Scenery</span>
+                <span class="suggestion-tag" onclick="addToPrompt('abstract art')">Abstract Art</span>
+                <span class="suggestion-tag" onclick="addToPrompt('minimalist design')">Minimalist Design</span>
+                <span class="suggestion-tag" onclick="addToPrompt('vintage style')">Vintage Style</span>
+                <span class="suggestion-tag" onclick="addToPrompt('futuristic concept')">Futuristic Concept</span>
+                <span class="suggestion-tag" onclick="addToPrompt('nature photography')">Nature Photography</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Image Type</label>
+            <div class="image-type-grid">
+              <div class="type-card" data-type="photo">
+                <div class="type-icon">📸</div>
+                <h4>Photograph</h4>
+                <p>Realistic photo-style images</p>
+              </div>
+              <div class="type-card" data-type="illustration">
+                <div class="type-icon">🎨</div>
+                <h4>Illustration</h4>
+                <p>Artistic drawings and paintings</p>
+              </div>
+              <div class="type-card" data-type="3d">
+                <div class="type-icon">🎭</div>
+                <h4>3D Render</h4>
+                <p>Three-dimensional graphics</p>
+              </div>
+              <div class="type-card" data-type="logo">
+                <div class="type-icon">🏷️</div>
+                <h4>Logo/Icon</h4>
+                <p>Brand elements and symbols</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Enhancement Options</label>
+            <div class="enhancement-grid">
+              <div class="enhancement-item">
+                <input type="checkbox" id="highRes" checked>
+                <label for="highRes">High Resolution (4K)</label>
+              </div>
+              <div class="enhancement-item">
+                <input type="checkbox" id="ultraRealistic">
+                <label for="ultraRealistic">Ultra Realistic</label>
+              </div>
+              <div class="enhancement-item">
+                <input type="checkbox" id="professionalLighting">
+                <label for="professionalLighting">Professional Lighting</label>
+              </div>
+              <div class="enhancement-item">
+                <input type="checkbox" id="cinematicQuality">
+                <label for="cinematicQuality">Cinematic Quality</label>
+              </div>
+              <div class="enhancement-item">
+                <input type="checkbox" id="vibrantColors">
+                <label for="vibrantColors">Vibrant Colors</label>
+              </div>
+              <div class="enhancement-item">
+                <input type="checkbox" id="sharpDetails">
+                <label for="sharpDetails">Sharp Details</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Negative Prompt (What to avoid)</label>
+            <textarea id="negativePrompt" placeholder="Describe what you don't want in the image... (e.g., 'blurry, low quality, distorted')" class="prompt-input negative"></textarea>
+          </div>
+        </div>
+
+        <div class="step-actions">
+          <button class="btn-primary" id="proceedToStyle">Choose Style →</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Style Selection -->
+      <div class="step-content" id="step2" style="display: none;">
+        <div class="step-header">
+          <h2>Choose Your Style</h2>
+          <p>Select the artistic style for your generated image</p>
+        </div>
+
+        <div class="style-selection">
+          <div class="style-categories">
+            <div class="category-tabs">
+              <button class="category-tab active" data-category="artistic">Artistic</button>
+              <button class="category-tab" data-category="photography">Photography</button>
+              <button class="category-tab" data-category="digital">Digital Art</button>
+              <button class="category-tab" data-category="vintage">Vintage</button>
+            </div>
+
+            <div class="style-grid" id="artisticStyles">
+              <div class="style-card" data-style="oil-painting">
+                <div class="style-preview">🎨</div>
+                <h4>Oil Painting</h4>
+                <p>Classic painted look with brush strokes</p>
+              </div>
+              <div class="style-card" data-style="watercolor">
+                <div class="style-preview">🌊</div>
+                <h4>Watercolor</h4>
+                <p>Soft, flowing watercolor technique</p>
+              </div>
+              <div class="style-card" data-style="impressionist">
+                <div class="style-preview">🌅</div>
+                <h4>Impressionist</h4>
+                <p>Monet-style impressionist art</p>
+              </div>
+              <div class="style-card" data-style="abstract">
+                <div class="style-preview">🎭</div>
+                <h4>Abstract</h4>
+                <p>Non-representational artistic style</p>
+              </div>
+              <div class="style-card" data-style="pop-art">
+                <div class="style-preview">💥</div>
+                <h4>Pop Art</h4>
+                <p>Bold, colorful pop art style</p>
+              </div>
+              <div class="style-card" data-style="minimalist">
+                <div class="style-preview">⚪</div>
+                <h4>Minimalist</h4>
+                <p>Clean, simple design approach</p>
+              </div>
+            </div>
+
+            <div class="style-grid" id="photographyStyles" style="display: none;">
+              <div class="style-card" data-style="portrait">
+                <div class="style-preview">👤</div>
+                <h4>Portrait</h4>
+                <p>Professional portrait photography</p>
+              </div>
+              <div class="style-card" data-style="landscape">
+                <div class="style-preview">🏔️</div>
+                <h4>Landscape</h4>
+                <p>Scenic landscape photography</p>
+              </div>
+              <div class="style-card" data-style="macro">
+                <div class="style-preview">🔍</div>
+                <h4>Macro</h4>
+                <p>Close-up detailed photography</p>
+              </div>
+              <div class="style-card" data-style="street">
+                <div class="style-preview">🏙️</div>
+                <h4>Street</h4>
+                <p>Urban street photography style</p>
+              </div>
+              <div class="style-card" data-style="fashion">
+                <div class="style-preview">👗</div>
+                <h4>Fashion</h4>
+                <p>High-end fashion photography</p>
+              </div>
+              <div class="style-card" data-style="product">
+                <div class="style-preview">📦</div>
+                <h4>Product</h4>
+                <p>Commercial product photography</p>
+              </div>
+            </div>
+
+            <div class="style-grid" id="digitalStyles" style="display: none;">
+              <div class="style-card" data-style="cyberpunk">
+                <div class="style-preview">🤖</div>
+                <h4>Cyberpunk</h4>
+                <p>Futuristic neon-lit aesthetic</p>
+              </div>
+              <div class="style-card" data-style="fantasy">
+                <div class="style-preview">🧙</div>
+                <h4>Fantasy</h4>
+                <p>Magical fantasy art style</p>
+              </div>
+              <div class="style-card" data-style="sci-fi">
+                <div class="style-preview">🚀</div>
+                <h4>Sci-Fi</h4>
+                <p>Science fiction concept art</p>
+              </div>
+              <div class="style-card" data-style="anime">
+                <div class="style-preview">🎌</div>
+                <h4>Anime</h4>
+                <p>Japanese animation style</p>
+              </div>
+              <div class="style-card" data-style="pixel-art">
+                <div class="style-preview">🎮</div>
+                <h4>Pixel Art</h4>
+                <p>Retro 8-bit pixel graphics</p>
+              </div>
+              <div class="style-card" data-style="vector">
+                <div class="style-preview">📐</div>
+                <h4>Vector</h4>
+                <p>Clean vector illustration</p>
+              </div>
+            </div>
+
+            <div class="style-grid" id="vintageStyles" style="display: none;">
+              <div class="style-card" data-style="vintage-photo">
+                <div class="style-preview">📷</div>
+                <h4>Vintage Photo</h4>
+                <p>Old film photography look</p>
+              </div>
+              <div class="style-card" data-style="sepia">
+                <div class="style-preview">🟤</div>
+                <h4>Sepia</h4>
+                <p>Classic sepia tone effect</p>
+              </div>
+              <div class="style-card" data-style="art-deco">
+                <div class="style-preview">🏛️</div>
+                <h4>Art Deco</h4>
+                <p>1920s art deco style</p>
+              </div>
+              <div class="style-card" data-style="retro">
+                <div class="style-preview">📺</div>
+                <h4>Retro</h4>
+                <p>1950s-80s retro aesthetic</p>
+              </div>
+              <div class="style-card" data-style="polaroid">
+                <div class="style-preview">📸</div>
+                <h4>Polaroid</h4>
+                <p>Instant camera photo style</p>
+              </div>
+              <div class="style-card" data-style="film-noir">
+                <div class="style-preview">🎬</div>
+                <h4>Film Noir</h4>
+                <p>Classic black and white cinema</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="style-customization">
+            <h4>Style Customization</h4>
+            <div class="customization-controls">
+              <div class="control-group">
+                <label>Style Strength</label>
+                <input type="range" min="0" max="100" value="75" class="style-slider" id="styleStrength">
+                <span id="styleStrengthValue">75%</span>
+              </div>
+              <div class="control-group">
+                <label>Color Saturation</label>
+                <input type="range" min="0" max="100" value="50" class="style-slider" id="colorSaturation">
+                <span id="colorSaturationValue">50%</span>
+              </div>
+              <div class="control-group">
+                <label>Contrast</label>
+                <input type="range" min="0" max="100" value="50" class="style-slider" id="contrast">
+                <span id="contrastValue">50%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-actions">
+          <button class="btn-secondary" id="backStep2">← Back</button>
+          <button class="btn-primary" id="startGeneration">Generate Images →</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Generation -->
+      <div class="step-content" id="step3" style="display: none;">
+        <div class="step-header">
+          <h2>AI Image Generation</h2>
+          <p>Your images are being generated...</p>
+        </div>
+
+        <div class="generation-section">
+          <div class="generation-settings">
+            <div class="settings-row">
+              <div class="setting-item">
+                <label>Number of Images</label>
+                <select id="imageCount">
+                  <option value="1">1 Image</option>
+                  <option value="2" selected>2 Images</option>
+                  <option value="4">4 Images</option>
+                  <option value="8">8 Images</option>
+                </select>
+              </div>
+              <div class="setting-item">
+                <label>Image Size</label>
+                <select id="imageSize">
+                  <option value="512x512">512×512 (Square)</option>
+                  <option value="768x768" selected>768×768 (Square HD)</option>
+                  <option value="1024x1024">1024×1024 (Square 4K)</option>
+                  <option value="1024x768">1024×768 (Landscape)</option>
+                  <option value="768x1024">768×1024 (Portrait)</option>
+                </select>
+              </div>
+              <div class="setting-item">
+                <label>Quality</label>
+                <select id="imageQuality">
+                  <option value="standard">Standard</option>
+                  <option value="high" selected>High Quality</option>
+                  <option value="ultra">Ultra Quality</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="generation-progress">
+            <div class="progress-info">
+              <h4>Generation Progress</h4>
+              <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progressFill"></div>
+              </div>
+              <div class="progress-text">
+                <span id="progressText">Initializing...</span>
+                <span id="progressPercent">0%</span>
+              </div>
+            </div>
+
+            <div class="generation-steps">
+              <div class="gen-step active" id="step-init">
+                <div class="step-icon">⚡</div>
+                <div class="step-info">
+                  <h5>Initializing</h5>
+                  <p>Preparing AI models...</p>
+                </div>
+              </div>
+              <div class="gen-step" id="step-process">
+                <div class="step-icon">🧠</div>
+                <div class="step-info">
+                  <h5>Processing</h5>
+                  <p>Analyzing your prompt...</p>
+                </div>
+              </div>
+              <div class="gen-step" id="step-generate">
+                <div class="step-icon">🎨</div>
+                <div class="step-info">
+                  <h5>Generating</h5>
+                  <p>Creating your images...</p>
+                </div>
+              </div>
+              <div class="gen-step" id="step-enhance">
+                <div class="step-icon">✨</div>
+                <div class="step-info">
+                  <h5>Enhancing</h5>
+                  <p>Applying final touches...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="generated-images" id="generatedImages" style="display: none;">
+            <h4>Generated Images</h4>
+            <div class="images-grid" id="imagesGrid">
+              <!-- Generated images will appear here -->
+            </div>
+            
+            <div class="generation-actions">
+              <button class="btn-secondary" id="regenerateImages">🔄 Regenerate</button>
+              <button class="btn-secondary" id="generateMore">➕ Generate More</button>
+              <button class="btn-secondary" id="adjustPrompt">✏️ Adjust Prompt</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-actions">
+          <button class="btn-secondary" id="backStep3">← Back</button>
+          <button class="btn-primary" id="proceedToExport" style="display: none;">Export Images →</button>
+        </div>
+      </div>
+
+      <!-- Step 4: Export -->
+      <div class="step-content" id="step4" style="display: none;">
+        <div class="step-header">
+          <h2>Export Your Images</h2>
+          <p>Download and share your AI-generated images</p>
+        </div>
+
+        <div class="export-section">
+          <div class="selected-images">
+            <h4>Selected Images for Export</h4>
+            <div class="export-images-grid" id="exportImagesGrid">
+              <!-- Selected images will appear here -->
+            </div>
+          </div>
+
+          <div class="export-options">
+            <div class="export-formats">
+              <h4>Export Formats</h4>
+              <div class="format-options">
+                <div class="format-option">
+                  <input type="checkbox" id="formatPNG" checked>
+                  <label for="formatPNG">PNG (High Quality)</label>
+                </div>
+                <div class="format-option">
+                  <input type="checkbox" id="formatJPG">
+                  <label for="formatJPG">JPG (Smaller Size)</label>
+                </div>
+                <div class="format-option">
+                  <input type="checkbox" id="formatWEBP">
+                  <label for="formatWEBP">WebP (Web Optimized)</label>
+                </div>
+                <div class="format-option">
+                  <input type="checkbox" id="formatSVG">
+                  <label for="formatSVG">SVG (Vector - if applicable)</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="export-sizes">
+              <h4>Export Sizes</h4>
+              <div class="size-options">
+                <div class="size-option">
+                  <input type="checkbox" id="sizeOriginal" checked>
+                  <label for="sizeOriginal">Original Size</label>
+                </div>
+                <div class="size-option">
+                  <input type="checkbox" id="size2K">
+                  <label for="size2K">2K (2048×2048)</label>
+                </div>
+                <div class="size-option">
+                  <input type="checkbox" id="size4K">
+                  <label for="size4K">4K (4096×4096)</label>
+                </div>
+                <div class="size-option">
+                  <input type="checkbox" id="sizeThumbnail">
+                  <label for="sizeThumbnail">Thumbnail (256×256)</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="export-metadata">
+              <h4>Include Metadata</h4>
+              <div class="metadata-options">
+                <div class="metadata-option">
+                  <input type="checkbox" id="includePrompt" checked>
+                  <label for="includePrompt">Original Prompt</label>
+                </div>
+                <div class="metadata-option">
+                  <input type="checkbox" id="includeStyle">
+                  <label for="includeStyle">Style Information</label>
+                </div>
+                <div class="metadata-option">
+                  <input type="checkbox" id="includeSettings">
+                  <label for="includeSettings">Generation Settings</label>
+                </div>
+                <div class="metadata-option">
+                  <input type="checkbox" id="includeTimestamp">
+                  <label for="includeTimestamp">Creation Timestamp</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sharing-options">
+            <h4>Sharing & Integration</h4>
+            <div class="sharing-buttons">
+              <button class="share-btn" data-action="Download ZIP">📦 Download as ZIP</button>
+              <button class="share-btn" data-action="Copy Links">🔗 Copy Image Links</button>
+              <button class="share-btn" data-action="Share Social">📱 Share on Social Media</button>
+              <button class="share-btn" data-action="Email">📧 Send via Email</button>
+              <button class="share-btn" data-action="Cloud Save">☁️ Save to Cloud</button>
+              <button class="share-btn" data-action="API Export">🔌 Export via API</button>
+            </div>
+          </div>
+
+          <div class="usage-rights">
+            <h4>Usage Rights & Licensing</h4>
+            <div class="rights-info">
+              <div class="rights-card">
+                <h5>Commercial Use</h5>
+                <p>✅ Allowed for commercial projects</p>
+              </div>
+              <div class="rights-card">
+                <h5>Modification</h5>
+                <p>✅ You can edit and modify images</p>
+              </div>
+              <div class="rights-card">
+                <h5>Attribution</h5>
+                <p>⚠️ AI-generated content disclosure recommended</p>
+              </div>
+              <div class="rights-card">
+                <h5>Resale</h5>
+                <p>✅ Can be used in products for sale</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-actions">
+          <button class="btn-secondary" id="backStep4">← Back</button>
+          <button class="btn-primary" id="completeExport">Complete Export</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<style>
+.main-content {
+  padding: 2rem 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.progress-container {
+  margin-bottom: 3rem;
+}
+
+.progress-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+}
+
+.progress-step.active {
+  color: white;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.progress-step.active .step-number {
+  background: white;
+  color: #667eea;
+}
+
+.step-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.step-content {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.step-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.step-header h2 {
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+
+.step-header p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.form-section {
+  margin-bottom: 2rem;
+}
+
+.input-group {
+  margin-bottom: 2rem;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.prompt-input {
+  width: 100%;
+  min-height: 120px;
+  padding: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  font-size: 1rem;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+}
+
+.prompt-input:focus {
+  border-color: #667eea;
+  outline: none;
+}
+
+.prompt-input.negative {
+  border-color: #ff6b6b;
+}
+
+.prompt-suggestions {
+  margin-top: 1rem;
+}
+
+.prompt-suggestions h4 {
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.suggestion-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.suggestion-tag {
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.suggestion-tag:hover {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+.image-type-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.type-card {
+  background: #f8f9fa;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.type-card:hover, .type-card.selected {
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.type-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.type-card h4 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.type-card p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.enhancement-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.enhancement-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.enhancement-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+.style-selection {
+  margin-bottom: 2rem;
+}
+
+.category-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+.category-tab {
+  background: none;
+  border: none;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.category-tab.active {
+  color: #667eea;
+  border-bottom-color: #667eea;
+}
+
+.style-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.style-card {
+  background: #f8f9fa;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.style-card:hover, .style-card.selected {
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.style-preview {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.style-card h4 {
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.style-card p {
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.style-customization {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.style-customization h4 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.customization-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.control-group label {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.style-slider {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: #ddd;
+  outline: none;
+}
+
+.generation-section {
+  margin-bottom: 2rem;
+}
+
+.generation-settings {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.settings-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.setting-item label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.setting-item select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.generation-progress {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.progress-info h4 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 8px;
+  background: #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.generation-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.gen-step {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  border-left: 4px solid #ddd;
+  transition: all 0.3s ease;
+}
+
+.gen-step.active {
+  border-left-color: #667eea;
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.gen-step.completed {
+  border-left-color: #28a745;
+  background: rgba(40, 167, 69, 0.1);
+}
+
+.step-icon {
+  font-size: 1.5rem;
+}
+
+.step-info h5 {
+  color: #333;
+  margin-bottom: 0.25rem;
+  font-size: 1rem;
+}
+
+.step-info p {
+  color: #666;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.generated-images {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.generated-images h4 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.images-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.image-item {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.image-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.image-item.selected {
+  border: 3px solid #667eea;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: #999;
+}
+
+.image-info {
+  padding: 1rem;
+}
+
+.image-info h5 {
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.image-info p {
+  color: #666;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.generation-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.export-section {
+  margin-bottom: 2rem;
+}
+
+.selected-images {
+  margin-bottom: 2rem;
+}
+
+.selected-images h4 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.export-images-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.export-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.export-formats, .export-sizes, .export-metadata {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.export-formats h4, .export-sizes h4, .export-metadata h4 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.format-options, .size-options, .metadata-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.format-option, .size-option, .metadata-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.format-option input, .size-option input, .metadata-option input {
+  width: 18px;
+  height: 18px;
+}
+
+.sharing-options {
+  margin-bottom: 2rem;
+}
+
+.sharing-options h4 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.sharing-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.share-btn {
+  background: white;
+  border: 2px solid #667eea;
+  color: #667eea;
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.share-btn:hover {
+  background: #667eea;
+  color: white;
+}
+
+.usage-rights {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.usage-rights h4 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.rights-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.rights-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  border-left: 4px solid #28a745;
+}
+
+.rights-card h5 {
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.rights-card p {
+  color: #666;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.step-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eee;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.btn-secondary {
+  background: white;
+  color: #667eea;
+  border: 2px solid #667eea;
+}
+
+.btn-secondary:hover {
+  background: #667eea;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .progress-bar {
+    padding: 1rem;
+  }
+  
+  .step-content {
+    padding: 1.5rem;
+  }
+  
+  .image-type-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .enhancement-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .style-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .customization-controls {
+    grid-template-columns: 1fr;
+  }
+  
+  .settings-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .generation-steps {
+    grid-template-columns: 1fr;
+  }
+  
+  .images-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .export-options {
+    grid-template-columns: 1fr;
+  }
+  
+  .sharing-buttons {
+    grid-template-columns: 1fr;
+  }
+  
+  .rights-info {
+    grid-template-columns: 1fr;
+  }
+  
+  .step-actions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .generation-actions {
+    flex-direction: column;
+  }
+}
+</style>
+
+<script>
+let selectedImageType = 'photo';
+let selectedStyle = 'oil-painting';
+let generatedImages = [];
+
+function showStep(stepNumber) {
+  // Hide all steps
+  document.querySelectorAll('.step-content').forEach(step => {
+    step.style.display = 'none';
+  });
+  
+  // Show current step
+  document.getElementById(`step${stepNumber}`).style.display = 'block';
+  
+  // Update progress bar
+  document.querySelectorAll('.progress-step').forEach(step => {
+    step.classList.remove('active');
+  });
+  document.querySelector(`[data-step="${stepNumber}"]`).classList.add('active');
+}
+
+// Add to prompt function
+function addToPrompt(text) {
+  const promptInput = document.getElementById('mainPrompt');
+  const currentValue = promptInput.value;
+  if (currentValue) {
+    promptInput.value = currentValue + ', ' + text;
+  } else {
+    promptInput.value = text;
+  }
+}
+
+// Step 1: Prompt Creation
+document.getElementById('proceedToStyle').addEventListener('click', function() {
+  const mainPrompt = document.getElementById('mainPrompt').value;
+  if (!mainPrompt.trim()) {
+    alert('Please enter a prompt for your image!');
+    return;
+  }
+  showStep(2);
+});
+
+// Image type selection
+document.querySelectorAll('.type-card').forEach(card => {
+  card.addEventListener('click', function() {
+    document.querySelectorAll('.type-card').forEach(c => c.classList.remove('selected'));
+    this.classList.add('selected');
+    selectedImageType = this.dataset.type;
+  });
+});
+
+// Step 2: Style Selection
+document.getElementById('backStep2').addEventListener('click', () => showStep(1));
+document.getElementById('startGeneration').addEventListener('click', () => showStep(3));
+
+// Category tabs
+document.querySelectorAll('.category-tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+    
+    const category = this.dataset.category;
+    document.querySelectorAll('.style-grid').forEach(grid => {
+      grid.style.display = 'none';
+    });
+    document.getElementById(category + 'Styles').style.display = 'grid';
+  });
+});
+
+// Style selection
+document.querySelectorAll('.style-card').forEach(card => {
+  card.addEventListener('click', function() {
+    document.querySelectorAll('.style-card').forEach(c => c.classList.remove('selected'));
+    this.classList.add('selected');
+    selectedStyle = this.dataset.style;
+  });
+});
+
+// Style sliders
+const styleSliders = ['styleStrength', 'colorSaturation', 'contrast'];
+styleSliders.forEach(sliderId => {
+  const slider = document.getElementById(sliderId);
+  const valueSpan = document.getElementById(sliderId + 'Value');
+  
+  slider.addEventListener('input', function() {
+    valueSpan.textContent = this.value + '%';
+  });
+});
+
+// Step 3: Generation
+document.getElementById('backStep3').addEventListener('click', () => showStep(2));
+
+// Start generation when step 3 is shown
+function startImageGeneration() {
+  const progressFill = document.getElementById('progressFill');
+  const progressText = document.getElementById('progressText');
+  const progressPercent = document.getElementById('progressPercent');
+  
+  const steps = [
+    { id: 'step-init', text: 'Initializing AI models...', duration: 1000 },
+    { id: 'step-process', text: 'Processing your prompt...', duration: 2000 },
+    { id: 'step-generate', text: 'Generating images...', duration: 4000 },
+    { id: 'step-enhance', text: 'Enhancing quality...', duration: 2000 }
+  ];
+  
+  let currentStep = 0;
+  let progress = 0;
+  
+  function updateProgress() {
+    if (currentStep < steps.length) {
+      const step = steps[currentStep];
+      
+      // Update active step
+      document.querySelectorAll('.gen-step').forEach(s => {
+        s.classList.remove('active', 'completed');
+      });
+      
+      for (let i = 0; i < currentStep; i++) {
+        document.getElementById(steps[i].id).classList.add('completed');
+      }
+      document.getElementById(step.id).classList.add('active');
+      
+      // Update progress text
+      progressText.textContent = step.text;
+      
+      // Animate progress bar
+      const targetProgress = ((currentStep + 1) / steps.length) * 100;
+      const progressInterval = setInterval(() => {
+        progress += 2;
+        if (progress >= targetProgress) {
+          progress = targetProgress;
+          clearInterval(progressInterval);
+          
+          if (currentStep === steps.length - 1) {
+            // Generation complete
+            setTimeout(() => {
+              showGeneratedImages();
+            }, 500);
+          } else {
+            currentStep++;
+            setTimeout(updateProgress, 200);
+          }
+        }
+        progressFill.style.width = progress + '%';
+        progressPercent.textContent = Math.round(progress) + '%';
+      }, 50);
+    }
+  }
+  
+  updateProgress();
+}
+
+function showGeneratedImages() {
+  const imageCount = parseInt(document.getElementById('imageCount').value);
+  const imagesGrid = document.getElementById('imagesGrid');
+  
+  // Generate mock images
+  generatedImages = [];
+  imagesGrid.innerHTML = '';
+  
+  for (let i = 0; i < imageCount; i++) {
+    const imageItem = document.createElement('div');
+    imageItem.className = 'image-item';
+    imageItem.innerHTML = `
+      <div class="image-placeholder">🎨</div>
+      <div class="image-info">
+        <h5>Generated Image ${i + 1}</h5>
+        <p>Style: ${selectedStyle} | Type: ${selectedImageType}</p>
+      </div>
+    `;
+    
+    imageItem.addEventListener('click', function() {
+      this.classList.toggle('selected');
+      updateExportButton();
+    });
+    
+    imagesGrid.appendChild(imageItem);
+    generatedImages.push({
+      id: i + 1,
+      style: selectedStyle,
+      type: selectedImageType,
+      selected: false
+    });
+  }
+  
+  document.getElementById('generatedImages').style.display = 'block';
+  document.getElementById('proceedToExport').style.display = 'block';
+}
+
+function updateExportButton() {
+  const selectedImages = document.querySelectorAll('.image-item.selected');
+  const exportButton = document.getElementById('proceedToExport');
+  
+  if (selectedImages.length > 0) {
+    exportButton.textContent = `Export ${selectedImages.length} Image(s) →`;
+    exportButton.style.display = 'block';
+  } else {
+    exportButton.textContent = 'Export Images →';
+  }
+}
+
+// Generation actions
+document.getElementById('regenerateImages').addEventListener('click', function() {
+  document.getElementById('generatedImages').style.display = 'none';
+  document.getElementById('proceedToExport').style.display = 'none';
+  setTimeout(() => {
+    startImageGeneration();
+  }, 500);
+});
+
+document.getElementById('generateMore').addEventListener('click', function() {
+  const currentCount = parseInt(document.getElementById('imageCount').value);
+  document.getElementById('imageCount').value = Math.min(currentCount + 2, 8);
+  document.getElementById('regenerateImages').click();
+});
+
+document.getElementById('adjustPrompt').addEventListener('click', function() {
+  showStep(1);
+});
+
+document.getElementById('proceedToExport').addEventListener('click', function() {
+  const selectedImages = document.querySelectorAll('.image-item.selected');
+  if (selectedImages.length === 0) {
+    alert('Please select at least one image to export!');
+    return;
+  }
+  
+  // Populate export grid
+  const exportGrid = document.getElementById('exportImagesGrid');
+  exportGrid.innerHTML = '';
+  
+  selectedImages.forEach((img, index) => {
+    const exportItem = document.createElement('div');
+    exportItem.className = 'image-item';
+    exportItem.innerHTML = `
+      <div class="image-placeholder">🎨</div>
+      <div class="image-info">
+        <h5>Image ${index + 1}</h5>
+        <p>Ready for export</p>
+      </div>
+    `;
+    exportGrid.appendChild(exportItem);
+  });
+  
+  showStep(4);
+});
+
+// Step 4: Export
+document.getElementById('backStep4').addEventListener('click', () => showStep(3));
+
+// Sharing buttons
+document.querySelectorAll('.share-btn').forEach(button => {
+  button.addEventListener('click', function() {
+    const action = this.dataset.action;
+    
+    if (action === 'Download ZIP') {
+      // Create mock ZIP download
+      const selectedFormats = [];
+      if (document.getElementById('formatPNG').checked) selectedFormats.push('PNG');
+      if (document.getElementById('formatJPG').checked) selectedFormats.push('JPG');
+      if (document.getElementById('formatWEBP').checked) selectedFormats.push('WebP');
+      
+      const zipContent = `AI Generated Images Export
+      
+Generated: ${new Date().toLocaleDateString()}
+Formats: ${selectedFormats.join(', ')}
+Images: ${document.querySelectorAll('#exportImagesGrid .image-item').length}
+
+Prompt: ${document.getElementById('mainPrompt').value}
+Style: ${selectedStyle}
+Type: ${selectedImageType}
+
+Files included:
+${Array.from(document.querySelectorAll('#exportImagesGrid .image-item')).map((_, i) => 
+  selectedFormats.map(format => `- image_${i + 1}.${format.toLowerCase()}`).join('\n')
+).join('\n')}`;
+      
+      const blob = new Blob([zipContent], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'ai-generated-images.txt';
+      a.click();
+      URL.revokeObjectURL(url);
+    } else if (action === 'Copy Links') {
+      const links = Array.from(document.querySelectorAll('#exportImagesGrid .image-item')).map((_, i) => 
+        `https://your-domain.com/generated/image_${i + 1}.png`
+      ).join('\n');
+      
+      navigator.clipboard.writeText(links).then(() => {
+        alert('Image links copied to clipboard!');
+      });
+    } else {
+      alert(`${action} functionality will be implemented soon!`);
+    }
+  });
+});
+
+document.getElementById('completeExport').addEventListener('click', function() {
+  const selectedCount = document.querySelectorAll('#exportImagesGrid .image-item').length;
+  alert(`🎉 Export completed successfully!\n\n${selectedCount} images have been processed and are ready for use.\n\nThank you for using our AI Image Generation tool!`);
+  
+  // Reset to step 1
+  showStep(1);
+  
+  // Clear form
+  document.getElementById('mainPrompt').value = '';
+  document.getElementById('negativePrompt').value = '';
+  document.querySelectorAll('.type-card').forEach(c => c.classList.remove('selected'));
+  document.querySelectorAll('.style-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('generatedImages').style.display = 'none';
+  document.getElementById('proceedToExport').style.display = 'none';
+});
+
+// Initialize
+showStep(1);
+
+// Auto-start generation when step 3 is shown
+const observer = new MutationObserver(function(mutations) {
+  mutations.forEach(function(mutation) {
+    if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+      const step3 = document.getElementById('step3');
+      if (step3.style.display === 'block' && !step3.dataset.generated) {
+        step3.dataset.generated = 'true';
+        setTimeout(() => {
+          startImageGeneration();
+        }, 500);
+      }
+    }
+  });
+});
+
+observer.observe(document.getElementById('step3'), { attributes: true });
+</script>
+</Layout>
