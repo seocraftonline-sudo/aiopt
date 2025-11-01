@@ -733,16 +733,16 @@ Why Choose Us:
     const title = (document.getElementById('optimizedTitle') as HTMLInputElement | null)?.value || 'Product Title';
     const description = (document.getElementById('optimizedDescription') as HTMLTextAreaElement | null)?.value || 'Product description';
     const schema = (document.getElementById('productSchema') as HTMLElement | null)?.textContent || '{}';
-    
+
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title}</title>
-    <script type="application/ld+json">
+    <${'script'} type="application/ld+json">
     ${schema}
-    </script>
+    </${'script'}>
 </head>
 <body>
     <h1>${title}</h1>
